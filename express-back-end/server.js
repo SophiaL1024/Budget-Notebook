@@ -8,7 +8,7 @@ const budget = require('./routes/budget');
 const App = Express();
 App.use('/balance', balance);
 App.use('/transactions', transactions);
-App.use('/dashboard', dashboard);
+App.use('/dashBoard', dashboard);
 App.use('/categories', categories);
 App.use('/budget', budget);
 
