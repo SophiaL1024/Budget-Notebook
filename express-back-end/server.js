@@ -1,16 +1,19 @@
 const Express = require('express');
-const balance = require('./routes/balance');
+const balances = require('./routes/balances');
 const transactions = require('./routes/transactions');
-const dashboard = require('./routes/dashboard');
+const dashboards = require('./routes/dashboards');
 const categories = require('./routes/categories');
-const budget = require('./routes/budget');
+const budgets = require('./routes/budgets');
+const users = require('./routes/users');
 
 const App = Express();
-App.use('/balance', balance);
+App.use('/balances', balances);
 App.use('/transactions', transactions);
-App.use('/dashBoard', dashboard);
+App.use('/dashBoards', dashboards);
 App.use('/categories', categories);
-App.use('/budget', budget);
+App.use('/budgets', budgets);
+App.use('/users', users);
+
 
 const BodyParser = require('body-parser');
 const PORT = 8080;

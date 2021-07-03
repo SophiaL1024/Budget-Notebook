@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { Pool } = require('pg');
 
 let dbParams = {};
@@ -13,13 +14,11 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-
 const pool = new Pool(dbParams);
 
 pool
   .connect(() => {
     console.log('connected to database');
   });
-  
 
 module.exports = pool;
