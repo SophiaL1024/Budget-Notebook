@@ -1,5 +1,17 @@
-const Express = require('express');
+const Express = require('express'),
+balance = require('.routes/balance'),
+transactions = require('.routes/transactions'),
+dashboard = require('.routes/dashboard'),
+categories = require('.routes/categories'),
+budget = require('.routes/budget');
+
 const App = Express();
+App.use('/balance', balance);
+App.use('/transactions', transactions);
+App.use('/dashboard', dashboard);
+App.use('/categories', categories);
+App.use('/budget', budget);
+
 const BodyParser = require('body-parser');
 const PORT = 8080;
 
@@ -11,6 +23,7 @@ App.use(Express.static('public'));
 //Set up db connection
 const db = require('./db/connection');
 db.connect();
+
 
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({

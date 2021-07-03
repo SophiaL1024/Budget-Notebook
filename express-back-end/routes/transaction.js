@@ -1,18 +1,20 @@
 const Express = require('express');
-const App = Express();
+const router = Express.Router();
 
-App.get('/transaction', (req, res) => res.json({
+router.get('/transaction', (req, res) => res.json({
   
 }));
 
-App.post('/transaction', (req, res) => res.json({
+router.post('/transaction', (req, res) => res.json({
   
 }));
 
-App.patch('/transaction', (req, res) => res.json({
+router.patch('/transaction', (req, res) => res.json({
   
 }));
 
-App.delete('/transaction', (req, res) => res.json({
+router.delete('/transaction', (req, res) => res.json({
   
 }));
+
+module.exports = router;

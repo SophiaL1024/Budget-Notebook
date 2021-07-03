@@ -1,6 +1,9 @@
 const Express = require('express');
-const App = Express();
+const router = Express.Router();
 
-App.get('/dashboard', (req, res) => res.json({
+
+router.get('/dashboard', (req, res) => res.json({
   
 }));
+
+module.exports = router;

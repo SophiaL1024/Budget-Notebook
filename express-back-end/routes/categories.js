@@ -1,18 +1,20 @@
 const Express = require('express');
-const App = Express();
+const router = Express.Router();
 
-App.get('/categories', (req, res) => res.json({
+router.get('/categories', (req, res) => res.json({
   
 }));
 
-App.post('/categories', (req, res) => res.json({
+router.post('/categories', (req, res) => res.json({
   
 }));
 
-App.patch('/categories', (req, res) => res.json({
+router.patch('/categories', (req, res) => res.json({
   
 }));
 
-App.delete('/categories', (req, res) => res.json({
+router.delete('/categories', (req, res) => res.json({
   
 }));
+
+module.exports = router;

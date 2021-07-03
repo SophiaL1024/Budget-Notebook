@@ -1,10 +1,12 @@
 const Express = require('express');
-const App = Express();
+const router = Express.Router();
 
-App.get('/balance', (req, res) => res.json({
+router.get('/balance', (req, res) => res.json({
   
 }));
 
-App.post('/balance', (req, res) => res.json({
+router.post('/balance', (req, res) => res.json({
   
 }));
+
+module.exports = router;
