@@ -80,7 +80,7 @@ POST /categories/ --- create categories
 DELETE /categories/  --- Delete categories 
 
 
-budget route: (home page?)
+budget route: 
 GET /budget -- view "pie chart" to see how much they have spent and on what
 POST /budget -- create new budget and saving goal
 PATCH /budget -- edit existing budgets
@@ -98,4 +98,13 @@ PATCH /transaction --edit
 DELETE /transaction
 
 ## Schedule:
-​
+
+#### ​Friday: set up database and route
+route ---Dylan
+database ---Feng
+seeds ---Suki
+
+#### Saturday: route and queries
+user route, categories route ---Suki
+dashboard route, budget route ---Feng
+balance route, transaction route ---Dylan
