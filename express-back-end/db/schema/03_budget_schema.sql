@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS income_budgets CASCADE;
+DROP TABLE IF EXISTS expense_budgets CASCADE;
+DROP TABLE IF EXISTS balance_budgets CASCADE;
+
+CREATE TABLE income_budgets (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description VARCHAR(255),
+  amount NUMERIC NOT NULL,
+  month INTEGER NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE expense_budgets (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description VARCHAR(255),
+  amount NUMERIC NOT NULL,
+  month INTEGER NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE balance_budgets (
+  id SERIAL PRIMARY KEY NOT NULL,
+  amount NUMERIC NOT NULL,
+  month INTEGER NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
