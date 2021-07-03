@@ -4,6 +4,7 @@ const transactions = require('./routes/transactions');
 const dashboard = require('./routes/dashboard');
 const categories = require('./routes/categories');
 const budget = require('./routes/budget');
+const user = require('./routes/user');
 
 const App = Express();
 App.use('/balance', balance);
@@ -11,6 +12,8 @@ App.use('/transactions', transactions);
 App.use('/dashboard', dashboard);
 App.use('/categories', categories);
 App.use('/budget', budget);
+App.use('/user', user);
+
 
 const BodyParser = require('body-parser');
 const PORT = 8080;
