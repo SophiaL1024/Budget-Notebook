@@ -1,9 +1,9 @@
-const Express = require('express'),
-balance = require('.routes/balance'),
-transactions = require('.routes/transactions'),
-dashboard = require('.routes/dashboard'),
-categories = require('.routes/categories'),
-budget = require('.routes/budget');
+const Express = require('express');
+const balance = require('./routes/balance');
+const transactions = require('./routes/transactions');
+const dashboard = require('./routes/dashboard');
+const categories = require('./routes/categories');
+const budget = require('./routes/budget');
 
 const App = Express();
 App.use('/balance', balance);
