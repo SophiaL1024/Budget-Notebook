@@ -80,12 +80,12 @@ export default function SideBar() {
         <Select
           labelId="select-year-label"
           id="select-year"
-          yearOpen={yearOpen}
+          open={yearOpen}
           onClose={handleYearClose}
           onOpen={handleYearOpen}
           value={year}
           onChange={handleYearChange}> 
-          {allYear.map(y=><MenuItem value={y}>{y}</MenuItem>)}       
+          {allYear.map(y=><MenuItem key={y} value={y}>{y}</MenuItem>)}       
         </Select>
       </FormControl>
 
@@ -94,7 +94,7 @@ export default function SideBar() {
         <Select
           labelId="select-month-label"
           id="select-month"
-          monthOpen={monthOpen}
+          open={monthOpen}
           onClose={handleMonthClose}
           onOpen={handleMonthOpen}
           value={month}
