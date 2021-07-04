@@ -1,12 +1,11 @@
 const db = require('../connection');
 
-//selects all columns from income table
-const getIncomeTransactionsById = (id) => {
+//selects all columns from income_categories table
+const getIncomeCategoryById = (id) => {
   const queryStatement = `
   SELECT *
-  FROM income
-  GROUP by id
-  HAVING user_id=$1
+  FROM income_categories
+  WHERE id = $1
   `;
   return db.query(queryStatement, [id])
     .then((response) => {
@@ -15,13 +14,12 @@ const getIncomeTransactionsById = (id) => {
     .catch(err => console.log(err));
 };
 
-//selects all columns from expense table
-const getExpenseTransactionsById = (id) => {
+//selects all columns from expense_categories table
+const getExpenseCategoryById = (id) => {
   const queryStatement = `
   SELECT *
-  FROM expense
-  GROUP by id
-  HAVING user_id=$1
+  FROM expense_categories
+  WHERE id = $1
   `;
   return db.query(queryStatement, [id])
     .then((response) => {
@@ -31,6 +29,6 @@ const getExpenseTransactionsById = (id) => {
 };
 
 module.exports = {
-  getIncomeTransactionsById,
-  getExpenseTransactionsById
+  getExpenseCategoryById,
+  getIncomeCategoryById
 };
