@@ -5,7 +5,7 @@
   "main": "server.js",
   "author": "garrettgsb",
   "license": "MIT",
-  "scripts": {    
+  "scripts": {
     "go": "./node_modules/.bin/nodemon -L",
     "db:reset": "node db/resetdb.js"
   },

@@ -2,12 +2,11 @@ const db = require('../connection');
 
 const getIncomeBudgetByMonth = (id, month) => {
   const queryStatement = `SELECT
-  sum(income.amount) AS income_sum, income_budgets.id,income_budgets.name,income_budgets.description,income_budgets.amount,income_categories.name AS income_categories,income_categories.id AS income_categories_id
+  sum(income.amount) AS income_sum, income_budgets.*
   FROM income
-  JOIN income_budgets ON income.income_budgets_id=income_budgets.id
-  JOIN income_categories ON income.income_categories_id=income_categories.id
+  JOIN income_budgets ON income.income_budgets_id=income_budgets.id 
   WHERE income.month=$2 AND income.user_id=$1
-  GROUP BY income_budgets.id , income_categories.id
+  GROUP BY income_budgets.id
  `;
   return db.query(queryStatement, [id, month])
     .then((response) => {
@@ -18,10 +17,11 @@ const getIncomeBudgetByMonth = (id, month) => {
 
 const getExpenseBudgetByMonth = (id, month) => {
   const queryStatement = `SELECT
-  name,description,amount
-  FROM expense_budgets
-  WHERE month=$2
-  AND user_id=$1
+  sum(expense.amount) AS expense_sum, expense_budgets.*
+  FROM expense
+  JOIN expense_budgets ON expense.expense_budgets_id=expense_budgets.id 
+  WHERE expense.month=$2 AND expense.user_id=$1
+  GROUP BY expense_budgets.id
  `;
   return db.query(queryStatement, [id, month])
     .then((response) => {
