@@ -13,23 +13,23 @@ App.use(BodyParser.json());
 //Set up db connection
 db.connect();
 
-const balance = require('./routes/balance');
+const balance = require('./routes/balances');
 const transactions = require('./routes/transactions');
-const dashboard = require('./routes/dashboard');
+const dashboard = require('./routes/dashboards');
 const categories = require('./routes/categories');
-const budget = require('./routes/budget');
-const user = require('./routes/user');
+const budget = require('./routes/budgets');
+const user = require('./routes/users');
 
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
 }));
-App.use('/balance', balance);
+App.use('/balances', balance);
 App.use('/transactions', transactions);
-App.use('/dashboard', dashboard);
+App.use('/dashboards', dashboard);
 App.use('/categories', categories);
-App.use('/budget', budget);
-App.use('/user', user);
+App.use('/budgets', budget);
+App.use('/users', user);
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
