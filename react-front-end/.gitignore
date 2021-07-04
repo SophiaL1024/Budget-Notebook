@@ -4,8 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/react-front-end/src/App.js
-/react-front-end/src/components/
+
 # testing
 /coverage
 
@@ -13,7 +12,7 @@
 /build
 
 # misc
-.DS_Store
+
 .env.local
 .env.development.local
 .env.test.local
