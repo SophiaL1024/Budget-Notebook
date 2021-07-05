@@ -16,7 +16,6 @@ const getMonthlyIncomeByUserId = (id, month) => {
     })
     .catch(err => console.log(err));
 };
-
 const getMonthlyExpenseByUserId = (id, month) => {
   const queryStatement = `SELECT
   sum(amount) as monthly_expense_sum
@@ -46,7 +45,6 @@ const getSavingGoalByUserId = (id, month) => {
     })
     .catch(err => console.log(err));
 };
-
 module.exports = {
   getMonthlyIncomeByUserId,
   getMonthlyExpenseByUserId,

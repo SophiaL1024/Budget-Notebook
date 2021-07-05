@@ -8,7 +8,8 @@ import { context } from './context';
 import './App.css';
 import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
-
+import Balance from './components/balance/balance';
+import User from './components/user/user';
 const App = function() {
 
 
@@ -36,6 +37,10 @@ const App = function() {
           <Route path="/balances">
             <SideBar />
             <Dashboard />
+          </Route>
+          <Route path="/users">
+            <SideBar />
+            <User />
           </Route>
         </Switch>
 
