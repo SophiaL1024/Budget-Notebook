@@ -93,3 +93,12 @@
 ('investments',300,7,1),
 ('benefit',500,7,1);
 
+INSERT INTO balance_budgets (name,amount,month,user_id)
+ VALUES
+('save',500,1,1),
+('save',500,2,1),
+('save',500,3,1),
+('save',500,4,1),
+('save',500,5,1),
+('save',500,6,1),
+('save',500,7,1);
