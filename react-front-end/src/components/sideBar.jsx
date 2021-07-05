@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -59,13 +54,13 @@ export default function SideBar() {
 
   return (
     <div className="side-bar">
-    <Router>
-    <div><Link to="/dashboards">Dashboard </Link></div>
-    <div><Link to="/categories">Category </Link></div>
-    <div><Link to="/budgets">Budget</Link></div>
-    <div><Link to="/transactions">Transaction</Link></div>
-    <div><Link to="/balances">Balance</Link></div>    
-  </Router>
+  
+    <div><Link to="/dashboards/">Dashboard </Link></div>
+    <div><Link to="/categories/">Category </Link></div>
+    <div><Link to="/budgets/">Budget</Link></div>
+    <div><Link to="/transactions/">Transaction</Link></div>
+    <div><Link to="/balances/">Balance</Link></div>    
+
     <div>
       <FormControl className={classes.formControl}>
         <InputLabel id="select-year-label">Year</InputLabel>
