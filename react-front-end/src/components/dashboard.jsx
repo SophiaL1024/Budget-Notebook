@@ -1,10 +1,14 @@
-import  React,{useEffect, useState } from "react";
+import  React,{useEffect, useState,useContext } from "react";
 import axios from 'axios';
-export default function Dashboard(){
+import dateContext from "../context.js";
+
+const Dashboard=function(){
 
   const [state, setState] = useState({
     dashboardData:{}
   }); 
+
+  const {month,year} = useContext(dateContext);
 
   useEffect(() => {
     axios
@@ -20,6 +24,10 @@ export default function Dashboard(){
     monthlyExpenseSum :{state.dashboardData.monthlyExpenseSum }<br/>
     annualIncomeSum :{state.dashboardData.annualIncomeSum }<br/>
     annualExpenseSum :{state.dashboardData.annualExpenseSum }<br/>
+    selected month:{month}<br/>
+    selected year:{year}<br/>
     </>
   );
 }
+
+export default Dashboard;

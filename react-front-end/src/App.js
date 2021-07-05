@@ -1,23 +1,26 @@
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import { context } from './context';
+import  dateContext  from './context.js';
 import './App.css';
 import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
-import Balance from './components/balance/balance';
-import User from './components/user/user';
+// import Budget from './components/budget';
+// import Balance from './components/balance/balance';
+// import User from './components/user/user';
 const App = function() {
 
-
+const [month,setMonth]=useState(new Date().getMonth()+1);
+const [year,setYear]=useState(new Date().getFullYear())
   return (
     <>
       <Router>
 
         <Switch>
+        <dateContext.Provider value={{month,setMonth,year,setYear}}>
           <Route path="/dashboards">
             <SideBar />
             <Dashboard />
@@ -28,7 +31,7 @@ const App = function() {
           </Route>
           <Route path="/budgets">
             <SideBar />
-            <Dashboard />
+            {/* <Budget /> */}
           </Route>
           <Route path="/transactions">
             <SideBar />
@@ -38,10 +41,7 @@ const App = function() {
             <SideBar />
             <Dashboard />
           </Route>
-          <Route path="/users">
-            <SideBar />
-            <User />
-          </Route>
+          </dateContext.Provider>
         </Switch>
 
       </Router>
