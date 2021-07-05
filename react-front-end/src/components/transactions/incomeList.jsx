@@ -1,7 +1,12 @@
 import React from 'react';
+import { useContext } from "react";
+import dateContext from '../../context';
 
 export default function IncomeList(props) {
-  const findExpenses = function(array,month,year,userId) {
+
+  const {month,year} = useContext(dateContext);
+
+  const findIncomes = function(array,month,year,userId) {
     const wantedItems = [];
     array.forEach(item =>{
       if (item.month === month && item.year === year && item.user_id === userId) {
@@ -10,7 +15,7 @@ export default function IncomeList(props) {
     });
     return wantedItems;
   };
-  const listOfIncomes = findExpenses(props.listOfIncomes,2,2021,1)
+  const listOfIncomes = findIncomes(props.listOfIncomes,month,year,1)
 
   const listIncomes = listOfIncomes.map(item => {
     return (
