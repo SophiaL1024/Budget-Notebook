@@ -1,6 +1,8 @@
 const Express = require('express');
 const router = Express.Router();
 const categoryQueries = require('../db/queries/categoriesQueries');
+
+
 router.get('/:id', (req, res) => {
   const categoryData = {};
   categoryQueries.getIncomeCategoryById(req.params.id)
