@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import  '../App.css';
+import dateContext from "../context.js";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,14 +18,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideBar() {
   const classes = useStyles();
-  const currentMonth=new Date().getMonth()+1;
+  // const currentMonth=new Date().getMonth()+1;
+  const {month,setMonth,year,setYear} = useContext(dateContext);
+
   const currentYear=new Date().getFullYear();
-  const allYear=[];
+  const yearList=[];
   for(let i=2020;i<=currentYear;i++){
-    allYear.push(i);
+    yearList.push(i);
   }
-  const [month, setMonth] = React.useState(currentMonth);
-  const [year, setYear] = React.useState(currentYear);
+  // const [month, setMonth] = React.useState(currentMonth);
+  // const [year, setYear] = React.useState(currentYear);
   const [yearOpen, setYearOpen] = React.useState(false);
   const [monthOpen, setMonthOpen] = React.useState(false);
 
@@ -72,7 +75,7 @@ export default function SideBar() {
           onOpen={handleYearOpen}
           value={year}
           onChange={handleYearChange}> 
-          {allYear.map(y=><MenuItem key={y} value={y}>{y}</MenuItem>)}       
+          {yearList.map(y=><MenuItem key={y} value={y}>{y}</MenuItem>)}       
         </Select>
       </FormControl>
 
