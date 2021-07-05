@@ -1,17 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles((theme) => ({
-  button: {
-    display: 'block',
-    marginTop: theme.spacing(2),
-  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -19,12 +20,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SideBar() {
-  // const classes = useStyles();
+  const classes = useStyles();
   const currentMonth=new Date().getMonth()+1;
   const currentYear=new Date().getFullYear();
+  const allYear=[];
+  for(let i=2020;i<=currentYear;i++){
+    allYear.push(i);
+  }
   const [month, setMonth] = React.useState(currentMonth);
   const [year, setYear] = React.useState(currentYear);
-  const [open, setOpen] = React.useState(false);
+  const [yearOpen, setYearOpen] = React.useState(false);
+  const [monthOpen, setMonthOpen] = React.useState(false);
 
   const handleMonthChange = (event) => {
     setMonth(event.target.value);
@@ -34,24 +40,63 @@ export default function SideBar() {
     setYear(event.target.value);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleYearClose = () => {
+    setYearOpen(false);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleYearOpen = () => {
+    setYearOpen(true);
+  };
+
+  const handleMonthClose = () => {
+    setMonthOpen(false);
+  };
+
+  const handleMonthOpen = () => {
+    setMonthOpen(true);
   };
 
   return (
     <>
-      <FormControl>
+    <Router>
+    <div><Link to="/dashboards/1">Dashboard </Link></div>
+    <div><Link to="/categories/1">Category </Link></div>
+    <div><Link to="/budgets/1">Budget</Link></div>
+    <div><Link to="/transactions/1">Transaction</Link></div>
+    <div><Link to="/balances/1">Balance</Link></div>
+
+    {/* <Switch>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/products" component={Products} />
+      <Route path="/" component={Home} />
+    </Switch> */}
+    
+  </Router>
+    <div>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="select-year-label">Year</InputLabel>
+        <Select
+          labelId="select-year-label"
+          id="select-year"
+          open={yearOpen}
+          onClose={handleYearClose}
+          onOpen={handleYearOpen}
+          value={year}
+          onChange={handleYearChange}> 
+          {allYear.map(y=><MenuItem key={y} value={y}>{y}</MenuItem>)}       
+        </Select>
+      </FormControl>
+
+      <FormControl className={classes.formControl}>
         <InputLabel id="select-month-label">Month</InputLabel>
         <Select
           labelId="select-month-label"
           id="select-month"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
+          open={monthOpen}
+          onClose={handleMonthClose}
+          onOpen={handleMonthOpen}
           value={month}
           onChange={handleMonthChange}> 
           <MenuItem value={1}>January</MenuItem>
@@ -68,21 +113,7 @@ export default function SideBar() {
           <MenuItem value={12}>December</MenuItem>
         </Select>
       </FormControl>
-
-      <FormControl>
-        <InputLabel id="select-year-label">Year</InputLabel>
-        <Select
-          labelId="select-year-label"
-          id="select-year"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={year}
-          onChange={handleYearChange}> 
-          <MenuItem value={1}>2020</MenuItem>
-          <MenuItem value={2}>2021</MenuItem>
-        </Select>
-      </FormControl>
+    </div>
     </>
   );
 }
