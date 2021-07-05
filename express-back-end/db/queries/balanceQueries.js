@@ -1,4 +1,5 @@
 const db = require('../connection');
+const year = new Date().getFullYear();
 
 const getMonthlyIncomeByUserId = (id, month) => {
   const queryStatement = `SELECT
@@ -33,11 +34,11 @@ const getMonthlyExpenseByUserId = (id, month) => {
 };
 const getSavingGoalByUserId = (id, month) => {
   const queryStatement = `
-  SELECT amount
+  SELECT * 
   FROM balance_budgets
-  WHERE month=1
-  GROUP BY user_id
-  HAVING user_id=1
+  WHERE month=$1
+  GROUP BY balance_budgets.id
+  HAVING user_id=$2
   `;
   return db.query(queryStatement, [month, id])
     .then((response) => {
