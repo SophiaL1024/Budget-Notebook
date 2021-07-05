@@ -19,10 +19,10 @@ export default function IncomeList(props) {
 
   const listIncomes = listOfIncomes.map(item => {
     return (
-    <ul>
+    <ul key={item.id}>
       <span><div>{item.name}</div><div>{item.description}</div></span>
       <span><button>edit</button><button>delete</button></span> 
-    </ul>)
+    </ul>);
 
   });
   return(
