@@ -9,7 +9,7 @@ import './App.css';
 import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
 // import Budget from './components/budget';
-// import Balance from './components/balance/balance';
+
 // import User from './components/user/user';
 const App = function() {
 
@@ -34,10 +34,6 @@ const [year,setYear]=useState(new Date().getFullYear());
             {/* <Budget /> */}
           </Route>
           <Route path="/transactions">
-            <SideBar />
-            <Dashboard />
-          </Route>
-          <Route path="/balances">
             <SideBar />
             <Dashboard />
           </Route>

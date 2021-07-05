@@ -13,7 +13,7 @@ App.use(BodyParser.json());
 //Set up db connection
 db.connect();
 
-const balance = require('./routes/balances');
+// const balance = require('./routes/balances');
 const transactions = require('./routes/transactions');
 const dashboard = require('./routes/dashboards');
 const categories = require('./routes/categories');
@@ -24,7 +24,7 @@ const user = require('./routes/users');
 App.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
 }));
-App.use('/balances', balance);
+// App.use('/balances', balance);
 App.use('/transactions', transactions);
 App.use('/dashboards', dashboard);
 App.use('/categories', categories);

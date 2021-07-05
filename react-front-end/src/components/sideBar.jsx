@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideBar() {
   const classes = useStyles();
-  // const currentMonth=new Date().getMonth()+1;
+
   const {month,setMonth,year,setYear} = useContext(dateContext);
 
   const currentYear=new Date().getFullYear();
@@ -26,13 +26,12 @@ export default function SideBar() {
   for(let i=2020;i<=currentYear;i++){
     yearList.push(i);
   }
-  // const [month, setMonth] = React.useState(currentMonth);
-  // const [year, setYear] = React.useState(currentYear);
+
   const [yearOpen, setYearOpen] = React.useState(false);
   const [monthOpen, setMonthOpen] = React.useState(false);
 
-  const handleMonthChange = (event) => {
-    setMonth(event.target.value);
+  const handleMonthChange = (event) => { 
+      setMonth(event.target.value);
   };
 
   const handleYearChange = (event) => {
