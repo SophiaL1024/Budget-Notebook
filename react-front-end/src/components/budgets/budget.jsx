@@ -1,9 +1,9 @@
-import  React,{useEffect, useState } from "react";
+import  React,{useState } from "react";
 import {  TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle,IconButton } from "@material-ui/core";
 // import DatePicker from '@material-ui/lab/DatePicker';
 // import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
-export default function Dashboard(){
+export default function Budget(){
 
   const [open, setOpen] = React.useState(false);
 

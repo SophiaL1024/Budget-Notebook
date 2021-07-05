@@ -11,12 +11,13 @@ const Dashboard=function(){
   const {month,year} = useContext(dateContext);
 
   useEffect(() => {
+   
     axios
-      .get("/dashboards/1")
+      .get("/dashboards/1",   { params: {  year,month } } )
       .then((res) => {
         setState((prev) => ({ ...prev, dashboardData: res.data }));
       });
-  }, []);
+  }, [month,year]);
   
   return(
     <>

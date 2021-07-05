@@ -14,7 +14,7 @@ import Dashboard from './components/dashboard';
 const App = function() {
 
 const [month,setMonth]=useState(new Date().getMonth()+1);
-const [year,setYear]=useState(new Date().getFullYear())
+const [year,setYear]=useState(new Date().getFullYear());
   return (
     <>
       <Router>
