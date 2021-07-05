@@ -10,13 +10,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import  '../App.css';
 
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-  },
+  }
 }));
 
 export default function SideBar() {
@@ -57,22 +58,13 @@ export default function SideBar() {
   };
 
   return (
-    <>
+    <div className="side-bar">
     <Router>
-    <div><Link to="/dashboards/1">Dashboard </Link></div>
-    <div><Link to="/categories/1">Category </Link></div>
-    <div><Link to="/budgets/1">Budget</Link></div>
-    <div><Link to="/transactions/1">Transaction</Link></div>
-    <div><Link to="/balances/1">Balance</Link></div>
-
-    {/* <Switch>
-      <Route path="/about">
-        <About />
-      </Route>
-      <Route path="/products" component={Products} />
-      <Route path="/" component={Home} />
-    </Switch> */}
-    
+    <div><Link to="/dashboards">Dashboard </Link></div>
+    <div><Link to="/categories">Category </Link></div>
+    <div><Link to="/budgets">Budget</Link></div>
+    <div><Link to="/transactions">Transaction</Link></div>
+    <div><Link to="/balances">Balance</Link></div>    
   </Router>
     <div>
       <FormControl className={classes.formControl}>
@@ -114,6 +106,6 @@ export default function SideBar() {
         </Select>
       </FormControl>
     </div>
-    </>
+    </div>
   );
 }
