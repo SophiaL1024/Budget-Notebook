@@ -5,8 +5,8 @@ import ExpenseList from "./expenseList";
 
 export default function Transactions () {
   const [state, setState] = useState({
-    incomeTransactions: {},
-    expenseTransactions: {}
+    incomeTransactions: [],
+    expenseTransactions: []
   });
   useEffect(() => {
     axios
