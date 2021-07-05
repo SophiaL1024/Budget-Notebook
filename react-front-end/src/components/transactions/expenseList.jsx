@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default function incomeList() {
+export default function expenseList() {
 
   return(
   <table>
-    <div>Income</div>
+    <div>Expense</div>
   </table>
   );
 };
