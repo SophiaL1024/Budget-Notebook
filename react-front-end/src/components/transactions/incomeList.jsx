@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function incomeList() {
+export default function IncomeList(props) {
 
   return(
   <table>

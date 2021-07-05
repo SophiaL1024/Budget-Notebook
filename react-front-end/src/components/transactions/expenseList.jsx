@@ -1,19 +1,10 @@
-import {React, useEffect, useState }from 'react';
+import React from 'react';
 import axios from 'axios';
-export default function expenseList() {
+export default function ExpenseList() {
 
-  const [state, setState] = useState({
-    expenses:{}
-  }); 
+  
 
-  useEffect(() => {
-    axios
-      .get("/transactions/1")
-      .then((res) => {
-        setState((prev) => ({ ...prev, expenses: res.data }));
-      });
-  }, []);
- //function that loops over all expenses
+ 
 
   return(
   <table>
