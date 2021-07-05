@@ -1,40 +1,53 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import { context } from './context';
 import './App.css';
-import SideBar from './components/sideBar'
+import SideBar from './components/sideBar';
+import Dashboard from './components/dashboard';
+import Balance from './components/balance/balance';
+import User from './components/user/user';
+const App = function() {
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      message: 'Click the button to load data!'
-    }
-  }
 
-  fetchData = () => {
-    axios.get('/dashboards/1') // You can simply make your requests to "/api/whatever you want"
-    .then((response) => {
-      // handle success
-      console.log(response.data) 
-      this.setState({
-        message: response.data.annualExpenseSum
-      });
-    }) 
-  }
+  return (
+    <>
+      <Router>
 
-  render() {
-    return (
-      <>
-      <SideBar className="side-bar"/>
-      <div className="App">
-        <h1>{ this.state.message }</h1>
-        <button onClick={this.fetchData} >
-          Fetch Data
-        </button>        
-      </div>
-      </>
-    );
-  }
+        <Switch>
+          <Route path="/dashboards">
+            <SideBar />
+            <Dashboard />
+          </Route>
+          <Route path="/categories">
+            <SideBar />
+            <Dashboard />
+          </Route>
+          <Route path="/budgets">
+            <SideBar />
+            <Dashboard />
+          </Route>
+          <Route path="/transactions">
+            <SideBar />
+            <Dashboard />
+          </Route>
+          <Route path="/balances">
+            <SideBar />
+            <Dashboard />
+          </Route>
+          <Route path="/users">
+            <SideBar />
+            <User />
+          </Route>
+        </Switch>
+
+      </Router>
+    </>
+  )
+
 }
 
 export default App;
