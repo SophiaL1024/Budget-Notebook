@@ -1,33 +1,43 @@
 const Express = require('express');
 const router = Express.Router();
 const dashBoardQuries = require('../db/queries/dashboardQuries');
-const month = new Date().getMonth();
 
 router.get('/:userId', (req, res) => {
+
   const dashboardData = {};
-  dashBoardQuries.getAnnualExpenseByUserId(req.params.userId)
-    .then((resolve) => {
-      dashboardData.annualExpenseSum = resolve;
+  let monthlyIncome = [];
+  console.log(req.query.year);
+
+  dashBoardQuries.getBalanceBudgetByUserIdYear(req.params.userId, req.query.year)
+    .then(resolve => {
+      dashboardData.balanceBudget = resolve;
     })
     .then(() => {
-      dashBoardQuries.getAnnualIncomeByUserId(req.params.userId)
+      dashBoardQuries. getMonthlyIncomeByUserIdYear(req.params.userId, req.query.year)
         .then(resolve => {
-          dashboardData.annualIncomeSum = resolve;
+
+          monthlyIncome = resolve.map(e=>e.monthly_income);
+          dashboardData.currentMonthIncome = resolve[req.query.month - 1] ? resolve[req.query.month - 1].monthly_income : 0;
+          const incomeArr = resolve.map(e=>Number(e.monthly_income));
+          dashboardData.annualIncome = incomeArr.length !== 0 ? incomeArr.reduce((a,b)=>a + b).toFixed(2) : 0;
         });
     })
     .then(() => {
-      dashBoardQuries.getMonthlyIncomeByUserId(req.params.userId, month)
+      dashBoardQuries. getMonthlyExpenseByUserIdYear(req.params.userId, req.query.year)
         .then(resolve => {
-          dashboardData.monthlyIncomeSum = resolve;
-        });
-    })
-    .then(() => {
-      dashBoardQuries.getMonthlyExpenseByUserId(req.params.userId, month)
-        .then(resolve => {
-          dashboardData.monthlyExpenseSum = resolve;
+          const monthlyExpense = resolve.map(e=>e.monthly_expense);
+          dashboardData.currentMonthExpense = resolve[req.query.month - 1] ? resolve[req.query.month - 1].monthly_expense : 0;
+          const expenseArr = resolve.map(e=>Number(e.monthly_expense));
+          dashboardData.annualExpense = expenseArr.length !== 0 ? expenseArr.reduce((a,b)=>a + b).toFixed(2) : 0;
+
+          dashboardData.monthlyBalance = monthlyIncome.map(function(income, index) {
+            return (income - monthlyExpense[index]).toFixed(2);
+          });
+          console.log("in route",dashboardData);
           res.json(dashboardData);
         });
     });
+
 });
 
 

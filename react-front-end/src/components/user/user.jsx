@@ -1,6 +1,7 @@
 import  React,{useEffect, useState } from "react";
 import axios from 'axios';
-export default function User(){
+
+const User = function(){
 
   const [state, setState] = useState({
     userData:{}
@@ -28,6 +29,20 @@ export default function User(){
   </label>
   <input type="submit" value="Submit" />
 </form>
+<form>
+    <h4> User Registration</h4>
+  <label>
+    Email:
+    <input type="text" name="name" />
+  </label>
+  <label>
+    Password:
+    <input type="text" name="name" />
+  </label>
+  <input type="submit" value="Submit" />
+</form>
     </>
   );
 }
+
+export default User;

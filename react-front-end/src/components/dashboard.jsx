@@ -11,19 +11,22 @@ const Dashboard=function(){
   const {month,year} = useContext(dateContext);
 
   useEffect(() => {
+   
     axios
-      .get("/dashboards/1")
-      .then((res) => {
+      .get("/dashboards/1", { params: { year,month } } )
+      .then((res) => { 
         setState((prev) => ({ ...prev, dashboardData: res.data }));
       });
-  }, []);
+  }, [month,year]);
   
   return(
     <>
-    monthlyIncomeSum :{state.dashboardData.monthlyIncomeSum }<br/>
-    monthlyExpenseSum :{state.dashboardData.monthlyExpenseSum }<br/>
-    annualIncomeSum :{state.dashboardData.annualIncomeSum }<br/>
-    annualExpenseSum :{state.dashboardData.annualExpenseSum }<br/>
+    currentMonthIncome :{state.dashboardData.currentMonthIncome }<br/>
+    currentMonthExpense :{state.dashboardData.currentMonthExpense }<br/>
+    annualIncome :{state.dashboardData.annualIncome }<br/>
+    annualExpense :{state.dashboardData.annualExpense }<br/>
+    balanceBudget:{state.dashboardData.balanceBudget}<br/>
+    monthlyBalance:{state.dashboardData.monthlyBalance}<br/>
     selected month:{month}<br/>
     selected year:{year}<br/>
     </>

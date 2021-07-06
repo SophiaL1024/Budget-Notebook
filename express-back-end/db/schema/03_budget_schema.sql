@@ -6,6 +6,7 @@ CREATE TABLE income_budgets (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   amount NUMERIC NOT NULL,
+  year INTEGER NOT NULL,
   month INTEGER NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
@@ -14,6 +15,7 @@ CREATE TABLE expense_budgets (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   amount NUMERIC NOT NULL,
+  year INTEGER NOT NULL,
   month INTEGER NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
@@ -21,6 +23,7 @@ CREATE TABLE expense_budgets (
 CREATE TABLE balance_budgets (
   id SERIAL PRIMARY KEY NOT NULL,
   amount NUMERIC NOT NULL,
+  year INTEGER NOT NULL,
   month INTEGER NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );

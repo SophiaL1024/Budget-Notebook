@@ -8,13 +8,12 @@ import  dateContext  from './context.js';
 import './App.css';
 import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
-// import Budget from './components/budget';
-// import Balance from './components/balance/balance';
-// import User from './components/user/user';
+import Budget from './components/budgets/budget';
+import User from './components/user/user';
 const App = function() {
 
 const [month,setMonth]=useState(new Date().getMonth()+1);
-const [year,setYear]=useState(new Date().getFullYear())
+const [year,setYear]=useState(new Date().getFullYear());
   return (
     <>
       <Router>
@@ -31,15 +30,15 @@ const [year,setYear]=useState(new Date().getFullYear())
           </Route>
           <Route path="/budgets">
             <SideBar />
-            {/* <Budget /> */}
+            <Budget />
           </Route>
           <Route path="/transactions">
             <SideBar />
             <Dashboard />
           </Route>
-          <Route path="/balances">
+          <Route path="/users">
             <SideBar />
-            <Dashboard />
+            <User />
           </Route>
           </dateContext.Provider>
         </Switch>
