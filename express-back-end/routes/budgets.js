@@ -5,22 +5,23 @@ const month = new Date().getMonth() + 1;
 
 router.get('/:userId', (req, res) => {
   const budgetData = {};
-  budgetQuries.getIncomeBudgetByMonth(req.params.userId,month)
+  budgetQuries.getIncomeAndBudget(req.params.userId,req.query.month,req.query.year)
     .then((resolve) => {
-      budgetData.incomeBudget = resolve;
+      budgetData.incomeAndBudget = resolve;
     })
     .then(()=>{
-      budgetQuries.getExpenseBudgetByMonth(req.params.userId,month)
+      budgetQuries.getExpenseAndBudget(req.params.userId,req.query.month,req.query.year)
         .then((resolve) => {
-          budgetData.expenseBudget = resolve;
+          budgetData.expenseAndBudget = resolve;
           res.json(budgetData);
         });
     });
 });
 
-router.post('/', (req, res) => res.json({
-  
-}));
+
+router.post('/', (req, res) => {
+
+});
 
 router.patch('/', (req, res) => res.json({
   
