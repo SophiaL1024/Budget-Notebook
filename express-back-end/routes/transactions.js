@@ -25,7 +25,7 @@ router.patch('/', (req, res) => res.json({
 
 }));
 
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const transactionsData = {};
   transactionsQueries.deleteIncomeTransactionById(req.params.id)
     .then((resolve) => {

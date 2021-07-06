@@ -17,10 +17,18 @@ export default function Transactions () {
       });
   }, []);
 
+  const deletion = function(id, type) {
+    const newList = state.expenseTransactions.filter((item) => item.id !== id);
+    setState(newList);
+  }
+
   return (
     <>
     <IncomeList listOfIncomes={state.incomeTransactions}></IncomeList>
-    <ExpenseList listOfExpenses={state.expenseTransactions}></ExpenseList>
+    <ExpenseList 
+    listOfExpenses={state.expenseTransactions}
+    deletion={deletion}
+    />
     <NewTransactionForm></NewTransactionForm>
     </>
   )
