@@ -1,69 +1,44 @@
-import  React,{useState } from "react";
-import {  TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle,IconButton } from "@material-ui/core";
-// import DatePicker from '@material-ui/lab/DatePicker';
-// import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
+import  React,{useEffect, useState,useContext} from "react";
+import axios from 'axios';
+import dateContext from "../../context.js";
+import BudgetForm from "./budgetForm.jsx";
+import BudgetList from "./budgetList.jsx";
+
 export default function Budget(){
 
-  const [open, setOpen] = React.useState(false);
+  const [state, setState] = useState({
+    incomeAndBudget:[],
+    expenseAndBudget:[]
+  }); 
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const {month,year} = useContext(dateContext);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  useEffect(() => {
+   
+    axios
+      .get("/budgets/1", { params: { year,month } } )
+      .then((res) => {
+        setState((prev) => ({ ...prev,
+          incomeAndBudget: res.data.incomeAndBudget,
+          expenseAndBudget: res.data.expenseAndBudget }));
+        });
 
-  const handleSubmit = () => {
-    
-  };
+  }, [month,year]);
 
-  const [value, setValue] = useState(new Date());
+  
+
+ if(!state.incomeAndBudget.length||!state.expenseAndBudget.length){
+    return null
+  }
 
   return(
     <>
-    <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-    </Button>
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-    <DialogTitle id="form-dialog-title">New Budget</DialogTitle>
-    <DialogContent>
-      <DialogContentText>
-      Step One: Set up income budget
-      </DialogContentText>
-      <TextField
-        autoFocus
-        margin="dense"
-        id="name"
-        label="income budget name"    
-      />
-      <br/>
-      <TextField        
-        margin="dense"
-        id="amount"
-        label="amount"    
-      />
-      <br/>
-      {/* <DatePicker
-          views={['month']}
-          label="Year only"
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
-        /> */}
-    </DialogContent>
-    <DialogActions>
-      <Button onClick={handleClose} color="primary">
-        Cancel
-      </Button>
-      <Button onClick={handleSubmit} color="primary">
-        Next
-      </Button>
-    </DialogActions>
-  </Dialog>
+   <div>
+   incomeBudget:{state.incomeAndBudget[0].income_sum }<br/>
+   {/* expenseBudget:{state.expenseBudget[0].name }<br/> */}
+   </div>
+   <BudgetList />
+    <BudgetForm />
   </>
   )
 }

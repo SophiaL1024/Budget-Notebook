@@ -14,8 +14,7 @@ const Dashboard=function(){
    
     axios
       .get("/dashboards/1", { params: { year,month } } )
-      .then((res) => {
-        console.log("res.data",res.data);
+      .then((res) => { 
         setState((prev) => ({ ...prev, dashboardData: res.data }));
       });
   }, [month,year]);

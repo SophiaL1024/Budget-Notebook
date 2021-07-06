@@ -8,7 +8,7 @@ import  dateContext  from './context.js';
 import './App.css';
 import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
-// import Budget from './components/budget';
+import Budget from './components/budgets/budget';
 
 // import User from './components/user/user';
 const App = function() {
@@ -31,7 +31,7 @@ const [year,setYear]=useState(new Date().getFullYear());
           </Route>
           <Route path="/budgets">
             <SideBar />
-            {/* <Budget /> */}
+            <Budget />
           </Route>
           <Route path="/transactions">
             <SideBar />

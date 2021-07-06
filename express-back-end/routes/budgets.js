@@ -20,6 +20,13 @@ router.get('/:userId', (req, res) => {
 
 
 router.post('/', (req, res) => {
+  // console.log(req.body.data);
+  let {name,amount,month} = req.body.data;
+  month = Number(month);
+  const id = 1;
+  const year = new Date().getFullYear();
+  // console.log(name,amount,year,month,id);
+  budgetQuries.createIncomeBudget(name,amount,year,month,id);
 
 });
 
