@@ -51,7 +51,16 @@ const deleteExpenseTransactionById = (id) => {
     })
     .catch(err => console.log(err));
 };
+
+const addExpense = (name, description, amount, year, month, day, userId) => {
+  const queryStatement = `
+  INSERT INTO expense (name,description,amount,year,month,day,user_id)
+  VALUES ($1,$2,$3,$4,$5,$6,$7)`;
+  db.query(queryStatement,[name, description, amount, year, month, day, userId])
+    .catch(err => console.log(err));
+};
 module.exports = {
+  addExpense,
   deleteIncomeTransactionById,
   deleteExpenseTransactionById,
   getIncomeTransactionsById,

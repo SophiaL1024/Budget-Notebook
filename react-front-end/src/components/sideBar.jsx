@@ -60,8 +60,7 @@ export default function SideBar() {
     <div><Link to="/dashboards/">Dashboard </Link></div>
     <div><Link to="/categories/">Category </Link></div>
     <div><Link to="/budgets/">Budget</Link></div>
-    <div><Link to="/transactions/">Transaction</Link></div>
-    <div><Link to="/balances/">Balance</Link></div>    
+    <div><Link to="/transactions/">Transaction</Link></div> 
 
     <div>
       <FormControl className={classes.formControl}>

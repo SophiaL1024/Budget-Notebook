@@ -17,9 +17,15 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => res.json({
+router.post('/post', (req, res) => {
+  console.log("post received on back end");
+  let {name, description, amount, month, day} = req.body.data;
+  const id = 1;
+  const year = new Date().getFullYear();
+  // console.log(name,amount,year,month,id);
+  transactionsQueries.addExpense(name, description, amount, month, day, year, id);
 
-}));
+});
 
 router.patch('/', (req, res) => res.json({
 
