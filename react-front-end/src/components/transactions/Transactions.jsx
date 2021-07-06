@@ -22,6 +22,42 @@ export default function Transactions () {
     setState(newList);
   }
 
+  //handles form state
+  const [formValue, setFormValue] = useState({  
+    name: "",
+    description: "",
+    amount: 0,
+    month: 0,
+    day: 0
+  });
+  
+  const handleSubmit = () => {
+    formValue.month=formValue.month.slice(-2);
+    console.log("handleSubmit called");
+    axios.post('http://localhost:3000/transactions/post', {data:formValue})
+    .then(() => {
+      setFormValue({
+        name: "",
+        description: "",   
+        amount: 0,
+        month: 0,
+        day: 0,
+      })    
+      console.log("handleSubmit sent post");
+      // handleClose()      
+    })
+    .catch(err => console.log( err));
+  };
+
+  const handleChange = (key,value) => {
+    
+    setFormValue(prev => ({
+      ...prev,
+      [key]:value  
+    }));
+  }
+
+
   return (
     <>
     <IncomeList listOfIncomes={state.incomeTransactions}></IncomeList>
@@ -29,7 +65,10 @@ export default function Transactions () {
     listOfExpenses={state.expenseTransactions}
     deletion={deletion}
     />
-    <NewTransactionForm></NewTransactionForm>
+    <NewTransactionForm
+    handleChange={handleChange}
+    handleSubmit={handleSubmit}
+    formValue={formValue}/>
     </>
   )
 

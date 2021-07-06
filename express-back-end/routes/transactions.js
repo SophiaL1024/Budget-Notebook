@@ -18,12 +18,12 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/post', (req, res) => {
-  console.log("post received on back end");
+  console.log("req body:",req.body.data);
   let {name, description, amount, month, day} = req.body.data;
   const id = 1;
   const year = new Date().getFullYear();
   // console.log(name,amount,year,month,id);
-  transactionsQueries.addExpense(name, description, amount, month, day, year, id);
+  transactionsQueries.addExpense(name, description, amount, year, month, day, id);
 
 });
 
