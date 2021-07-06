@@ -25,9 +25,20 @@ router.patch('/', (req, res) => res.json({
 
 }));
 
-router.delete('/', (req, res) => res.json({
-
-}));
+router.delete('/delete/:id', (req, res) => {
+  const transactionsData = {};
+  transactionsQueries.deleteIncomeTransactionById(req.params.id)
+    .then((resolve) => {
+      transactionsData.incomeInfo = resolve;
+    })
+    .then(() => {
+      transactionsQueries.deleteExpenseTransactionById(req.params.id)
+        .then(resolve => {
+          transactionsData.expenseInfo = resolve;
+          res.json(transactionsData);
+        });
+    });
+});
 
 module.exports = router;
 
