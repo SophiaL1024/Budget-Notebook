@@ -9,8 +9,8 @@ import './App.css';
 import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
 // import Budget from './components/budget';
+import User from './components/user/user';
 
-// import User from './components/user/user';
 const App = function() {
 
 const [month,setMonth]=useState(new Date().getMonth()+1);
@@ -36,6 +36,10 @@ const [year,setYear]=useState(new Date().getFullYear());
           <Route path="/transactions">
             <SideBar />
             <Dashboard />
+          </Route>
+          <Route path="/users">
+            <SideBar />
+            <User />
           </Route>
           </dateContext.Provider>
         </Switch>
