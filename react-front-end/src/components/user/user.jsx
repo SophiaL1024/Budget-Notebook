@@ -11,14 +11,6 @@ const User = () => {
       },1000);
   },[]);
 
-//   useEffect(() => {
-//     axios
-//       .get("/users/1")
-//       .then((res) => {
-//         setState((prev) => ({ ...prev, users: res.data }));
-//       });
-//   }, []);
-  
   return(
     <>
   <form>
