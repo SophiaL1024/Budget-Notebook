@@ -35,8 +35,15 @@ export default function Transactions () {
   
   const handleSubmit = (value) => {
     formValue.month=formValue.month.slice(-2);
-    console.log("handleSubmit called");
+    // console.log("handleSubmit called");
     axios.post(`http://localhost:3000/transactions/post${value}`, {data:formValue})
+    .then(() => {
+      if (value === "Income") {
+        setState(prevState => ({
+          incomeTransactions: [...prevState.incomeTransactions, formValue]
+        }))
+      }
+    })
     .then(() => {
       setFormValue({
         name: "",
