@@ -28,7 +28,7 @@ export default function IncomeList(props) {
           <IconButton aria-label="edit">
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete" onClick={()=>props.deletion(item.id,'income')}>
+          <IconButton aria-label="delete" onClick={()=>props.deletion(item.id,'Income')}>
             <DeleteIcon />
           </IconButton>
         </td>

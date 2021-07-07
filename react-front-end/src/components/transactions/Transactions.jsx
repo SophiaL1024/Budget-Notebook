@@ -27,19 +27,24 @@ export default function Transactions() {
       });
   }, []);
 
-  // const deletion = function (id, type) {
-  //  axios.delete("http://localhost:3000/transactions/delete", {data:{id, type}})
-  //  const newExpenseAndBudget = expenseAndBudget.filter(e=>e.id!==id)
-  //  if (type === "Income") {
-  //   setState(prevState => ({
-  //     incomeTransactions: [...prevState.incomeTransactions, type]
-  //   }));
-  // } else if (type === "Expense") {
-  //   setState(prevState => ({
-  //     expenseTransactions: [...prevState.expenseTransactions, formValue]
-  //   }));
-  // }
-  // }
+  const deletion = function (id, type) {
+    axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
+    if (type === "Income") {
+      // creates a new income list with all items except the item being deleted
+      const newIncomeTransactions = state.incomeTransactions.filter(item => item.id !== id);
+      //updates state with new list
+      setState(prev => ({
+        ...prev,
+        incomeTransactions: newIncomeTransactions
+      }));
+    } else if (type === "Expense") {
+      const newExpenseTransaction = state.expenseTransactions.filter(item => item.id !== id)
+      setState(prev => ({
+        ...prev,
+        expenseTransactions: newExpenseTransaction
+      }));
+    }
+  }
 
   // adds the new transaction to the database via axios call
   const handleSubmit = (value) => {
@@ -47,26 +52,26 @@ export default function Transactions() {
     axios.post(`http://localhost:3000/transactions/post${value}`, { data: formValue })
       .then(() => {
         if (value === "Income") {
-          const newIncomeTransactions = state.incomeTransactions.map(item => {return{...item}});
+          const newIncomeTransactions = state.incomeTransactions.map(item => { return { ...item } });
           newIncomeTransactions.push({
-            name:formValue.name,
-            description:formValue.description,
-            amount:formValue.amount,
-            month:formValue.month,
-            day:formValue.day
+            name: formValue.name,
+            description: formValue.description,
+            amount: formValue.amount,
+            month: formValue.month,
+            day: formValue.day
           });
-          setState(prev=> ({
+          setState(prev => ({
             ...prev,
             incomeTransactions: newIncomeTransactions
           }));
         } else if (value === "Expense") {
-          const newExpenseTransactions = state.expenseTransactions.map(item => {return{...item}});
+          const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
           newExpenseTransactions.push({
-            name:formValue.name,
-            description:formValue.description,
-            amount:formValue.amount,
-            month:formValue.month,
-            day:formValue.day
+            name: formValue.name,
+            description: formValue.description,
+            amount: formValue.amount,
+            month: formValue.month,
+            day: formValue.day
           });
           setState(prevState => ({
             expenseTransactions: [...prevState.expenseTransactions, formValue]
@@ -99,12 +104,12 @@ export default function Transactions() {
   return (
     <>
       <IncomeList listOfIncomes={state.incomeTransactions}
-      // deletion={deletion}
+        deletion={deletion}
       >
       </IncomeList>
       <ExpenseList
         listOfExpenses={state.expenseTransactions}
-        // deletion={deletion}
+        deletion={deletion}
       />
       <NewTransactionForm
         handleChange={handleChange}

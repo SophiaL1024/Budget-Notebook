@@ -39,12 +39,12 @@ router.patch('/', (req, res) => res.json({
 
 }));
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/', (req, res) => {
   const {type, id} = req.body;
   if (type === "Income") {
-    transactionsQueries.deleteIncomeTransactionById(req.params.id);
+    transactionsQueries.deleteIncomeTransactionById(req.body.id);
   } else {
-    transactionsQueries.deleteExpenseTransactionById(req.params.id);
+    transactionsQueries.deleteExpenseTransactionById(req.body.id);
   }
    
 });
