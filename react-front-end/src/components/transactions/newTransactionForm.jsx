@@ -1,9 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
-import axios from "axios";
-import { TextField, Button } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { TextField, Button, Radio, RadioGroup } from '@material-ui/core';
 export default function NewTransactionForm(props) {
- 
+
+  const [value, setValue] = useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    
+  };
 
   return (
     <div>
@@ -53,7 +59,6 @@ export default function NewTransactionForm(props) {
             value={props.formValue.month}  
           />
         </div>
-        
         <div>
           <TextField
             autoFocus
@@ -68,9 +73,11 @@ export default function NewTransactionForm(props) {
       </span>
       <span>
         <div>
-        <input type="checkbox"  name="income" value="Income" />Income
-        <input type="checkbox"  name="Expense" value="Expense" />Expense
-        <Button onClick={() =>props.handleSubmit()} color="primary">
+        <RadioGroup row aria-label="transactionsType" name="transaction" value={value} onChange={handleChange}>
+          <FormControlLabel value="Income" control={<Radio />} label="Income" />
+          <FormControlLabel value="Expense" control={<Radio />} label="Expense" />
+        </RadioGroup>
+        <Button onClick={() =>props.handleSubmit(value)} color="primary">
         Submit
       </Button>
         </div>

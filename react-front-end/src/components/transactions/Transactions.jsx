@@ -7,8 +7,18 @@ import NewTransactionForm from "./newTransactionForm";
 export default function Transactions () {
   const [state, setState] = useState({
     incomeTransactions: [],
-    expenseTransactions: []
+    expenseTransactions: [],
   });
+
+  //handles form state
+  const [formValue, setFormValue] = useState({  
+    name: "",
+    description: "",
+    amount: 0,
+    month: 0,
+    day: 0,
+  });
+
   useEffect(() => {
     axios
       .get("/transactions/1")
@@ -22,40 +32,32 @@ export default function Transactions () {
     setState(newList);
   }
 
-  //handles form state
-  const [formValue, setFormValue] = useState({  
-    name: "",
-    description: "",
-    amount: 0,
-    month: 0,
-    day: 0
-  });
   
-  const handleSubmit = () => {
+  const handleSubmit = (value) => {
     formValue.month=formValue.month.slice(-2);
     console.log("handleSubmit called");
-    axios.post('http://localhost:3000/transactions/post', {data:formValue})
+    axios.post(`http://localhost:3000/transactions/post${value}`, {data:formValue})
     .then(() => {
       setFormValue({
         name: "",
         description: "",   
         amount: 0,
         month: 0,
-        day: 0,
+        day: 0
       })    
-      console.log("handleSubmit sent post");
+      console.log("handle Submit sent post");
       // handleClose()      
     })
-    .catch(err => console.log( err));
+    .catch(err => console.log(err));
   };
-
+   
   const handleChange = (key,value) => {
-    
     setFormValue(prev => ({
       ...prev,
-      [key]:value  
+      [key]:value
     }));
   }
+
 
 
   return (
@@ -68,7 +70,8 @@ export default function Transactions () {
     <NewTransactionForm
     handleChange={handleChange}
     handleSubmit={handleSubmit}
-    formValue={formValue}/>
+    formValue={formValue}
+    state={state}/>
     </>
   )
 
