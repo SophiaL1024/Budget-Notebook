@@ -17,11 +17,11 @@ const User = () => {
     <h4> User Login</h4>
   <label>
     Email:
-    <input type="text" name="name" /><br/>
+    <input type="text" value ="alice@gmail.com" name="name" /><br/>
   </label>
   <label>
     Password:
-    <input type="password" name="name" /><br/>
+    <input type="password" value ="123456576868" name="name" /><br/>
   </label>
   <input type="submit" value="Submit" />
   {/* <button onClick = {()=> submitForm()} type="submit" value="Submit" name = "login"/> */}

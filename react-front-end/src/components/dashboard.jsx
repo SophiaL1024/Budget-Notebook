@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
+const array = ['January', 'February','March','April','May','June','July','August','September','October','November','December']
+const month = 7
 
 const Dashboard=function(){
   const classes = useStyles();
@@ -36,10 +38,10 @@ const Dashboard=function(){
   return(
   
      <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
+      <Grid container spacing={6}>
+        <Grid item xs={8}>
         <Paper className={classes.paper}>
-        Month: July<br/>
+        Month: {array[month-1]}<br/>
         {/* selected month:{month}<br/> */}
         Income :{state.dashboardData.currentMonthIncome }<br/>
         Expense :{state.dashboardData.currentMonthExpense }<br/>
