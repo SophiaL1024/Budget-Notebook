@@ -1,6 +1,9 @@
 import React from 'react';
 import { useContext } from "react";
 import dateContext from '../../context';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 export default function IncomeList(props) {
 
@@ -21,18 +24,25 @@ export default function IncomeList(props) {
     return (
       <tr key={item.id}>
         <td><div>{item.name}</div><div>{item.description}</div></td>
-        <td><button>edit</button><button>delete</button></td>
+        <td>
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
+          <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </td>
       </tr>);
 
   });
   return (
     <>
-    <h3>Income</h3>
-    <table>
-      <tbody>
-        {listIncomes}
-      </tbody>
-    </table>
+      <h3>Income</h3>
+      <table>
+        <tbody>
+          {listIncomes}
+        </tbody>
+      </table>
     </>
   );
 };
