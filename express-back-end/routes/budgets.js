@@ -8,13 +8,23 @@ router.get('/:userId', (req, res) => {
   // console.log("test",req.params.userId,req.query.month,req.query.year);
   budgetQuries.getIncomeAndBudget(req.params.userId,req.query.month,req.query.year)
     .then((resolve) => {
+      // console.log(resolve);
+
       budgetData.incomeAndBudget = resolve;
     })
     .then(()=>{
       budgetQuries.getExpenseAndBudget(req.params.userId,req.query.month,req.query.year)
         .then((resolve) => {
-          console.log("tessssss",resolve);
+          // console.log("tessssss",resolve);
           budgetData.expenseAndBudget = resolve;
+          // res.json(budgetData);
+        });
+    })
+    .then(()=>{
+      budgetQuries.getBalanceBudget(req.params.userId,req.query.month,req.query.year)
+        .then((resolve) => {
+        // console.log("tessssss",resolve);
+          budgetData.balanceBudget = resolve;
           res.json(budgetData);
         });
     });
@@ -22,19 +32,36 @@ router.get('/:userId', (req, res) => {
 
 
 router.post('/', (req, res) => {
-
-  let {name,amount,month,year,userId} = req.body.data;
   // console.log(req.body.data);
-  budgetQuries.createExpenseBudget(name,amount,year,month,userId)
-    .then(resolve=>{
+
+  const {name,amount,month,year,userId} = req.body.data.formValue;
+
+  const {tabType} = req.body.data;
+
+  if (tabType === 0) {
+    // console.log(req.body.data);
+    budgetQuries.createIncomeBudget(name,amount,year,month,userId)
+      .then(resolve=>{
+        // console.log("resolve:",year,month,userId,resolve);
+        budgetQuries.createIncome(year,month,userId,resolve);
+        res.json(resolve);
+      });
+  } else if (tabType === 1) {
+  // console.log(req.body.data);
+    budgetQuries.createExpenseBudget(name,amount,year,month,userId)
+      .then(resolve=>{
       // console.log("resolve:",year,month,userId,resolve);
-      budgetQuries.createExpense(year,month,userId,resolve);
-      res.json(resolve);
-    });
+        budgetQuries.createExpense(year,month,userId,resolve);
+        res.json(resolve);
+      });
+  } else if (tabType === 2) {
+    budgetQuries.createBalanceBudget(amount,year,month,userId);
+  }
 
 });
 
 router.patch('/', (req, res) => {
+  
 
 });
 
@@ -44,7 +71,11 @@ router.delete('/', (req, res) => {
   
   if (budgetType === 'expense') {
     budgetQuries.deleteExpenseBudget(id);
-  } else {
+    // .then(resolve=>{
+    //   console.log("delete response",resolve);
+    //   res.json(resolve);
+    // });
+  } else if (budgetType === 'income') {
     budgetQuries.deleteIncomeBudget(id);
   }
   // res.json("");

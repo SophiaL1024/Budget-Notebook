@@ -1,17 +1,26 @@
 import  React,{useEffect, useState,useContext} from "react";
 import axios from 'axios';
 import dateContext from "../../context.js";
-import BudgetForm from "./budgetForm.jsx";
+
 import BudgetList from "./budgetList.jsx";
 
 export default function Budget(){
 
   const [state, setState] = useState({
     incomeAndBudget:[],
-    expenseAndBudget:[]
+    expenseAndBudget:[],
+    balanceBudget:[]
   }); 
 
   const {month,year} = useContext(dateContext);
+
+  // if(month>new Date().getMonth() ||year>new Date().getFullYear()){
+  //   setState((prev) => ({ ...prev,
+  //     incomeAndBudget: [{id:"",amount:0,income_sum:0}],
+  //     expenseAndBudget:[{id:"",amount:0,expense_sum:0}],
+  //     balanceBudget:[0,0,0]
+  //   })); 
+  // }
 
   useEffect(() => {
    
@@ -21,22 +30,23 @@ export default function Budget(){
         // console.log("test",res)
         setState((prev) => ({ ...prev,
           incomeAndBudget: res.data.incomeAndBudget,
-          expenseAndBudget: res.data.expenseAndBudget }));
+          expenseAndBudget: res.data.expenseAndBudget,
+          balanceBudget:res.data.balanceBudget }));
         });
 
   }, [month,year]);
 
   
 
- if(!state.incomeAndBudget.length||!state.expenseAndBudget.length){
+ if(!state.incomeAndBudget.length||!state.expenseAndBudget.length || !state.balanceBudget){
     return null
   }
 
   return(
     <>
-    <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,setState}}>
+    <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState}}>
     <BudgetList />
-    <BudgetForm />
+    {/* <BudgetForm /> */}
     </dateContext.Provider>
   </>
   )

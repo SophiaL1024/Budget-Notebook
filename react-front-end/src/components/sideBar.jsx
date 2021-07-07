@@ -58,7 +58,7 @@ export default function SideBar() {
     <div className="side-bar">
   
     <div><Link to="/dashboards/">Dashboard </Link></div>
-    <div><Link to="/categories/">Category </Link></div>
+    {/* <div><Link to="/categories/">Category </Link></div> */}
     <div><Link to="/budgets/">Budget</Link></div>
     <div><Link to="/transactions/">Transaction</Link></div>
 

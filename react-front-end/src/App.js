@@ -26,10 +26,10 @@ const [year,setYear]=useState(new Date().getFullYear());
             <SideBar />
             <Dashboard />
           </Route>
-          <Route path="/categories">
+          {/* <Route path="/categories">
             <SideBar />
             <Dashboard />
-          </Route>
+          </Route> */}
           <Route path="/budgets">
             <SideBar />
             <Budget />

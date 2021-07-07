@@ -4,10 +4,11 @@ import axios from 'axios';
 
 import {  TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle} from "@material-ui/core";
 
-export default function budgetForm(){
-  const {incomeAndBudget,expenseAndBudget,setState} = useContext(dateContext);
+export default function budgetForm(props){
 
-  const [open, setOpen] = useState(false);
+  const {incomeAndBudget,expenseAndBudget,balanceBudget,setState} = useContext(dateContext);
+
+  
   const [formValue, setFormValue] = useState({ 
     date:"", 
     year:0,
@@ -17,12 +18,12 @@ export default function budgetForm(){
     userId:1   //hard code user_id
   });
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleOpen=props.open;
+  const tabType=props.tabType;
+
 
   const handleClose = () => {
-    setOpen(false);
+    props.setOpen(false);
   };
 
   const handleChange = (key,value) => { 
@@ -37,9 +38,28 @@ export default function budgetForm(){
     formValue.year=Number(formValue.date.slice(0,4));
     formValue.month=Number(formValue.date.slice(-2));
 
-    axios.post('http://localhost:3002/budgets', {data:formValue}) 
+    axios.post('http://localhost:3000/budgets', {data:{formValue,tabType}}) 
 
     .then((resolve) => {
+      if(tabType===0){
+        const newIncomeAndBudget=incomeAndBudget.map(e=>{return {...e}});
+
+        newIncomeAndBudget.push({name:formValue.name,
+                amount:formValue.amount,
+                month:formValue.month,
+                year:formValue.year,
+                user_id:1, 
+                id:resolve.data
+                });
+  
+        setState((prev) => ({ 
+          ...prev,      
+          incomeAndBudget: newIncomeAndBudget               
+        }));
+
+      }
+
+      else if(tabType===1){
 
       const newExpenseAndBudget=expenseAndBudget.map(e=>{return {...e}});
 
@@ -47,7 +67,7 @@ export default function budgetForm(){
               amount:formValue.amount,
               month:formValue.month,
               year:formValue.year,
-              user_id:1,
+              user_id:1, 
               id:resolve.data
               });
 
@@ -55,6 +75,14 @@ export default function budgetForm(){
         ...prev,      
         expenseAndBudget: newExpenseAndBudget               
       }));
+    }
+    // else if(tabType===1){
+    //   setState((prev) => ({ 
+    //     ...prev,      
+    //     balanceBudget: [...]             
+    //   }));
+
+    // }
 
     })
       //  .then(()=>{
@@ -72,19 +100,20 @@ export default function budgetForm(){
       handleClose();
   };
 
-
+  
+ 
 
   return (
     <>
-    <Button variant="outlined" color="primary" style={{height:"50px",margin:"50px"}} onClick={handleClickOpen}>
-        Open form dialog
-    </Button>
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-    <DialogTitle id="form-dialog-title">Expense Budget</DialogTitle>
-    <DialogContent>
-      <DialogContentText>
-      Step Two: Set up expense budget
-      </DialogContentText>
+
+    <Dialog open={handleOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+
+    <DialogTitle id="form-dialog-title">{tabType===0?'Income Budget':(tabType===1?'Expense Budget':'Saving Goal')}</DialogTitle>
+
+     <DialogContent>
+     
+     <DialogContentText>{tabType===0?'Step One: Set up income budget':((tabType===1?'Step Two: Set up expense budget':'Step Three: Set up saving goal'))} </DialogContentText>
+
       <TextField
         autoFocus
         margin="dense"
@@ -106,11 +135,13 @@ export default function budgetForm(){
       <br/>
       <TextField
         margin="dense"
-        id="depositDate"
+        id="date"
         type="month"
-        onChange={(event)=>handleChange("date",event.target.value)}           
+        onChange={(event)=>handleChange("date",event.target.value)}        
+        inputProps={tabType===2?{ min: '2021-08' }:{ min:'2021-01' }} //hard code
       />
     </DialogContent>
+
     <DialogActions>
       <Button onClick={handleClose} color="primary">
         Cancel
@@ -119,7 +150,8 @@ export default function budgetForm(){
         Submit
       </Button>
     </DialogActions>
+
   </Dialog>
-    </>
+  </>
   )
 }
