@@ -12,7 +12,7 @@ import dateContext from "../context.js";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 150,
   }
 }));
 
@@ -56,11 +56,12 @@ export default function SideBar() {
 
   return (
     <div className="side-bar">
-  
+    <div> Budget Notebook</div>
     <div><Link to="/dashboards/">Dashboard </Link></div>
     <div><Link to="/categories/">Category </Link></div>
     <div><Link to="/budgets/">Budget</Link></div>
     <div><Link to="/transactions/">Transaction</Link></div>
+
 
     <div>
       <FormControl className={classes.formControl}>
