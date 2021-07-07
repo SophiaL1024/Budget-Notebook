@@ -1,34 +1,48 @@
 import React from 'react';
 import { useContext } from "react";
 import dateContext from '../../context';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 export default function IncomeList(props) {
 
-  const {month,year} = useContext(dateContext);
+  const { month, year } = useContext(dateContext);
 
-  const findIncomes = function(array,month,year,userId) {
+  const findIncomes = function (array, month, year, userId) {
     const wantedItems = [];
-    array.forEach(item =>{
+    array.forEach(item => {
       if (item.month === month && item.year === year && item.user_id === userId) {
         wantedItems.push(item);
       }
     });
     return wantedItems;
   };
-  const listOfIncomes = findIncomes(props.listOfIncomes,month,year,1)
+  const listOfIncomes = findIncomes(props.listOfIncomes, month, year, 1)
 
   const listIncomes = listOfIncomes.map(item => {
     return (
-    <ul key={item.id}>
-      <span><div>{item.name}</div><div>{item.description}</div></span>
-      <span><button>edit</button><button>delete</button></span> 
-    </ul>);
+      <tr key={item.id}>
+        <td><div>{item.name}</div><div>{item.description}</div></td>
+        <td>
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
+          <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </td>
+      </tr>);
 
   });
-  return(
-  <table>
-    <h3>Income</h3>
-    {listIncomes}
-  </table>
+  return (
+    <>
+      <h3>Income</h3>
+      <table>
+        <tbody>
+          {listIncomes}
+        </tbody>
+      </table>
+    </>
   );
 };

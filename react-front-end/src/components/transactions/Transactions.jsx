@@ -7,8 +7,18 @@ import NewTransactionForm from "./newTransactionForm";
 export default function Transactions () {
   const [state, setState] = useState({
     incomeTransactions: [],
-    expenseTransactions: []
+    expenseTransactions: [],
   });
+
+  //handles form state
+  const [formValue, setFormValue] = useState({  
+    name: "",
+    description: "",
+    amount: 0,
+    month: 0,
+    day: 0,
+  });
+
   useEffect(() => {
     axios
       .get("/transactions/1")
@@ -22,6 +32,41 @@ export default function Transactions () {
     setState(newList);
   }
 
+  
+  const handleSubmit = (value) => {
+    formValue.month=formValue.month.slice(-2);
+    // console.log("handleSubmit called");
+    axios.post(`http://localhost:3000/transactions/post${value}`, {data:formValue})
+    .then(() => {
+      if (value === "Income") {
+        setState(prevState => ({
+          incomeTransactions: [...prevState.incomeTransactions, formValue]
+        }))
+      }
+    })
+    .then(() => {
+      setFormValue({
+        name: "",
+        description: "",   
+        amount: 0,
+        month: 0,
+        day: 0
+      })    
+      console.log("handle Submit sent post");
+      // handleClose()      
+    })
+    .catch(err => console.log(err));
+  };
+   
+  const handleChange = (key,value) => {
+    setFormValue(prev => ({
+      ...prev,
+      [key]:value
+    }));
+  }
+
+
+
   return (
     <>
     <IncomeList listOfIncomes={state.incomeTransactions}></IncomeList>
@@ -29,7 +74,11 @@ export default function Transactions () {
     listOfExpenses={state.expenseTransactions}
     deletion={deletion}
     />
-    <NewTransactionForm></NewTransactionForm>
+    <NewTransactionForm
+    handleChange={handleChange}
+    handleSubmit={handleSubmit}
+    formValue={formValue}
+    state={state}/>
     </>
   )
 
