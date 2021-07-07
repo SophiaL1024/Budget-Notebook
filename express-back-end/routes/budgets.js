@@ -1,10 +1,11 @@
 const Express = require('express');
 const router = Express.Router();
 const budgetQuries = require('../db/queries/budgetQuries');
-const month = new Date().getMonth() + 1;
+
 
 router.get('/:userId', (req, res) => {
   const budgetData = {};
+  // console.log("test",req.params.userId,req.query.month,req.query.year);
   budgetQuries.getIncomeAndBudget(req.params.userId,req.query.month,req.query.year)
     .then((resolve) => {
       budgetData.incomeAndBudget = resolve;
@@ -12,6 +13,7 @@ router.get('/:userId', (req, res) => {
     .then(()=>{
       budgetQuries.getExpenseAndBudget(req.params.userId,req.query.month,req.query.year)
         .then((resolve) => {
+          console.log("tessssss",resolve);
           budgetData.expenseAndBudget = resolve;
           res.json(budgetData);
         });
@@ -20,23 +22,33 @@ router.get('/:userId', (req, res) => {
 
 
 router.post('/', (req, res) => {
+
+  let {name,amount,month,year,userId} = req.body.data;
   // console.log(req.body.data);
-  let {name,amount,month} = req.body.data;
-  month = Number(month);
-  const id = 1;
-  const year = new Date().getFullYear();
-  // console.log(name,amount,year,month,id);
-  budgetQuries.createIncomeBudget(name,amount,year,month,id);
+  budgetQuries.createExpenseBudget(name,amount,year,month,userId)
+    .then(resolve=>{
+      // console.log("resolve:",year,month,userId,resolve);
+      budgetQuries.createExpense(year,month,userId,resolve);
+      res.json(resolve);
+    });
 
 });
 
-router.patch('/', (req, res) => res.json({
-  
-}));
+router.patch('/', (req, res) => {
 
-router.delete('/', (req, res) => res.json({
+});
+
+router.delete('/', (req, res) => {
+
+  const {id,budgetType} = req.body;
   
-}));
+  if (budgetType === 'expense') {
+    budgetQuries.deleteExpenseBudget(id);
+  } else {
+    budgetQuries.deleteIncomeBudget(id);
+  }
+  // res.json("");
+});
 
 module.exports = router;
 

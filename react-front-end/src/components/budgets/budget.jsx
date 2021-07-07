@@ -18,6 +18,7 @@ export default function Budget(){
     axios
       .get("/budgets/1", { params: { year,month } } )
       .then((res) => {
+        // console.log("test",res)
         setState((prev) => ({ ...prev,
           incomeAndBudget: res.data.incomeAndBudget,
           expenseAndBudget: res.data.expenseAndBudget }));
@@ -33,12 +34,10 @@ export default function Budget(){
 
   return(
     <>
-   <div>
-   incomeBudget:{state.incomeAndBudget[0].income_sum }<br/>
-   {/* expenseBudget:{state.expenseBudget[0].name }<br/> */}
-   </div>
-   <BudgetList />
+    <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,setState}}>
+    <BudgetList />
     <BudgetForm />
+    </dateContext.Provider>
   </>
   )
 }

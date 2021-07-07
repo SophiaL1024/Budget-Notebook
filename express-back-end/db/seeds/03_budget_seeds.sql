@@ -93,6 +93,7 @@
 ('investments',300,2021,7,1),
 ('benefit',500,2021,7,1);
 
+
 INSERT INTO balance_budgets (amount,year,month,user_id)
  VALUES
 (500,2021,1,1),
