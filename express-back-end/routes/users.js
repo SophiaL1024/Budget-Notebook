@@ -1,4 +1,4 @@
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const Express = require('express');
 const pool = require('../db/connection');
 const router = Express.Router();

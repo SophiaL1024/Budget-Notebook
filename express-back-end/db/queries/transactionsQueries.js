@@ -34,22 +34,14 @@ const deleteIncomeTransactionById = (id) => {
   const queryStatement = `
   DELETE FROM income
   WHERE id = $1`;
-  return db.query(queryStatement, [id])
-    .then((response) => {
-      return response.rows;
-    })
-    .catch(err => console.log(err));
+  return db.query(queryStatement, [id]);
 };
 
 const deleteExpenseTransactionById = (id) => {
   const queryStatement = `
   DELETE FROM expense
   WHERE id = $1`;
-  return db.query(queryStatement, [id])
-    .then((response) => {
-      return response.rows;
-    })
-    .catch(err => console.log(err));
+  return db.query(queryStatement, [id]);
 };
 
 const addExpense = (name, description, amount, year, month, day, userId) => {
