@@ -48,6 +48,7 @@ export default function Transactions() {
 
   // adds the new transaction to the database via axios call
   const handleSubmit = (value) => {
+    // console.log("value:",value);
     formValue.month = formValue.month.slice(-2);
     axios.post(`http://localhost:3000/transactions/post${value}`, { data: formValue })
       .then(() => {
