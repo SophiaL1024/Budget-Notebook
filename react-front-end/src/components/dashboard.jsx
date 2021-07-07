@@ -36,34 +36,30 @@ const Dashboard=function(){
   }, [month,year]);
   
   return(
-  
-     <div className={classes.root}>
-      <Grid container spacing={6}>
-        <Grid item xs={8}>
+      //  <div className={classes.root}>
+      <Grid container spacing={2} className={classes.grid}>
+        <Grid item xs={6} md={6}>
         <Paper className={classes.paper}>
         Month: {array[month-1]}<br/>
         {/* selected month:{month}<br/> */}
         Income :{state.dashboardData.currentMonthIncome }<br/>
         Expense :{state.dashboardData.currentMonthExpense }<br/>
       </Paper>
-      <br/>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
+      </Grid>
+        <Grid item xs={6} md={6}>
         <Paper className={classes.paper}>
         Year: {year}<br/>
         Income :{state.dashboardData.annualIncome }<br/>
         Expense :{state.dashboardData.annualExpense }<br/>
       </Paper>
     </Grid>
- 
-    {/* balanceBudget:{state.dashboardData.balanceBudget}<br/>
-    monthlyBalance:{state.dashboardData.monthlyBalance}<br/> */}
-    {/* rechart for the data above */}
-  
     </Grid>
-    </Grid>
-    </Grid>
-    </div>
+
+    
+    /* balanceBudget:{state.dashboardData.balanceBudget}<br/>
+    monthlyBalance:{state.dashboardData.monthlyBalance}<br/> */
+    /* rechart for the data above */
+    /* </div> */
    
   );
 }
