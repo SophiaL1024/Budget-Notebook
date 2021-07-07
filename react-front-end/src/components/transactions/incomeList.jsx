@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import useVisualMode from '../../hooks/useVisualMode';
-
+import Edit from "./Edit";
 export default function IncomeList(props) {
   const SHOW = "SHOW";
   const EDIT = "EDIT";
@@ -32,19 +32,12 @@ export default function IncomeList(props) {
 
   const listIncomes = listOfIncomes.map(item => {
     return (
-      <tr key={item.id}>
-        <td><div>{item.name}</div>
-        <div>{item.description}</div>
-        <div>${item.amount}</div></td>
-        <td>
-          <IconButton aria-label="edit">
-            <EditIcon />
-          </IconButton>
-          <IconButton aria-label="delete" onClick={()=>props.deletion(item.id,'Income')}>
-            <DeleteIcon />
-          </IconButton>
-        </td>
-      </tr>
+      <Edit
+      key={item.id}
+      name={item.name}
+      description={item.description}
+      amount={item.amount}/>
+
     );
 
   });
@@ -53,9 +46,8 @@ export default function IncomeList(props) {
 
   return (
     <>
-      <h3>Income</h3>
-      
       <table>
+        <thead><h3>Income</h3></thead>
         <tbody>
           {listIncomes}
         </tbody>
