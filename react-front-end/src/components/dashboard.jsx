@@ -39,7 +39,7 @@ const Dashboard=function(){
       <Grid container spacing={3}>
         <Grid item xs={12}>
         <Paper className={classes.paper}>
-        July<br/>
+        Month: July<br/>
         {/* selected month:{month}<br/> */}
         Income :{state.dashboardData.currentMonthIncome }<br/>
         Expense :{state.dashboardData.currentMonthExpense }<br/>
@@ -48,7 +48,7 @@ const Dashboard=function(){
       <Grid container spacing={3}>
         <Grid item xs={12}>
         <Paper className={classes.paper}>
-        {year}<br/>
+        Year: {year}<br/>
         Income :{state.dashboardData.annualIncome }<br/>
         Expense :{state.dashboardData.annualExpense }<br/>
       </Paper>
