@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(12),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
@@ -47,7 +47,7 @@ const Dashboard=function(){
         Expense :{state.dashboardData.currentMonthExpense }<br/>
       </Paper>
       <br/>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
         <Paper className={classes.paper}>
         Year: {year}<br/>
