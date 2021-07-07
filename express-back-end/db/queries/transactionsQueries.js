@@ -30,7 +30,30 @@ const getExpenseTransactionsById = (id) => {
     .catch(err => console.log(err));
 };
 
+const deleteIncomeTransactionById = (id) => {
+  const queryStatement = `
+  DELETE FROM income
+  WHERE id = $1`;
+  return db.query(queryStatement, [id])
+    .then((response) => {
+      return response.rows;
+    })
+    .catch(err => console.log(err));
+};
+
+const deleteExpenseTransactionById = (id) => {
+  const queryStatement = `
+  DELETE FROM expense
+  WHERE id = $1`;
+  return db.query(queryStatement, [id])
+    .then((response) => {
+      return response.rows;
+    })
+    .catch(err => console.log(err));
+};
 module.exports = {
+  deleteIncomeTransactionById,
+  deleteExpenseTransactionById,
   getIncomeTransactionsById,
   getExpenseTransactionsById
 };

@@ -10,6 +10,7 @@ import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
 import Budget from './components/budgets/budget';
 import User from './components/user/user';
+import Transactions from './components/transactions/Transactions.jsx';
 
 const App = function() {
 
@@ -35,7 +36,7 @@ const [year,setYear]=useState(new Date().getFullYear());
           </Route>
           <Route path="/transactions">
             <SideBar />
-            <Dashboard />
+            <Transactions/>
           </Route>
           <Route path="/users">
             <SideBar />
