@@ -10,6 +10,7 @@ import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
 import Budget from './components/budgets/budget';
 import User from './components/user/user';
+
 const App = function() {
 
 const [month,setMonth]=useState(new Date().getMonth()+1);

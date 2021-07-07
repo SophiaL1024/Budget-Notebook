@@ -1,19 +1,23 @@
 import  React,{useEffect, useState } from "react";
+import { useParams, useHistory } from 'react-router-dom'
 import axios from 'axios';
 
-const User = function(){
+const User = () => {
+  const params = useParams();
+  const history = useHistory();
+    useEffect(() => {
+      setTimeout(() => {
+        history.push('/dashboards/1');
+      },1000);
+  },[]);
 
-  const [state, setState] = useState({
-    userData:{}
-  }); 
-
-  useEffect(() => {
-    axios
-      .get("/users")
-      .then((res) => {
-        setState((prev) => ({ ...prev, userData: res.data }));
-      });
-  }, []);
+//   useEffect(() => {
+//     axios
+//       .get("/users/1")
+//       .then((res) => {
+//         setState((prev) => ({ ...prev, users: res.data }));
+//       });
+//   }, []);
   
   return(
     <>
@@ -25,10 +29,11 @@ const User = function(){
   </label>
   <label>
     Password:
-    <input type="text" name="name" />
+    <input type="password" name="name" />
   </label>
   <input type="submit" value="Submit" />
-</form>
+  {/* <button onClick = {()=> submitForm()} type="submit" value="Submit" name = "login"/> */}
+  </form>
 <form>
     <h4> User Registration</h4>
   <label>
@@ -44,5 +49,4 @@ const User = function(){
     </>
   );
 }
-
 export default User;
