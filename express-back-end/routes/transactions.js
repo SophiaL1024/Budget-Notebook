@@ -17,28 +17,40 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => res.json({
+router.post('/postExpense', (req, res) => {
+  // console.log("req body:",req.body.data);
+  let { name, description, amount, month, day } = req.body.data;
+  const id = 1;
+  const year = new Date().getFullYear();
+  // console.log(name,amount,year,month,id);
+  transactionsQueries.addExpense(name, description, amount, year, month, day, id);
+});
 
-}));
+router.post('/postIncome', (req, res) => {
+  console.log("req body:", req.body.data);
+  let { name, description, amount, month, day } = req.body.data;
+  const id = 1;
+  const year = new Date().getFullYear();
+  // console.log(name,amount,year,month,id);
+  transactionsQueries.addIncome(name, description, amount, year, month, day, id);
+});
 
 router.patch('/', (req, res) => res.json({
 
 }));
 
-router.delete('/delete/:id', (req, res) => {
-  const transactionsData = {};
-  transactionsQueries.deleteIncomeTransactionById(req.params.id)
-    .then((resolve) => {
-      transactionsData.incomeInfo = resolve;
-    })
-    .then(() => {
-      transactionsQueries.deleteExpenseTransactionById(req.params.id)
-        .then(resolve => {
-          transactionsData.expenseInfo = resolve;
-          res.json(transactionsData);
-        });
-    });
+router.delete('/', (req, res) => {
+  const {type, id} = req.body;
+  if (type === "Income") {
+    transactionsQueries.deleteIncomeTransactionById(req.body.id);
+  } else {
+    transactionsQueries.deleteExpenseTransactionById(req.body.id);
+  }
+   
 });
+
+
+
 
 module.exports = router;
 

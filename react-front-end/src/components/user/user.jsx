@@ -1,6 +1,6 @@
-import  React,{useEffect, useState } from "react";
+import  React,{ useEffect } from "react";
 import { useParams, useHistory } from 'react-router-dom'
-import axios from 'axios';
+//import axios from 'axios';
 
 const User = () => {
   const params = useParams();
@@ -17,11 +17,11 @@ const User = () => {
     <h4> User Login</h4>
   <label>
     Email:
-    <input type="text" name="name" />
+    <input type="text" value ="alice@gmail.com" name="name" /><br/>
   </label>
   <label>
     Password:
-    <input type="password" name="name" />
+    <input type="password" value ="123456576868" name="name" /><br/>
   </label>
   <input type="submit" value="Submit" />
   {/* <button onClick = {()=> submitForm()} type="submit" value="Submit" name = "login"/> */}
@@ -30,11 +30,11 @@ const User = () => {
     <h4> User Registration</h4>
   <label>
     Email:
-    <input type="text" name="name" />
+    <input type="text" name="name" /><br/>
   </label>
   <label>
     Password:
-    <input type="text" name="name" />
+    <input type="text" name="name" /><br/>
   </label>
   <input type="submit" value="Submit" />
 </form>

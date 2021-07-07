@@ -7,13 +7,54 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import  '../App.css';
 import dateContext from "../context.js";
+//Drawer
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
-  }
+    minWidth: 150,
+  },
+
+  //drawer
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 3,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(10),
+  },
+  link: { textDecoration: 'none', 
+  color: theme.palette.text.primary
+}
 }));
 
 export default function SideBar() {
@@ -55,14 +96,54 @@ export default function SideBar() {
   };
 
   return (
-    <div className="side-bar">
-  
-    <div><Link to="/dashboards/">Dashboard </Link></div>
-    {/* <div><Link to="/categories/">Category </Link></div> */}
-    <div><Link to="/budgets/">Budget</Link></div>
-    <div><Link to="/transactions/">Transaction</Link></div>
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" noWrap>
+            Budget Notebook
+          </Typography>
+        </Toolbar>
+      </AppBar>
 
-    <div>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        anchor="left"
+      >
+        <div className={classes.toolbar} />
+        <Divider />
+        <List>
+          <Link to ="/dashboards" className={classes.link}>
+          <ListItem button>
+          <ListItemIcon>
+            <DashboardIcon/>
+           </ListItemIcon>
+           <ListItemText primary="Dashboard" />
+           </ListItem>
+          </Link>        
+          <Link to ="/budgets" className={classes.link}>
+          <ListItem button>
+          <ListItemIcon>
+            <AccountBalanceWalletIcon/>
+           </ListItemIcon>
+           <ListItemText primary="Budget" />
+           </ListItem>
+          </Link> 
+          <Link to ="/transactions" className={classes.link}>
+          <ListItem button>
+          <ListItemIcon>
+            <ShoppingCartIcon/>
+           </ListItemIcon>
+           <ListItemText primary="Transaction" />
+           </ListItem>
+          </Link> 
+        </List>
+        <Divider />
+  
       <FormControl className={classes.formControl}>
         <InputLabel id="select-year-label">Year</InputLabel>
         <Select
@@ -76,7 +157,6 @@ export default function SideBar() {
           {yearList.map(y=><MenuItem key={y} value={y}>{y}</MenuItem>)}       
         </Select>
       </FormControl>
-
       <FormControl className={classes.formControl}>
         <InputLabel id="select-month-label">Month</InputLabel>
         <Select
@@ -101,7 +181,7 @@ export default function SideBar() {
           <MenuItem value={12}>December</MenuItem>
         </Select>
       </FormControl>
-    </div>
-    </div>
+      </Drawer>
+   </div>
   );
 }
