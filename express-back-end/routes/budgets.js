@@ -61,6 +61,36 @@ router.post('/', (req, res) => {
 });
 
 router.patch('/', (req, res) => {
+  // console.log(req.body.data);
+  const {type,id,month,year,userId} = req.body.data;
+  const {name,amount} = req.body.data.formValue;
+  
+  
+  if (type === 'income') {
+
+    budgetQuries.updateIncomeBudget(id,amount,name)
+      .then((resolve)=>{
+        // console.log(resolve);
+        res.json(resolve);
+      });
+
+  } else if (type === 'expense') {
+    budgetQuries.updateExpenseBudget(id,amount,name)
+      .then((resolve)=>{
+      // console.log(resolve);
+        res.json(resolve);
+      });
+  } else if (type === 'balance') {
+   
+    budgetQuries.updateBalanceBudget(month,year,amount,userId)
+      .then((resolve)=>{
+      // console.log(resolve);
+        res.json(resolve);
+      });
+  }
+
+
+  // console.log(req.body.data);
   
 
 });

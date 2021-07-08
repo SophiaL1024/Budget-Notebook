@@ -37,7 +37,7 @@ export default function budgetForm(props){
  
     formValue.year=Number(formValue.date.slice(0,4));
     formValue.month=Number(formValue.date.slice(-2));
-
+    //Don't need to setState for newly created balance_budget,cause it don't need to be rendered in the current page.
     axios.post('http://localhost:3000/budgets', {data:{formValue,tabType}}) 
 
     .then((resolve) => {
@@ -75,27 +75,19 @@ export default function budgetForm(props){
         ...prev,      
         expenseAndBudget: newExpenseAndBudget               
       }));
-    }
-    // else if(tabType===1){
-    //   setState((prev) => ({ 
-    //     ...prev,      
-    //     balanceBudget: [...]             
-    //   }));
-
-    // }
+     }
 
     })
-      //  .then(()=>{
-      //    setFormValue({
-      //    date:"", 
-      //    year:0,
-      //    month: 0,
-      //    amount: "",
-      //    name: ""   
-      //    }); 
-      //  })
-      // })      
-      // .catch(err => console.log( err));
+      .then(()=>{
+         setFormValue({
+         date:"", 
+         year:0,
+         month: 0,
+         amount: "",
+         name: ""   
+         }); 
+       })       
+      .catch(err => console.log( err));
 
       handleClose();
   };
@@ -138,7 +130,7 @@ export default function budgetForm(props){
         id="date"
         type="month"
         onChange={(event)=>handleChange("date",event.target.value)}        
-        inputProps={tabType===2?{ min: '2021-08' }:{ min:'2021-01' }} //hard code
+        inputProps={tabType===2?{ min: '2021-08' }:{ min:'2021-01' }} //hard code min month
       />
     </DialogContent>
 

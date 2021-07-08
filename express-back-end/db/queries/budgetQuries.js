@@ -49,12 +49,13 @@ const getBalanceBudget = (id, month, year)=>{
     .then((response) => {
       const balance = response.rows.map(e=>e.budget);
       // return and array of balance budget amount, sum of income and sum of expense for a given month
+      console.log(balance);
       return balance;
     })
     .catch(err => console.log(err));
 };
 
-getBalanceBudget(1,7,2021);
+
 
 const createIncomeBudget = (name, amount, year, month, id) => {
   const queryStatement = `
@@ -68,8 +69,6 @@ const createIncomeBudget = (name, amount, year, month, id) => {
     })
     .catch(err => console.log(err));
 };
-
-
 
 const createExpenseBudget = (name, amount, year, month, id) => {
   const queryStatement = `
@@ -137,23 +136,48 @@ const deleteExpenseBudget = (id) => {
   db.query(queryStatement, [id]);
 };
 
-const updateExpenseBudget = (id,amount)=>{
+const updateExpenseBudget = (id,amount,name)=>{
   const queryStatement = `
   UPDATE expense_budgets
-  SET amount = $2      
-  WHERE id=$1;
+  SET amount = $2, name=$3        
+  WHERE id=$1
+  RETURNING *;
  `;
-  return db.query(queryStatement, [id,amount]);
+  return db.query(queryStatement, [id,amount,name])
+    .then((response)=>{
+      return response.rowCount;
+    });
 
 };
 
-const updateIncomeBudget = (id,amount)=>{
+const updateIncomeBudget = (id,amount,name)=>{
+  // console.log(id,amount,name);
   const queryStatement = `
   UPDATE income_budgets
-  SET amount = $2      
-  WHERE id=$1;
+  SET amount = $2, name=$3     
+  WHERE id=$1
+  RETURNING *;
  `;
-  return db.query(queryStatement, [id,amount]);
+  return db.query(queryStatement, [id,amount,name])
+    .then((response)=>{
+      return response.rowCount;
+    });
+
+};
+
+const updateBalanceBudget = (month,year,amount,userId)=>{
+  console.log(month,year,amount);
+  const queryStatement = `
+  UPDATE balance_budgets
+  SET amount = $3     
+  WHERE month=$1 AND year=$2 AND user_id=$4
+  RETURNING *;
+ `;
+  return db.query(queryStatement, [month,year,amount,userId])
+    .then((response)=>{
+      // console.log(response);
+      return response.rowCount;
+    });
 
 };
 
@@ -170,5 +194,6 @@ module.exports = {
   createIncome,
   updateExpenseBudget,
   updateIncomeBudget,
-  getBalanceBudget
+  getBalanceBudget,
+  updateBalanceBudget
 };

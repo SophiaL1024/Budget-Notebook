@@ -1,7 +1,7 @@
 import  React,{ useState } from "react";
 import BudgetListItems from "./budgetListItems.jsx";
 import BudgetForm from "./budgetForm.jsx";
-import  dateContext  from '../../context.js';
+// import  dateContext  from '../../context.js';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -115,15 +115,15 @@ export default function budgetList() {
       {/* <dateContext.Provider value={{open}}> */}
 
         <TabPanel value={value} index={0} dir={theme.direction}>
-        <BudgetListItems tabType={0}/>   
+        <BudgetListItems tabType={0} />   
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <BudgetListItems tabType={1}/>
+        <BudgetListItems tabType={1} />
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-        <BudgetListItems tabType={2}/>
+        <BudgetListItems tabType={2} />
           <BudgetForm open={open} setOpen={setOpen} tabType={2}/>
         </TabPanel>
 
