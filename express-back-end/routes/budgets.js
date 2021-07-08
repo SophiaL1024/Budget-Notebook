@@ -1,6 +1,8 @@
 const Express = require('express');
 const router = Express.Router();
 const budgetQuries = require('../db/queries/budgetQuries');
+// const currentMonth = new Date().getMonth() + 1;
+// const currenYear = new Date().getFullYear();
 
 
 router.get('/:userId', (req, res) => {
@@ -8,14 +10,21 @@ router.get('/:userId', (req, res) => {
   // console.log("test",req.params.userId,req.query.month,req.query.year);
   budgetQuries.getIncomeAndBudget(req.params.userId,req.query.month,req.query.year)
     .then((resolve) => {
+      if (!resolve.length) {
+        // eslint-disable-next-line camelcase
+        resolve = [{income_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:req.params.userId}];
+      }
       // console.log(resolve);
-
       budgetData.incomeAndBudget = resolve;
     })
     .then(()=>{
       budgetQuries.getExpenseAndBudget(req.params.userId,req.query.month,req.query.year)
         .then((resolve) => {
-          // console.log("tessssss",resolve);
+          if (!resolve.length) {
+            // eslint-disable-next-line camelcase
+            resolve = [{expense_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:req.params.userId}];
+          }
+          // console.log(resolve);
           budgetData.expenseAndBudget = resolve;
           // res.json(budgetData);
         });
@@ -23,7 +32,12 @@ router.get('/:userId', (req, res) => {
     .then(()=>{
       budgetQuries.getBalanceBudget(req.params.userId,req.query.month,req.query.year)
         .then((resolve) => {
-        // console.log("tessssss",resolve);
+          resolve.forEach(e=>{
+            if (!e) {
+              e = 0;
+            }
+          });
+          console.log("tessssss",resolve);
           budgetData.balanceBudget = resolve;
           res.json(budgetData);
         });
