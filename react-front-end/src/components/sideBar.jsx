@@ -109,11 +109,10 @@ export default function SideBar() {
       <Drawer
         className={classes.drawer}
         variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
+        classes={{paper: classes.drawerPaper }}
         anchor="left"
       >
+
         <div className={classes.toolbar} />
         <Divider />
         <List>
