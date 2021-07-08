@@ -7,13 +7,14 @@ import Grid from '@material-ui/core/Grid';
 import {
   BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar
 } from "recharts";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(12),
+    padding: theme.spacing(6),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
@@ -26,6 +27,8 @@ const balance = [
   '835.71', '827.70',
   '18.66', '0','0','0','0','0'
 ];
+
+
 const data = [
   {
     name: 'January',
@@ -68,35 +71,35 @@ const data = [
     SavingGoal: 500,
     SavingsAcheived: 18.66
   
-  },
-  {
-    name: 'August',
-    SavingGoal: 500,
-    SavingsAcheived: 0
+  // },
+  // {
+  //   name: 'August',
+  //   SavingGoal: 500,
+  //   SavingsAcheived: 0
   
-  },
-  {
-    name: 'September',
-    SavingGoal: 500,
-    SavingsAcheived: 0
+  // },
+  // {
+  //   name: 'September',
+  //   SavingGoal: 500,
+  //   SavingsAcheived: 0
   
-  },
-  {
-    name: 'October',
-    SavingGoal: 500,
-    SavingsAcheived: 0
+  // },
+  // {
+  //   name: 'October',
+  //   SavingGoal: 500,
+  //   SavingsAcheived: 0
   
-  },
-  {
-    name: 'November',
-    SavingGoal: 500,
-    SavingsAcheived: 0
+  // },
+  // {
+  //   name: 'November',
+  //   SavingGoal: 500,
+  //   SavingsAcheived: 0
   
-  },
-  {
-    name: 'December',
-    SavingGoal: 500,
-    SavingsAcheived: 0
+  // },
+  // {
+  //   name: 'December',
+  //   SavingGoal: 500,
+  //   SavingsAcheived: 0
   
   },
 ];
@@ -120,33 +123,37 @@ const Dashboard=function(){
   return(
       //  <div className={classes.root}>
       <Grid container spacing={2} className={classes.grid}>
-        <Grid item xs={6} md={6}>
+        <Grid item xs={3} md={6}>
         <Paper className={classes.paper}>
-        <h1>Month : {array[month-1]}</h1><br/>
+        <h2>Month : {array[month-1]}</h2>
         {/* selected month:{month}<br/> */}
-        <h2>Income :{state.dashboardData.currentMonthIncome }</h2>
-        <h2>Expense :{state.dashboardData.currentMonthExpense }</h2>
-        <h3>Balance : {balance[month-1]}</h3>
+        <h3>Income : {state.dashboardData.currentMonthIncome }</h3>
+        <h3>Expense : {state.dashboardData.currentMonthExpense }</h3>
+        <h4>Balance : {balance[month-1]}</h4>
       </Paper>
       </Grid>
         <Grid item xs={6} md={6}>
         <Paper className={classes.paper}>
-        <h1>Year : {year}</h1><br/>
-        <h2>Income :{state.dashboardData.annualIncome }</h2>
-        <h2>Expense :{state.dashboardData.annualExpense }</h2>
-        <h3>Balance : 4948.83 </h3>
+        <h2>Year : {year}</h2>
+        <h3>Income : {state.dashboardData.annualIncome }</h3>
+        <h3>Expense : {state.dashboardData.annualExpense }</h3>
+        <h4>Balance : 4948.83 </h4>
+         {/* balance the array of income - array of expense */}
       </Paper>
     </Grid>
 <Grid>
-  <h1>Savings Goal</h1>
+  <Typography>
+  <h3>         </h3>
+  </Typography>
+  
         <BarChart
-          width={1000}
-          height={500}
+          width={800}
+          height={300}
           data={data}
           margin={{
             top: 5,
             right: 0,
-            left: 300,
+            left: 200,
             bottom: 5,
           }}
         >
@@ -155,6 +162,7 @@ const Dashboard=function(){
           <YAxis />
           <Tooltip />
           <Legend />
+          {/* <Title text = "Saving Goal"/> */}
           <Bar dataKey="SavingGoal" fill="#8884d8" />
           <Bar dataKey="SavingsAcheived" fill="#82ca9d" />
         </BarChart>
