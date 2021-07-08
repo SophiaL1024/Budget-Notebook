@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useContext } from "react";
 import dateContext from '../../context';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
+// import IconButton from '@material-ui/core/IconButton';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import EditIcon from '@material-ui/icons/Edit';
 import useVisualMode from '../../hooks/useVisualMode';
 import Edit from "./Edit";
+
+
 export default function IncomeList(props) {
-  const SHOW = "SHOW";
-  const EDIT = "EDIT";
 
   const { month, year } = useContext(dateContext);
 
@@ -23,10 +23,6 @@ export default function IncomeList(props) {
     return wantedItems;
   };
 
-    //function that transitions what is being displayed
-    const { mode, transition, back } = useVisualMode(
-      SHOW 
-    );
 
   const listOfIncomes = findIncomes(props.listOfIncomes, month, year, 1)
 
@@ -36,7 +32,10 @@ export default function IncomeList(props) {
       key={item.id}
       name={item.name}
       description={item.description}
-      amount={item.amount}/>
+      amount={item.amount}
+      
+      />
+      
 
     );
 

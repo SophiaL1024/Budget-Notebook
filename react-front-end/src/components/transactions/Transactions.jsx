@@ -106,11 +106,14 @@ export default function Transactions() {
     <>
       <IncomeList listOfIncomes={state.incomeTransactions}
         deletion={deletion}
+        
       >
       </IncomeList>
       <ExpenseList
         listOfExpenses={state.expenseTransactions}
         deletion={deletion}
+        
+
       />
       <NewTransactionForm
         handleChange={handleChange}
