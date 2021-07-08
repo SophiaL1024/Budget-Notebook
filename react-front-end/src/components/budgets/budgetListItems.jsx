@@ -10,11 +10,12 @@ import EditIcon from '@material-ui/icons/Edit';
 export default function BudgetListItems(props){
 
   const {incomeAndBudget,expenseAndBudget,balanceBudget,setState} = useContext(dateContext);
+  //set edit to show edit form
   const[edit,setEdit]=useState(0);
   const [type,setType]=useState('');
 
   const handleEdit=function(id,budgetType){
-    setEdit(id)
+    setEdit(id);
     setType(budgetType);
   }
 
@@ -32,7 +33,7 @@ export default function BudgetListItems(props){
         // console.log("test",budgetType,typeof(budgetType))
         const newIncomeAndBudget =incomeAndBudget.filter(e=>e.id!==id);
 
-        console.log(newIncomeAndBudget)
+        // console.log(newIncomeAndBudget)
 
         setState((prev) => ({ 
           ...prev,      
@@ -54,7 +55,7 @@ export default function BudgetListItems(props){
 
   const incomeItems=incomeAndBudget.map(e=>{
     if(edit===e.id && type==='income'){
-     return (<EditForm setEdit={setEdit}/>)
+     return (<EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id}/>)
     }
     return (  
       (<li key={e.id}>
@@ -73,7 +74,7 @@ export default function BudgetListItems(props){
 
   const expenseItems=expenseAndBudget.map(e=>{
     if(edit===e.id && type==='expense'){
-      return (<EditForm/>)
+      return (<EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id}/>)
      }
     return (    
       <li key={e.id}>
@@ -102,24 +103,29 @@ export default function BudgetListItems(props){
     return incomeBudgetSum-expenseBudgetSum;
   }
 
+
   //conditional render different tabs
   if(props.tabType===0){
     return incomeItems;
   }else if (props.tabType===1){
     return expenseItems;
-  }else if(props.tabType===2){
+  }else if(props.tabType===2 && !edit){
     return (
       <div>
         you have this much of balance left:<br/>
         {balanceRemaining()}<br/>
         {balanceBudget}
-        <IconButton aria-label="edit" onClick={()=>handleEdit()} >
+        <IconButton aria-label="edit" onClick={()=>handleEdit(1,'balance')} >
         <EditIcon />
       </IconButton >
-
+  
       </div>
-    )
+    ) 
+  }else if(props.tabType===2 && edit){
+    return <EditForm setEdit={setEdit} type={'balance'} key={0}/>
   }
+  
+
 
 
 }

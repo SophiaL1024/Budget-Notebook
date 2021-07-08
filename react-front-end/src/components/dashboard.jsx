@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const array = ['January', 'February','March','April','May','June','July','August','September','October','November','December']
-const month = 7
+// const month = 7
 
 const Dashboard=function(){
   const classes = useStyles();
