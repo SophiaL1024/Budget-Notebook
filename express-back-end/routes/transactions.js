@@ -35,12 +35,18 @@ router.post('/postIncome', (req, res) => {
 });
 
 router.patch('/edit', (req, res) => {
-  let { name, description, amount, month, day, year, id } = req.body.data;
-  transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, id)
-    .then(resolve => {
-      // transactionsData.incomeInfo = resolve;
-      res.json(resolve);
-    });
+  let { name, description, amount, month, day, year, id, type } = req.body.data;
+  if (type === 'income') {
+    transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, id)
+      .then(resolve => {
+        res.json(resolve);
+      });
+  } else if (type === "expense") {
+    transactionsQueries.editExpenseTransactions(name, description, amount, month, day, year, id)
+      .then(resolve => {
+        res.json(resolve);
+      });
+  }
 });
 
 router.delete('/', (req, res) => {

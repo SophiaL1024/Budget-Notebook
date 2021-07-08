@@ -72,7 +72,25 @@ const editIncomeTransactions = (name, description, amount, month, day, year, id)
   WHERE id = $7
   returning *
   `;
-  console.log("params:",name, description, amount, month, day, year, id);
+  return db.query(queryStatement, [name, description, amount, month, day, year, id])
+    .then((response) => {
+      return response.rows;
+    })
+    .catch(err => console.error(err));
+};
+
+const editExpenseTransactions = (name, description, amount, month, day, year, id) => {
+  const queryStatement = `
+  UPDATE income
+  SET name = $1,
+      description = $2,
+      amount = $3,
+      month = $4,
+      day = $5,
+      year = $6
+  WHERE id = $7
+  returning *
+  `;
   return db.query(queryStatement, [name, description, amount, month, day, year, id])
     .then((response) => {
       return response.rows;
@@ -81,6 +99,7 @@ const editIncomeTransactions = (name, description, amount, month, day, year, id)
 };
 
 module.exports = {
+  editExpenseTransactions,
   editIncomeTransactions,
   addIncome,
   addExpense,

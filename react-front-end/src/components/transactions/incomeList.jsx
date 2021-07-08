@@ -39,9 +39,8 @@ export default function IncomeList(props) {
       description={item.description}
       amount={item.amount}
       handleEdit={props.handleEdit}
+      type={"income"}
       />
-      
-
     );
 
   });

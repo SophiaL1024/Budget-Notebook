@@ -49,42 +49,61 @@ export default function Transactions() {
   }
 
 
-  const handleEdit = (name, description, amount, month, day, year, id) => {
-    axios.patch(`http://localhost:3000/transactions/edit`, { data: { name, description, amount, month, day, year, id } })
+  const handleEdit = (name, description, amount, month, day, year, id, type) => {
+    axios.patch(`http://localhost:3000/transactions/edit`, { data: { name, description, amount, month, day, year, id, type} })
       .then(() => {
-        for (let i = 0; i < state.incomeTransactions.length; i++) {
-          if (state.incomeTransactions[i].id === id) {
-            // console.log("i:",i)
-            const newItem = {
-              ...state.incomeTransactions[i],
-              name,
-              description,
-              amount,
-              month,
-              day,
-              year,
-            }
-            const newIncomeArray = state.incomeTransactions.map(item => {
-              if (item.id === id) {
-                return newItem;
+        if (type === "income") {
+          for (let i = 0; i < state.incomeTransactions.length; i++) {
+            if (state.incomeTransactions[i].id === id) {
+              // console.log("i:",i)
+              const newItem = {
+                ...state.incomeTransactions[i],
+                name,
+                description,
+                amount,
+                month,
+                day,
+                year,
               }
-              return item
-            })
-            console.log("newIncomeArray:",newIncomeArray[i]);
-            console.log("newItem:", newItem);
-            setState(prev => ({
-              ...prev,
-              incomeTransactions: newIncomeArray
-            }));
+              const newIncomeArray = state.incomeTransactions.map(item => {
+                if (item.id === id) {
+                  return newItem;
+                }
+                return item
+              })
+              setState(prev => ({
+                ...prev,
+                incomeTransactions: newIncomeArray
+              }));
+            }
+          }
+        } else if (type === "expense") {
+          for (let i = 0; i < state.expenseTransactions.length; i++) {
+            if (state.expenseTransactions[i].id === id) {
+              // console.log("i:",i)
+              const newItem = {
+                ...state.expenseTransactions[i],
+                name,
+                description,
+                amount,
+                month,
+                day,
+                year,
+              }
+              const newExpenseArray = state.expenseTransactions.map(item => {
+                if (item.id === id) {
+                  return newItem;
+                }
+                return item
+              })
+              setState(prev => ({
+                ...prev,
+                expenseTransactions: newExpenseArray
+              }));
+            }
           }
         }
       });
-    // console.log("item:", state.incomeTransactions[8]);
-
-    // setState(prev => ({
-    //   ...prev.expenseTransactions[userId],
-    //   expenseTransactions: newExpenseTransaction
-    // }));
   }
 
 

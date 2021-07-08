@@ -56,7 +56,7 @@ export default function Edit(props) {
           <IconButton aria-label="edit" onClick={() => transition(EDIT)}>
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete" onClick={() => props.deletion(props.id, 'Income')}>
+          <IconButton aria-label="delete" onClick={() => props.deletion(props.id, props.type)}>
             <DeleteIcon />
           </IconButton>
         </td>
@@ -102,7 +102,7 @@ export default function Edit(props) {
         </tr>
         <IconButton aria-label="edit" onClick={() => transition(SHOW)}>
           <Button
-            onClick={() => props.handleEdit(name, description, amount, props.month, props.day, props.year, props.id)}
+            onClick={() => props.handleEdit(name, description, amount, props.month, props.day, props.year, props.id, props.type)}
             variant="contained"
             color="primary"
             size="small"
