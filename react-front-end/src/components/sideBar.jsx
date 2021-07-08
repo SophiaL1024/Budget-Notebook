@@ -98,22 +98,21 @@ export default function SideBar() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
             Budget Notebook
           </Typography>
         </Toolbar>
-      </AppBar> */}
+      </AppBar>
 
       <Drawer
         className={classes.drawer}
         variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
+        classes={{paper: classes.drawerPaper }}
         anchor="left"
       >
+
         <div className={classes.toolbar} />
         <Divider />
         <List>

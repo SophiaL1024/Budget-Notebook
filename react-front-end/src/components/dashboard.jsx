@@ -16,7 +16,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const array = ['January', 'February','March','April','May','June','July','August','September','October','November','December']
-// const month = 7
+const month = 7
+const balance = [ 
+  '794.67', '816.69',
+  '805.68', '849.72',
+  '835.71', '827.70',
+  '18.66', '0','0','0','0','0'
+]
+const monthlyB = 7
 
 const Dashboard=function(){
   const classes = useStyles();
@@ -40,22 +47,24 @@ const Dashboard=function(){
       <Grid container spacing={2} className={classes.grid}>
         <Grid item xs={6} md={6}>
         <Paper className={classes.paper}>
-        Month: {array[month-1]}<br/>
+        <h1>Month : {array[month-1]}</h1><br/>
         {/* selected month:{month}<br/> */}
-        Income :{state.dashboardData.currentMonthIncome }<br/>
-        Expense :{state.dashboardData.currentMonthExpense }<br/>
+        <h2>Income :{state.dashboardData.currentMonthIncome }</h2><br/>
+        <h2>Expense :{state.dashboardData.currentMonthExpense }</h2><br/>
+        <h3>Balance : {balance[month-1]}</h3>
       </Paper>
       </Grid>
         <Grid item xs={6} md={6}>
         <Paper className={classes.paper}>
-        Year: {year}<br/>
-        Income :{state.dashboardData.annualIncome }<br/>
-        Expense :{state.dashboardData.annualExpense }<br/>
+        <h1>Year : {year}</h1><br/>
+        <h2>Income :{state.dashboardData.annualIncome }</h2><br/>
+        <h2>Expense :{state.dashboardData.annualExpense }</h2><br/>
+        <h3>Balance : 4948.83 </h3>
       </Paper>
     </Grid>
     </Grid>
 
-    
+
     /* balanceBudget:{state.dashboardData.balanceBudget}<br/>
     monthlyBalance:{state.dashboardData.monthlyBalance}<br/> */
     /* rechart for the data above */
