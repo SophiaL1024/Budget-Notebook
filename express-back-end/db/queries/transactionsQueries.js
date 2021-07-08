@@ -34,14 +34,22 @@ const deleteIncomeTransactionById = (id) => {
   const queryStatement = `
   DELETE FROM income
   WHERE id = $1`;
-  db.query(queryStatement, [id]);
+  return db.query(queryStatement, [id])
+    .then((response) => {
+      return response.rows;
+    })
+    .catch(err => console.log(err));
 };
 
 const deleteExpenseTransactionById = (id) => {
   const queryStatement = `
   DELETE FROM expense
   WHERE id = $1`;
-  db.query(queryStatement, [id]);
+  return db.query(queryStatement, [id])
+    .then((response) => {
+      return response.rows;
+    })
+    .catch(err => console.log(err));
 };
 
 const addExpense = (name, description, amount, year, month, day, userId) => {
@@ -49,6 +57,9 @@ const addExpense = (name, description, amount, year, month, day, userId) => {
   INSERT INTO expense (name,description,amount,year,month,day,user_id)
   VALUES ($1,$2,$3,$4,$5,$6,$7)`;
   return db.query(queryStatement, [name, description, amount, year, month, day, userId])
+    .then((response) => {
+      return response.rows;
+    })
     .catch(err => console.log(err));
 };
 
@@ -57,6 +68,9 @@ const addIncome = (name, description, amount, year, month, day, userId) => {
   INSERT INTO income (name,description,amount,year,month,day,user_id)
   VALUES ($1,$2,$3,$4,$5,$6,$7)`;
   return db.query(queryStatement, [name, description, amount, year, month, day, userId])
+    .then((response) => {
+      return response.rows;
+    })
     .catch(err => console.log(err));
 };
 

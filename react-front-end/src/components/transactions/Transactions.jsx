@@ -22,7 +22,7 @@ export default function Transactions() {
 
   useEffect(() => {
     axios
-      .get("/transactions/1")
+      .get("http://localhost:3000/transactions/1")
       .then((res) => {
         setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo }));
       });
@@ -30,8 +30,12 @@ export default function Transactions() {
 
 
   const deletion = function (id, type) {
+    // console.log("check");
     axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
-    if (type === "Income") {
+    .then(() => {
+    console.log("check");
+
+    if (type === "income") {
       // creates a new income list with all items except the item being deleted
       const newIncomeTransactions = state.incomeTransactions.filter(item => item.id !== id);
       //updates state with new list
@@ -39,13 +43,14 @@ export default function Transactions() {
         ...prev,
         incomeTransactions: newIncomeTransactions
       }));
-    } else if (type === "Expense") {
-      const newExpenseTransaction = state.expenseTransactions.filter(item => item.id !== id)
+    } else if (type === "expense") {
+      const newExpenseTransaction = state.expenseTransactions.filter(item => item.id !== id);
       setState(prev => ({
         ...prev,
         expenseTransactions: newExpenseTransaction
       }));
-    }
+    };
+  });
   }
 
 
@@ -55,7 +60,6 @@ export default function Transactions() {
         if (type === "income") {
           for (let i = 0; i < state.incomeTransactions.length; i++) {
             if (state.incomeTransactions[i].id === id) {
-              // console.log("i:",i)
               const newItem = {
                 ...state.incomeTransactions[i],
                 name,
@@ -80,7 +84,6 @@ export default function Transactions() {
         } else if (type === "expense") {
           for (let i = 0; i < state.expenseTransactions.length; i++) {
             if (state.expenseTransactions[i].id === id) {
-              // console.log("i:",i)
               const newItem = {
                 ...state.expenseTransactions[i],
                 name,

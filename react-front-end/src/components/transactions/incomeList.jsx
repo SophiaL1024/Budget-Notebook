@@ -5,7 +5,7 @@ import dateContext from '../../context';
 // import DeleteIcon from '@material-ui/icons/Delete';
 // import EditIcon from '@material-ui/icons/Edit';
 // import useVisualMode from '../../hooks/useVisualMode';
-import Edit from "./Edit";
+import Edit from "./edit";
 
 
 export default function IncomeList(props) {
@@ -39,6 +39,7 @@ export default function IncomeList(props) {
       description={item.description}
       amount={item.amount}
       handleEdit={props.handleEdit}
+      deletion={props.deletion}
       type={"income"}
       />
     );

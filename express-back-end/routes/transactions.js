@@ -22,8 +22,10 @@ router.post('/postExpense', (req, res) => {
   let { name, description, amount, month, day } = req.body.data;
   const id = 1;
   const year = new Date().getFullYear();
-  // console.log(name,amount,year,month,id);
-  transactionsQueries.addExpense(name, description, amount, year, month, day, id);
+  transactionsQueries.addExpense(name, description, amount, year, month, day, id)
+    .then(resolve => {
+      res.json(resolve);
+    });
 });
 
 router.post('/postIncome', (req, res) => {
@@ -31,7 +33,10 @@ router.post('/postIncome', (req, res) => {
   const id = 1;
   const year = new Date().getFullYear();
   // console.log(name,amount,year,month,id);
-  transactionsQueries.addIncome(name, description, amount, year, month, day, id);
+  transactionsQueries.addIncome(name, description, amount, year, month, day, id)
+    .then(resolve => {
+      res.json(resolve);
+    });
 });
 
 router.patch('/edit', (req, res) => {
@@ -51,7 +56,8 @@ router.patch('/edit', (req, res) => {
 
 router.delete('/', (req, res) => {
   const { type, id } = req.body;
-  if (type === "Income") {
+  if (type === "income") {
+    console.log("cheking route");
     transactionsQueries.deleteIncomeTransactionById(req.body.id);
   } else {
     transactionsQueries.deleteExpenseTransactionById(req.body.id);
