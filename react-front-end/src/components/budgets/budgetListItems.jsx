@@ -57,6 +57,9 @@ export default function BudgetListItems(props){
     if(edit===e.id && type==='income'){
      return (<EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id}/>)
     }
+    else if(e.id===0){
+      return null
+    }
     return (  
       (<li key={e.id}>
         {e.name} <br />
@@ -76,6 +79,9 @@ export default function BudgetListItems(props){
     if(edit===e.id && type==='expense'){
       return (<EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id}/>)
      }
+     else if(e.id===0){
+      return null
+    }
     return (    
       <li key={e.id}>
         {e.name} <br />
