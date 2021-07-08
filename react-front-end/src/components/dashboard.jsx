@@ -128,13 +128,13 @@ const Dashboard=function(){
         <h1>{array[month-1]}</h1>
         {/* selected month:{month}<br/> */}
         <div class="balance">
-          <h2>Balance : {balance[month-1]} CAD</h2>
+          <h2>Balance : ${balance[month-1]}</h2>
         </div>
           <div class="income">
-          <h2>Incomes : {state.dashboardData.currentMonthIncome } CAD </h2> 
+          <h2>Incomes : ${state.dashboardData.currentMonthIncome }</h2> 
           </div>          
             <div class="expense">
-            <h2>Expenses : -{state.dashboardData.currentMonthExpense } CAD </h2></div>
+            <h2>Expenses : -${state.dashboardData.currentMonthExpense }</h2></div>
       </Paper>
       </Grid>
         <Grid item xs={6} md={6}>
@@ -142,14 +142,14 @@ const Dashboard=function(){
           <div class="year">
             <h1>{year}</h1>
               <div class="balance">
-              <h2>Balance : 4948.83 CAD</h2>
+              <h2>Balance : $4,948.83</h2>
               </div>
               </div>
                 <div class="income">
-                  <h2>Incomes : {state.dashboardData.annualIncome } CAD </h2>
+                  <h2>Incomes : ${state.dashboardData.annualIncome }</h2>
                 </div> 
                   <div class="expense">
-                    <h2> Expenses : {state.dashboardData.annualExpense } CAD</h2>
+                    <h2> Expenses : -${state.dashboardData.annualExpense }</h2>
                   </div>
          {/* balance the array of income - array of expense */}
       </Paper>
