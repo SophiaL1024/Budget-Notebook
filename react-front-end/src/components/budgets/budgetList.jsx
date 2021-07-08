@@ -82,12 +82,12 @@ export default function budgetList() {
       icon: <AddIcon />,
       label: 'Add',
     },
-    {
-      color: 'primary',
-      className: classes.fab,
-      icon: <AddIcon />,
-      label: 'Add',
-    },
+    // {
+    //   color: 'transparent',
+      // className: classes.fab,
+      // icon: <AddIcon />,
+      // label: 'Add',
+    // },
   ];
   const [open, setOpen] = useState(false);
 
@@ -124,7 +124,7 @@ export default function budgetList() {
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
         <BudgetListItems tabType={2} />
-          <BudgetForm open={open} setOpen={setOpen} tabType={2}/>
+          {/* <BudgetForm open={open} setOpen={setOpen} tabType={2}/> */}
         </TabPanel>
 
       {/* </dateContext.Provider> */}
