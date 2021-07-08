@@ -3,6 +3,7 @@ import axios from 'axios';
 import dateContext from "../../context.js";
 
 import BudgetList from "./budgetList.jsx";
+import PieChart from "./pieChart.jsx";
 
 export default function Budget(){
 
@@ -47,7 +48,7 @@ export default function Budget(){
     <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
     <BudgetList />
-    {/* <BudgetForm /> */}
+    <PieChart />
     </dateContext.Provider>
   </>
   )

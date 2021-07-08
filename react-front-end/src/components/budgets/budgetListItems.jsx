@@ -120,7 +120,9 @@ export default function BudgetListItems(props){
       <div>
         you have this much of balance left:<br/>
         {balanceRemaining()}<br/>
-        {balanceBudget}
+        {balanceBudget[0]}<br/>
+        {balanceBudget[1]}<br/>
+        {balanceBudget[2]}
         <IconButton aria-label="edit" onClick={()=>handleEdit(1,'balance')} >
         <EditIcon />
       </IconButton >
