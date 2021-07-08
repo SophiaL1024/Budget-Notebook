@@ -60,7 +60,23 @@ const addIncome = (name, description, amount, year, month, day, userId) => {
     .catch(err => console.log(err));
 };
 
+const editIncomeTransactions = (name, description, amount, month, day, year, userID) => {
+  const queryStatement = `
+  UPDATE income
+  SET name as $1,
+      description as $2,
+      amount as $3
+      month as $4
+      day as $5
+      year as $6
+  WHERE id = $4
+  `;
+  db.query(queryStatement,[name, description, amount, month, day, year, userID])
+    .catch(err => console.error(err));
+};
+
 module.exports = {
+  editIncomeTransactions,
   addIncome,
   addExpense,
   deleteIncomeTransactionById,

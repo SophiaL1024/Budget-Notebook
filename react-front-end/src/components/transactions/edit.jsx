@@ -66,7 +66,7 @@ export default function Edit(props) {
 
   const editItem = (
     mode === EDIT && (
-      <td>
+      <form>
         <tr>
           <TextField
             autoFocus
@@ -102,6 +102,7 @@ export default function Edit(props) {
         </tr>
         <IconButton aria-label="edit" onClick={() => transition(SHOW)}>
           <Button
+            onClick={() => props.handleEdit(props.name, props.description, props.amount, props.month, props.day, props.year, props.id)}
             variant="contained"
             color="primary"
             size="small"
@@ -112,7 +113,7 @@ export default function Edit(props) {
         <Button size="small" variant="contained" color="primary" onClick={() => transition(SHOW)}>
           cancel
         </Button>
-      </td>
+      </form>
     )
   )
 

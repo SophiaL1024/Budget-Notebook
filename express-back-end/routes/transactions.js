@@ -27,7 +27,6 @@ router.post('/postExpense', (req, res) => {
 });
 
 router.post('/postIncome', (req, res) => {
-  console.log("req body:", req.body.data);
   let { name, description, amount, month, day } = req.body.data;
   const id = 1;
   const year = new Date().getFullYear();
@@ -35,9 +34,10 @@ router.post('/postIncome', (req, res) => {
   transactionsQueries.addIncome(name, description, amount, year, month, day, id);
 });
 
-router.patch('/', (req, res) => res.json({
-
-}));
+router.patch('/edit', (req, res) => {
+  let { name, description, amount, month, day, year, userId} = req.body.data;
+  transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, userId);
+});
 
 router.delete('/', (req, res) => {
   const {type, id} = req.body;

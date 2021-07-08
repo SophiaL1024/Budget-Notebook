@@ -4,7 +4,7 @@ import dateContext from '../../context';
 // import IconButton from '@material-ui/core/IconButton';
 // import DeleteIcon from '@material-ui/icons/Delete';
 // import EditIcon from '@material-ui/icons/Edit';
-import useVisualMode from '../../hooks/useVisualMode';
+// import useVisualMode from '../../hooks/useVisualMode';
 import Edit from "./Edit";
 
 
@@ -30,10 +30,14 @@ export default function IncomeList(props) {
     return (
       <Edit
       key={item.id}
+      id={item.id}
       name={item.name}
+      month={item.month}
+      day={item.day}
+      year={item.year}
       description={item.description}
       amount={item.amount}
-      
+      handleEdit={props.handleEdit}
       />
       
 
@@ -41,7 +45,6 @@ export default function IncomeList(props) {
 
   });
 
-  // const edit = currentIncome? true : false;
 
   return (
     <>

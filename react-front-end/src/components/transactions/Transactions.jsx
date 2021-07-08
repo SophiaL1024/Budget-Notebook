@@ -19,6 +19,7 @@ export default function Transactions() {
     day: 0,
   });
 
+
   useEffect(() => {
     axios
       .get("/transactions/1")
@@ -26,6 +27,7 @@ export default function Transactions() {
         setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo }));
       });
   }, []);
+
 
   const deletion = function (id, type) {
     axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
@@ -45,6 +47,18 @@ export default function Transactions() {
       }));
     }
   }
+
+
+  const handleEdit = (name, description, amount, month, day, year, userId) => {
+    axios.patch(`http://localhost:3000/transactions/edit`, { data: { name, description, amount, month, day, year, userId } })
+    const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
+   
+    setState(prev => ({
+      ...prev,
+      expenseTransactions: newExpenseTransactions
+    }));
+  }
+
 
   // adds the new transaction to the database via axios call
   const handleSubmit = (value) => {
@@ -86,12 +100,11 @@ export default function Transactions() {
           amount: 0,
           month: 0,
           day: 0
-        });
-        // console.log("handle Submit sent post");
-        // handleClose()      
+        });    
       })
       .catch(err => console.log(err));
   };
+
 
   const handleChange = (key, value) => {
     setFormValue(prev => ({
@@ -101,18 +114,18 @@ export default function Transactions() {
   }
 
 
-
   return (
     <>
-      <IncomeList listOfIncomes={state.incomeTransactions}
+      <IncomeList 
+        listOfIncomes={state.incomeTransactions}
         deletion={deletion}
-        
+        handleEdit={handleEdit}
       >
       </IncomeList>
       <ExpenseList
         listOfExpenses={state.expenseTransactions}
         deletion={deletion}
-        
+        handleEdit={handleEdit}
 
       />
       <NewTransactionForm
