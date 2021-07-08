@@ -35,6 +35,7 @@ export default function IncomeList(props) {
       month={item.month}
       day={item.day}
       year={item.year}
+      user_id={item.user_id}
       description={item.description}
       amount={item.amount}
       handleEdit={props.handleEdit}

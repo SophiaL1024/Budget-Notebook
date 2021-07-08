@@ -35,18 +35,22 @@ router.post('/postIncome', (req, res) => {
 });
 
 router.patch('/edit', (req, res) => {
-  let { name, description, amount, month, day, year, userId} = req.body.data;
-  transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, userId);
+  let { name, description, amount, month, day, year, id } = req.body.data;
+  transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, id)
+    .then(resolve => {
+      // transactionsData.incomeInfo = resolve;
+      res.json(resolve);
+    });
 });
 
 router.delete('/', (req, res) => {
-  const {type, id} = req.body;
+  const { type, id } = req.body;
   if (type === "Income") {
     transactionsQueries.deleteIncomeTransactionById(req.body.id);
   } else {
     transactionsQueries.deleteExpenseTransactionById(req.body.id);
   }
-   
+
 });
 
 

@@ -49,14 +49,42 @@ export default function Transactions() {
   }
 
 
-  const handleEdit = (name, description, amount, month, day, year, userId) => {
-    axios.patch(`http://localhost:3000/transactions/edit`, { data: { name, description, amount, month, day, year, userId } })
-    const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
-   
-    setState(prev => ({
-      ...prev,
-      expenseTransactions: newExpenseTransactions
-    }));
+  const handleEdit = (name, description, amount, month, day, year, id) => {
+    axios.patch(`http://localhost:3000/transactions/edit`, { data: { name, description, amount, month, day, year, id } })
+      .then(() => {
+        for (let i = 0; i < state.incomeTransactions.length; i++) {
+          if (state.incomeTransactions[i].id === id) {
+            // console.log("i:",i)
+            const newItem = {
+              ...state.incomeTransactions[i],
+              name,
+              description,
+              amount,
+              month,
+              day,
+              year,
+            }
+            const newIncomeArray = state.incomeTransactions.map(item => {
+              if (item.id === id) {
+                return newItem;
+              }
+              return item
+            })
+            console.log("newIncomeArray:",newIncomeArray[i]);
+            console.log("newItem:", newItem);
+            setState(prev => ({
+              ...prev,
+              incomeTransactions: newIncomeArray
+            }));
+          }
+        }
+      });
+    // console.log("item:", state.incomeTransactions[8]);
+
+    // setState(prev => ({
+    //   ...prev.expenseTransactions[userId],
+    //   expenseTransactions: newExpenseTransaction
+    // }));
   }
 
 
@@ -100,7 +128,7 @@ export default function Transactions() {
           amount: 0,
           month: 0,
           day: 0
-        });    
+        });
       })
       .catch(err => console.log(err));
   };
@@ -116,7 +144,7 @@ export default function Transactions() {
 
   return (
     <>
-      <IncomeList 
+      <IncomeList
         listOfIncomes={state.incomeTransactions}
         deletion={deletion}
         handleEdit={handleEdit}
