@@ -14,6 +14,7 @@ export default function Budget(){
 
   const {month,year} = useContext(dateContext);
 
+  //Unfixed bug: cannot renderpage for future month !
   // if(month>new Date().getMonth() ||year>new Date().getFullYear()){
   //   setState((prev) => ({ ...prev,
   //     incomeAndBudget: [{id:"",amount:0,income_sum:0}],
