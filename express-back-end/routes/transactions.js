@@ -58,9 +58,15 @@ router.delete('/', (req, res) => {
   const { type, id } = req.body;
   if (type === "income") {
     console.log("cheking route");
-    transactionsQueries.deleteIncomeTransactionById(req.body.id);
-  } else {
-    transactionsQueries.deleteExpenseTransactionById(req.body.id);
+    transactionsQueries.deleteIncomeTransactionById(req.body.id)
+      .then(resolve => {
+        res.json(resolve);
+      });
+  } else if (type === "expense") {
+    transactionsQueries.deleteExpenseTransactionById(req.body.id)
+      .then(resolve => {
+        res.json(resolve);
+      });
   }
 
 });
