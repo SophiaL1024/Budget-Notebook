@@ -17,3 +17,22 @@ code {
 #root{
   display: flex;
 }
+
+div.year{
+  text-align:left;
+}
+
+div.income{
+  text-align: left;
+  color:rgb(110, 221, 46)
+}
+
+div.expense{
+  text-align: left;
+  color: rgba(255, 0, 0, 0.74)
+}
+
+div.balance{
+  text-align: right;
+  color: rgba(0, 0, 255, 0.829)
+}

@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(6),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+    padding: theme.spacing(2),
+    textAlign: 'left',
+    color: theme.palette.text.default,
   },
 }));
 const array = ['January', 'February','March','April','May','June','July','August','September','October','November','December']
@@ -125,19 +125,33 @@ const Dashboard=function(){
       <Grid container spacing={2} className={classes.grid}>
         <Grid item xs={3} md={6}>
         <Paper className={classes.paper}>
-        <h2>Month : {array[month-1]}</h2>
+        <h1>{array[month-1]}</h1>
         {/* selected month:{month}<br/> */}
-        <h3>Income : {state.dashboardData.currentMonthIncome }</h3>
-        <h3>Expense : {state.dashboardData.currentMonthExpense }</h3>
-        <h4>Balance : {balance[month-1]}</h4>
+        <div class="income">
+         <h2>Incomes : {state.dashboardData.currentMonthIncome } CAD </h2> </div>          
+          <div class="expense">
+           <h2>Expenses : -{state.dashboardData.currentMonthExpense } CAD </h2></div>
+            <div class="balance">
+              <h2>Balance : {balance[month-1]} CAD</h2>
+            </div>
+     
       </Paper>
       </Grid>
         <Grid item xs={6} md={6}>
         <Paper className={classes.paper}>
-        <h2>Year : {year}</h2>
-        <h3>Income : {state.dashboardData.annualIncome }</h3>
-        <h3>Expense : {state.dashboardData.annualExpense }</h3>
-        <h4>Balance : 4948.83 </h4>
+          <div class="year">
+            <h1>{year}</h1>
+            </div>
+              <div class="income">
+                <h2>Incomes : {state.dashboardData.annualIncome } CAD </h2>
+              </div> 
+                <div class="expense">
+                  <h2> Expenses : {state.dashboardData.annualExpense } CAD</h2>
+                </div>
+                    <div class="balance">
+                    <h2>Balance : 4948.83 CAD</h2>
+                    </div>
+        
          {/* balance the array of income - array of expense */}
       </Paper>
     </Grid>
