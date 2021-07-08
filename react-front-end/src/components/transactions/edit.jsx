@@ -5,7 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
-import React from 'react';
+import React, { useState } from 'react';
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -17,13 +18,33 @@ export default function Edit(props) {
   const SHOW = "SHOW";
   const EDIT = "EDIT";
 
-  const classes = useStyles();
-
+  
   //function that transitions what is being displayed
   const { mode, transition, back } = useVisualMode(
     SHOW
   );
-  
+    
+  const [name, setName] = useState(props.name || '');
+  const [description, setDescription] = useState(props.description || '');
+  const [amount, setAmount] = useState(props.amount || '');
+
+  const classes = useStyles();
+
+  //handles name state
+  const nameHandler = function(event){
+    setName(event.target.value);
+  };
+
+  //handles description state
+  const descriptionHandler = function(event){
+    setDescription(event.target.value);
+  };
+
+  //handles amount state
+  const amountHandler = function(event){
+    setAmount(event.target.value);
+  };
+
   //jsx to be returned when state is in SHOW
   const showItem = (
     mode === SHOW && (
@@ -53,8 +74,8 @@ export default function Edit(props) {
             id="name"
             label="Name"
             type="text"
-            onChange={(event) => props.handleChange("name", event.target.value)}
-            value={props.name}
+            onChange={nameHandler}
+            value={name}
           />
         </tr>
         <tr>
@@ -64,8 +85,8 @@ export default function Edit(props) {
             id="description"
             label="Description"
             type="text"
-            onChange={(event) => props.handleChange("description", event.target.value)}
-            value={props.description}
+            onChange={descriptionHandler}
+            value={description}
           />
         </tr>
         <tr>
@@ -75,8 +96,8 @@ export default function Edit(props) {
             id="amount"
             label="Amount in dollars"
             type="number"
-            onChange={(event) => props.handleChange("amount", event.target.value)}
-            value={props.amount}
+            onChange={amountHandler}
+            value={amount}
           />
         </tr>
         <IconButton aria-label="edit" onClick={() => transition(SHOW)}>
@@ -88,6 +109,9 @@ export default function Edit(props) {
             startIcon={<SaveIcon />}
           >Save</Button>
         </IconButton>
+        <Button size="small" variant="contained" color="primary" onClick={() => transition(SHOW)}>
+          cancel
+        </Button>
       </td>
     )
   )
