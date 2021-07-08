@@ -19,6 +19,7 @@ export default function Transactions() {
     day: 0,
   });
 
+
   useEffect(() => {
     axios
       .get("/transactions/1")
@@ -26,6 +27,7 @@ export default function Transactions() {
         setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo }));
       });
   }, []);
+
 
   const deletion = function (id, type) {
     axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
@@ -46,8 +48,68 @@ export default function Transactions() {
     }
   }
 
+
+  const handleEdit = (name, description, amount, month, day, year, id, type) => {
+    axios.patch(`http://localhost:3000/transactions/edit`, { data: { name, description, amount, month, day, year, id, type} })
+      .then(() => {
+        if (type === "income") {
+          for (let i = 0; i < state.incomeTransactions.length; i++) {
+            if (state.incomeTransactions[i].id === id) {
+              // console.log("i:",i)
+              const newItem = {
+                ...state.incomeTransactions[i],
+                name,
+                description,
+                amount,
+                month,
+                day,
+                year,
+              }
+              const newIncomeArray = state.incomeTransactions.map(item => {
+                if (item.id === id) {
+                  return newItem;
+                }
+                return item
+              })
+              setState(prev => ({
+                ...prev,
+                incomeTransactions: newIncomeArray
+              }));
+            }
+          }
+        } else if (type === "expense") {
+          for (let i = 0; i < state.expenseTransactions.length; i++) {
+            if (state.expenseTransactions[i].id === id) {
+              // console.log("i:",i)
+              const newItem = {
+                ...state.expenseTransactions[i],
+                name,
+                description,
+                amount,
+                month,
+                day,
+                year,
+              }
+              const newExpenseArray = state.expenseTransactions.map(item => {
+                if (item.id === id) {
+                  return newItem;
+                }
+                return item
+              })
+              setState(prev => ({
+                ...prev,
+                expenseTransactions: newExpenseArray
+              }));
+            }
+          }
+        }
+      });
+  }
+
+
   // adds the new transaction to the database via axios call
   const handleSubmit = (value) => {
+    // console.log("value:",value);
     formValue.month = formValue.month.slice(-2);
     axios.post(`http://localhost:3000/transactions/post${value}`, { data: formValue })
       .then(() => {
@@ -86,11 +148,10 @@ export default function Transactions() {
           month: 0,
           day: 0
         });
-        // console.log("handle Submit sent post");
-        // handleClose()      
       })
       .catch(err => console.log(err));
   };
+
 
   const handleChange = (key, value) => {
     setFormValue(prev => ({
@@ -100,16 +161,19 @@ export default function Transactions() {
   }
 
 
-
   return (
     <>
-      <IncomeList listOfIncomes={state.incomeTransactions}
+      <IncomeList
+        listOfIncomes={state.incomeTransactions}
         deletion={deletion}
+        handleEdit={handleEdit}
       >
       </IncomeList>
       <ExpenseList
         listOfExpenses={state.expenseTransactions}
         deletion={deletion}
+        handleEdit={handleEdit}
+
       />
       <NewTransactionForm
         handleChange={handleChange}

@@ -2,9 +2,10 @@ import { useContext } from "react";
 import React from 'react';
 //import axios from "axios";
 import dateContext from "../../context";
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
+// import IconButton from '@material-ui/core/IconButton';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import EditIcon from '@material-ui/icons/Edit';
+import Edit from "./Edit";
 
 
 export default function ExpenseList(props) {
@@ -31,18 +32,20 @@ export default function ExpenseList(props) {
   //mapping over list to creat a table of list items
   const listExpenses = listOfExpenses.map(item => {
     return (
-      <tr key={item.id}>
-        <td><div>{item.name}</div><div>{item.description}</div></td>
-        <td>
-          <IconButton aria-label="edit">
-            <EditIcon />
-          </IconButton>
-          <IconButton aria-label="delete" onClick={()=>props.deletion(item.id,'Expense')}>
-            <DeleteIcon />
-          </IconButton>
-        </td>
-      </tr>)
-
+        <Edit
+        key={item.id}
+        id={item.id}
+        name={item.name}
+        month={item.month}
+        day={item.day}
+        year={item.year}
+        user_id={item.user_id}
+        description={item.description}
+        amount={item.amount}
+        handleEdit={props.handleEdit}
+        type={"expense"}
+        />
+      );
   });
 
   return (
