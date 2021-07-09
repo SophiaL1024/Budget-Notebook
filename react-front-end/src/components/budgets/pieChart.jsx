@@ -66,7 +66,7 @@ const renderActiveShape = (props: any) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#999"
-      >{`PV$ ${value}`}</text>
+      >{`$ ${value}`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -74,7 +74,7 @@ const renderActiveShape = (props: any) => {
         textAnchor={textAnchor}
         fill="#999"
       >
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
   );
