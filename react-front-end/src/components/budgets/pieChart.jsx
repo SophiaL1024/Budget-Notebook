@@ -122,6 +122,7 @@ export default function BudgetPieChart(){
   console.log(data1)
   return(
     <>
+    {/* Pie chart for income showing types of income budget */}
     <PieChart width={500} height={300}>
     <Pie className="incomepie" 
       activeIndex={activeIndex}
@@ -140,27 +141,25 @@ export default function BudgetPieChart(){
           ))}
       </Pie>
       </PieChart>
-
-
-      <PieChart width={500} height={500}>
-        <Pie className="expensepie"
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        data={data2}
-        cx={200}
-        cy={200}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#ffa1b5"
-        dataKey="value"
-        onMouseEnter={onPieEnter}
-      >
-        {data2.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-        </Pie>
-      </PieChart>
-
+        {/* Pie chart for expense showing types of expense budget */}
+        <PieChart width={500} height={500}>
+          <Pie className="expensepie"
+          activeIndex={activeIndex}
+          activeShape={renderActiveShape}
+          data={data2}
+          cx={200}
+          cy={200}
+          innerRadius={60}
+          outerRadius={80}
+          fill="#ffa1b5"
+          dataKey="value"
+          onMouseEnter={onPieEnter}
+        >
+          {data2.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+          </Pie>
+        </PieChart>
     </>
     )
 }
