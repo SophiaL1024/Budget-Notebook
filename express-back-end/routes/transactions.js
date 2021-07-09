@@ -4,12 +4,12 @@ const transactionsQueries = require('../db/queries/transactionsQueries');
 
 router.get('/:id', (req, res) => {
   const transactionsData = {};
-  transactionsQueries.getExpenseTransactionsById(req.params.id)
+  transactionsQueries.getExpenseTransactionsById(req.params.id,req.query.month,req.query.year)
     .then((resolve) => {
       transactionsData.expenseInfo = resolve;
     })
     .then(() => {
-      transactionsQueries.getIncomeTransactionsById(req.params.id)
+      transactionsQueries.getIncomeTransactionsById(req.params.id,req.query.month,req.query.year)
         .then(resolve => {
           transactionsData.incomeInfo = resolve;
           res.json(transactionsData);
@@ -57,7 +57,7 @@ router.patch('/edit', (req, res) => {
 router.delete('/', (req, res) => {
   const { type, id } = req.body;
   if (type === "income") {
-    console.log("cheking route");
+    // console.log("cheking route");
     transactionsQueries.deleteIncomeTransactionById(req.body.id)
       .then(resolve => {
         res.json(resolve);

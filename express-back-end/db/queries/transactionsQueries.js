@@ -1,29 +1,28 @@
 const db = require('../connection');
 
 //selects all columns from income table
-const getIncomeTransactionsById = (id) => {
+const getIncomeTransactionsById = (id,month,year) => {
   const queryStatement = `
   SELECT *
   FROM income
-  GROUP by id
-  HAVING user_id=$1
+  WHERE month=$2 AND user_id=$1 AND year=$3
   `;
-  return db.query(queryStatement, [id])
+  return db.query(queryStatement, [id,month,year])
     .then((response) => {
+      console.log(response.rows);
       return response.rows;
     })
     .catch(err => console.log(err));
 };
 
 //selects all columns from expense table
-const getExpenseTransactionsById = (id) => {
+const getExpenseTransactionsById = (id,month,year) => {
   const queryStatement = `
   SELECT *
   FROM expense
-  GROUP by id
-  HAVING user_id=$1
+  WHERE month=$2 AND user_id=$1 AND year=$3
   `;
-  return db.query(queryStatement, [id])
+  return db.query(queryStatement, [id,month,year])
     .then((response) => {
       return response.rows;
     })
@@ -67,7 +66,8 @@ const addIncome = (name, description, amount, year, month, day, userId) => {
   const queryStatement = `
   INSERT INTO income (name,description,amount,year,month,day,user_id)
   VALUES ($1,$2,$3,$4,$5,$6,$7)`;
-  return db.query(queryStatement, [name, description, amount, year, month, day, userId])
+  return db.query(queryStatement, [name, description,
+    amount, year, month, day, userId])
     .then((response) => {
       return response.rows;
     })
