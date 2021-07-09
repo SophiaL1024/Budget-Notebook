@@ -16,13 +16,13 @@ export default function BudgetProgressBar(props){
     
     return(
       <>
-      income progress bar goes here:
+ 
     <ChakraProvider>
       <Progress hasStripe value={(income/incomeBudgetAmount)*100}  />
     </ChakraProvider>
      
-      income:{income}<br/>
-      incomeBudgetAmount:{incomeBudgetAmount}<br/>
+      Income:{income}<br/>
+      Income Budget Amount:{incomeBudgetAmount}<br/>
       </>
     )
   }else if(props.type==="expense"){
@@ -31,13 +31,13 @@ export default function BudgetProgressBar(props){
 
     return(
       <>
-      expense progress bar goes here:
+
       <ChakraProvider>
         <Progress hasStripe value={(expense/expenseBudgetAmount)*100} />
       </ChakraProvider>
 
-      expense:{expense}<br/>
-      expenseBudgetAmount:{expenseBudgetAmount}<br/>
+      Expense:{expense}<br/>
+      Expense Budget Amount:{expenseBudgetAmount}<br/>
       </>
     )
   }
