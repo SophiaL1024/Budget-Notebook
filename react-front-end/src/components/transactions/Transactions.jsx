@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import IncomeList from "./incomeList";
 import ExpenseList from "./expenseList";
 import NewTransactionForm from "./newTransactionForm";
 import  dateContext  from "../../context";
+import Graph from "./Graph"
 
 export default function Transactions() {
+  const {month,year} = useContext(dateContext);
+
   const [state, setState] = useState({
     incomeTransactions: [],
     expenseTransactions: [],
@@ -23,11 +26,13 @@ export default function Transactions() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/transactions/1")
+      .get("http://localhost:3000/transactions/1",{ params: { year,month } })
       .then((res) => {
         setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo }));
       });
-  }, []);
+  }, [month,year]);
+
+  console.log(state)
 
 
   const deletion = function (id, type) {
@@ -126,8 +131,8 @@ export default function Transactions() {
             month: formValue.month,
             day: formValue.day
           });
-          console.log("state.incomeTransactions.length:", state.incomeTransactions.length);
-          console.log("newIncomeTransactions.length:", newIncomeTransactions.length);
+          // console.log("state.incomeTransactions.length:", state.incomeTransactions.length);
+          // console.log("newIncomeTransactions.length:", newIncomeTransactions.length);
            const expenseState = state.expenseTransactions;
            const newState = {
              expenseTransactions: expenseState,
@@ -175,16 +180,16 @@ export default function Transactions() {
   return (
     <>
      <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions}}>
-    <Graph/>
-    </dateContext.Provider>
+      <Graph/>
+
       <IncomeList
-        listOfIncomes={state.incomeTransactions}
+        // listOfIncomes={state.incomeTransactions}
         deletion={deletion}
         handleEdit={handleEdit}
       >
       </IncomeList>
       <ExpenseList
-        listOfExpenses={state.expenseTransactions}
+        // listOfExpenses={state.expenseTransactions}
         deletion={deletion}
         handleEdit={handleEdit}
 
@@ -194,6 +199,8 @@ export default function Transactions() {
         handleSubmit={handleSubmit}
         formValue={formValue}
         state={state} />
+        
+      </dateContext.Provider> 
     </>
   )
 

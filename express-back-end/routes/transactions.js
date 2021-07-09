@@ -4,12 +4,12 @@ const transactionsQueries = require('../db/queries/transactionsQueries');
 
 router.get('/:id', (req, res) => {
   const transactionsData = {};
-  transactionsQueries.getExpenseTransactionsById(req.params.id)
+  transactionsQueries.getExpenseTransactionsById(req.params.id,req.query.month,req.query.year)
     .then((resolve) => {
       transactionsData.expenseInfo = resolve;
     })
     .then(() => {
-      transactionsQueries.getIncomeTransactionsById(req.params.id)
+      transactionsQueries.getIncomeTransactionsById(req.params.id,req.query.month,req.query.year)
         .then(resolve => {
           transactionsData.incomeInfo = resolve;
           res.json(transactionsData);
