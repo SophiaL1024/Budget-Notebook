@@ -6,16 +6,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField, Button, Radio, RadioGroup } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-// import {  MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers';
-// import DateFnsUtils from '@date-io/date-fns';
+
 
 export default function NewTransactionForm(props) {
   const {handleChange,handleSubmit,formValue,incomeBudget,expenseBudget} = useContext(dateContext);
 
-  if(!incomeBudget.length||!expenseBudget.length ){
+  if(!incomeBudget||!expenseBudget||!incomeBudget.length||!expenseBudget.length ){
     return null
   }
 
@@ -25,19 +23,6 @@ export default function NewTransactionForm(props) {
     setType(event.target.value);
     
   };
-
-  // const [selectedDate, setSelectedDate] = useState(new Date());
-
-  // const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
-
-  // const classes = useStyles();
-  // const [selector, setSelector] = useState('');
-
-  // const handleSelect = (event) => {
-  //   setSelector(event.target.value);
-  // };
 
   const selectorList=(type)=>{
     if(type==="income"){
@@ -59,7 +44,7 @@ export default function NewTransactionForm(props) {
   return (
     <div>
       <h3>New transaction</h3>
-      {/* <span> */}
+
       <RadioGroup row aria-label="transactionsType" name="transaction" value={type} onChange={handleTypeChange}>
           <FormControlLabel value="income" control={<Radio />} label="Income" />
           <FormControlLabel value="expense" control={<Radio />} label="Expense" />
@@ -101,14 +86,14 @@ export default function NewTransactionForm(props) {
             autoFocus
             margin="dense"
             id="date"
-            // label="Month" 
+
             type="date" 
             onChange={(event)=>handleChange("date",event.target.value)}
             value={formValue.date}
           />
          <br/>
 
-        {/* <FormControl className={classes.formControl}> */}
+ 
         <FormControl > 
         <InputLabel id="demo-simple-select-label">Select Budget</InputLabel>
         <Select
@@ -118,9 +103,7 @@ export default function NewTransactionForm(props) {
           onChange={(event)=>handleChange("selectedBudgetId",event.target.value)}
         >
           {selectorList(type)}
-          {/* <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem> */}
+
         </Select>
       </FormControl>
               
@@ -131,7 +114,7 @@ export default function NewTransactionForm(props) {
         Submit
       </Button>
         </div>
-      {/* </span> */}
+
     </div>
   );
 };

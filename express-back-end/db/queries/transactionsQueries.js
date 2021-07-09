@@ -37,7 +37,7 @@ const getIncomeBudget = (id,month,year)=>{
   `;
   return db.query(queryStatement, [id,month,year])
     .then((response) => {
-      console.log("data",response.rows);
+      // console.log("data",response.rows);
       return response.rows;
     })
     .catch(err => console.log(err));
@@ -128,7 +128,7 @@ const editIncomeTransactions = (name, description, amount, month, day, year, id)
 
 const editExpenseTransactions = (name, description, amount, month, day, year, id) => {
   const queryStatement = `
-  UPDATE income
+  UPDATE expense
   SET name = $1,
       description = $2,
       amount = $3,
@@ -140,6 +140,7 @@ const editExpenseTransactions = (name, description, amount, month, day, year, id
   `;
   return db.query(queryStatement, [name, description, amount, month, day, year, id])
     .then((response) => {
+      // console.log("in query",response.rows);
       return response.rows;
     })
     .catch(err => console.error(err));

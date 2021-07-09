@@ -6,6 +6,7 @@ import NewTransactionForm from "./newTransactionForm";
 import  dateContext  from "../../context";
 import Graph from "./Graph";
 import FormDrawer from "./formDrawer"
+import TransactionTab from "./transactionTab"
 
 export default function Transactions() {
   const {month,year} = useContext(dateContext);
@@ -45,7 +46,7 @@ export default function Transactions() {
     // console.log("check");
     axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
     .then(() => {
-    console.log("check");
+    // console.log("check");
 
     if (type === "income") {
       // creates a new income list with all items except the item being deleted
@@ -67,7 +68,7 @@ export default function Transactions() {
 
 
   const handleEdit = (name, description, amount, month, day, year, id, type) => {
-    axios.patch(`http://localhost:3000/transactions/edit`, { data: { name, description, amount, month, day, year, id, type} })
+    axios.patch(`http://localhost:3000/transactions/`, { data: { name, description, amount, month, day, year, id, type} })
       .then(() => {
         if (type === "income") {
           for (let i = 0; i < state.incomeTransactions.length; i++) {
@@ -123,15 +124,15 @@ export default function Transactions() {
 
 
   // adds the new transaction to the database via axios call
-  const handleSubmit = (value) => {
+  const handleSubmit = (type) => {
     // console.log("value:",value);
     formValue.year=Number(formValue.date.slice(0,4));
     formValue.month=Number(formValue.date.slice(5,7));
     formValue.day=Number(formValue.date.slice(-2));
     console.log("formvalye",formValue)
-    axios.post(`http://localhost:3000/transactions/post${value}`, { data: formValue })
+    axios.post(`http://localhost:3000/transactions/`, { data: {type,formValue} })
       .then((res) => {
-        if (value === "income") {
+        if (type === "income") {
           const newIncomeTransactions = [...state.incomeTransactions];
           newIncomeTransactions.push({
             name: formValue.name,
@@ -153,7 +154,7 @@ export default function Transactions() {
           //  console.log(newState);
           setState(newState);
           // console.log("newState:",state.incomeTransactions);
-        } else if (value === "expense") {
+        } else if (type=== "expense") {
           const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
           newExpenseTransactions.push({
             name: formValue.name,
@@ -196,27 +197,14 @@ export default function Transactions() {
 
   return (
     <>
-     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,handleChange,handleSubmit,formValue,expenseBudget:state.expenseBudget,incomeBudget:state.incomeBudget}}>
+     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,handleChange,handleSubmit,formValue,expenseBudget:state.expenseBudget,incomeBudget:state.incomeBudget,deletion,handleEdit}}>
+
       <Graph/>
+      
+      <TransactionTab/>
 
-      <IncomeList
-        // listOfIncomes={state.incomeTransactions}
-        deletion={deletion}
-        handleEdit={handleEdit}
-      >
-      </IncomeList>
-      <ExpenseList
-        // listOfExpenses={state.expenseTransactions}
-        deletion={deletion}
-        handleEdit={handleEdit}
-
-      />
       <NewTransactionForm  className='form' />
-      {/* <NewTransactionForm
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        formValue={formValue}
-        state={state} /> */}
+
 
       <FormDrawer/>
 
