@@ -52,24 +52,30 @@ const deleteExpenseTransactionById = (id) => {
 };
 
 const addExpense = (name, description, amount, year, month, day, userId) => {
+  
   const queryStatement = `
   INSERT INTO expense (name,description,amount,year,month,day,user_id)
-  VALUES ($1,$2,$3,$4,$5,$6,$7)`;
+  VALUES ($1,$2,$3,$4,$5,$6,$7)
+  RETURNING id`;
   return db.query(queryStatement, [name, description, amount, year, month, day, userId])
     .then((response) => {
-      return response.rows;
+      return response.rows[0].id;
     })
     .catch(err => console.log(err));
 };
 
 const addIncome = (name, description, amount, year, month, day, userId) => {
+  console.log("month",month);
   const queryStatement = `
   INSERT INTO income (name,description,amount,year,month,day,user_id)
-  VALUES ($1,$2,$3,$4,$5,$6,$7)`;
+  VALUES ($1,$2,$3,$4,$5,$6,$7)
+  RETURNING id
+  `;
   return db.query(queryStatement, [name, description,
     amount, year, month, day, userId])
     .then((response) => {
-      return response.rows;
+      // console.log("new id",response.rows);
+      return response.rows[0].id;
     })
     .catch(err => console.log(err));
 };

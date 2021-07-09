@@ -1,20 +1,33 @@
 import React from 'react';
 import { useState } from 'react';
+import { useContext } from "react";
+import dateContext from '../../context';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField, Button, Radio, RadioGroup } from '@material-ui/core';
+// import {  MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
+
 export default function NewTransactionForm(props) {
+  const {handleChange,handleSubmit,formValue} = useContext(dateContext);
 
   const [value, setValue] = useState('');
 
-  const handleChange = (event) => {
+  const handleTypeChange = (event) => {
     setValue(event.target.value);
     
   };
 
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+
   return (
     <div>
       <h3>New transaction</h3>
-      <span>
+      {/* <span> */}
         <div>
           <TextField
             autoFocus
@@ -22,8 +35,8 @@ export default function NewTransactionForm(props) {
             id="name"
             label="Name" 
             type="text" 
-            onChange={(event)=>props.handleChange("name",event.target.value)}
-            value={props.formValue.name}  
+            onChange={(event)=>handleChange("name",event.target.value)}
+            value={formValue.name}  
           />
         </div>
         <div>
@@ -33,8 +46,8 @@ export default function NewTransactionForm(props) {
             id="description"
             label="Description" 
             type="text" 
-            onChange={(event)=>props.handleChange("description",event.target.value)}
-            value={props.formValue.description}  
+            onChange={(event)=>handleChange("description",event.target.value)}
+            value={formValue.description}  
           />
         </div>
         <div>
@@ -44,44 +57,32 @@ export default function NewTransactionForm(props) {
             id="amount"
             label="Amount in dollars" 
             type="number" 
-            onChange={(event)=>props.handleChange("amount",event.target.value)}
-            value={props.formValue.amount}  
+            onChange={(event)=>handleChange("amount",event.target.value)}
+            value={formValue.amount}  
           />
         </div>
-        <div>
-          <TextField
+        <TextField
             autoFocus
             margin="dense"
             id="month"
             label="Month" 
-            type="month" 
-            onChange={(event)=>props.handleChange("month",event.target.value)}
-            value={props.formValue.month}  
+            type="date" 
+            onChange={(event)=>handleChange("date",event.target.value)}
+            value={formValue.date}  
+ 
           />
-        </div>
+    
         <div>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="day"
-            label="Day" 
-            type="number" 
-            onChange={(event)=>props.handleChange("day",event.target.value)}
-            value={props.formValue.day}  
-          />
-        </div>
-      </span>
-      <span>
-        <div>
-        <RadioGroup row aria-label="transactionsType" name="transaction" value={value} onChange={handleChange}>
+        <RadioGroup row aria-label="transactionsType" name="transaction" value={value} onChange={handleTypeChange}>
           <FormControlLabel value="income" control={<Radio />} label="Income" />
           <FormControlLabel value="expense" control={<Radio />} label="Expense" />
         </RadioGroup>
-        <Button onClick={() =>props.handleSubmit(value)} color="primary">
+
+        <Button onClick={() =>handleSubmit(value)} color="primary">
         Submit
       </Button>
         </div>
-      </span>
+      {/* </span> */}
     </div>
   );
 };

@@ -4,7 +4,8 @@ import IncomeList from "./incomeList";
 import ExpenseList from "./expenseList";
 import NewTransactionForm from "./newTransactionForm";
 import  dateContext  from "../../context";
-import Graph from "./Graph"
+import Graph from "./Graph";
+import FormDrawer from "./formDrawer"
 
 export default function Transactions() {
   const {month,year} = useContext(dateContext);
@@ -19,8 +20,10 @@ export default function Transactions() {
     name: "",
     description: "",
     amount: 0,
+    date:"", 
+    year:0,
     month: 0,
-    day: 0,
+    day:0
   });
 
 
@@ -32,7 +35,7 @@ export default function Transactions() {
       });
   }, [month,year]);
 
-  console.log(state)
+  // console.log(state)
 
 
   const deletion = function (id, type) {
@@ -119,9 +122,12 @@ export default function Transactions() {
   // adds the new transaction to the database via axios call
   const handleSubmit = (value) => {
     // console.log("value:",value);
-    formValue.month = formValue.month.slice(-2);
+    formValue.year=Number(formValue.date.slice(0,4));
+    formValue.month=Number(formValue.date.slice(5,7));
+    formValue.day=Number(formValue.date.slice(-2));
+    console.log("formvalye",formValue)
     axios.post(`http://localhost:3000/transactions/post${value}`, { data: formValue })
-      .then(() => {
+      .then((res) => {
         if (value === "income") {
           const newIncomeTransactions = [...state.incomeTransactions];
           newIncomeTransactions.push({
@@ -129,7 +135,9 @@ export default function Transactions() {
             description: formValue.description,
             amount: formValue.amount,
             month: formValue.month,
-            day: formValue.day
+            day: formValue.day,
+            year:formValue.year,
+            id:res.data
           });
           // console.log("state.incomeTransactions.length:", state.incomeTransactions.length);
           // console.log("newIncomeTransactions.length:", newIncomeTransactions.length);
@@ -138,9 +146,9 @@ export default function Transactions() {
              expenseTransactions: expenseState,
              incomeTransactions: newIncomeTransactions
            }
-           console.log(newState);
+          //  console.log(newState);
           setState(newState);
-          console.log("newState:",state.incomeTransactions);
+          // console.log("newState:",state.incomeTransactions);
         } else if (value === "expense") {
           const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
           newExpenseTransactions.push({
@@ -148,7 +156,9 @@ export default function Transactions() {
             description: formValue.description,
             amount: formValue.amount,
             month: formValue.month,
-            day: formValue.day
+            day: formValue.day,
+            year:formValue.year,
+            id:res.data
           });
           setState(prev => ({
             ...prev,
@@ -161,8 +171,10 @@ export default function Transactions() {
           name: "",
           description: "",
           amount: 0,
+          date:"", 
+          year:0,
           month: 0,
-          day: 0
+          day:0
         });
       })
       .catch(err => console.log(err));
@@ -179,7 +191,7 @@ export default function Transactions() {
 
   return (
     <>
-     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions}}>
+     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,handleChange,handleSubmit,formValue}}>
       <Graph/>
 
       <IncomeList
@@ -194,12 +206,15 @@ export default function Transactions() {
         handleEdit={handleEdit}
 
       />
-      <NewTransactionForm
+      <NewTransactionForm  className='form' />
+      {/* <NewTransactionForm
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         formValue={formValue}
-        state={state} />
-        
+        state={state} /> */}
+
+      <FormDrawer/>
+
       </dateContext.Provider> 
     </>
   )
