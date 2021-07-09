@@ -3,6 +3,7 @@ import axios from "axios";
 import IncomeList from "./incomeList";
 import ExpenseList from "./expenseList";
 import NewTransactionForm from "./newTransactionForm";
+import  dateContext  from "../../context";
 
 export default function Transactions() {
   const [state, setState] = useState({
@@ -116,9 +117,8 @@ export default function Transactions() {
     formValue.month = formValue.month.slice(-2);
     axios.post(`http://localhost:3000/transactions/post${value}`, { data: formValue })
       .then(() => {
-        console.log("check out");
         if (value === "income") {
-          const newIncomeTransactions = state.incomeTransactions.map(item => { return { ...item } });
+          const newIncomeTransactions = [...state.incomeTransactions];
           newIncomeTransactions.push({
             name: formValue.name,
             description: formValue.description,
@@ -126,10 +126,16 @@ export default function Transactions() {
             month: formValue.month,
             day: formValue.day
           });
-          setState(prev => ({
-            ...prev,
-            incomeTransactions: newIncomeTransactions
-          }));
+          console.log("state.incomeTransactions.length:", state.incomeTransactions.length);
+          console.log("newIncomeTransactions.length:", newIncomeTransactions.length);
+           const expenseState = state.expenseTransactions;
+           const newState = {
+             expenseTransactions: expenseState,
+             incomeTransactions: newIncomeTransactions
+           }
+           console.log(newState);
+          setState(newState);
+          console.log("newState:",state.incomeTransactions);
         } else if (value === "expense") {
           const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
           newExpenseTransactions.push({
@@ -140,6 +146,7 @@ export default function Transactions() {
             day: formValue.day
           });
           setState(prev => ({
+            ...prev,
             expenseTransactions: newExpenseTransactions
           }));
         }
@@ -167,6 +174,9 @@ export default function Transactions() {
 
   return (
     <>
+     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions}}>
+    <Graph/>
+    </dateContext.Provider>
       <IncomeList
         listOfIncomes={state.incomeTransactions}
         deletion={deletion}
