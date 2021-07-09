@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^1.6.5",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.3.10",
     "axios": "^0.18.1",
+    "framer-motion": "^4.1.17",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.2.0",
@@ -29,7 +33,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8080/",
   "devDependencies": {
     "@babel/core": "^7.14.6"
   }

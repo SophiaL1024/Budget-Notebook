@@ -74,8 +74,8 @@ export default function NewTransactionForm(props) {
       <span>
         <div>
         <RadioGroup row aria-label="transactionsType" name="transaction" value={value} onChange={handleChange}>
-          <FormControlLabel value="Income" control={<Radio />} label="Income" />
-          <FormControlLabel value="Expense" control={<Radio />} label="Expense" />
+          <FormControlLabel value="income" control={<Radio />} label="Income" />
+          <FormControlLabel value="expense" control={<Radio />} label="Expense" />
         </RadioGroup>
         <Button onClick={() =>props.handleSubmit(value)} color="primary">
         Submit

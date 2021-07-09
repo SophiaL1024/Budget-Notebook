@@ -22,12 +22,12 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 150,
+    minWidth: 100,
   },
 
   //drawer

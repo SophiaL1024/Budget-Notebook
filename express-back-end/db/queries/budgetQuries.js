@@ -47,6 +47,7 @@ const getBalanceBudget = (id, month, year)=>{
  `;
   return db.query(queryStatement, [id, month, year])
     .then((response) => {
+      console.log("response:",response);
       const balance = response.rows.map(e=>e.budget);
       // return and array of balance budget amount, sum of income and sum of expense for a given month
       console.log(balance);

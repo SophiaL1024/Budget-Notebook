@@ -37,9 +37,9 @@ export default function Budget(){
   return(
     <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
-    <BudgetPieChart />
+  
     <BudgetList />
-    
+    <BudgetPieChart />
     </dateContext.Provider>
   </>
   )
