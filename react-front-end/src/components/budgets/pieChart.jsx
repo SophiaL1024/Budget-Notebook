@@ -7,8 +7,13 @@ import { useCallback, useState } from "react";
 //Color themes for the pie charts
 const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC','#fcf092','#82ca9d','#f3a8f7'];
 
+<<<<<<< HEAD
+//Element of the pie chart from recharts library
+const renderActiveShape = (props: any) => {
+=======
 //Element of the pie chart from recharts
 const renderActiveShape = (props) => {
+>>>>>>> df8dda2721a045ece61dd7ce25322ae17d00c82d
   const RADIAN = Math.PI / 180;
   const {
     cx,
@@ -84,16 +89,6 @@ const renderActiveShape = (props) => {
 export default function BudgetPieChart(){
 
   const {incomeAndBudget,expenseAndBudget} = useContext(dateContext);
-
-  // let totalIncome=0;
-  // incomeAndBudget.forEach(element => {
-  //   totalIncome+=Number(element.income_sum);
-  // });
-  // let totalExpense=0;
-  // expenseAndBudget.forEach(element => {
-  //   totalExpense+=Number(element.expense_sum);
-  // });
-
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {
@@ -102,7 +97,6 @@ export default function BudgetPieChart(){
     [setActiveIndex]
   );
 
-  
 //Data for income budget and income total
   const data1 = incomeAndBudget.map(e=> {
      return {
@@ -123,15 +117,15 @@ export default function BudgetPieChart(){
   return(
     <>
     {/* Pie chart for income showing types of income budget */}
-    <PieChart width={500} height={300}>
+    <PieChart width={400} height={300}>
     <Pie className="incomepie" 
       activeIndex={activeIndex}
       activeShape={renderActiveShape}
       data={data1}
-      cx={200}
-      cy={200}
-      innerRadius={60}
-      outerRadius={80}
+      cx={180}
+      cy={180}
+      innerRadius={40}
+      outerRadius={60}
       fill="#ffa1b5"
       dataKey="value"
       onMouseEnter={onPieEnter}
@@ -142,15 +136,15 @@ export default function BudgetPieChart(){
       </Pie>
       </PieChart>
         {/* Pie chart for expense showing types of expense budget */}
-        <PieChart width={500} height={500}>
+        <PieChart width={400} height={300}>
           <Pie className="expensepie"
           activeIndex={activeIndex}
           activeShape={renderActiveShape}
           data={data2}
-          cx={200}
-          cy={200}
-          innerRadius={60}
-          outerRadius={80}
+          cx={180}
+          cy={180}
+          innerRadius={40}
+          outerRadius={60}
           fill="#ffa1b5"
           dataKey="value"
           onMouseEnter={onPieEnter}

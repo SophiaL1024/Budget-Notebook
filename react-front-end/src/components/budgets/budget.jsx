@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
@@ -48,11 +48,11 @@ export default function Budget(){
   <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
       <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={5} >
+        <Grid container spacing={2}>
+          <Grid item xs={6} >
             <BudgetPieChart />
           </Grid>
-            <Grid item xs={3} >
+            <Grid item xs={4} >
             <BudgetList />
             </Grid>
         </Grid>

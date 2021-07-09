@@ -49,7 +49,6 @@ export default function BudgetListItems(props){
           expenseAndBudget: newExpenseAndBudget               
         })) 
       }
-
     }
   }
 
@@ -63,10 +62,17 @@ export default function BudgetListItems(props){
     }
     return (  
       (<li key={e.id}>
-        <BudgetProgressBar id={e.id} type={'income'}/><br/>
-        {e.name} <br />
-        {e.amount} <br />
-        {e.income_sum}<br/>
+        <BudgetProgressBar id={e.id} type={'income'}/>
+        <span>     
+          {e.name} 
+        </span>
+        <span>     
+          {e.amount} 
+        </span>
+        <span>     
+         {e.income_sum}
+        </span>
+      
         <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'income')}>
         <EditIcon />
       </IconButton>
@@ -87,9 +93,15 @@ export default function BudgetListItems(props){
     return (    
       <li key={e.id}>
         <BudgetProgressBar id={e.id} type={'expense'}/>
-        {e.name} <br />
-        {e.amount} <br />
-        {e.expense_sum}<br/>
+        <span>     
+          {e.name} 
+        </span>
+        <span>     
+          {e.amount} 
+        </span>
+        <span>     
+         {e.income_sum}
+        </span>
         <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'expense')} >
         <EditIcon />
       </IconButton >

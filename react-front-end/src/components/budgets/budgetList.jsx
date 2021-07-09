@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+  },
+  panel: {
+    height: 550,
+    overflow : "scroll",
   }
 
 }));
@@ -114,11 +118,11 @@ export default function budgetList() {
 
       {/* <dateContext.Provider value={{open}}> */}
 
-        <TabPanel value={value} index={0} dir={theme.direction}>
+        <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel}>
         <BudgetListItems tabType={0} />   
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel value={value} index={1} dir={theme.direction}className={classes.panel}>
         <BudgetListItems tabType={1} />
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
         </TabPanel>
