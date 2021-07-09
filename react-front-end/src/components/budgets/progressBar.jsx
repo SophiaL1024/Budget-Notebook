@@ -1,5 +1,8 @@
 import React ,{useContext}from 'react';
 import dateContext from "../../context.js";
+import { Progress } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/react"
+
 
 
 export default function BudgetProgressBar(props){
@@ -10,10 +13,14 @@ export default function BudgetProgressBar(props){
     
     const income=Number(incomeAndBudget.find(e=>e.id===props.id).income_sum);
     const incomeBudgetAmount=Number(incomeAndBudget.find(e=>e.id===props.id).amount);
-
+    
     return(
       <>
       income progress bar goes here:
+    <ChakraProvider>
+      <Progress hasStripe value={income}  />
+    </ChakraProvider>
+     
       income:{income}<br/>
       incomeBudgetAmount:{incomeBudgetAmount}<br/>
       </>
@@ -25,6 +32,10 @@ export default function BudgetProgressBar(props){
     return(
       <>
       expense progress bar goes here:
+      <ChakraProvider>
+        <Progress hasStripe value={expense} />
+      </ChakraProvider>
+
       expense:{expense}<br/>
       expenseBudgetAmount:{expenseBudgetAmount}<br/>
       </>
