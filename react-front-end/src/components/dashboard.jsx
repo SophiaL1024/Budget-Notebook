@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {  BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar} from "recharts";
-import { Typography } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,14 +51,14 @@ const Dashboard=function(){
     return null
   }
 
-  const data=monthName.map((e,index)=>{
+  const barchartData=monthName.map((e,index)=>{
     return{
       name:e,
       SavingGoal: Number(dashboardData.balanceBudget.find(e=>e.month===index+1).amount),
       SavingsAcheived: Number(dashboardData.monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
     }
   })
-  
+
   return(
     
       //  <div className={classes.root}>
@@ -67,41 +67,41 @@ const Dashboard=function(){
         <Paper className={classes.paper}>
         <h1>{monthName[month-1]}</h1>
         {/* selected month:{month}<br/> */}
-        <div class="balance">
+        <div className="balance">
           <h2>Balance : ${dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance}</h2>
         </div>
-          <div class="income">
+          <div className="income">
           <h2>Incomes : ${dashboardData.monthlyIncome.find(e=>e.month===month).monthly_income }</h2> 
           </div>          
-            <div class="expense">
+            <div className="expense">
             <h2>Expenses : ${dashboardData.monthlyExpense.find(e=>e.month===month).monthly_expense}</h2></div>
       </Paper>
       </Grid>
         <Grid item xs={6} md={6}>
         <Paper className={classes.paper}>
-          <div class="year">
+          <div className="year">
             <h1>{year}</h1>
-              <div class="balance">
+              <div className="balance">
               <h2>Balance : ${(Number(dashboardData.annualIncome)-Number(dashboardData.annualExpense)).toFixed(2)}</h2>
               </div>
               </div>
-                <div class="income">
+                <div className="income">
                   <h2>Incomes : ${dashboardData.annualIncome }</h2>
                 </div> 
-                  <div class="expense">
+                  <div className="expense">
                     <h2> Expenses : ${dashboardData.annualExpense }</h2>
                   </div>
       </Paper>
     </Grid>
 <Grid>
-  <Typography>
-  <h3>         </h3>
-  </Typography>
+  {/* <Typography> */}
+  {/* <h3>         </h3> */}
+  {/* </Typography> */}
   
         <BarChart
           width={800}
           height={300}
-          data={data}
+          data={barchartData}
           margin={{
             top: 5,
             right: 0,

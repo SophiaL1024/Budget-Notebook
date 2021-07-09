@@ -37,7 +37,7 @@ router.get('/:userId', (req, res) => {
               e = 0;
             }
           });
-          console.log("tessssss",resolve);
+          // console.log("tessssss",resolve);
           budgetData.balanceBudget = resolve;
           res.json(budgetData);
         });
