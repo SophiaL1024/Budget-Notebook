@@ -1,7 +1,8 @@
 import  React,{useContext,useState} from "react";
 import axios from 'axios';
 import dateContext from "../../context.js";
-// import useVisualMode from "../../hooks/useVisualMode";
+// import BudgetProgressBar from "./progressBar";
+import BudgetProgressBar from "./progressBar";
 import EditForm from"./editForm";
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -62,6 +63,7 @@ export default function BudgetListItems(props){
     }
     return (  
       (<li key={e.id}>
+        <BudgetProgressBar id={e.id} type={'income'}/><br/>
         {e.name} <br />
         {e.amount} <br />
         {e.income_sum}<br/>
@@ -84,6 +86,7 @@ export default function BudgetListItems(props){
     }
     return (    
       <li key={e.id}>
+        <BudgetProgressBar id={e.id} type={'expense'}/>
         {e.name} <br />
         {e.amount} <br />
         {e.expense_sum}<br/>
