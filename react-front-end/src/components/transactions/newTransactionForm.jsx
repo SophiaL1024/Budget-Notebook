@@ -4,16 +4,25 @@ import { useContext } from "react";
 import dateContext from '../../context';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField, Button, Radio, RadioGroup } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 // import {  MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers';
 // import DateFnsUtils from '@date-io/date-fns';
 
 export default function NewTransactionForm(props) {
-  const {handleChange,handleSubmit,formValue} = useContext(dateContext);
+  const {handleChange,handleSubmit,formValue,incomeBudget,expenseBudget} = useContext(dateContext);
 
-  const [value, setValue] = useState('');
+  if(!incomeBudget.length||!expenseBudget.length ){
+    return null
+  }
+
+  const [type, setType] = useState('');
 
   const handleTypeChange = (event) => {
-    setValue(event.target.value);
+    setType(event.target.value);
     
   };
 
@@ -22,6 +31,21 @@ export default function NewTransactionForm(props) {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  // const classes = useStyles();
+  const [selector, setSelector] = useState('');
+
+  const handleSelect = (event) => {
+    setSelector(event.target.value);
+  };
+
+  const selectorList=()=>{
+    return incomeBudget.map(e=>{
+      return (
+        <MenuItem value={e.id}>{e.name}</MenuItem>
+      )
+    })
+  }
 
 
   return (
@@ -68,17 +92,33 @@ export default function NewTransactionForm(props) {
             label="Month" 
             type="date" 
             onChange={(event)=>handleChange("date",event.target.value)}
-            value={formValue.date}  
- 
+            value={formValue.date}
           />
-    
+         <br/>
+
+        {/* <FormControl className={classes.formControl}> */}
+        <FormControl > 
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={selector}
+          onChange={handleSelect}
+        >
+          {selectorList()}
+          {/* <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem> */}
+        </Select>
+      </FormControl>
+              
         <div>
-        <RadioGroup row aria-label="transactionsType" name="transaction" value={value} onChange={handleTypeChange}>
+        <RadioGroup row aria-label="transactionsType" name="transaction" value={type} onChange={handleTypeChange}>
           <FormControlLabel value="income" control={<Radio />} label="Income" />
           <FormControlLabel value="expense" control={<Radio />} label="Expense" />
         </RadioGroup>
 
-        <Button onClick={() =>handleSubmit(value)} color="primary">
+        <Button onClick={() =>handleSubmit(type)} color="primary">
         Submit
       </Button>
         </div>

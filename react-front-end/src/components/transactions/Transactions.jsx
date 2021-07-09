@@ -13,6 +13,8 @@ export default function Transactions() {
   const [state, setState] = useState({
     incomeTransactions: [],
     expenseTransactions: [],
+    expenseBudget:[],
+    incomeBudget:[]
   });
 
   //handles form state
@@ -31,7 +33,7 @@ export default function Transactions() {
     axios
       .get("http://localhost:3000/transactions/1",{ params: { year,month } })
       .then((res) => {
-        setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo }));
+        setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo,expenseBudget:res.data.expenseBudget,incomeBudget:res.data.incomeBudget }));
       });
   }, [month,year]);
 
@@ -191,7 +193,7 @@ export default function Transactions() {
 
   return (
     <>
-     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,handleChange,handleSubmit,formValue}}>
+     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,handleChange,handleSubmit,formValue,expenseBudget:state.expenseBudget,incomeBudget:state.incomeBudget}}>
       <Graph/>
 
       <IncomeList

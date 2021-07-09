@@ -12,6 +12,21 @@ router.get('/:id', (req, res) => {
       transactionsQueries.getIncomeTransactionsById(req.params.id,req.query.month,req.query.year)
         .then(resolve => {
           transactionsData.incomeInfo = resolve;
+        });
+    })
+    .then(() => {
+      transactionsQueries.getIncomeBudget(req.params.id,req.query.month,req.query.year)
+        .then((resolve)=>{
+          // console.log("resolve",resolve);
+          transactionsData.incomeBudget = resolve;
+        });
+    })
+    .then(() => {
+      transactionsQueries.getExpenseBudget(req.params.id,req.query.month,req.query.year)
+        .then(resolve => {
+          transactionsData.expenseBudget = resolve;
+          // console.log("e",transactionsData.expenseBudget);
+          // console.log("i",transactionsData.incomeBudget);
           res.json(transactionsData);
         });
     });
