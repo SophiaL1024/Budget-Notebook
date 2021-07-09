@@ -1,10 +1,9 @@
 import  React,{useEffect, useState,useContext} from "react";
 import axios from 'axios';
 import dateContext from "../../context.js";
-
 import BudgetList from "./budgetList.jsx";
 import BudgetPieChart from "./pieChart.jsx";
-import ExpensePieChart from "./ExpensePieChart.jsx";
+
 export default function Budget(){
 
   const [state, setState] = useState({
@@ -38,10 +37,9 @@ export default function Budget(){
   return(
     <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
-  
-    <BudgetList />
     <BudgetPieChart />
-    <ExpensePieChart/>
+    <BudgetList />
+    
     </dateContext.Provider>
   </>
   )

@@ -3,8 +3,10 @@ import dateContext from "../../context.js";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer,Sector } from 'recharts';
 import { useCallback, useState } from "react";
 
-const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC'];
+//Color themes for the pie charts
+const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC','#fcf092','#82ca9d','#f3a8f7'];
 
+//Element of the pie chart from recharts
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
   const {
@@ -100,16 +102,21 @@ export default function BudgetPieChart(){
   );
 
   
-
+//Data for income budget and income total
   const data1 = incomeAndBudget.map(e=> {
-    // console.log(e)
-    
-    return {
+     return {
       name: e.name,
       value: Number(e.income_sum),
     }
   })
 
+//Data for expense budget and expense total
+  const data2 = expenseAndBudget.map(e=> {
+    return {
+      name: e.name,
+      value: Number(e.expense_sum),
+    }
+  })
   
   console.log(data1)
   return(
@@ -130,7 +137,22 @@ export default function BudgetPieChart(){
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
       </Pie>
-
+      <Pie
+      activeIndex={activeIndex}
+      activeShape={renderActiveShape}
+      data={data2}
+      cx={200}
+      cy={200}
+      innerRadius={60}
+      outerRadius={80}
+      fill="#ffa1b5"
+      dataKey="value"
+      onMouseEnter={onPieEnter}
+    >
+      {data2.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+      </Pie>
       </PieChart>
     // <>
     //   <ResponsiveContainer width="100%" height="100%">
