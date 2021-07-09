@@ -19,32 +19,40 @@ export default function NewTransactionForm(props) {
     return null
   }
 
-  const [type, setType] = useState('');
+  const [type, setType] = useState('income');
 
   const handleTypeChange = (event) => {
     setType(event.target.value);
     
   };
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date);
+  // };
 
   // const classes = useStyles();
-  const [selector, setSelector] = useState('');
+  // const [selector, setSelector] = useState('');
 
-  const handleSelect = (event) => {
-    setSelector(event.target.value);
-  };
+  // const handleSelect = (event) => {
+  //   setSelector(event.target.value);
+  // };
 
-  const selectorList=()=>{
-    return incomeBudget.map(e=>{
-      return (
-        <MenuItem value={e.id}>{e.name}</MenuItem>
-      )
-    })
+  const selectorList=(type)=>{
+    if(type==="income"){
+      return incomeBudget.map(e=>{
+        return (
+          <MenuItem value={e.id} key={e.id}>{e.name}</MenuItem>
+        )
+      })
+    }else if(type==="expense"){
+      return expenseBudget.map(e=>{
+        return (
+          <MenuItem value={e.id} key={e.id}>{e.name}</MenuItem>
+        )
+      })
+    }
   }
 
 
@@ -52,6 +60,10 @@ export default function NewTransactionForm(props) {
     <div>
       <h3>New transaction</h3>
       {/* <span> */}
+      <RadioGroup row aria-label="transactionsType" name="transaction" value={type} onChange={handleTypeChange}>
+          <FormControlLabel value="income" control={<Radio />} label="Income" />
+          <FormControlLabel value="expense" control={<Radio />} label="Expense" />
+      </RadioGroup>
         <div>
           <TextField
             autoFocus
@@ -88,8 +100,8 @@ export default function NewTransactionForm(props) {
         <TextField
             autoFocus
             margin="dense"
-            id="month"
-            label="Month" 
+            id="date"
+            // label="Month" 
             type="date" 
             onChange={(event)=>handleChange("date",event.target.value)}
             value={formValue.date}
@@ -98,14 +110,14 @@ export default function NewTransactionForm(props) {
 
         {/* <FormControl className={classes.formControl}> */}
         <FormControl > 
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Select Budget</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={selector}
-          onChange={handleSelect}
+          value={formValue.selectedBudgetId}
+          onChange={(event)=>handleChange("selectedBudgetId",event.target.value)}
         >
-          {selectorList()}
+          {selectorList(type)}
           {/* <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem> */}
@@ -113,10 +125,7 @@ export default function NewTransactionForm(props) {
       </FormControl>
               
         <div>
-        <RadioGroup row aria-label="transactionsType" name="transaction" value={type} onChange={handleTypeChange}>
-          <FormControlLabel value="income" control={<Radio />} label="Income" />
-          <FormControlLabel value="expense" control={<Radio />} label="Expense" />
-        </RadioGroup>
+
 
         <Button onClick={() =>handleSubmit(type)} color="primary">
         Submit

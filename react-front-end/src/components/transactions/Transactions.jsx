@@ -25,7 +25,8 @@ export default function Transactions() {
     date:"", 
     year:0,
     month: 0,
-    day:0
+    day:0,
+    selectedBudgetId:''
   });
 
 
@@ -139,7 +140,8 @@ export default function Transactions() {
             month: formValue.month,
             day: formValue.day,
             year:formValue.year,
-            id:res.data
+            id:res.data,
+            incomeBudgetsId:formValue.selectedBudgetId
           });
           // console.log("state.incomeTransactions.length:", state.incomeTransactions.length);
           // console.log("newIncomeTransactions.length:", newIncomeTransactions.length);
@@ -160,7 +162,8 @@ export default function Transactions() {
             month: formValue.month,
             day: formValue.day,
             year:formValue.year,
-            id:res.data
+            id:res.data,
+            expenseBudgetsId:formValue.selectedBudgetId
           });
           setState(prev => ({
             ...prev,

@@ -79,28 +79,27 @@ const deleteExpenseTransactionById = (id) => {
     .catch(err => console.log(err));
 };
 
-const addExpense = (name, description, amount, year, month, day, userId) => {
+const addExpense = (name, description, amount, year, month, day, userId,selectedBudgetId) => {
   
   const queryStatement = `
-  INSERT INTO expense (name,description,amount,year,month,day,user_id)
-  VALUES ($1,$2,$3,$4,$5,$6,$7)
+  INSERT INTO expense (name,description,amount,year,month,day,user_id,expense_budgets_id)
+  VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
   RETURNING id`;
-  return db.query(queryStatement, [name, description, amount, year, month, day, userId])
+  return db.query(queryStatement, [name, description, amount, year, month, day, userId,selectedBudgetId])
     .then((response) => {
       return response.rows[0].id;
     })
     .catch(err => console.log(err));
 };
 
-const addIncome = (name, description, amount, year, month, day, userId) => {
-  console.log("month",month);
+const addIncome = (name, description, amount, year, month, day, userId,selectedBudgetId) => {
+
   const queryStatement = `
-  INSERT INTO income (name,description,amount,year,month,day,user_id)
-  VALUES ($1,$2,$3,$4,$5,$6,$7)
+  INSERT INTO income (name,description,amount,year,month,day,user_id,income_budgets_id)
+  VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
   RETURNING id
   `;
-  return db.query(queryStatement, [name, description,
-    amount, year, month, day, userId])
+  return db.query(queryStatement, [name, description,amount, year, month, day, userId,selectedBudgetId])
     .then((response) => {
       // console.log("new id",response.rows);
       return response.rows[0].id;

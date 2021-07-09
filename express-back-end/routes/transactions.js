@@ -34,28 +34,30 @@ router.get('/:id', (req, res) => {
 
 router.post('/postExpense', (req, res) => {
   // console.log("req body:",req.body.data);
-  let { name, description, amount, month, day,year } = req.body.data;
+  // eslint-disable-next-line camelcase
+  const { name, description, amount, month, day,year,selectedBudgetId } = req.body.data;
   const id = 1;
   // const year = new Date().getFullYear();
-  transactionsQueries.addExpense(name, description, amount, year, month, day, id)
+  transactionsQueries.addExpense(name, description, amount, year, month, day, id,selectedBudgetId)
     .then(resolve => {
       res.json(resolve);
     });
 });
 
 router.post('/postIncome', (req, res) => {
-  let { name, description, amount, month, day,year } = req.body.data;
+  // eslint-disable-next-line camelcase
+  const { name, description, amount, month, day,year,selectedBudgetId  } = req.body.data;
   const id = 1;
   // const year = new Date().getFullYear();
-  // console.log(name,amount,year,month,id);
-  transactionsQueries.addIncome(name, description, amount, year, month, day, id)
+  // console.log("se;ected budget id:",selectedBudgetId);
+  transactionsQueries.addIncome(name, description, amount, year, month, day, id,selectedBudgetId)
     .then(resolve => {
       res.json(resolve);
     });
 });
 
 router.patch('/edit', (req, res) => {
-  let { name, description, amount, month, day, year, id, type } = req.body.data;
+  const { name, description, amount, month, day, year, id, type } = req.body.data;
   if (type === 'income') {
     transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, id)
       .then(resolve => {
