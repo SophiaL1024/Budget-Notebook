@@ -74,7 +74,7 @@ router.patch('/edit', (req, res) => {
 router.delete('/', (req, res) => {
   const { type, id } = req.body;
   if (type === "income") {
-    console.log("cheking route");
+    // console.log("cheking route");
     transactionsQueries.deleteIncomeTransactionById(req.body.id)
       .then(resolve => {
         res.json(resolve);

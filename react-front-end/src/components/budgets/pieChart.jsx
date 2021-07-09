@@ -1,3 +1,4 @@
+
 import React ,{Fragment, useContext}from 'react';
 import dateContext from "../../context.js";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer,Sector } from 'recharts';
@@ -121,7 +122,8 @@ export default function BudgetPieChart(){
   console.log(data1)
   return(
     <>
-    <PieChart width={500} height={500}>
+    {/* Pie chart for income showing types of income budget */}
+    <PieChart width={500} height={300}>
     <Pie className="incomepie" 
       activeIndex={activeIndex}
       activeShape={renderActiveShape}
@@ -139,34 +141,25 @@ export default function BudgetPieChart(){
           ))}
       </Pie>
       </PieChart>
-
-
-      <PieChart width={500} height={500}>
-        <Pie className="expensepie"
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        data={data2}
-        cx={200}
-        cy={200}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#ffa1b5"
-        dataKey="value"
-        onMouseEnter={onPieEnter}
-      >
-        {data2.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-        </Pie>
-      </PieChart>
-
+        {/* Pie chart for expense showing types of expense budget */}
+        <PieChart width={500} height={500}>
+          <Pie className="expensepie"
+          activeIndex={activeIndex}
+          activeShape={renderActiveShape}
+          data={data2}
+          cx={200}
+          cy={200}
+          innerRadius={60}
+          outerRadius={80}
+          fill="#ffa1b5"
+          dataKey="value"
+          onMouseEnter={onPieEnter}
+        >
+          {data2.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+          </Pie>
+        </PieChart>
     </>
     )
 }
-
-//incomeAndBudget looks like this:[{income_sum,id,name,month,year,userId},{},{},{},{},{},{}.......]
-
-// So the Pie chart structure should be :
-//incomeAndBudget[0].income_sum/totalIncome, incomeAndBudget[1].income_sum/totalIncome,....
-
-// and show incomeAndBudget[0].name beside each part of pie.
