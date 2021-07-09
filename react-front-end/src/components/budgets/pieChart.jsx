@@ -121,7 +121,7 @@ export default function BudgetPieChart(){
   console.log(data1)
   return(
     <>
-    <PieChart width={500} height={500}>
+    <PieChart width={500} height={300}>
     <Pie className="incomepie" 
       activeIndex={activeIndex}
       activeShape={renderActiveShape}
