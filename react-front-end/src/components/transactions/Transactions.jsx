@@ -6,6 +6,7 @@ import NewTransactionForm from "./newTransactionForm";
 import  dateContext  from "../../context";
 import Graph from "./Graph";
 import FormDrawer from "./formDrawer"
+import TransactionTab from "./transactionTab"
 
 export default function Transactions() {
   const {month,year} = useContext(dateContext);
@@ -196,27 +197,14 @@ export default function Transactions() {
 
   return (
     <>
-     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,handleChange,handleSubmit,formValue,expenseBudget:state.expenseBudget,incomeBudget:state.incomeBudget}}>
+     <dateContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,handleChange,handleSubmit,formValue,expenseBudget:state.expenseBudget,incomeBudget:state.incomeBudget,deletion,handleEdit}}>
+
       <Graph/>
+      
+      <TransactionTab/>
 
-      <IncomeList
-        // listOfIncomes={state.incomeTransactions}
-        deletion={deletion}
-        handleEdit={handleEdit}
-      >
-      </IncomeList>
-      <ExpenseList
-        // listOfExpenses={state.expenseTransactions}
-        deletion={deletion}
-        handleEdit={handleEdit}
-
-      />
       <NewTransactionForm  className='form' />
-      {/* <NewTransactionForm
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        formValue={formValue}
-        state={state} /> */}
+
 
       <FormDrawer/>
 
