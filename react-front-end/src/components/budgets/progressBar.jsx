@@ -8,9 +8,9 @@ export default function BudgetProgressBar(props){
 
   if(props.type==="income"){
     
-    const income=incomeAndBudget.find(e=>e.id===props.id).income_sum;
-    const incomeBudgetAmount=incomeAndBudget.find(e=>e.id===props.id).amount;
-    
+    const income=Number(incomeAndBudget.find(e=>e.id===props.id).income_sum);
+    const incomeBudgetAmount=Number(incomeAndBudget.find(e=>e.id===props.id).amount);
+
     return(
       <>
       income progress bar goes here:
@@ -19,8 +19,8 @@ export default function BudgetProgressBar(props){
       </>
     )
   }else if(props.type==="expense"){
-    const expense=expenseAndBudget.find(e=>e.id===props.id).expense_sum;
-    const expenseBudgetAmount=expenseAndBudget.find(e=>e.id===props.id).amount;   
+    const expense=Number(expenseAndBudget.find(e=>e.id===props.id).expense_sum);
+    const expenseBudgetAmount=Number(expenseAndBudget.find(e=>e.id===props.id).amount);   
 
     return(
       <>
