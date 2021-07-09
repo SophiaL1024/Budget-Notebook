@@ -116,7 +116,8 @@ export default function Transactions() {
     formValue.month = formValue.month.slice(-2);
     axios.post(`http://localhost:3000/transactions/post${value}`, { data: formValue })
       .then(() => {
-        if (value === "Income") {
+        console.log("check out");
+        if (value === "income") {
           const newIncomeTransactions = state.incomeTransactions.map(item => { return { ...item } });
           newIncomeTransactions.push({
             name: formValue.name,
@@ -129,7 +130,7 @@ export default function Transactions() {
             ...prev,
             incomeTransactions: newIncomeTransactions
           }));
-        } else if (value === "Expense") {
+        } else if (value === "expense") {
           const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
           newExpenseTransactions.push({
             name: formValue.name,
@@ -138,8 +139,8 @@ export default function Transactions() {
             month: formValue.month,
             day: formValue.day
           });
-          setState(prevState => ({
-            expenseTransactions: [...prevState.expenseTransactions, formValue]
+          setState(prev => ({
+            expenseTransactions: newExpenseTransactions
           }));
         }
       })
