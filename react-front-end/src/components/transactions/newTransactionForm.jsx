@@ -13,7 +13,7 @@ import Select from '@material-ui/core/Select';
 export default function NewTransactionForm(props) {
   const {handleChange,handleSubmit,formValue,incomeBudget,expenseBudget} = useContext(dateContext);
 
-  if(!incomeBudget.length||!expenseBudget.length ){
+  if(!incomeBudget||!expenseBudget||!incomeBudget.length||!expenseBudget.length ){
     return null
   }
 
@@ -114,7 +114,7 @@ export default function NewTransactionForm(props) {
         Submit
       </Button>
         </div>
-      {/* </span> */}
+
     </div>
   );
 };

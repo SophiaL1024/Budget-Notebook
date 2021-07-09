@@ -32,32 +32,41 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/postExpense', (req, res) => {
-  // console.log("req body:",req.body.data);
-  // eslint-disable-next-line camelcase
-  const { name, description, amount, month, day,year,selectedBudgetId } = req.body.data;
+router.post('/', (req, res) => {
+ 
+  const {type} = req.body.data;
+  const { name, description, amount, month, day,year,selectedBudgetId } = req.body.data.formValue;
   const id = 1;
-  // const year = new Date().getFullYear();
-  transactionsQueries.addExpense(name, description, amount, year, month, day, id,selectedBudgetId)
-    .then(resolve => {
-      res.json(resolve);
-    });
+  if (type === "income") {
+    transactionsQueries.addIncome(name, description, amount, year, month, day, id,selectedBudgetId)
+      .then(resolve => {
+        res.json(resolve);
+      });
+
+  } else if (type === "expense") {
+    transactionsQueries.addExpense(name, description, amount, year, month, day, id,selectedBudgetId)
+      .then(resolve => {
+        res.json(resolve);
+      });
+  }
 });
 
-router.post('/postIncome', (req, res) => {
-  // eslint-disable-next-line camelcase
-  const { name, description, amount, month, day,year,selectedBudgetId  } = req.body.data;
-  const id = 1;
-  // const year = new Date().getFullYear();
-  // console.log("se;ected budget id:",selectedBudgetId);
-  transactionsQueries.addIncome(name, description, amount, year, month, day, id,selectedBudgetId)
-    .then(resolve => {
-      res.json(resolve);
-    });
-});
+// router.post('/', (req, res) => {
+//   // eslint-disable-next-line camelcase
+//   const { name, description, amount, month, day,year,selectedBudgetId  } = req.body.data.formValue;
+//   const id = 1;
+//   // const year = new Date().getFullYear();
+//   // console.log("se;ected budget id:",selectedBudgetId);
+//   transactionsQueries.addIncome(name, description, amount, year, month, day, id,selectedBudgetId)
+//     .then(resolve => {
+//       res.json(resolve);
+//     });
+// });
 
-router.patch('/edit', (req, res) => {
-  const { name, description, amount, month, day, year, id, type } = req.body.data;
+router.patch('/', (req, res) => {
+
+  const { name, description, amount, month, day, year, id,type} = req.body.data;
+  // console.log("type",type);
   if (type === 'income') {
     transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, id)
       .then(resolve => {
@@ -66,6 +75,7 @@ router.patch('/edit', (req, res) => {
   } else if (type === "expense") {
     transactionsQueries.editExpenseTransactions(name, description, amount, month, day, year, id)
       .then(resolve => {
+        // console.log("edited",resolve);
         res.json(resolve);
       });
   }
@@ -75,12 +85,12 @@ router.delete('/', (req, res) => {
   const { type, id } = req.body;
   if (type === "income") {
     // console.log("cheking route");
-    transactionsQueries.deleteIncomeTransactionById(req.body.id)
+    transactionsQueries.deleteIncomeTransactionById(id)
       .then(resolve => {
         res.json(resolve);
       });
   } else if (type === "expense") {
-    transactionsQueries.deleteExpenseTransactionById(req.body.id)
+    transactionsQueries.deleteExpenseTransactionById(id)
       .then(resolve => {
         res.json(resolve);
       });

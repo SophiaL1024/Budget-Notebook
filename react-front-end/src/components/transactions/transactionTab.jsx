@@ -66,31 +66,6 @@ export default function budgetList() {
     setValue(newValue)
   };
 
-  // const transitionDuration = {
-  //   enter: theme.transitions.duration.enteringScreen,
-  //   exit: theme.transitions.duration.leavingScreen,
-  // };
-
-  // const fabs = [
-  //   {
-  //     color: 'primary',
-  //     className: classes.fab,
-  //     icon: <AddIcon />,
-  //     label: 'Add',
-  //   },
-  //   {
-  //     color: 'primary',
-  //     className: classes.fab,
-  //     icon: <AddIcon />,
-  //     label: 'Add',
-  //   },
-  // ];
-  const [open, setOpen] = useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
   return (
     <div className={classes.tab_bar}>
       <AppBar position="static" color="default">
@@ -108,50 +83,13 @@ export default function budgetList() {
         </Tabs>
       </AppBar>
 
-      {/* <dateContext.Provider value={{open}}> */}
-
         <TabPanel value={value} index={0} dir={theme.direction}>
-        <IncomeList
-        // listOfIncomes={state.incomeTransactions}
-        deletion={deletion}
-        handleEdit={handleEdit}
-      />
-     
-        {/* <BudgetListItems tabType={0} />    */}
-        {/* <BudgetForm open={open} setOpen={setOpen} tabType={0}/>  */}
+        <IncomeList />
         </TabPanel>
+
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <ExpenseList
-        // listOfExpenses={state.expenseTransactions}
-        deletion={deletion}
-        handleEdit={handleEdit}
-      />
-        {/* <BudgetListItems tabType={1} /> */}
-        {/* <BudgetForm open={open} setOpen={setOpen} tabType={1}/> */}
+        <ExpenseList />
         </TabPanel>
-        {/* <TabPanel value={value} index={2} dir={theme.direction}>
-        <BudgetListItems tabType={2} />
- 
-        </TabPanel> */}
-
-      {/* </dateContext.Provider> */}
-
-       {/* {fabs.map((fab, index) => (
-        <Zoom
-          key={index}
-          in={value === index}
-          timeout={transitionDuration}
-          style={{
-            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
-          }}
-          unmountOnExit
-        >
-          <Fab aria-label={fab.label} className={fab.className} color={fab.color} onClick={handleClickOpen}>
-            {fab.icon}
-          </Fab>
-         
-        </Zoom>
-      ))} */}
 
     </div>
   );
