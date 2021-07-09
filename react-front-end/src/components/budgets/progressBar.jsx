@@ -18,7 +18,7 @@ export default function BudgetProgressBar(props){
       <>
       income progress bar goes here:
     <ChakraProvider>
-      <Progress value={income} />
+      <Progress hasStripe value={income}  />
     </ChakraProvider>
      
       income:{income}<br/>
@@ -33,7 +33,7 @@ export default function BudgetProgressBar(props){
       <>
       expense progress bar goes here:
       <ChakraProvider>
-        <Progress value={expense} />
+        <Progress hasStripe value={expense} />
       </ChakraProvider>
 
       expense:{expense}<br/>
