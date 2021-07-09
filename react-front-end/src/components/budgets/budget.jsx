@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
+
 export default function Budget(){
   const classes = useStyles();
   const [state, setState] = useState({
@@ -32,44 +33,31 @@ export default function Budget(){
     axios
       .get("/budgets/1", { params: { year,month } } )
       .then((res) => {
-        // console.log("test",res)
         setState((prev) => ({ ...prev,
           incomeAndBudget: res.data.incomeAndBudget,
           expenseAndBudget: res.data.expenseAndBudget,
           balanceBudget:res.data.balanceBudget }));
         });
-
   }, [month,year]);
-
-  
 
  if(!state.incomeAndBudget.length||!state.expenseAndBudget.length || !state.balanceBudget){
     return null
   }
 
   return(
-    <>
+  <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-      <Grid item xs={5} >
-            
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={5} >
             <BudgetPieChart />
-      
+          </Grid>
+            <Grid item xs={3} >
+            <BudgetList />
             </Grid>
-      <Grid item xs={3} >
-      <BudgetList />
-     
         </Grid>
-
-     
-        </Grid>
-        </div> 
+      </div> 
     </dateContext.Provider>
-
-    
- 
-  
-    </>
+  </>
   )
 }
