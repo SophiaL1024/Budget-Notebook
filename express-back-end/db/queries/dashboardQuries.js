@@ -3,24 +3,25 @@ const db = require('../connection');
 
 const getBalanceBudgetByUserIdYear = (id, year) => {
   const queryStatement = `
-  SELECT amount
+  SELECT amount,month
   FROM balance_budgets
   WHERE user_id=$1
   AND year=$2
   `;
   return db.query(queryStatement, [id, year])
     .then((response) => {
-      const balanceBudget = response.rows.map(element => {
-        return element = element.amount;
-      });
-      return balanceBudget;
+      // const balanceBudget = response.rows.map(element => {
+      //   return element = element.amount;
+      // });
+      // return balanceBudget;
+      return response.rows;
     })
     .catch(err => console.log(err));
 };
 
 const getMonthlyIncomeByUserIdYear = (id, year) => {
   const queryStatement = `
-  SELECT SUM(income.amount) AS monthly_income
+  SELECT SUM(income.amount) AS monthly_income,month
   FROM income  
   WHERE income.user_id=$1 AND income.year=$2
   GROUP BY income.month
@@ -34,7 +35,7 @@ const getMonthlyIncomeByUserIdYear = (id, year) => {
 
 const getMonthlyExpenseByUserIdYear = (id, year) => {
   const queryStatement = `
-  SELECT SUM(expense.amount) AS monthly_expense
+  SELECT SUM(expense.amount) AS monthly_expense,month
   FROM expense  
   WHERE expense.user_id=$1 AND expense.year=$2
   GROUP BY expense.month

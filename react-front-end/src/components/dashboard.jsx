@@ -4,9 +4,7 @@ import dateContext from "../context.js";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import {
-  BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar
-} from "recharts";
+import {  BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar} from "recharts";
 import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,122 +17,64 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.default,
   },
 }));
-const array = ['January', 'February','March','April','May','June','July','August','September','October','November','December']
-const month = 7
-const balance = [ 
-  '794.67', '816.69',
-  '805.68', '849.72',
-  '835.71', '827.70',
-  '18.66', '0','0','0','0','0'
-];
+const monthName = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
 
-
-const data = [
-  {
-    name: 'January',
-    SavingGoal: 500,
-    SavingsAcheived: 794.67,
-
-  },
-  {
-    name: 'February',
-    SavingGoal: 500,
-    SavingsAcheived: 816.69,
-
-  },
-  {
-    name: 'March',
-    SavingGoal: 500,
-    SavingsAcheived: 805.68,
- 
-  },
-  {
-    name: 'April',
-    SavingGoal: 500,
-    SavingsAcheived: 849.72,
-
-  },
-  {
-    name: 'May',
-    SavingGoal: 500,
-    SavingsAcheived: 835.71,
-
-  },
-  {
-    name: 'June',
-    SavingGoal: 500,
-    SavingsAcheived: 827.70,
-
-  },
-  {
-    name: 'July',
-    SavingGoal: 500,
-    SavingsAcheived: 18.66
-  
-  // },
-  // {
-  //   name: 'August',
-  //   SavingGoal: 500,
-  //   SavingsAcheived: 0
-  
-  // },
-  // {
-  //   name: 'September',
-  //   SavingGoal: 500,
-  //   SavingsAcheived: 0
-  
-  // },
-  // {
-  //   name: 'October',
-  //   SavingGoal: 500,
-  //   SavingsAcheived: 0
-  
-  // },
-  // {
-  //   name: 'November',
-  //   SavingGoal: 500,
-  //   SavingsAcheived: 0
-  
-  // },
-  // {
-  //   name: 'December',
-  //   SavingGoal: 500,
-  //   SavingsAcheived: 0
-  
-  },
-];
 const Dashboard=function(){
   const classes = useStyles();
-  const [state, setState] = useState({
-    dashboardData:{}
-  }); 
+  const [ dashboardData, setState] = useState(
+    {balanceBudget:[],
+    monthlyIncome:[],
+    monthlyExpense:[],
+    monthlyBalance:[],
+    annualIncome:0,
+    annualExpense:0}
+  ); 
 
   const {month,year} = useContext(dateContext);
 
   useEffect(() => {
    
-    axios
-      .get("/dashboards/1", { params: { year,month } } )
+    axios.get("/dashboards/1", { params: { year,month } } )
       .then((res) => { 
-        setState((prev) => ({ ...prev, dashboardData: res.data }));
+        setState((prev) => ({ ...prev, 
+        balanceBudget:res.data.balanceBudget,
+        monthlyIncome:res.data.monthlyIncome,
+        monthlyExpense:res.data.monthlyExpense,
+        monthlyBalance:res.data.monthlyBalance,
+        annualIncome:res.data.annualIncome,
+        annualExpense:res.data.annualExpense
+        }));
       });
   }, [month,year]);
+
+  if(!dashboardData.balanceBudget.length||!dashboardData.monthlyIncome.length || !dashboardData.monthlyExpense||!dashboardData.monthlyBalance.length){
+    return null
+  }
+
+  const data=monthName.map((e,index)=>{
+    return{
+      name:e,
+      SavingGoal: Number(dashboardData.balanceBudget.find(e=>e.month===index+1).amount),
+      SavingsAcheived: Number(dashboardData.monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
+    }
+  })
   
   return(
+    
       //  <div className={classes.root}>
       <Grid container spacing={2} className={classes.grid}>
         <Grid item xs={3} md={6}>
         <Paper className={classes.paper}>
-        <h1>{array[month-1]}</h1>
+        <h1>{monthName[month-1]}</h1>
         {/* selected month:{month}<br/> */}
         <div class="balance">
-          <h2>Balance : ${balance[month-1]}</h2>
+          <h2>Balance : ${dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance}</h2>
         </div>
           <div class="income">
-          <h2>Incomes : ${state.dashboardData.currentMonthIncome }</h2> 
+          <h2>Incomes : ${dashboardData.monthlyIncome.find(e=>e.month===month).monthly_income }</h2> 
           </div>          
             <div class="expense">
-            <h2>Expenses : -${state.dashboardData.currentMonthExpense }</h2></div>
+            <h2>Expenses : ${dashboardData.monthlyExpense.find(e=>e.month===month).monthly_expense}</h2></div>
       </Paper>
       </Grid>
         <Grid item xs={6} md={6}>
@@ -142,14 +82,14 @@ const Dashboard=function(){
           <div class="year">
             <h1>{year}</h1>
               <div class="balance">
-              <h2>Balance : $4,948.83</h2>
+              <h2>Balance : ${(Number(dashboardData.annualIncome)-Number(dashboardData.annualExpense)).toFixed(2)}</h2>
               </div>
               </div>
                 <div class="income">
-                  <h2>Incomes : ${state.dashboardData.annualIncome }</h2>
+                  <h2>Incomes : ${dashboardData.annualIncome }</h2>
                 </div> 
                   <div class="expense">
-                    <h2> Expenses : -${state.dashboardData.annualExpense }</h2>
+                    <h2> Expenses : ${dashboardData.annualExpense }</h2>
                   </div>
          {/* balance the array of income - array of expense */}
       </Paper>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import dateContext from "../../context.js";
 
 import BudgetList from "./budgetList.jsx";
-import PieChart from "./pieChart.jsx";
+import BudgetPieChart from "./pieChart.jsx";
 
 export default function Budget(){
 
@@ -14,15 +14,6 @@ export default function Budget(){
   }); 
 
   const {month,year} = useContext(dateContext);
-
-  //Unfixed bug: cannot renderpage for future month !
-  // if(month>new Date().getMonth() ||year>new Date().getFullYear()){
-  //   setState((prev) => ({ ...prev,
-  //     incomeAndBudget: [{id:"",amount:0,income_sum:0}],
-  //     expenseAndBudget:[{id:"",amount:0,expense_sum:0}],
-  //     balanceBudget:[0,0,0]
-  //   })); 
-  // }
 
   useEffect(() => {
    
@@ -48,7 +39,7 @@ export default function Budget(){
     <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
     <BudgetList />
-    <PieChart />
+    <BudgetPieChart />
     </dateContext.Provider>
   </>
   )
