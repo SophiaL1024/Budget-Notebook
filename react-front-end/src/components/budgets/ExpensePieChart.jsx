@@ -3,7 +3,7 @@ import dateContext from "../../context.js";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer,Sector } from 'recharts';
 import { useCallback, useState } from "react";
 
-const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC'];
+const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC','#fcf092','#82ca9d','#f3a8f7'];
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -78,7 +78,7 @@ const renderActiveShape = (props: any) => {
   );
 };
 
-export default function BudgetPieChart(){
+export default function ExpensePieChart(){
 
   const {incomeAndBudget,expenseAndBudget} = useContext(dateContext);
 
@@ -101,23 +101,23 @@ export default function BudgetPieChart(){
 
   
 
-  const data1 = incomeAndBudget.map(e=> {
+
+  const data2 = expenseAndBudget.map(e=> {
     // console.log(e)
     
     return {
       name: e.name,
-      value: Number(e.income_sum),
+      value: Number(e.expense_sum),
     }
   })
 
-  
-  console.log(data1)
   return(
-    <PieChart width={500} height={500}>
-    <Pie
+    <PieChart width={550} height={500}>
+  
+      <Pie
       activeIndex={activeIndex}
       activeShape={renderActiveShape}
-      data={data1}
+      data={data2}
       cx={200}
       cy={200}
       innerRadius={60}
@@ -126,11 +126,11 @@ export default function BudgetPieChart(){
       dataKey="value"
       onMouseEnter={onPieEnter}
     >
-      {data1.map((entry, index) => (
+      {data2.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
       </Pie>
-
+      <br/>
       </PieChart>
     // <>
     //   <ResponsiveContainer width="100%" height="100%">

@@ -4,7 +4,7 @@ import dateContext from "../../context.js";
 
 import BudgetList from "./budgetList.jsx";
 import BudgetPieChart from "./pieChart.jsx";
-
+import ExpensePieChart from "./ExpensePieChart.jsx";
 export default function Budget(){
 
   const [state, setState] = useState({
@@ -38,9 +38,10 @@ export default function Budget(){
   return(
     <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
-    <BudgetPieChart />
+  
     <BudgetList />
- 
+    <BudgetPieChart />
+    <ExpensePieChart/>
     </dateContext.Provider>
   </>
   )
