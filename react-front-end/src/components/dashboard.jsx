@@ -91,7 +91,6 @@ const Dashboard=function(){
                   <div class="expense">
                     <h2> Expenses : ${dashboardData.annualExpense }</h2>
                   </div>
-         {/* balance the array of income - array of expense */}
       </Paper>
     </Grid>
 <Grid>
@@ -115,7 +114,6 @@ const Dashboard=function(){
           <YAxis />
           <Tooltip />
           <Legend />
-          {/* <Title text = "Saving Goal"/> */}
           <Bar dataKey="SavingGoal" fill="#8884d8" />
           <Bar dataKey="SavingsAcheived" fill="#82ca9d" />
         </BarChart>
