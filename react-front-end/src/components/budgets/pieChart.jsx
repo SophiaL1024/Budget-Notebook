@@ -66,7 +66,7 @@ const renderActiveShape = (props: any) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#999"
-      >{`PV ${value}`}</text>
+      >{`PV$ ${value}`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -137,22 +137,22 @@ export default function BudgetPieChart(){
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
       </Pie>
-      <Pie
-      activeIndex={activeIndex}
-      activeShape={renderActiveShape}
-      data={data2}
-      cx={200}
-      cy={200}
-      innerRadius={60}
-      outerRadius={80}
-      fill="#ffa1b5"
-      dataKey="value"
-      onMouseEnter={onPieEnter}
-    >
-      {data2.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-      </Pie>
+        <Pie
+        activeIndex={activeIndex}
+        activeShape={renderActiveShape}
+        data={data2}
+        cx={200}
+        cy={200}
+        innerRadius={60}
+        outerRadius={80}
+        fill="#ffa1b5"
+        dataKey="value"
+        onMouseEnter={onPieEnter}
+      >
+        {data2.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+        </Pie>
       </PieChart>
     // <>
     //   <ResponsiveContainer width="100%" height="100%">
