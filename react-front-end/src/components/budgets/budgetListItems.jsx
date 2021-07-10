@@ -100,7 +100,7 @@ export default function BudgetListItems(props){
           {e.amount} 
         </span>
         <span>     
-         {e.income_sum}
+         {e.expense_sum}
         </span>
         <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'expense')} >
         <EditIcon />
