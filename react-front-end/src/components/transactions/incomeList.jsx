@@ -32,7 +32,6 @@ export default function IncomeList() {
   return (
     <>
       <table>
-        <thead><h3>Income</h3></thead>
         <tbody>
           {listIncomes}
         </tbody>

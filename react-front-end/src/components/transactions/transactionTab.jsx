@@ -43,7 +43,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   tab_bar: {
     backgroundColor: theme.palette.background.paper,
-    width: 500,
+    width: 800,
     position: 'relative',
     minHeight: 200,
   },

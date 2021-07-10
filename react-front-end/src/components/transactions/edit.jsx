@@ -49,7 +49,8 @@ export default function Edit(props) {
   const showItem = (
     mode === SHOW && (
       <tr key={props.id}>
-        <td><div>{props.name}</div>
+        <td>
+          <div>{props.name}</div>
           <div>{props.description}</div>
           <div>${props.amount}</div></td>
         <td>
