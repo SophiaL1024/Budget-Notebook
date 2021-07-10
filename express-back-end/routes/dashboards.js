@@ -6,7 +6,7 @@ router.get('/:userId', (req, res) => {
 
   const dashboardData = {};
   // let monthlyIncome = [];
-  console.log(req.query.year);
+  // console.log(req.query.year);
 
   dashBoardQuries.getBalanceBudgetByUserIdYear(req.params.userId, req.query.year)
     .then(resolve => {

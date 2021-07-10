@@ -8,16 +8,25 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import useVisualMode from '../../hooks/useVisualMode';
 
 
 export default function NewTransactionForm(props) {
   const {handleChange,handleSubmit,formValue,incomeBudget,expenseBudget} = useContext(dateContext);
 
-  if(!incomeBudget||!expenseBudget||!incomeBudget.length||!expenseBudget.length ){
-    return null
-  }
+  console.log("incomeBudget:",incomeBudget);
+  console.log("expenseBudget:",expenseBudget);
+
+  // if(!incomeBudget||!expenseBudget||!incomeBudget.length||!expenseBudget.length ){
+  //   return null
+  // }
 
   const [type, setType] = useState('income');
+  const SHOW = "SHOW";
+  const HIDE = "HIDE";
+
+//function that transitions what is being displayed
+const { mode, transition, back } = useVisualMode(HIDE);
 
   const handleTypeChange = (event) => {
     setType(event.target.value);
@@ -41,7 +50,8 @@ export default function NewTransactionForm(props) {
   }
 
 
-  return (
+  const newTransaction = (
+    mode === SHOW && (
     <div>
       <h3>New transaction</h3>
 
@@ -100,21 +110,43 @@ export default function NewTransactionForm(props) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={formValue.selectedBudgetId}
-          onChange={(event)=>handleChange("selectedBudgetId",event.target.value)}
+          onChange={(event)=>handleChange("selectedBudgetId",event.target.value) && transition(HIDE)}
         >
           {selectorList(type)}
 
         </Select>
       </FormControl>
               
-        <div>
-
-
-        <Button onClick={() =>handleSubmit(type)} color="primary">
+      <div>
+        <Button onClick={() =>{handleSubmit(type); transition(HIDE)}} color="primary">
         Submit
       </Button>
         </div>
+                
+      <div>
+        <Button onClick={() =>transition(HIDE)} color="primary">
+        cancel
+      </Button>
+        </div>
+    
 
     </div>
-  );
+  ))
+
+  const button = (
+    mode === HIDE && (
+       <div>
+        <Button onClick={() =>transition(SHOW)} color="primary">
+        Add Transaction
+      </Button>
+        </div>
+    )
+  )
+
+  return (
+    <>
+    {newTransaction}
+    {button}
+    </>
+  )
 };
