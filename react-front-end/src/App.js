@@ -19,17 +19,13 @@ const [year,setYear]=useState(new Date().getFullYear());
   return (
     <>
       <Router>
-
+      <User/>
         <Switch>
         <dateContext.Provider value={{month,setMonth,year,setYear}}>
           <Route path="/dashboards">
             <SideBar />
             <Dashboard />
           </Route>
-          {/* <Route path="/categories">
-            <SideBar />
-            <Dashboard />
-          </Route> */}
           <Route path="/budgets">
             <SideBar />
             <Budget />
@@ -38,10 +34,7 @@ const [year,setYear]=useState(new Date().getFullYear());
             <SideBar />
             <Transactions/>
           </Route>
-          <Route path="/users">
-            <SideBar />
-            <User />
-          </Route>
+
           </dateContext.Provider>
         </Switch>
 
