@@ -7,7 +7,8 @@ import EditForm from"./editForm";
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-
+import { green } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 export default function BudgetListItems(props){
 
   const {incomeAndBudget,expenseAndBudget,balanceBudget,setState} = useContext(dateContext);
@@ -76,11 +77,11 @@ export default function BudgetListItems(props){
         Actual income: {e.income_sum}
         </span>
    
-        <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'income')}>
-        <EditIcon />
+        <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
+        <EditIcon style={{ color: green[300] }}  />
       </IconButton>
-      <IconButton aria-label="delete" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
-        <DeleteIcon />
+      <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
+        <DeleteIcon style={{ color: red[300] }}/>
       </IconButton>
       </box>
       </li>)
@@ -113,11 +114,11 @@ export default function BudgetListItems(props){
     
         {/* //wrap a box, flex space between, so that they align  */}
         <box className="icon1"></box>
-        <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'expense')} >
-        <EditIcon />
-      </IconButton >
-        <IconButton aria-label="delete" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
-        <DeleteIcon />
+        <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
+        <EditIcon style={{ color: green[300] }}  />
+      </IconButton>
+      <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
+        <DeleteIcon style={{ color: red[300] }}/>
       </IconButton>
       </box>
       </li>
