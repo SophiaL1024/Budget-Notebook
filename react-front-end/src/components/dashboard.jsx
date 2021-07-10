@@ -68,13 +68,13 @@ const Dashboard=function(){
         <h1>{monthName[month-1]}</h1>
         {/* selected month:{month}<br/> */}
         <div className="balance">
-          <h2>Balance : ${dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance}</h2>
+          <h2>Balance : ${Number(dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance).toLocaleString()}</h2>
         </div>
           <div className="income">
-          <h2>Incomes : ${dashboardData.monthlyIncome.find(e=>e.month===month).monthly_income }</h2> 
+          <h2>Incomes : ${Number(dashboardData.monthlyIncome.find(e=>e.month===month).monthly_income).toLocaleString() }</h2> 
           </div>          
             <div className="expense">
-            <h2>Expenses : ${dashboardData.monthlyExpense.find(e=>e.month===month).monthly_expense}</h2></div>
+            <h2>Expenses : ${Number(dashboardData.monthlyExpense.find(e=>e.month===month).monthly_expense).toLocaleString()}</h2></div>
       </Paper>
       </Grid>
         <Grid item xs={6} md={6}>
@@ -82,14 +82,14 @@ const Dashboard=function(){
           <div className="year">
             <h1>{year}</h1>
               <div className="balance">
-              <h2>Balance : ${(Number(dashboardData.annualIncome)-Number(dashboardData.annualExpense)).toFixed(2)}</h2>
+              <h2>Balance : ${(Number(dashboardData.annualIncome)-Number(dashboardData.annualExpense)).toLocaleString()}</h2>
               </div>
               </div>
                 <div className="income">
-                  <h2>Incomes : ${dashboardData.annualIncome }</h2>
+                  <h2>Incomes : ${Number(dashboardData.annualIncome).toLocaleString() }</h2>
                 </div> 
                   <div className="expense">
-                    <h2> Expenses : ${dashboardData.annualExpense }</h2>
+                    <h2> Expenses : ${Number(dashboardData.annualExpense).toLocaleString() }</h2>
                   </div>
       </Paper>
     </Grid>
