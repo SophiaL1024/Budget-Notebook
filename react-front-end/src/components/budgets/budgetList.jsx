@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   panel: {
     height: 550,
+    width: 600,
     overflow : "scroll",
   }
 

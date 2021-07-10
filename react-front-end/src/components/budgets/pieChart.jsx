@@ -119,8 +119,8 @@ export default function BudgetPieChart(){
       data={data1}
       cx={180}
       cy={180}
-      innerRadius={40}
-      outerRadius={60}
+      innerRadius={60}
+      outerRadius={75}
       fill="#ffa1b5"
       dataKey="value"
       onMouseEnter={onPieEnter}
@@ -138,8 +138,8 @@ export default function BudgetPieChart(){
           data={data2}
           cx={180}
           cy={180}
-          innerRadius={40}
-          outerRadius={60}
+          innerRadius={60}
+          outerRadius={75}
           fill="#ffa1b5"
           dataKey="value"
           onMouseEnter={onPieEnter}

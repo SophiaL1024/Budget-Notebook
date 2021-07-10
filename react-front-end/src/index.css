@@ -36,3 +36,16 @@ div.balance{
   text-align: right;
   color: rgba(0, 0, 255, 0.829)
 }
+
+box.box1 {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+box.box2 {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
