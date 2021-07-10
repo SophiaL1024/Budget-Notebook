@@ -66,13 +66,15 @@ export default function BudgetListItems(props){
         <span>     
           {e.name} 
         </span>
+        <br/>
         <span>     
-          {e.amount} 
+        Income budget: {e.amount} 
         </span>
+        <br/>
         <span>     
-         {e.income_sum}
+        Actual income total:{e.income_sum}
         </span>
-      
+      <br/>
         <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'income')}>
         <EditIcon />
       </IconButton>
@@ -96,12 +98,15 @@ export default function BudgetListItems(props){
         <span>     
           {e.name} 
         </span>
+        <br/>
         <span>     
-          {e.amount} 
+        Expense budget: {e.amount} 
         </span>
+        <br/>
         <span>     
-         {e.expense_sum}
+        Actual expense total:{e.expense_sum}
         </span>
+        <br/>
         <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'expense')} >
         <EditIcon />
       </IconButton >
