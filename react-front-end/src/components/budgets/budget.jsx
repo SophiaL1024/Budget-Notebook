@@ -47,16 +47,11 @@ export default function Budget(){
   return(
   <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
-      <div className={classes.root}>
-        <Grid container spacing={2}>
-          <Grid item xs={6} >
-            <BudgetPieChart />
-          </Grid>
-            <Grid item xs={4} >
-            <BudgetList />
-            </Grid>
-        </Grid>
-      </div> 
+    <div>
+      <BudgetPieChart />
+    </div>
+
+    <BudgetList />
     </dateContext.Provider>
   </>
   )
