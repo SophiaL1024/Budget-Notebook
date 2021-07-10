@@ -239,7 +239,7 @@ INSERT INTO income (name,description,amount,year,month,day,user_id,income_catego
 ('dividend','HQU.TO',31.96,2021,1,31,1,5,3),
 ('ETF interest','ZFL.TO',22.34,2021,1,31,1,6,3),
 ('ETF interest','VFV.TO',15.87,2021,1,31,1,6,3),
-('CCB','child benefit',565,2021,1,15,1,7,4),
+('CCB','child benefit',565.00,2021,1,15,1,7,4),
 
 ('salary','ABC Company',5000.00,2021,2,1,1,1,5),
 ('BCD Photography income','1st week',150.00,2021,2,9,1,2,6),
@@ -260,7 +260,7 @@ INSERT INTO income (name,description,amount,year,month,day,user_id,income_catego
 ('dividend','HQU.TO',28.96,2021,2,28,1,5,7),
 ('ETF interest','ZFL.TO',22.34,2021,2,28,1,6,7),
 ('ETF interest','VFV.TO',15.87,2021,2,28,1,6,7),
-('CCB','child benefit',565,2021,2,15,1,7,8),
+('CCB','child benefit',565.00,2021,2,15,1,7,8),
 
 ('salary','ABC Company',5000.00,2021,3,1,1,1,9),
 ('BCD Photography income','1st week',150.00,2021,3,9,1,2,10),
@@ -281,7 +281,7 @@ INSERT INTO income (name,description,amount,year,month,day,user_id,income_catego
 ('dividend','HQU.TO',31.96,2021,3,31,1,5,11),
 ('ETF interest','ZFL.TO',22.34,2021,3,31,1,6,11),
 ('ETF interest','VFV.TO',15.87,2021,3,31,1,6,11),
-('CCB','child benefit',565,2021,3,15,1,7,12),
+('CCB','child benefit',565.00,2021,3,15,1,7,12),
 
 ('salary','ABC Company',5000.00,2021,4,1,1,1,13),
 ('BCD Photography income','1st week',150.00,2021,4,9,1,2,14),
@@ -302,7 +302,7 @@ INSERT INTO income (name,description,amount,year,month,day,user_id,income_catego
 ('dividend','HQU.TO',31.96,2021,4,30,1,5,15),
 ('ETF interest','ZFL.TO',22.34,2021,4,30,1,6,15),
 ('ETF interest','VFV.TO',15.87,2021,4,30,1,6,15),
-('CCB','child benefit',565,2021,4,15,1,7,16),
+('CCB','child benefit',565.00,2021,4,15,1,7,16),
 
 ('salary','ABC Company',5000.00,2021,5,1,1,1,17),
 ('BCD Photography income','1st week',150.00,2021,5,9,1,2,18),
@@ -323,7 +323,7 @@ INSERT INTO income (name,description,amount,year,month,day,user_id,income_catego
 ('dividend','HQU.TO',31.96,2021,5,31,1,5,19),
 ('ETF interest','ZFL.TO',22.34,2021,5,31,1,6,19),
 ('ETF interest','VFV.TO',15.87,2021,5,31,1,6,19),
-('CCB','child benefit',565,2021,5,15,1,7,20),
+('CCB','child benefit',565.00,2021,5,15,1,7,20),
 
 ('salary','ABC Company',5000.00,2021,6,1,1,1,21),
 ('BCD Photography income','1st week',150.00,2021,6,9,1,2,22),
@@ -344,7 +344,7 @@ INSERT INTO income (name,description,amount,year,month,day,user_id,income_catego
 ('dividend','HQU.TO',31.96,2021,6,30,1,5,23),
 ('ETF interest','ZFL.TO',22.34,2021,6,30,1,6,23),
 ('ETF interest','VFV.TO',15.87,2021,6,30,1,6,23),
-('CCB','child benefit',565,2021,6,15,1,7,24),
+('CCB','child benefit',565.00,2021,6,15,1,7,24),
 
 ('salary','ABC Company',5000.00,2021,7,1,1,1,25),
 ('BCD Photography income','1st week',150.00,2021,7,9,1,2,26),
@@ -359,4 +359,4 @@ INSERT INTO income (name,description,amount,year,month,day,user_id,income_catego
 ('dividend','HQU.TO',31.96,2021,7,15,1,5,27),
 ('ETF interest','ZFL.TO',22.34,2021,7,15,1,6,27),
 ('ETF interest','VFV.TO',15.87,2021,7,15,1,6,27),
-('CCB','child benefit',565,2021,7,15,1,7,28);
+('CCB','child benefit',565.00,2021,7,15,1,7,28);

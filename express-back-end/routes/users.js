@@ -1,12 +1,16 @@
-//const cookieParser = require('cookie-parser');
 const Express = require('express');
-const pool = require('../db/connection');
 const router = Express.Router();
-console.log("Running routes");
+const userQuries = require('../db/queries/userQuries');
 
-router.get('/', (req, res) => {
-  console.log("hello");
-  res.sendStatus(200);
+router.get('/', (req, res) => {});
+router.post('/', (req, res) => {
+  const {email,password} = req.body.data;
+  userQuries.getUserInfo(email)
+    .then((resolve)=>{
+      if (resolve.password === password) {
+        res.json(resolve);
+      }
+      res.json(false);
+    });
 });
-
 module.exports = router;
