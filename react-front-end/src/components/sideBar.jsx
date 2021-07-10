@@ -21,7 +21,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-
+import {blue} from '@material-ui/core/colors';
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 100,
   },
-
   //drawer
   root: {
     display: 'flex',
@@ -37,13 +36,16 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    background: "#64b5f6"
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    // backgroundColor: "blue",
   },
   drawerPaper: {
     width: drawerWidth,
+    background: '#e1f5fe',
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
