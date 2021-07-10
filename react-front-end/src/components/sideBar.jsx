@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(10),
   },
   link: { textDecoration: 'none', 
-  color: theme.palette.text.primary
+  color: theme.palette.text.secondary,
 }
 }));
 
