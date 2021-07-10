@@ -67,20 +67,22 @@ export default function BudgetListItems(props){
           {e.name} 
         </span>
         <br/>
+        <box className="box2">
         <span>     
         Income budget: {e.amount} 
         </span>
         <br/>
         <span>     
-        Actual income total:{e.income_sum}
+        Actual income: {e.income_sum}
         </span>
-      <br/>
+   
         <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'income')}>
         <EditIcon />
       </IconButton>
       <IconButton aria-label="delete" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
         <DeleteIcon />
       </IconButton>
+      </box>
       </li>)
     )
   })
@@ -95,24 +97,29 @@ export default function BudgetListItems(props){
     return (    
       <li key={e.id}>
         <BudgetProgressBar id={e.id} type={'expense'}/>
+        
         <span>     
           {e.name} 
         </span>
         <br/>
+        <box className="box1">
         <span>     
         Expense budget: {e.amount} 
         </span>
         <br/>
         <span>     
-        Actual expense total:{e.expense_sum}
+        Actual expense: {e.expense_sum}
         </span>
-        <br/>
+    
+        {/* //wrap a box, flex space between, so that they align  */}
+        <box className="icon1"></box>
         <IconButton aria-label="edit" onClick={()=>handleEdit(e.id,'expense')} >
         <EditIcon />
       </IconButton >
         <IconButton aria-label="delete" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
         <DeleteIcon />
       </IconButton>
+      </box>
       </li>
     )
   })
