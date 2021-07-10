@@ -7,13 +7,8 @@ import { useCallback, useState } from "react";
 //Color themes for the pie charts
 const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC','#fcf092','#82ca9d','#f3a8f7'];
 
-<<<<<<< HEAD
-//Element of the pie chart from recharts library
-const renderActiveShape = (props: any) => {
-=======
 //Element of the pie chart from recharts
 const renderActiveShape = (props) => {
->>>>>>> df8dda2721a045ece61dd7ce25322ae17d00c82d
   const RADIAN = Math.PI / 180;
   const {
     cx,
