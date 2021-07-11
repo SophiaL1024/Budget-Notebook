@@ -140,22 +140,12 @@ if (!incomeBudget || !expenseBudget) {
           </div>
 
       </div>
-    ))
-
-  // const button = (
-  //   mode === HIDE && (
-  //      <div>
-  //       <Button onClick={() =>transition(SHOW)} color="primary">
-  //       Add Transaction
-  //     </Button>
-  //       </div>
-  //   )
-  // )
+    ));
 
   return (
     <>
       {button}
       {newTransaction}
     </>
-  )
+  );
 };

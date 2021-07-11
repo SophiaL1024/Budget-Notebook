@@ -24,7 +24,8 @@ code {
 
 div.box{
   text-align:left;
-  color:rgb(118, 120, 122)
+  color:rgb(118, 120, 122);
+
 }
 
 
@@ -56,15 +57,28 @@ div.newTransactionForm{
   margin:15px
 }
 
-
-box.box1 {
-  display: flex;
-  justify-content: space-between;
+button.cancel{
+  height: 31px;
+  margin-top: 19px;
 }
 
-box.box2 {
+/* 
+div.box1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100;
+  
+}
+
+div.box2 {
   display: flex;
   justify-content: space-between;
   
+} */
+
+.expensebox {
+  display: flex;
+  justify-content: space-between;
+
 }
 

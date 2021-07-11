@@ -24,8 +24,7 @@ In the other terminal, `cd` into `express-back-end`. Run `npm install` or `yarn`
 
 In the browser, you can click on the button and see the data get loaded.
 
-# Project Description
-​* A financial planning app for individual users to make budget and saving goal, record transactions, check budget status and monthly balance.
+
 
 <!-- If this doesn't work, please message me!
 

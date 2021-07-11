@@ -70,8 +70,8 @@ export default function Edit(props) {
 
   const editItem = (
     mode === EDIT && (
-      <form>
-        <tr>
+      <div class={"newTransactionForm"}>
+        <div>
           <TextField
             autoFocus
             margin="dense"
@@ -81,8 +81,8 @@ export default function Edit(props) {
             onChange={nameHandler}
             value={name}
           />
-        </tr>
-        <tr>
+        </div>
+        <div>
           <TextField
             autoFocus
             margin="dense"
@@ -92,8 +92,8 @@ export default function Edit(props) {
             onChange={descriptionHandler}
             value={description}
           />
-        </tr>
-        <tr>
+        </div>
+        <div>
           <TextField
             autoFocus
             margin="dense"
@@ -103,7 +103,7 @@ export default function Edit(props) {
             onChange={amountHandler}
             value={amount}
           />
-        </tr>
+        </div>
         <IconButton aria-label="edit" onClick={() => transition(SHOW)}>
           <Button
             onClick={() => props.handleEdit(name, description, amount, props.month, props.day, props.year, props.id, props.type)}
@@ -114,10 +114,10 @@ export default function Edit(props) {
             startIcon={<SaveIcon />}
           >Save</Button>
         </IconButton>
-        <Button size="small" variant="contained" color="primary" onClick={() => transition(SHOW)}>
+        <Button size="small" style={{height: 31}} variant="contained" color="primary" onClick={() => transition(SHOW)}>
           cancel
         </Button>
-      </form>
+      </div>
     )
   )
 

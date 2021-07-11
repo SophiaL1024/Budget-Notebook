@@ -99,12 +99,12 @@ export default function BudgetListItems(props){
     return (    
       <li key={e.id}>
         <BudgetProgressBar id={e.id} type={'expense'}/>
-        
+        <div className="expensebox">
         <span>     
           {e.name} 
         </span>
         <br/>
-        <box className="box1">
+        <div className="div1">
         <span>     
         Expense budget: {e.amount} 
         </span>
@@ -113,15 +113,16 @@ export default function BudgetListItems(props){
         Actual expense: {e.expense_sum}
         </span>
     
-        {/* //wrap a box, flex space between, so that they align  */}
-        <box className="icon1"></box>
+        {/* //wrap a div, flex space between, so that they align  */}
+        <div className="icon1"></div>
         <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
         <EditIcon style={{ color: green[300] }}  />
       </IconButton>
       <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
         <DeleteIcon style={{ color: red[300] }}/>
       </IconButton>
-      </box>
+      </div>
+      </div>
       </li>
     )
   })
