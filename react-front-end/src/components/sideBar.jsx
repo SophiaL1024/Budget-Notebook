@@ -7,7 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import  '../App.css';
 import dateContext from "../context.js";
-//Drawer
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,7 +20,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-import {blue} from '@material-ui/core/colors';
+
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -33,15 +32,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  //header
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     background: "#64b5f6"
   },
+  //sidebar
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    // backgroundColor: "blue",
   },
   drawerPaper: {
     width: drawerWidth,
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: { textDecoration: 'none', 
   color: theme.palette.text.secondary,
-}
+  }
 }));
 
 export default function SideBar() {
@@ -100,6 +100,7 @@ export default function SideBar() {
   return (
     <div className={classes.root}>
       <CssBaseline />
+      {/* Header  */}
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
@@ -108,13 +109,14 @@ export default function SideBar() {
         </Toolbar>
       </AppBar>
 
+      {/* Sidebar */}
       <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{paper: classes.drawerPaper }}
         anchor="left"
       >
-
+        {/* Sidebar buttons to each route*/}
         <div className={classes.toolbar} />
         <Divider />
         <List>
@@ -144,7 +146,7 @@ export default function SideBar() {
           </Link> 
         </List>
         <Divider />
-  
+      {/* Sidebar selection of year or month to render data*/}
       <FormControl className={classes.formControl}>
         <InputLabel id="select-year-label">Year</InputLabel>
         <Select
