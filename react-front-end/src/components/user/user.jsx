@@ -1,20 +1,24 @@
-import React ,{useEffect,useState} from "react"
+import React ,{useContext,useState} from "react"
 import {useHistory}from 'react-router-dom'
 import axios from 'axios'
+import dateContext from "../../context.js";
 import {TextField,Button} from '@material-ui/core/'
-import { func } from "prop-types"
+// import { func } from "prop-types"
 
 export default function User() {
 
   const history = useHistory();
-  const[userId,setUserId]=useState(0);
+  
+  const {setUserId} = useContext(dateContext);
+  
+  const [err,setErr]=useState(false);
+
   const [formValue, setFormValue] = useState({ 
   email:"",
   password:""
   });
 
   const handleChange = (key,value) => { 
-
   setFormValue(prev => ({...prev,[key]: value}))  
   };
 
@@ -23,11 +27,14 @@ export default function User() {
   .then((res)=>{
     // console.log(res.data);
     if(res.data){
-      // console.log('in if');
-      history.push('/dashboards/1')
+      setUserId(res.data.id)
+      history.push('/dashboards/')
+    }else{
+     setErr("Incorrect Password.")
     }
   })
- }
+ };
+
 
   return(
   <>
@@ -40,11 +47,12 @@ export default function User() {
   onChange={(event)=>{handleChange('email',event.target.value)}}
    />
   <TextField
-    // error
+    error={err?true:false}
+   
     id="outlined-error-helper-text"
     label="Password"
     // defaultValue="Hello World"
-    // helperText="Incorrect entry."
+    helperText={err}
     variant="outlined"
     value={formValue.password}
     onChange={(event)=>{handleChange('password',event.target.value)}}

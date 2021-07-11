@@ -13,15 +13,19 @@ import User from './components/user/user';
 import Transactions from './components/transactions/Transactions.jsx';
 
 const App = function() {
-
+const[userId,setUserId]=useState(document.cookie?Number(document.cookie.slice(7)):'');
 const [month,setMonth]=useState(new Date().getMonth()+1);
 const [year,setYear]=useState(new Date().getFullYear());
+console.log("userId:",userId);
+console.log("document.cookie",document.cookie);
+console.log("slice",document.cookie.slice(7))
   return (
     <>
       <Router>
-      <User/>
+        <dateContext.Provider value={{month,setMonth,year,setYear,userId,setUserId}}>
+      {userId||<User/>}
+      {userId&&
         <Switch>
-        <dateContext.Provider value={{month,setMonth,year,setYear}}>
           <Route path="/dashboards">
             <SideBar />
             <Dashboard />
@@ -34,9 +38,9 @@ const [year,setYear]=useState(new Date().getFullYear());
             <SideBar />
             <Transactions/>
           </Route>
-
-          </dateContext.Provider>
         </Switch>
+      }
+          </dateContext.Provider>
 
       </Router>
     </>

@@ -30,12 +30,12 @@ const Dashboard=function(){
     annualExpense:0}
   ); 
 
-  const {month,year} = useContext(dateContext);
+  const {month,year,userId} = useContext(dateContext);
 
   useEffect(() => {
-   
-    axios.get("/dashboards/1", { params: { year,month } } )
-      .then((res) => { 
+
+    axios.get("/dashboards/", { params: { year,month,userId }} )
+      .then((res) => {         
         setState((prev) => ({ ...prev, 
         balanceBudget:res.data.balanceBudget,
         monthlyIncome:res.data.monthlyIncome,
@@ -61,12 +61,12 @@ const Dashboard=function(){
 
   return(
     
-      //  <div className={classes.root}>
+ 
       <Grid container spacing={2} className={classes.grid}>
         <Grid item xs={3} md={6}>
         <Paper className={classes.paper}>
         <h1>{monthName[month-1]}</h1>
-        {/* selected month:{month}<br/> */}
+ 
         <div className="balance">
           <h2>Balance : ${Number(dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance).toLocaleString()}</h2>
         </div>
@@ -94,9 +94,7 @@ const Dashboard=function(){
       </Paper>
     </Grid>
 <Grid>
-  {/* <Typography> */}
-  {/* <h3>         </h3> */}
-  {/* </Typography> */}
+ 
   
         <BarChart
           width={800}
