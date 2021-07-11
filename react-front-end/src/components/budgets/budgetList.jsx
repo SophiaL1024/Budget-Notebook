@@ -130,7 +130,7 @@ export default function budgetList() {
       {/* <dateContext.Provider value={{open}}> */}
 
         <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
-        <table>
+        <table >
         <thead>
            <tr>
            <th>Budget</th>
@@ -140,7 +140,7 @@ export default function budgetList() {
     
            </tr>
           </thead>
-          <tbody>
+          <tbody >
         <BudgetListItems tabType={0} /> 
         </tbody>  
         </table>

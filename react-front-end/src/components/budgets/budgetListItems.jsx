@@ -1,7 +1,7 @@
 import  React,{useContext,useState} from "react";
 import axios from 'axios';
 import dateContext from "../../context.js";
-// import BudgetProgressBar from "./progressBar";
+
 import BudgetProgressBar from "./progressBar";
 import EditForm from"./editForm";
 import IconButton from '@material-ui/core/IconButton';
@@ -57,13 +57,19 @@ export default function BudgetListItems(props){
 
   const incomeItems=incomeAndBudget.map(e=>{
     if(edit===e.id && type==='income'){
-     return (<EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id}/>)
+
+     return (
+       <tr>
+         <td colspan="5">
+     <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id}/>
+     </td>
+     </tr>
+     )
     }
     else if(e.id===0){
       return null
-    }
-    return ( 
-      
+    }  
+    return (       
       <>
       <tr> 
         <td colspan="3">
@@ -78,7 +84,7 @@ export default function BudgetListItems(props){
           <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
           <EditIcon style={{ color: green[300] }}  />
           </IconButton>
-           <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.expense_sum)}>
+           <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
            <DeleteIcon style={{ color: red[300] }}/>
            </IconButton>
         </td>
@@ -112,11 +118,18 @@ export default function BudgetListItems(props){
       // </div>   
       // </li>
     )
+  
   })
 
   const expenseItems=expenseAndBudget.map(e=>{
     if(edit===e.id && type==='expense'){
-      return (<EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id}/>)
+      return (
+        <tr>
+        <td colspan="5">
+        <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id}/>
+      </td>
+      </tr>
+      )
      }
      else if(e.id===0){
       return null

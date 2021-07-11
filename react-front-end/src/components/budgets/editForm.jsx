@@ -82,9 +82,7 @@ export default function EditForm(props) {
      expenseAndBudget: newExpenseAndBudget     
     }));
   }else if(props.type==='balance'){
-    // const newBalanceBudget=balanceBudget.map((e)=>{
 
-    // })
     setState((prev)=>({
       ...prev,      
       balanceBudget:[formValue.amount,...balanceBudget.slice(1)]    
@@ -123,27 +121,23 @@ export default function EditForm(props) {
             value={props.amount}
           />
 
-        {/* <IconButton aria-label="cancel" onClick={() => {props.setEdit(0)}}> */}
           <Button
             variant="contained"
             color="primary"
             size="small"
             className={classes.button}
-            // startIcon={<SaveIcon />}
             onClick={() => {props.setEdit(0)}}
           >Cancel</Button>
           
-        {/* </IconButton> */}
-        {/* <IconButton aria-label="edit" onClick={handleSave}> */}
+
           <Button
             variant="contained"
             color="primary"
             size="small"
             className={classes.button}
             onClick={handleSave}
-            // startIcon={<SaveIcon />}
           >Save</Button>
-        {/* </IconButton> */}
+
 
       </form>
     )
