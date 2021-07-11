@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 100,
   },
   //drawer
-  root: {
-    display: 'flex',
+  title: {
+    flexGrow: 1,
   },
   //header
   appBar: {
@@ -109,7 +109,6 @@ export default function SideBar() {
       {/* Header  */}
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolWrapper}>
-          {/* <Typography variant="h6" noWrap> */}
           <Typography variant="h6" className={classes.title}>
             Budget Notebook
           </Typography>

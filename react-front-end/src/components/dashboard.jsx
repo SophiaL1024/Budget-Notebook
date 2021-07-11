@@ -107,14 +107,14 @@ const Dashboard=function(){
 
 {/* Bar chart for savings goal and savings achieved */}
   <BarChart
-    width={1100}
+    width={1000}
     height={330}
     data={barchartData}
     margin={{
       top: 0,
       right: 0,
-      left: 50,
-      bottom: 5,
+      left: 0,
+      bottom: 15,
     }}
   >
     <CartesianGrid strokeDasharray="3 3" />
