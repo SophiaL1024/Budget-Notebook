@@ -114,10 +114,10 @@ export default function BudgetListItems(props){
     
         {/* //wrap a box, flex space between, so that they align  */}
         <box className="icon1"></box>
-        <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
+        <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
         <EditIcon style={{ color: green[300] }}  />
       </IconButton>
-      <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
+      <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
         <DeleteIcon style={{ color: red[300] }}/>
       </IconButton>
       </box>
@@ -136,7 +136,8 @@ export default function BudgetListItems(props){
     });
     return incomeBudgetSum-expenseBudgetSum;
   }
-
+  
+  // console.log(balanceBudget);
 
   //conditional render different tabs
   if(props.tabType===0){
@@ -148,9 +149,9 @@ export default function BudgetListItems(props){
       <div>
         you have this much of balance left:<br/>
         {balanceRemaining()}<br/>
-        {balanceBudget[0]}<br/>
-        {balanceBudget[1]}<br/>
-        {balanceBudget[2]}
+        balanceBudget:{balanceBudget[0]}<br/>
+        Actual income:{balanceBudget[1]}<br/>
+        Actual expense:{balanceBudget[2]}
         <IconButton aria-label="edit" onClick={()=>handleEdit(1,'balance')} >
         <EditIcon />
       </IconButton >
