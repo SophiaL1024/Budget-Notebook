@@ -62,35 +62,55 @@ export default function BudgetListItems(props){
     else if(e.id===0){
       return null
     }
-    return (  
-      (<li key={e.id}>
-        <BudgetProgressBar id={e.id} type={'income'}/>
-        <div className="expensebox">
-        <span>     
-          {e.name} 
-        </span>
-        <br/>
-        <div className="box2">
-        <span>     
-        Income budget: {e.amount} 
-        </span>
-        <br/>
-        <span>     
-        Actual income: {e.income_sum}
-        </span>
-        </div>
-        </div>
-        <div className="icons">
-        <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
-        <EditIcon style={{ color: green[300] }}  />
-      </IconButton>
-      <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
-        <DeleteIcon style={{ color: red[300] }}/>
-      </IconButton>
-      </div>
-   
-   
-      </li>)
+    return ( 
+      
+      <>
+      <tr> 
+        <td colspan="3">
+         <BudgetProgressBar id={e.id} type={'income'}/>
+        </td>
+      </tr>
+      <tr>
+        <td>{e.name} </td>
+        <td>{e.amount} </td>
+        <td>{e.income_sum}</td>
+        <td className="icon"> 
+          <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
+          <EditIcon style={{ color: green[300] }}  />
+          </IconButton>
+           <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.expense_sum)}>
+           <DeleteIcon style={{ color: red[300] }}/>
+           </IconButton>
+        </td>
+      </tr>
+    </>
+
+      // <li key={e.id}>
+      //   <BudgetProgressBar id={e.id} type={'income'}/>
+      //   <div className="expensebox">
+      //   <span>     
+      //     {e.name} 
+      //   </span>
+      //   <br/>
+      //   <div className="box2">
+      //   <span>     
+      //   Income budget: {e.amount} 
+      //   </span>
+      //   <br/>
+      //   <span>     
+      //   Actual income: {e.income_sum}
+      //   </span>
+      //   </div>
+      //   </div>
+      //   <div className="icons">
+      //   <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
+      //   <EditIcon style={{ color: green[300] }}  />
+      // </IconButton>
+      // <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
+      //   <DeleteIcon style={{ color: red[300] }}/>
+      // </IconButton>
+      // </div>   
+      // </li>
     )
   })
 
@@ -101,30 +121,51 @@ export default function BudgetListItems(props){
      else if(e.id===0){
       return null
     }
-    return (    
-      <li key={e.id}>
-        <BudgetProgressBar id={e.id} type={'expense'}/>
-        <span>     
-          {e.name} 
-        </span>
-        <br/>
-        <div className="box2">
-        <span>     
-        Expense budget: {e.amount} 
-        </span>
-        {/* <br/> */}
-        <span>     
-        Actual expense: {e.expense_sum}
-        </span>
+    return (
+      <>
+        <tr> 
+          <td colspan="3">
+           <BudgetProgressBar id={e.id} type={'expense'}/>
+          </td>
+
+        </tr>
+        <tr>
+          <td>{e.name} </td>
+          <td>{e.amount} </td>
+          <td>{e.expense_sum}</td>
+          <td className="icon"> 
+          <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
+           <EditIcon style={{ color: green[300] }}  />
+          </IconButton>  
+          <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
+          <DeleteIcon style={{ color: red[300] }}/>
+          </IconButton>
+          </td>
+        </tr>
+      </>
+      // <li key={e.id}>
+      //   <BudgetProgressBar id={e.id} type={'expense'}/>
+      //   <span>     
+      //     {e.name} 
+      //   </span>
+      //   <br/>
+      //   <div className="box2">
+      //   <span>     
+      //   Expense budget: {e.amount} 
+      //   </span>
+      //   {/* <br/> */}
+      //   <span>     
+      //   Actual expense: {e.expense_sum}
+      //   </span>
    
-        <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
-        <EditIcon style={{ color: green[300] }}  />
-      </IconButton>
-      <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
-        <DeleteIcon style={{ color: red[300] }}/>
-      </IconButton>
-      </div>
-      </li>
+      //   <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
+      //   <EditIcon style={{ color: green[300] }}  />
+      // </IconButton>
+      // <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
+      //   <DeleteIcon style={{ color: red[300] }}/>
+      // </IconButton>
+      // </div>
+      // </li>
     )
   })
 
