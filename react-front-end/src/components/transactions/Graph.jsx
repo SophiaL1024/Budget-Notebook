@@ -14,9 +14,9 @@ import { parse } from "media-typer";
 export default function Graph() {
 const {incomeTransactions, expenseTransactions} = useContext(dateContext);
 const {month,year} = useContext(dateContext);
-const findSum = function(data, maxDay, minDay) {
+const findSum = function(data, maxDay) {
   let sum = 0;
-  const week = data.filter(item => item.day < maxDay && item.day > minDay );
+  const week = data.filter(item => item.day < maxDay );
   for (const item of week) {
     let x = parseInt(item.amount)
     // console.log("item:",item);
@@ -24,30 +24,30 @@ const findSum = function(data, maxDay, minDay) {
   }
   return sum;
 };
-console.log("findSum:",findSum(expenseTransactions, 8, 0))
+console.log("findSum:",findSum(expenseTransactions, 8))
 const data = [
   {
     name: "week 1",
-    Expense: findSum(expenseTransactions, 8, 0),
-    Income: findSum(incomeTransactions, 8, 0),
+    Expense: findSum(expenseTransactions, 8),
+    Income: findSum(incomeTransactions, 8),
     amt: 6000
   },
   {
     name: "week 2",
-    Expense: findSum(expenseTransactions, 15, 7),
+    Expense: findSum(expenseTransactions, 15),
     Income: findSum(incomeTransactions, 15, 7),
     amt: 6000
   },
   {
     name: "week 3",
-    Expense: findSum(expenseTransactions, 23, 14),
-    Income: findSum(incomeTransactions, 23, 14),
+    Expense: findSum(expenseTransactions, 23),
+    Income: findSum(incomeTransactions, 23),
     amt: 6000
   },
   {
     name: "week 4",
-    Expense: findSum(expenseTransactions, 32, 22),
-    Income: findSum(incomeTransactions, 32, 22),
+    Expense: findSum(expenseTransactions, 32),
+    Income: findSum(incomeTransactions, 32),
     amt: 2400
   },
 ];

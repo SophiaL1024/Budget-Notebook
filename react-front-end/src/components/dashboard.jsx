@@ -61,12 +61,14 @@ const Dashboard=function(){
 
   return(
     
- 
-      <Grid container spacing={2} className={classes.grid}>
-        <Grid item xs={3} md={6}>
+      //  <div className={classes.root}>
+      <Grid container spacing={8} className={classes.grid}>
+        <Grid item xs={3} md={5}>
         <Paper className={classes.paper}>
+        <div className="year">
         <h1>{monthName[month-1]}</h1>
- 
+        {/* selected month:{month}<br/> */}
+        </div>
         <div className="balance">
           <h2>Balance : ${Number(dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance).toLocaleString()}</h2>
         </div>
@@ -77,7 +79,7 @@ const Dashboard=function(){
             <h2>Expenses : ${Number(dashboardData.monthlyExpense.find(e=>e.month===month).monthly_expense).toLocaleString()}</h2></div>
       </Paper>
       </Grid>
-        <Grid item xs={6} md={6}>
+        <Grid item xs={4} md={5}>
         <Paper className={classes.paper}>
           <div className="year">
             <h1>{year}</h1>
@@ -97,13 +99,13 @@ const Dashboard=function(){
  
   
         <BarChart
-          width={800}
-          height={300}
+          width={1000}
+          height={350}
           data={barchartData}
           margin={{
             top: 5,
             right: 0,
-            left: 200,
+            left: 0,
             bottom: 5,
           }}
         >
