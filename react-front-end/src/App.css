@@ -42,3 +42,17 @@
 li{
   list-style-type: none; 
 }
+/* scroll bar style */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #A9A9A9; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}

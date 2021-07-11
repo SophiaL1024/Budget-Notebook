@@ -124,6 +124,7 @@ export default function BudgetPieChart(){
       fill="#ffa1b5"
       dataKey="value"
       onMouseEnter={onPieEnter}
+      animationBegin={0}
     >
       {data1.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -143,6 +144,7 @@ export default function BudgetPieChart(){
           fill="#ffa1b5"
           dataKey="value"
           onMouseEnter={onPieEnter}
+          animationBegin={0}
         >
           {data2.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

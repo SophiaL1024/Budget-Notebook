@@ -14,14 +14,14 @@ export default function User() {
   const [err,setErr]=useState(false);
   console.log(userId);
 
-  useEffect(()=>{
-    axios.get('http://localhost:3000/')
-    .then(()=>{
-      if(userId){
-        history.push('/dashboards/')
-      }
-    })
-  },[])
+  // useEffect(()=>{
+  //   axios.get('http://localhost:3000/')
+  //   .then(()=>{
+  //     if(userId){
+  //       history.push('/dashboards/')
+  //     }
+  //   })
+  // },[])
 
   const [formValue, setFormValue] = useState({ 
   email:"",

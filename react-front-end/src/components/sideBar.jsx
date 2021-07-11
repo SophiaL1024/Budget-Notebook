@@ -117,7 +117,7 @@ export default function SideBar() {
             color="inherit"
             size="small"
             onClick={()=>{
-              setUserId(0);
+              setUserId('');
               document.cookie.split(";").forEach((c) => {
                 document.cookie = c
                   .replace(/^ +/, "")

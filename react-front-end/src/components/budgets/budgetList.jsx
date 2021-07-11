@@ -111,7 +111,7 @@ export default function budgetList() {
 
   return (
     <div className={classes.tab_bar}>
-      <AppBar position="static" color="default" >
+      <AppBar position="static" color="transparent" >
         <Tabs
           value={value}
           onChange={handleChange}
