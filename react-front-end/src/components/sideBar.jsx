@@ -108,7 +108,8 @@ export default function SideBar() {
       {/* Header  */}
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolWrapper}>
-          <Typography variant="h6" noWrap>
+          {/* <Typography variant="h6" noWrap> */}
+          <Typography variant="h6" className={classes.title}>
             Budget Notebook
           </Typography>
 
