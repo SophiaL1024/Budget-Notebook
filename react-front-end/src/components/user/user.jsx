@@ -1,17 +1,27 @@
-import React ,{useContext,useState} from "react"
+import React ,{useContext,useEffect,useState} from "react"
 import {useHistory}from 'react-router-dom'
 import axios from 'axios'
 import dateContext from "../../context.js";
 import {TextField,Button} from '@material-ui/core/'
-// import { func } from "prop-types"
+
 
 export default function User() {
 
   const history = useHistory();
   
-  const {setUserId} = useContext(dateContext);
+  const {userId,setUserId} = useContext(dateContext);
   
   const [err,setErr]=useState(false);
+  console.log(userId);
+
+  // useEffect(()=>{
+  //   axios.get('http://localhost:3000/')
+  //   .then(()=>{
+  //     if(userId){
+  //       history.push('/dashboards/')
+  //     }
+  //   })
+  // },[])
 
   const [formValue, setFormValue] = useState({ 
   email:"",
@@ -27,8 +37,8 @@ export default function User() {
   .then((res)=>{
     // console.log(res.data);
     if(res.data){
-      setUserId(res.data.id)
-      history.push('/dashboards/')
+      setUserId(res.data.id);
+      history.push('/dashboards/');
     }else{
      setErr("Incorrect Password.")
     }

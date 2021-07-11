@@ -108,7 +108,7 @@ export default function BudgetPieChart(){
     }
   })
   
-  console.log(data1)
+  // console.log(data1)
   return(
     <>
     {/* Pie chart for income showing types of income budget */}
@@ -120,7 +120,7 @@ export default function BudgetPieChart(){
       cx={180}
       cy={180}
       innerRadius={60}
-      outerRadius={75}
+      outerRadius={90}
       fill="#ffa1b5"
       dataKey="value"
       onMouseEnter={onPieEnter}
@@ -140,7 +140,7 @@ export default function BudgetPieChart(){
           cx={180}
           cy={180}
           innerRadius={60}
-          outerRadius={75}
+          outerRadius={90}
           fill="#ffa1b5"
           dataKey="value"
           onMouseEnter={onPieEnter}

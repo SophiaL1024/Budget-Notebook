@@ -20,7 +20,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-
+import { Button } from '@material-ui/core';
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     background: "#64b5f6"
+
   },
   //sidebar
   drawer: {
@@ -56,13 +57,18 @@ const useStyles = makeStyles((theme) => ({
   },
   link: { textDecoration: 'none', 
   color: theme.palette.text.secondary,
-  }
+  },
+  // toolwrapper:{
+  //  display:"flex",
+  //  justifyContent:"space-between"
+  // }
+
 }));
 
 export default function SideBar() {
   const classes = useStyles();
 
-  const {month,setMonth,year,setYear} = useContext(dateContext);
+  const {month,setMonth,year,setYear,setUserId} = useContext(dateContext);
 
   const currentYear=new Date().getFullYear();
   const yearList=[];
@@ -102,10 +108,25 @@ export default function SideBar() {
       <CssBaseline />
       {/* Header  */}
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.toolWrapper}>
           <Typography variant="h6" noWrap>
             Budget Notebook
           </Typography>
+
+          <Button 
+            variant="outlined" 
+            color="inherit"
+            size="small"
+            onClick={()=>{
+              setUserId('');
+              document.cookie.split(";").forEach((c) => {
+                document.cookie = c
+                  .replace(/^ +/, "")
+                  .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+              });
+            }}
+          >Log out</Button>
+
         </Toolbar>
       </AppBar>
 
