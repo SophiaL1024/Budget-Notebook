@@ -65,11 +65,12 @@ export default function BudgetListItems(props){
     return (  
       (<li key={e.id}>
         <BudgetProgressBar id={e.id} type={'income'}/>
+        <div className="expensebox">
         <span>     
           {e.name} 
         </span>
         <br/>
-        <box className="box2">
+        <div className="box2">
         <span>     
         Income budget: {e.amount} 
         </span>
@@ -77,14 +78,18 @@ export default function BudgetListItems(props){
         <span>     
         Actual income: {e.income_sum}
         </span>
-   
+        </div>
+        </div>
+        <div className="icons">
         <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
         <EditIcon style={{ color: green[300] }}  />
       </IconButton>
       <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
         <DeleteIcon style={{ color: red[300] }}/>
       </IconButton>
-      </box>
+      </div>
+   
+   
       </li>)
     )
   })
@@ -99,29 +104,25 @@ export default function BudgetListItems(props){
     return (    
       <li key={e.id}>
         <BudgetProgressBar id={e.id} type={'expense'}/>
-        <div className="expensebox">
         <span>     
           {e.name} 
         </span>
         <br/>
-        <div className="div1">
+        <div className="box2">
         <span>     
         Expense budget: {e.amount} 
         </span>
-        <br/>
+        {/* <br/> */}
         <span>     
         Actual expense: {e.expense_sum}
         </span>
-    
-        {/* //wrap a div, flex space between, so that they align  */}
-        <div className="icon1"></div>
+   
         <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
         <EditIcon style={{ color: green[300] }}  />
       </IconButton>
       <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
         <DeleteIcon style={{ color: red[300] }}/>
       </IconButton>
-      </div>
       </div>
       </li>
     )

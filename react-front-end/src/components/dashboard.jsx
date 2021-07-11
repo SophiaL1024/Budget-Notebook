@@ -122,8 +122,8 @@ const Dashboard=function(){
     <YAxis />
     <Tooltip />
     <Legend />
-    <Bar dataKey="SavingGoal" fill="#9bc0ff" />
-    <Bar dataKey="SavingsAcheived" fill="#69f0ae" />
+    <Bar dataKey="SavingGoal" fill="rgb(108, 228, 128)" />
+    <Bar dataKey="SavingsAcheived" fill="#64b5f6" />
   </BarChart>
 
   </Grid>
