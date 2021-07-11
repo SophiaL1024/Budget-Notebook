@@ -13,13 +13,23 @@ import useVisualMode from '../../hooks/useVisualMode';
 
 export default function NewTransactionForm(props) {
   const {handleChange,handleSubmit,formValue,incomeBudget,expenseBudget} = useContext(dateContext);
+  
+  const button = (
+    mode === HIDE && (
+       <div>
+        <Button onClick={() =>transition(SHOW)} color="primary">
+        Add Transaction
+      </Button>
+        </div>
+    )
+  )
 
   console.log("incomeBudget:",incomeBudget);
   console.log("expenseBudget:",expenseBudget);
 
-  // if(!incomeBudget||!expenseBudget||!incomeBudget.length||!expenseBudget.length ){
-  //   return null
-  // }
+  if(!incomeBudget||!expenseBudget ){
+    return (button)
+  }
 
   const [type, setType] = useState('income');
   const SHOW = "SHOW";
@@ -133,15 +143,15 @@ const { mode, transition, back } = useVisualMode(HIDE);
     </div>
   ))
 
-  const button = (
-    mode === HIDE && (
-       <div>
-        <Button onClick={() =>transition(SHOW)} color="primary">
-        Add Transaction
-      </Button>
-        </div>
-    )
-  )
+  // const button = (
+  //   mode === HIDE && (
+  //      <div>
+  //       <Button onClick={() =>transition(SHOW)} color="primary">
+  //       Add Transaction
+  //     </Button>
+  //       </div>
+  //   )
+  // )
 
   return (
     <>
