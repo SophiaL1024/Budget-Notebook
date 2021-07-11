@@ -6,7 +6,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import React, { useState } from 'react';
-
+import { green } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -55,13 +56,13 @@ export default function Edit(props) {
           <td>{props.description}</td>
           <td>${props.amount}</td>
         <td>
-          <IconButton aria-label="edit" onClick={() => transition(EDIT)}>
-            <EditIcon />
+          <IconButton aria-label="edit" fill="green" onClick={() => transition(EDIT)}>
+          <EditIcon style={{ color: green[300] }}  />
           </IconButton>
           </td>
           <td>
-          <IconButton aria-label="delete" onClick={() => props.deletion(props.id, props.type)}>
-            <DeleteIcon />
+          <IconButton aria-label="delete" fill="pink" onClick={() => props.deletion(props.id, props.type)}>
+            <DeleteIcon style={{ color: red[300] }}/>
           </IconButton>
           </td>
         </tr>

@@ -7,7 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import  '../App.css';
 import dateContext from "../context.js";
-//Drawer
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -29,21 +28,24 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 100,
   },
-
   //drawer
   root: {
     display: 'flex',
   },
+  //header
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    background: "#64b5f6"
   },
+  //sidebar
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
   },
   drawerPaper: {
     width: drawerWidth,
+    background: '#e1f5fe',
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -53,8 +55,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(10),
   },
   link: { textDecoration: 'none', 
-  color: theme.palette.text.primary
-}
+  color: theme.palette.text.secondary,
+  }
 }));
 
 export default function SideBar() {
@@ -98,6 +100,7 @@ export default function SideBar() {
   return (
     <div className={classes.root}>
       <CssBaseline />
+      {/* Header  */}
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
@@ -106,13 +109,14 @@ export default function SideBar() {
         </Toolbar>
       </AppBar>
 
+      {/* Sidebar */}
       <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{paper: classes.drawerPaper }}
         anchor="left"
       >
-
+        {/* Sidebar buttons to each route*/}
         <div className={classes.toolbar} />
         <Divider />
         <List>
@@ -142,7 +146,7 @@ export default function SideBar() {
           </Link> 
         </List>
         <Divider />
-  
+      {/* Sidebar selection of year or month to render data*/}
       <FormControl className={classes.formControl}>
         <InputLabel id="select-year-label">Year</InputLabel>
         <Select

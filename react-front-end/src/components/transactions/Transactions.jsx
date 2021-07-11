@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import IncomeList from "./incomeList";
-import ExpenseList from "./expenseList";
+// import IncomeList from "./incomeList";
+// import ExpenseList from "./expenseList";
 import NewTransactionForm from "./newTransactionForm";
 import dateContext from "../../context";
 import Graph from "./Graph";
@@ -9,7 +9,7 @@ import FormDrawer from "./formDrawer"
 import TransactionTab from "./transactionTab"
 
 export default function Transactions() {
-  const { month, year } = useContext(dateContext);
+  const {month,year,userId} = useContext(dateContext);
 
   const [state, setState] = useState({
     incomeTransactions: [],
@@ -32,7 +32,7 @@ export default function Transactions() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/transactions/1", { params: { year, month } })
+      .get("http://localhost:3000/transactions",{ params: { year,month,userId } })
       .then((res) => {
         setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo, expenseBudget: res.data.expenseBudget, incomeBudget: res.data.incomeBudget }));
       });

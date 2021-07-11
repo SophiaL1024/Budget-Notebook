@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import{AppBar,Tabs,Tab,Typography,Zoom,Fab,Box} from '@material-ui/core';
-
+import { purple } from '@material-ui/core/colors';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,11 +38,18 @@ function a11yProps(index) {
   };
 }
 
-
 const useStyles = makeStyles((theme) => ({
+  palette: {
+    primary: {
+      main: purple[500],
+    },
+    secondary: {
+      main: '#f44336',
+    },
+  },
   tab_bar: {
     backgroundColor: theme.palette.background.paper,
-    width: 500,
+    width: 600,
     position: 'relative',
     minHeight: 200,
   },
@@ -55,8 +62,10 @@ const useStyles = makeStyles((theme) => ({
     height: 550,
     width: 600,
     overflow : "scroll",
+  },
+  tabs: {
+    backgroundColor: "#95ADEF",
   }
-
 }));
 
 export default function budgetList() {
@@ -102,7 +111,7 @@ export default function budgetList() {
 
   return (
     <div className={classes.tab_bar}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -111,7 +120,7 @@ export default function budgetList() {
           variant="fullWidth"
           aria-label="action tabs example"
         >
-          <Tab label="Income Budget" {...a11yProps(0)} />
+          <Tab label="Income Budget" {...a11yProps(0)}  />
           <Tab label="Expense Budget" {...a11yProps(1)} />
           <Tab label="Saving Goal" {...a11yProps(2)} />
         </Tabs>
@@ -119,7 +128,7 @@ export default function budgetList() {
 
       {/* <dateContext.Provider value={{open}}> */}
 
-        <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel}>
+        <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
         <BudgetListItems tabType={0} />   
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
         </TabPanel>

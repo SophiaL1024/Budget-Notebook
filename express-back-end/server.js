@@ -29,7 +29,7 @@ App.use('/transactions', transactions);
 App.use('/dashboards', dashboard);
 App.use('/categories', categories);
 App.use('/budgets', budget);
-App.use('/users', user);
+App.use('/', user);
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
