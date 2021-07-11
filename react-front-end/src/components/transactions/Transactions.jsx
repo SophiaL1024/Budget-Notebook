@@ -208,9 +208,10 @@ export default function Transactions() {
 
         <Graph />
 
+        <NewTransactionForm className='form' />
+        
         <TransactionTab />
 
-        <NewTransactionForm className='form' />
 
 
         {/* <FormDrawer/> */}

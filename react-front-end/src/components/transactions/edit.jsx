@@ -49,23 +49,22 @@ export default function Edit(props) {
   //jsx to be returned when state is in SHOW
   const showItem = (
     mode === SHOW && (
-      <tr>
     
-        
-          <td>{props.name}</td>
-          <td>{props.description}</td>
-          <td>${props.amount}</td>
-        <td>
+    
+        <div class={"newTransactionForm"}>
+          <div>{props.name}</div>
+          <div>{props.description}</div>
+          <div>${props.amount}</div>
           <IconButton aria-label="edit" fill="green" onClick={() => transition(EDIT)}>
           <EditIcon style={{ color: green[300] }}  />
           </IconButton>
-          </td>
-          <td>
+
+
           <IconButton aria-label="delete" fill="pink" onClick={() => props.deletion(props.id, props.type)}>
             <DeleteIcon style={{ color: red[300] }}/>
           </IconButton>
-          </td>
-        </tr>
+        </div >
+
     )
   )
 

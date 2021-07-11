@@ -12,46 +12,43 @@ import useVisualMode from '../../hooks/useVisualMode';
 
 
 export default function NewTransactionForm(props) {
-  const {handleChange,handleSubmit,formValue,incomeBudget,expenseBudget} = useContext(dateContext);
-  
-  const button = (
-    mode === HIDE && (
-       <div>
-        <Button onClick={() =>transition(SHOW)} color="primary">
-        Add Transaction
-      </Button>
-        </div>
-    )
-  )
-
-  console.log("incomeBudget:",incomeBudget);
-  console.log("expenseBudget:",expenseBudget);
-
-  if(!incomeBudget||!expenseBudget ){
-    return (button)
-  }
-
+  const { handleChange, handleSubmit, formValue, incomeBudget, expenseBudget } = useContext(dateContext);
   const [type, setType] = useState('income');
   const SHOW = "SHOW";
   const HIDE = "HIDE";
+  //function that transitions what is being displayed
+  const { mode, transition, back } = useVisualMode(HIDE);
 
-//function that transitions what is being displayed
-const { mode, transition, back } = useVisualMode(HIDE);
+ 
+
+if (!incomeBudget || !expenseBudget) {
+    return (button)
+  }
+
+   const button = (
+    mode === HIDE && (
+      <div>
+        <Button onClick={() => transition(SHOW)} color="primary">
+          Add Transaction
+        </Button>
+      </div>
+    )
+  )
 
   const handleTypeChange = (event) => {
     setType(event.target.value);
-    
+
   };
 
-  const selectorList=(type)=>{
-    if(type==="income"){
-      return incomeBudget.map(e=>{
+  const selectorList = (type) => {
+    if (type === "income") {
+      return incomeBudget.map(e => {
         return (
           <MenuItem value={e.id} key={e.id}>{e.name}</MenuItem>
         )
       })
-    }else if(type==="expense"){
-      return expenseBudget.map(e=>{
+    } else if (type === "expense") {
+      return expenseBudget.map(e => {
         return (
           <MenuItem value={e.id} key={e.id}>{e.name}</MenuItem>
         )
@@ -62,86 +59,88 @@ const { mode, transition, back } = useVisualMode(HIDE);
 
   const newTransaction = (
     mode === SHOW && (
-    <div>
-      <h3>New transaction</h3>
-
-      <RadioGroup row aria-label="transactionsType" name="transaction" value={type} onChange={handleTypeChange}>
-          <FormControlLabel value="income" control={<Radio />} label="Income" />
-          <FormControlLabel value="expense" control={<Radio />} label="Expense" />
-      </RadioGroup>
-        <div>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name" 
-            type="text" 
-            onChange={(event)=>handleChange("name",event.target.value)}
-            value={formValue.name}  
-          />
+      <div class={"transactionForm"}>
+        <h3>New transaction</h3>
+        <div class={"newTransactionForm"}>
+          <div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Name"
+              type="text"
+              onChange={(event) => handleChange("name", event.target.value)}
+              value={formValue.name}
+            />
+          </div>
+          <div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="description"
+              label="Description"
+              type="text"
+              onChange={(event) => handleChange("description", event.target.value)}
+              value={formValue.description}
+            />
+          </div>
+          <div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="amount"
+              label="Amount in dollars"
+              type="number"
+              onChange={(event) => handleChange("amount", event.target.value)}
+              value={formValue.amount}
+            />
+          </div>
         </div>
-        <div>
+        <div class={"newTransactionForm"}>
+          <RadioGroup row aria-label="transactionsType" name="transaction" value={type} onChange={handleTypeChange}>
+            <FormControlLabel value="income" control={<Radio />} label="Income" />
+            <FormControlLabel value="expense" control={<Radio />} label="Expense" />
+          </RadioGroup>
           <TextField
-            autoFocus
-            margin="dense"
-            id="description"
-            label="Description" 
-            type="text" 
-            onChange={(event)=>handleChange("description",event.target.value)}
-            value={formValue.description}  
-          />
-        </div>
-        <div>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="amount"
-            label="Amount in dollars" 
-            type="number" 
-            onChange={(event)=>handleChange("amount",event.target.value)}
-            value={formValue.amount}  
-          />
-        </div>
-        <TextField
             autoFocus
             margin="dense"
             id="date"
 
-            type="date" 
-            onChange={(event)=>handleChange("date",event.target.value)}
+            type="date"
+            onChange={(event) => handleChange("date", event.target.value)}
             value={formValue.date}
           />
-         <br/>
+          <FormControl style={{width:80}}>
+            <InputLabel id="demo-simple-select-label"
+            style={{height:45}}>Select Budget</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={formValue.selectedBudgetId}
+              onChange={(event) => handleChange("selectedBudgetId", event.target.value) && transition(HIDE)}
+            >
+              {selectorList(type)}
 
- 
-        <FormControl > 
-        <InputLabel id="demo-simple-select-label">Select Budget</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={formValue.selectedBudgetId}
-          onChange={(event)=>handleChange("selectedBudgetId",event.target.value) && transition(HIDE)}
-        >
-          {selectorList(type)}
-
-        </Select>
-      </FormControl>
-              
-      <div>
-        <Button onClick={() =>{handleSubmit(type); transition(HIDE)}} color="primary">
-        Submit
-      </Button>
+            </Select>
+          </FormControl>
         </div>
-                
-      <div>
-        <Button onClick={() =>transition(HIDE)} color="primary">
-        cancel
-      </Button>
-        </div>
-    
+        <div class={"newTransactionForm"}>
 
-    </div>
-  ))
+          <div>
+            <Button onClick={() => { handleSubmit(type); transition(HIDE) }} color="primary">
+              Submit
+            </Button>
+          </div>
+
+          <div>
+            <Button onClick={() => transition(HIDE)} color="primary">
+              cancel
+            </Button>
+          </div>
+          </div>
+
+      </div>
+    ))
 
   // const button = (
   //   mode === HIDE && (
@@ -155,8 +154,8 @@ const { mode, transition, back } = useVisualMode(HIDE);
 
   return (
     <>
-    {newTransaction}
-    {button}
+      {button}
+      {newTransaction}
     </>
   )
 };

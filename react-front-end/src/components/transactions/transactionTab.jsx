@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     width: 800,
     position: 'relative',
     minHeight: 200,
+    margin: 25
   },
   fab: {
     // position: 'absolute',
