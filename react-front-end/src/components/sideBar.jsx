@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   //drawer
   title: {
-    flexGrow: 1,
+    flexGrow: 3,
   },
   //header
   appBar: {
@@ -51,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   content: {
-    flexGrow: 6,
+    flexGrow: 3,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(10),
+    padding: theme.spacing(6),
   },
   link: { textDecoration: 'none', 
   color: theme.palette.text.secondary,

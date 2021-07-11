@@ -19,7 +19,7 @@ code {
 #root{
   display: flex;
   /* flex-direction: row; */
-  margin-left: 130px;
+  margin-left: 60px;
 }
 
 /* div.box{
