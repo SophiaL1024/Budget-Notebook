@@ -108,7 +108,7 @@ export default function BudgetPieChart(){
     }
   })
   
-  console.log(data1)
+  // console.log(data1)
   return(
     <>
     {/* Pie chart for income showing types of income budget */}
