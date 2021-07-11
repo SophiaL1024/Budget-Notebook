@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab_bar: {
     backgroundColor: theme.palette.background.paper,
-    width: 700,
+    width: 997,
     position: 'relative',
     minHeight: 200,
   },
@@ -59,9 +59,10 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(2),
   },
   panel: {
-    height: 550,
-    width: 700,
+    height: 600,
+    width: 1000,
     overflow : "scroll",
+
   },
   tabs: {
     backgroundColor: "#95ADEF",
@@ -129,19 +130,47 @@ export default function budgetList() {
       {/* <dateContext.Provider value={{open}}> */}
 
         <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
-        <BudgetListItems tabType={0} />   
+        <table>
+        <thead>
+           <tr>
+           <th>Budget</th>
+           <th>Budget Amount</th>
+           <th>Actual Income</th>
+           <th></th>
+    
+           </tr>
+          </thead>
+          <tbody>
+        <BudgetListItems tabType={0} /> 
+        </tbody>  
+        </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
         </TabPanel>
+
         <TabPanel value={value} index={1} dir={theme.direction}className={classes.panel}>
+        <table>
+        <thead>
+           <tr>
+           <th>Budget</th>
+           <th>Budget Amount</th>
+           <th>Actual Income</th>
+           <th></th>
+           <th></th>
+           </tr>
+          </thead>
+          <tbody>
         <BudgetListItems tabType={1} />
+        </tbody>  
+        </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
         </TabPanel>
+
         <TabPanel value={value} index={2} dir={theme.direction}>
         <BudgetListItems tabType={2} />
-          {/* <BudgetForm open={open} setOpen={setOpen} tabType={2}/> */}
+
         </TabPanel>
 
-      {/* </dateContext.Provider> */}
+      
       
        {fabs.map((fab, index) => (
         <Zoom
