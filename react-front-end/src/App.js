@@ -16,14 +16,15 @@ const App = function() {
 const[userId,setUserId]=useState(document.cookie?Number(document.cookie.slice(7)):'');
 const [month,setMonth]=useState(new Date().getMonth()+1);
 const [year,setYear]=useState(new Date().getFullYear());
-console.log("userId:",userId);
-console.log("document.cookie",document.cookie);
-console.log("slice",document.cookie.slice(7))
+// console.log("userId:",userId);
+// console.log("document.cookie",document.cookie);
+// console.log(document.cookie.indexOf("userId="))
+// console.log("slice",document.cookie.slice(7))
   return (
     <>
       <Router>
         <dateContext.Provider value={{month,setMonth,year,setYear,userId,setUserId}}>
-      {userId||<User/>}
+      {!userId&&<User/>}
       {userId&&
         <Switch>
           <Route path="/dashboards">
