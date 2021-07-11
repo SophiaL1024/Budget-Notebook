@@ -63,8 +63,13 @@ const Dashboard=function(){
 
   return(
     // Grid for the monthly income, expense and balance
-    <Grid container spacing={8} className={classes.grid}>
-      <Grid item xs={3} md={5}>
+    <Grid container spacing={10} className={classes.grid}  alignItems="center">
+      {/* <Grid
+  container
+  direction="row"
+  justifyContent="center" */}
+  <Grid item xs={1} md={1}></Grid>
+      <Grid item xs={8} md={5}>
       <Paper className={classes.paper}>
       <div className="box">
       <h1>{monthName[month-1]}</h1>
@@ -81,7 +86,7 @@ const Dashboard=function(){
     </Grid>
 
         {/* // Grid for the annual expense, income and balance */}
-        <Grid item xs={4} md={5}>
+        <Grid item xs={8} md={5}>
           <Paper className={classes.paper}>
             <div className="box">
               <h1>{year}</h1>
@@ -97,17 +102,18 @@ const Dashboard=function(){
                     </div>
             </Paper>
         </Grid>
+        <Grid item xs={1} md={1}></Grid>
   <Grid>
 
 {/* Bar chart for savings goal and savings achieved */}
   <BarChart
-    width={1000}
-    height={350}
+    width={1100}
+    height={330}
     data={barchartData}
     margin={{
-      top: 5,
+      top: 0,
       right: 0,
-      left: 0,
+      left: 50,
       bottom: 5,
     }}
   >
@@ -116,8 +122,8 @@ const Dashboard=function(){
     <YAxis />
     <Tooltip />
     <Legend />
-    <Bar dataKey="SavingGoal" fill="#8884d8" />
-    <Bar dataKey="SavingsAcheived" fill="#82ca9d" />
+    <Bar dataKey="SavingGoal" fill="#9bc0ff" />
+    <Bar dataKey="SavingsAcheived" fill="#69f0ae" />
   </BarChart>
 
   </Grid>
