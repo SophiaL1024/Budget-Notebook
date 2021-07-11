@@ -18,12 +18,12 @@ export default function Edit(props) {
   const SHOW = "SHOW";
   const EDIT = "EDIT";
 
-  
+
   //function that transitions what is being displayed
   const { mode, transition, back } = useVisualMode(
     SHOW
   );
-    
+
   const [name, setName] = useState(props.name || '');
   const [description, setDescription] = useState(props.description || '');
   const [amount, setAmount] = useState(props.amount || '');
@@ -31,37 +31,40 @@ export default function Edit(props) {
   const classes = useStyles();
 
   //handles name state
-  const nameHandler = function(event){
+  const nameHandler = function (event) {
     setName(event.target.value);
   };
 
   //handles description state
-  const descriptionHandler = function(event){
+  const descriptionHandler = function (event) {
     setDescription(event.target.value);
   };
 
   //handles amount state
-  const amountHandler = function(event){
+  const amountHandler = function (event) {
     setAmount(event.target.value);
   };
 
   //jsx to be returned when state is in SHOW
   const showItem = (
     mode === SHOW && (
-      <tr key={props.id}>
-        <td>
-          <div>{props.name}</div>
-          <div>{props.description}</div>
-          <div>${props.amount}</div></td>
+      <tr>
+    
+        
+          <td>{props.name}</td>
+          <td>{props.description}</td>
+          <td>${props.amount}</td>
         <td>
           <IconButton aria-label="edit" onClick={() => transition(EDIT)}>
             <EditIcon />
           </IconButton>
+          </td>
+          <td>
           <IconButton aria-label="delete" onClick={() => props.deletion(props.id, props.type)}>
             <DeleteIcon />
           </IconButton>
-        </td>
-      </tr>
+          </td>
+        </tr>
     )
   )
 

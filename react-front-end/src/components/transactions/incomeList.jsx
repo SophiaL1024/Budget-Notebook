@@ -31,10 +31,20 @@ export default function IncomeList() {
 
   return (
     <>
-      <table>
-        <tbody>
+      <table style={{width:"100%"}}>
+        <tr style={{
+          display: "flex",
+          justify-content: "space-between"
+        }}>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        
           {listIncomes}
-        </tbody>
+       
       </table>
     </>
   );
