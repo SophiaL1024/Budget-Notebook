@@ -20,20 +20,20 @@ export default function NewTransactionForm(props) {
   const { mode, transition, back } = useVisualMode(HIDE);
 
  
+  const button = (
+   mode === HIDE && (
+     <div>
+       <Button onClick={() => transition(SHOW)} color="primary">
+         Add Transaction
+       </Button>
+     </div>
+   )
+ )
 
 if (!incomeBudget || !expenseBudget) {
     return (button)
   }
 
-   const button = (
-    mode === HIDE && (
-      <div>
-        <Button onClick={() => transition(SHOW)} color="primary">
-          Add Transaction
-        </Button>
-      </div>
-    )
-  )
 
   const handleTypeChange = (event) => {
     setType(event.target.value);

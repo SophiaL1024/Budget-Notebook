@@ -32,20 +32,16 @@ export default function BudgetListItems(props){
       axios.delete('http://localhost:3000/budgets',{data:{id,budgetType}})
 
       if(budgetType==="income"){
-
         // console.log("test",budgetType,typeof(budgetType))
         const newIncomeAndBudget =incomeAndBudget.filter(e=>e.id!==id);
-
         // console.log(newIncomeAndBudget)
-
         setState((prev) => ({ 
           ...prev,      
           incomeAndBudget: newIncomeAndBudget               
         })) 
 
       }else if (budgetType==="expense"){
-        const newExpenseAndBudget =expenseAndBudget.filter(e=>e.id!==id);
-  
+        const newExpenseAndBudget =expenseAndBudget.filter(e=>e.id!==id);  
         setState((prev) => ({ 
           ...prev,      
           expenseAndBudget: newExpenseAndBudget               
@@ -90,33 +86,6 @@ export default function BudgetListItems(props){
         </td>
       </tr>
     </>
-
-      // <li key={e.id}>
-      //   <BudgetProgressBar id={e.id} type={'income'}/>
-      //   <div className="expensebox">
-      //   <span>     
-      //     {e.name} 
-      //   </span>
-      //   <br/>
-      //   <div className="box2">
-      //   <span>     
-      //   Income budget: {e.amount} 
-      //   </span>
-      //   <br/>
-      //   <span>     
-      //   Actual income: {e.income_sum}
-      //   </span>
-      //   </div>
-      //   </div>
-      //   <div className="icons">
-      //   <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
-      //   <EditIcon style={{ color: green[300] }}  />
-      // </IconButton>
-      // <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'income',e.income_sum)}>
-      //   <DeleteIcon style={{ color: red[300] }}/>
-      // </IconButton>
-      // </div>   
-      // </li>
     )
   
   })
@@ -156,29 +125,6 @@ export default function BudgetListItems(props){
           </td>
         </tr>
       </>
-      // <li key={e.id}>
-      //   <BudgetProgressBar id={e.id} type={'expense'}/>
-      //   <span>     
-      //     {e.name} 
-      //   </span>
-      //   <br/>
-      //   <div className="box2">
-      //   <span>     
-      //   Expense budget: {e.amount} 
-      //   </span>
-      //   {/* <br/> */}
-      //   <span>     
-      //   Actual expense: {e.expense_sum}
-      //   </span>
-   
-      //   <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
-      //   <EditIcon style={{ color: green[300] }}  />
-      // </IconButton>
-      // <IconButton aria-label="delete" fill="pink" onClick={()=>handleDelete(e.id,'expense',e.expense_sum)}>
-      //   <DeleteIcon style={{ color: red[300] }}/>
-      // </IconButton>
-      // </div>
-      // </li>
     )
   })
 
@@ -194,7 +140,7 @@ export default function BudgetListItems(props){
     return incomeBudgetSum-expenseBudgetSum;
   }
   
-  // console.log(balanceBudget);
+
 
   //conditional render different tabs
   if(props.tabType===0){
@@ -203,17 +149,27 @@ export default function BudgetListItems(props){
     return expenseItems;
   }else if(props.tabType===2 && !edit){
     return (
-      <div>
-        you have this much of balance left:<br/>
-        {balanceRemaining()}<br/>
-        balanceBudget:{balanceBudget[0]}<br/>
-        Actual income:{balanceBudget[1]}<br/>
-        Actual expense:{balanceBudget[2]}
-        <IconButton aria-label="edit" onClick={()=>handleEdit(1,'balance')} >
-        <EditIcon />
-      </IconButton >
-  
-      </div>
+      <table>
+      <thead>
+        <tr>
+          <th>Remaining budget</th>
+         <th>Saving Goal</th>
+         <th>Actual Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{balanceRemaining()}</td>
+          <td>{balanceBudget[0]}</td>
+          <td>{(Number(balanceBudget[1])-Number(balanceBudget[2])).toFixed(2)}</td>
+          <td>
+          <IconButton aria-label="edit" onClick={()=>handleEdit(1,'balance')} >
+          <EditIcon style={{ color: green[300] }}/>
+         </IconButton >
+          </td>
+        </tr>
+      </tbody>
+      </table>
     ) 
   }else if(props.tabType===2 && edit){
     return <EditForm setEdit={setEdit} type={'balance'} key={0}/>
