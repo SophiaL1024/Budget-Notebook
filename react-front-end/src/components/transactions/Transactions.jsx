@@ -38,10 +38,6 @@ export default function Transactions() {
       });
   }, [month, year]);
 
-  console.log("incomeBudget from transaction page:", state.incomeBudget);
-  console.log("incomeTransactions from transaction page:", state.incomeTransactions);
-
-  // console.log(state)
 
 
   const deletion = function (id, type) {
@@ -127,7 +123,6 @@ export default function Transactions() {
 
   // adds the new transaction to the database via axios call
   const handleSubmit = (type) => {
-    // console.log("value:",value);
     formValue.year = Number(formValue.date.slice(0, 4));
     formValue.month = Number(formValue.date.slice(5, 7));
     formValue.day = Number(formValue.date.slice(-2));
@@ -213,9 +208,10 @@ export default function Transactions() {
 
         <Graph />
 
+        <NewTransactionForm className='form' />
+        
         <TransactionTab />
 
-        <NewTransactionForm className='form' />
 
 
         {/* <FormDrawer/> */}

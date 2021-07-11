@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from "react";
 import dateContext from '../../context';
 import Edit from "./edit";
+import NewTransactionForm from './newTransactionForm';
 
 
 export default function IncomeList() {
@@ -31,12 +32,17 @@ export default function IncomeList() {
 
   return (
     <>
-      <table>
-        <thead><h3>Income</h3></thead>
-        <tbody>
+     <div class={"newTransactionForm"}>
+          <h3>Name</h3>
+          <h3>Description</h3>
+          <h3>Amount</h3>
+          <h3>Edit</h3>
+          <h3>Delete</h3>
+          </div>
+        
           {listIncomes}
-        </tbody>
-      </table>
+       
+    
     </>
   );
 };

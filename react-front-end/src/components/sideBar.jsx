@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     background: "#64b5f6"
+
   },
   //sidebar
   drawer: {
