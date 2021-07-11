@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {  BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar} from "recharts";
-// import { Typography } from "@material-ui/core";
 
+//theme and styles from Material UI
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -17,6 +17,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.default,
   },
 }));
+
+//Array of month for the dashboard grid
 const monthName = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
 
 const Dashboard=function(){
@@ -60,15 +62,13 @@ const Dashboard=function(){
   })
 
   return(
-    
-      //  <div className={classes.root}>
-      <Grid container spacing={8} className={classes.grid}>
-        <Grid item xs={3} md={5}>
-        <Paper className={classes.paper}>
-        <div className="year">
-        <h1>{monthName[month-1]}</h1>
-        {/* selected month:{month}<br/> */}
-        </div>
+    // Grid for the monthly income, expense and balance
+    <Grid container spacing={8} className={classes.grid}>
+      <Grid item xs={3} md={5}>
+      <Paper className={classes.paper}>
+      <div className="box">
+      <h1>{monthName[month-1]}</h1>
+      </div>
         <div className="balance">
           <h2>Balance : ${Number(dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance).toLocaleString()}</h2>
         </div>
@@ -77,49 +77,51 @@ const Dashboard=function(){
           </div>          
             <div className="expense">
             <h2>Expenses : ${Number(dashboardData.monthlyExpense.find(e=>e.month===month).monthly_expense).toLocaleString()}</h2></div>
-      </Paper>
-      </Grid>
-        <Grid item xs={4} md={5}>
-        <Paper className={classes.paper}>
-          <div className="year">
-            <h1>{year}</h1>
-              <div className="balance">
-              <h2>Balance : ${(Number(dashboardData.annualIncome)-Number(dashboardData.annualExpense)).toLocaleString()}</h2>
-              </div>
-              </div>
-                <div className="income">
-                  <h2>Incomes : ${Number(dashboardData.annualIncome).toLocaleString() }</h2>
-                </div> 
-                  <div className="expense">
-                    <h2> Expenses : ${Number(dashboardData.annualExpense).toLocaleString() }</h2>
-                  </div>
-      </Paper>
+       </Paper>
     </Grid>
-<Grid>
- 
-  
-        <BarChart
-          width={1000}
-          height={350}
-          data={barchartData}
-          margin={{
-            top: 5,
-            right: 0,
-            left: 0,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="SavingGoal" fill="#8884d8" />
-          <Bar dataKey="SavingsAcheived" fill="#82ca9d" />
-        </BarChart>
-    
+
+        {/* // Grid for the annual expense, income and balance */}
+        <Grid item xs={4} md={5}>
+          <Paper className={classes.paper}>
+            <div className="box">
+              <h1>{year}</h1>
+                <div className="balance">
+                <h2>Balance : ${(Number(dashboardData.annualIncome)-Number(dashboardData.annualExpense)).toLocaleString()}</h2>
+                </div>
+                </div>
+                  <div className="income">
+                    <h2>Incomes : ${Number(dashboardData.annualIncome).toLocaleString() }</h2>
+                  </div> 
+                    <div className="expense">
+                      <h2> Expenses : ${Number(dashboardData.annualExpense).toLocaleString() }</h2>
+                    </div>
+            </Paper>
         </Grid>
-        </Grid>
+  <Grid>
+
+{/* Bar chart for savings goal and savings achieved */}
+  <BarChart
+    width={1000}
+    height={350}
+    data={barchartData}
+    margin={{
+      top: 5,
+      right: 0,
+      left: 0,
+      bottom: 5,
+    }}
+  >
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="name" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Bar dataKey="SavingGoal" fill="#8884d8" />
+    <Bar dataKey="SavingsAcheived" fill="#82ca9d" />
+  </BarChart>
+
+  </Grid>
+  </Grid>
 )
 };
 

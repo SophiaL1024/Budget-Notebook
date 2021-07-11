@@ -18,10 +18,11 @@ code {
   display: flex;
 }
 
-div.year{
+div.box{
   text-align:left;
   color:rgb(118, 120, 122)
 }
+
 
 div.income{
   text-align: left;
