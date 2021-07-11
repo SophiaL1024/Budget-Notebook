@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab_bar: {
     backgroundColor: theme.palette.background.paper,
-    width: 600,
+    width: 700,
     position: 'relative',
     minHeight: 200,
   },
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   panel: {
     height: 550,
-    width: 600,
+    width: 700,
     overflow : "scroll",
   },
   tabs: {
@@ -142,7 +142,7 @@ export default function budgetList() {
         </TabPanel>
 
       {/* </dateContext.Provider> */}
-
+      
        {fabs.map((fab, index) => (
         <Zoom
           key={index}
