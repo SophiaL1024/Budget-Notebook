@@ -29,12 +29,17 @@ export default function ExpenseList() {
 
   return (
     <>
-      <h3>Expense</h3>
-      <table>
-        <tbody>
-          {listExpenses}
-        </tbody>
-      </table>
-    </>
+    <div class={"newTransactionForm"}>
+         <h3>Name</h3>
+         <h3>Description</h3>
+         <h3>Amount</h3>
+         <h3>Edit</h3>
+         <h3>Delete</h3>
+         </div>
+       
+         {listExpenses}
+      
+   
+   </>
   );
 };
