@@ -65,8 +65,10 @@ const Dashboard=function(){
       <Grid container spacing={8} className={classes.grid}>
         <Grid item xs={3} md={5}>
         <Paper className={classes.paper}>
+        <div className="year">
         <h1>{monthName[month-1]}</h1>
         {/* selected month:{month}<br/> */}
+        </div>
         <div className="balance">
           <h2>Balance : ${Number(dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance).toLocaleString()}</h2>
         </div>
