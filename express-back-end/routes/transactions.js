@@ -2,27 +2,28 @@ const Express = require('express');
 const router = Express.Router();
 const transactionsQueries = require('../db/queries/transactionsQueries');
 
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
   const transactionsData = {};
-  transactionsQueries.getExpenseTransactionsById(req.params.id,req.query.month,req.query.year)
+  const userId = req.query.userId;
+  transactionsQueries.getExpenseTransactionsById(userId,req.query.month,req.query.year)
     .then((resolve) => {
       transactionsData.expenseInfo = resolve;
     })
     .then(() => {
-      transactionsQueries.getIncomeTransactionsById(req.params.id,req.query.month,req.query.year)
+      transactionsQueries.getIncomeTransactionsById(userId,req.query.month,req.query.year)
         .then(resolve => {
           transactionsData.incomeInfo = resolve;
         });
     })
     .then(() => {
-      transactionsQueries.getIncomeBudget(req.params.id,req.query.month,req.query.year)
+      transactionsQueries.getIncomeBudget(userId,req.query.month,req.query.year)
         .then((resolve)=>{
           // console.log("resolve",resolve);
           transactionsData.incomeBudget = resolve;
         });
     })
     .then(() => {
-      transactionsQueries.getExpenseBudget(req.params.id,req.query.month,req.query.year)
+      transactionsQueries.getExpenseBudget(userId,req.query.month,req.query.year)
         .then(resolve => {
           transactionsData.expenseBudget = resolve;
           // console.log("e",transactionsData.expenseBudget);
