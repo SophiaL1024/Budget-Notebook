@@ -67,14 +67,14 @@ export default function Edit(props) {
           <div className={classes.itemProperty}>{props.name}</div>
           <div className={classes.itemProperty}>{props.description}</div>
           <div>${props.amount}</div>
-          <IconButton aria-label="edit" fill="green" onClick={() => transition(EDIT)}>
+          <div>
+          <IconButton aria-label="edit" style={{marginRight:15}} fill="green" onClick={() => transition(EDIT)}>
           <EditIcon style={{ color: green[300] }}  />
           </IconButton>
-
-
-          <IconButton aria-label="delete" fill="pink" onClick={() => props.deletion(props.id, props.type)}>
+          <IconButton aria-label="delete" style={{marginLeft:15}}fill="pink" onClick={() => props.deletion(props.id, props.type)}>
             <DeleteIcon style={{ color: red[300] }}/>
           </IconButton>
+          </div>
         </div >
 
     )
