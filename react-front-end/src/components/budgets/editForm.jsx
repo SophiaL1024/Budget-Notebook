@@ -3,20 +3,17 @@ import axios from "axios";
 import dateContext from "../../context.js";
 import { Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import IconButton from '@material-ui/core/IconButton';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import EditIcon from '@material-ui/icons/Edit';
-// import SaveIcon from '@material-ui/icons/Save';
-// import React from 'react';
+// import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
+    // width:"10px"    
   },
   edit: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '10ch',
+      width: '200px',
     },
   },
 }));
@@ -25,10 +22,6 @@ export default function EditForm(props) {
   const classes = useStyles();
 
   const {incomeAndBudget,expenseAndBudget,balanceBudget,setState,month,year} = useContext(dateContext);
-//  console.log(month)
-
-  // console.log("props.id-------------",props.id)
-
 
   const [formValue, setFormValue] = useState({ 
     name: "" ,
@@ -45,11 +38,8 @@ export default function EditForm(props) {
   const handleSave=function(){
   axios.patch('http://localhost:3000/budgets', {data:{formValue,type:props.type,id:props.id,month,year,userId:1}})
     .then((resolve)=>{
-      // console.log(resolve)
-      // console.log(props.type)
 
       if(props.type==='income'){
-
         const newIncomeAndBudget=incomeAndBudget.map((e)=>{
           if(e.id===props.id){
             return{
@@ -92,10 +82,8 @@ export default function EditForm(props) {
 .then(()=>{
   props.setEdit(0);
 
-})
-
-  
-  }
+})  
+}
 
  return (
   <form className={classes.edit} noValidate autoComplete="off">
@@ -126,17 +114,19 @@ export default function EditForm(props) {
             color="primary"
             size="small"
             className={classes.button}
+            onClick={handleSave}
+          >Save</Button>
+
+          <Button
+            variant="contained"
+            color="default"
+            size="small"
+            className={classes.button}
             onClick={() => {props.setEdit(0)}}
           >Cancel</Button>
           
 
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            className={classes.button}
-            onClick={handleSave}
-          >Save</Button>
+
 
 
       </form>

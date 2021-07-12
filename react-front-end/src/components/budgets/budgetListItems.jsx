@@ -1,7 +1,6 @@
 import  React,{useContext,useState} from "react";
 import axios from 'axios';
 import dateContext from "../../context.js";
-
 import BudgetProgressBar from "./progressBar";
 import EditForm from"./editForm";
 import IconButton from '@material-ui/core/IconButton';
@@ -9,6 +8,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
+import Alert from '@material-ui/lab/Alert';
+
 
 export default function BudgetListItems(props){
 
@@ -16,6 +17,7 @@ export default function BudgetListItems(props){
   //set edit to show edit form
   const[edit,setEdit]=useState(0);
   const [type,setType]=useState('');
+  const [alert,setAlert]=useState(0);
 
   const handleEdit=function(id,budgetType){
     setEdit(id);
@@ -23,18 +25,18 @@ export default function BudgetListItems(props){
   }
 
   const handleDelete=function(id,budgetType,haveTransactions){
-    // console.log(haveTransactions,typeof(haveTransactions))
+
 
     if(haveTransactions!=="0" && haveTransactions){
-      alert('can not delete, this budget has transactions.')
+      setAlert(id)
     }else{
-      // console.log(id);
+
       axios.delete('http://localhost:3000/budgets',{data:{id,budgetType}})
 
       if(budgetType==="income"){
-        // console.log("test",budgetType,typeof(budgetType))
+
         const newIncomeAndBudget =incomeAndBudget.filter(e=>e.id!==id);
-        // console.log(newIncomeAndBudget)
+
         setState((prev) => ({ 
           ...prev,      
           incomeAndBudget: newIncomeAndBudget               
@@ -53,7 +55,6 @@ export default function BudgetListItems(props){
 
   const incomeItems=incomeAndBudget.map(e=>{
     if(edit===e.id && type==='income'){
-
      return (
        <tr>
          <td colspan="5">
@@ -61,6 +62,13 @@ export default function BudgetListItems(props){
      </td>
      </tr>
      )
+    }else if(alert===e.id){
+      return(
+      <tr>
+      <td colspan="5">
+      <Alert severity="error" onClose={() => {setAlert(0)}}> You can not delete the budget with transactions!</Alert>
+      </td>
+      </tr>)
     }
     else if(e.id===0){
       return null
@@ -99,7 +107,14 @@ export default function BudgetListItems(props){
       </td>
       </tr>
       )
-     }
+     }else if(alert===e.id){
+      return(
+      <tr>
+      <td colspan="5">
+      <Alert severity="error" onClose={() => {setAlert(0)}}> You can not delete the budget with transactions!</Alert>
+      </td>
+      </tr>)
+    }
      else if(e.id===0){
       return null
     }
