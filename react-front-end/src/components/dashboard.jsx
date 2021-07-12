@@ -30,7 +30,7 @@ const Dashboard=function(){
   ); 
   const {month,year,userId} = useContext(dateContext);
   useEffect(() => {
-    axios.get("/dashboards/", { params: { year,month,userId }} )
+    axios.get("/dashboards", { params: { year,month,userId }} )
       .then((res) => {         
         setState((prev) => ({ ...prev, 
         balanceBudget:res.data.balanceBudget,

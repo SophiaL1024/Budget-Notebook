@@ -25,13 +25,13 @@ router.get('/', (req, res) => {
               resolve.push({monthly_income:0,month:i});
             }
           }
-
-          dashboardData.monthlyIncome = resolve;
-
-          //Calculate annualIncome
           const incomeArr = resolve.map(e=>Number(e.monthly_income));
           dashboardData.annualIncome = incomeArr.length !== 0 ? incomeArr.reduce((a,b)=>a + b).toFixed(2) : 0;
-          // console.log(dashboardData.annualIncome);
+      
+          //let the next query wait until dashboardData.monthlyIncome is assigned
+          return new Promise(()=>{
+            dashboardData.monthlyIncome = resolve;
+          });
         });
     })
     .then(() => {

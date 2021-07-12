@@ -6,7 +6,7 @@ import {  TextField, Button, Dialog, DialogActions, DialogContent, DialogContent
 
 export default function budgetForm(props){
 
-  const {incomeAndBudget,expenseAndBudget,balanceBudget,setState} = useContext(dateContext);
+  const {incomeAndBudget,expenseAndBudget,setState} = useContext(dateContext);
 
   
   const [formValue, setFormValue] = useState({ 

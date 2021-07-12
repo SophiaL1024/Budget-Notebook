@@ -13,13 +13,14 @@ import User from './components/user/user';
 import Transactions from './components/transactions/Transactions.jsx';
 
 const App = function() {
-const[userId,setUserId]=useState(document.cookie?Number(document.cookie.slice(7)):'');
+
+const cookie=document.cookie?document.cookie.split(';').find(e=>e.includes('userId=')).slice(7):'';
+
+const[userId,setUserId]=useState(document.cookie?Number(cookie):'');
 const [month,setMonth]=useState(new Date().getMonth()+1);
 const [year,setYear]=useState(new Date().getFullYear());
-// console.log("userId:",userId);
-// console.log("document.cookie",document.cookie);
-// console.log(document.cookie.indexOf("userId="))
-// console.log("slice",document.cookie.slice(7))
+
+console.log("sliced cookie",Number(cookie))
   return (
     <>
       <Router>
@@ -27,6 +28,10 @@ const [year,setYear]=useState(new Date().getFullYear());
       {!userId&&<User/>}
       {userId&&
         <Switch>
+          {/* <Route path="/">
+            <SideBar />
+            <Dashboard />
+          </Route> */}
           <Route path="/dashboards">
             <SideBar />
             <Dashboard />

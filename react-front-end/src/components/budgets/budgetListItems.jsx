@@ -10,7 +10,6 @@ import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import Alert from '@material-ui/lab/Alert';
 
-
 export default function BudgetListItems(props){
 
   const {incomeAndBudget,expenseAndBudget,balanceBudget,setState} = useContext(dateContext);
@@ -25,7 +24,6 @@ export default function BudgetListItems(props){
   }
 
   const handleDelete=function(id,budgetType,haveTransactions){
-
 
     if(haveTransactions!=="0" && haveTransactions){
       setAlert(id)
@@ -56,16 +54,16 @@ export default function BudgetListItems(props){
   const incomeItems=incomeAndBudget.map(e=>{
     if(edit===e.id && type==='income'){
      return (
-       <tr>
-         <td colspan="5">
-     <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id}/>
+       <tr key={e.id}>
+         <td colSpan="5">
+     <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id} item={e}/>
      </td>
      </tr>
      )
     }else if(alert===e.id){
       return(
-      <tr>
-      <td colspan="5">
+      <tr key={e.id}>
+      <td colSpan="5">
       <Alert severity="error" onClose={() => {setAlert(0)}}> You can not delete the budget with transactions!</Alert>
       </td>
       </tr>)
@@ -74,13 +72,13 @@ export default function BudgetListItems(props){
       return null
     }  
     return (       
-      <>
-      <tr> 
-        <td colspan="3">
+      <tbody key={e.id}>
+      <tr > 
+        <td colSpan="3">
          <BudgetProgressBar id={e.id} type={'income'}/>
         </td>
       </tr>
-      <tr>
+      <tr  >
         <td>{e.name} </td>
         <td>{e.amount} </td>
         <td>{e.income_sum}</td>
@@ -93,24 +91,23 @@ export default function BudgetListItems(props){
            </IconButton>
         </td>
       </tr>
-    </>
+    </tbody>
     )
-  
   })
 
   const expenseItems=expenseAndBudget.map(e=>{
     if(edit===e.id && type==='expense'){
       return (
-        <tr>
-        <td colspan="5">
-        <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id}/>
+        <tr key={e.id}>
+        <td colSpan="5">
+        <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id} item={e}/>
       </td>
       </tr>
       )
      }else if(alert===e.id){
       return(
-      <tr>
-      <td colspan="5">
+      <tr key={e.id}>
+      <td colSpan="5">
       <Alert severity="error" onClose={() => {setAlert(0)}}> You can not delete the budget with transactions!</Alert>
       </td>
       </tr>)
@@ -119,14 +116,14 @@ export default function BudgetListItems(props){
       return null
     }
     return (
-      <>
-        <tr> 
-          <td colspan="3">
+      <tbody key={e.id}>
+        <tr > 
+          <td colSpan="3">
            <BudgetProgressBar id={e.id} type={'expense'}/>
           </td>
 
         </tr>
-        <tr>
+        <tr >
           <td>{e.name} </td>
           <td>{e.amount} </td>
           <td>{e.expense_sum}</td>
@@ -139,7 +136,7 @@ export default function BudgetListItems(props){
           </IconButton>
           </td>
         </tr>
-      </>
+      </tbody>
     )
   })
 
@@ -154,8 +151,6 @@ export default function BudgetListItems(props){
     });
     return incomeBudgetSum-expenseBudgetSum;
   }
-  
-
 
   //conditional render different tabs
   if(props.tabType===0){
@@ -187,10 +182,6 @@ export default function BudgetListItems(props){
       </table>
     ) 
   }else if(props.tabType===2 && edit){
-    return <EditForm setEdit={setEdit} type={'balance'} key={0}/>
+    return <EditForm setEdit={setEdit} type={'balance'} key={0} item={{name:'Saving Goal',amount:balanceBudget[0]}}/>
   }
-  
-
-
-
 }

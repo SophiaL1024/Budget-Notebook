@@ -1,7 +1,6 @@
 import  React,{ useState } from "react";
 import BudgetListItems from "./budgetListItems.jsx";
 import BudgetForm from "./budgetForm.jsx";
-// import  dateContext  from '../../context.js';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -96,13 +95,7 @@ export default function budgetList() {
       className: classes.fab,
       icon: <AddIcon />,
       label: 'Add',
-    },
-    // {
-    //   color: 'transparent',
-      // className: classes.fab,
-      // icon: <AddIcon />,
-      // label: 'Add',
-    // },
+    }
   ];
   const [open, setOpen] = useState(false);
 
@@ -127,7 +120,7 @@ export default function budgetList() {
         </Tabs>
       </AppBar>
 
-      {/* <dateContext.Provider value={{open}}> */}
+
 
         <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
         <table >
@@ -140,9 +133,9 @@ export default function budgetList() {
     
            </tr>
           </thead>
-          <tbody >
-        <BudgetListItems tabType={0} /> 
-        </tbody>  
+
+        <BudgetListItems tabType={0}/> 
+  
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
         </TabPanel>
@@ -153,14 +146,14 @@ export default function budgetList() {
            <tr>
            <th>Budget</th>
            <th>Budget Amount</th>
-           <th>Actual Income</th>
+           <th>Actual Expense</th>
            <th></th>
            <th></th>
            </tr>
           </thead>
-          <tbody>
+
         <BudgetListItems tabType={1} />
-        </tbody>  
+
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
         </TabPanel>
