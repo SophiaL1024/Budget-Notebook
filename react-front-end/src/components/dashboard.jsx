@@ -5,22 +5,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {  BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar} from "recharts";
-
 //theme and styles from Material UI
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
+  // root: {
+  //   flexGrow: 1,
+  // },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'left',
     color: theme.palette.text.default,
   },
 }));
-
 //Array of month for the dashboard grid
 const monthName = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
-
 const Dashboard=function(){
   const classes = useStyles();
   const [ dashboardData, setState] = useState(
@@ -31,11 +28,8 @@ const Dashboard=function(){
     annualIncome:0,
     annualExpense:0}
   ); 
-
   const {month,year,userId} = useContext(dateContext);
-
   useEffect(() => {
-
     axios.get("/dashboards/", { params: { year,month,userId }} )
       .then((res) => {         
         setState((prev) => ({ ...prev, 
@@ -48,11 +42,9 @@ const Dashboard=function(){
         }));
       });
   }, [month,year]);
-
   if(!dashboardData.balanceBudget.length||!dashboardData.monthlyIncome.length || !dashboardData.monthlyExpense||!dashboardData.monthlyBalance.length){
     return null
   }
-
   const barchartData=monthName.map((e,index)=>{
     return{
       name:e,
@@ -63,13 +55,8 @@ const Dashboard=function(){
 
   return(
     // Grid for the monthly income, expense and balance
-    <Grid container spacing={10} className={classes.grid}  alignItems="center">
-      {/* <Grid
-  container
-  direction="row"
-  justifyContent="center" */}
-  <Grid item xs={1} md={1}></Grid>
-      <Grid item xs={8} md={5}>
+    <Grid container spacing={8} className={classes.grid}>
+      <Grid item xs={4} md={5}>
       <Paper className={classes.paper}>
       <div className="box">
       <h1>{monthName[month-1]}</h1>
@@ -86,7 +73,7 @@ const Dashboard=function(){
     </Grid>
 
         {/* // Grid for the annual expense, income and balance */}
-        <Grid item xs={8} md={5}>
+        <Grid item xs={4} md={5}>
           <Paper className={classes.paper}>
             <div className="box">
               <h1>{year}</h1>
@@ -102,18 +89,17 @@ const Dashboard=function(){
                     </div>
             </Paper>
         </Grid>
-        <Grid item xs={1} md={1}></Grid>
   <Grid>
 
 {/* Bar chart for savings goal and savings achieved */}
   <BarChart
-    width={1100}
-    height={330}
+    width={950}
+    height={350}
     data={barchartData}
     margin={{
-      top: 0,
+      top: 5,
       right: 0,
-      left: 50,
+      left: 0,
       bottom: 5,
     }}
   >
@@ -130,5 +116,4 @@ const Dashboard=function(){
   </Grid>
 )
 };
-
 export default Dashboard;
