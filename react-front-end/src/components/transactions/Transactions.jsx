@@ -7,6 +7,15 @@ import dateContext from "../../context";
 import Graph from "./Graph";
 import FormDrawer from "./formDrawer"
 import TransactionTab from "./transactionTab"
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  mainPage:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
+  }
+});
 
 export default function Transactions() {
   const {month,year,userId} = useContext(dateContext);
@@ -28,7 +37,8 @@ export default function Transactions() {
     day: 0,
     selectedBudgetId: ''
   });
-
+   
+  const classes = useStyles();
 
   useEffect(() => {
     axios
@@ -203,7 +213,7 @@ export default function Transactions() {
 
 
   return (
-    <div class="transactionsPage">
+    <div className={classes.mainPage}>
       <dateContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions, handleChange, handleSubmit, formValue, expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget, deletion, handleEdit }}>
 
         <Graph />

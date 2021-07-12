@@ -32,7 +32,7 @@ export default function IncomeList() {
 
   return (
     <>
-     <div class={"newTransactionForm"}>
+     <div class="newTransactionForm">
           <h3>Name</h3>
           <h3>Description</h3>
           <h3>Amount</h3>

@@ -44,6 +44,7 @@ div.balance{
 } */
 div.transactionsPage {
   flex-direction: row;
+  justify-content: center;
 }
 div.transactionForm{
   border-style: solid;

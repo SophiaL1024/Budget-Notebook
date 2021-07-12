@@ -56,7 +56,7 @@ const data = [
 // dateContext
 return (
   <LineChart
-      width={800}
+      width={900}
       height={300}
       data={data}
       margin={{
@@ -65,12 +65,14 @@ return (
         left: 20,
         bottom: 25
       }}
+      style={{marginLeft:40}}
+      
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Legend />
+      <Legend style={{paddingLeft:80}}/>
       <Line
         type="monotone"
         dataKey="Income"
