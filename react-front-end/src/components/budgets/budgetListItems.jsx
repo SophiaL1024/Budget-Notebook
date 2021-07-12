@@ -10,7 +10,6 @@ import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import Alert from '@material-ui/lab/Alert';
 
-
 export default function BudgetListItems(props){
 
   const {incomeAndBudget,expenseAndBudget,balanceBudget,setState} = useContext(dateContext);
@@ -25,7 +24,6 @@ export default function BudgetListItems(props){
   }
 
   const handleDelete=function(id,budgetType,haveTransactions){
-
 
     if(haveTransactions!=="0" && haveTransactions){
       setAlert(id)
@@ -95,7 +93,6 @@ export default function BudgetListItems(props){
       </tr>
     </>
     )
-  
   })
 
   const expenseItems=expenseAndBudget.map(e=>{
@@ -154,8 +151,6 @@ export default function BudgetListItems(props){
     });
     return incomeBudgetSum-expenseBudgetSum;
   }
-  
-
 
   //conditional render different tabs
   if(props.tabType===0){
@@ -189,8 +184,4 @@ export default function BudgetListItems(props){
   }else if(props.tabType===2 && edit){
     return <EditForm setEdit={setEdit} type={'balance'} key={0} item={{name:'Saving Goal',amount:balanceBudget[0]}}/>
   }
-  
-
-
-
 }
