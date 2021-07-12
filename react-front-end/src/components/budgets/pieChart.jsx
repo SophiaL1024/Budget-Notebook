@@ -1,7 +1,7 @@
 
-import React ,{Fragment, useContext}from 'react';
+import React ,{useContext}from 'react';
 import dateContext from "../../context.js";
-import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer,Sector } from 'recharts';
+import { PieChart, Pie, Cell, Sector } from 'recharts';
 import { useCallback, useState } from "react";
 
 //Color themes for the pie charts

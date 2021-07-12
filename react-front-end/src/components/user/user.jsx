@@ -59,7 +59,7 @@ export default function User() {
     // console.log(res.data);
     if(res.data){
       setUserId(res.data.id);
-      history.push('/dashboards/');
+      history.push('/dashboards');
     }else{
      setErr("Incorrect Password.")
     }
