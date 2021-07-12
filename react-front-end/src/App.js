@@ -20,7 +20,8 @@ const[userId,setUserId]=useState(document.cookie?Number(cookie):'');
 const [month,setMonth]=useState(new Date().getMonth()+1);
 const [year,setYear]=useState(new Date().getFullYear());
 
-console.log("sliced cookie",Number(cookie))
+// console.log("sliced cookie",Number(cookie))
+
   return (
     <>
       <Router>

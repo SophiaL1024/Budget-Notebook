@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     width: 997,
     position: 'relative',
     minHeight: 200,
+    marginTop:50
   },
   fab: {
     position: 'absolute',
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     height: 600,
     width: 1000,
     overflow : "scroll",
-
+    paddingLeft:"30px"
   },
   tabs: {
     backgroundColor: "#95ADEF",
@@ -158,7 +159,7 @@ export default function budgetList() {
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
         </TabPanel>
 
-        <TabPanel value={value} index={2} dir={theme.direction}>
+        <TabPanel value={value} index={2} dir={theme.direction} className={classes.panel}>
         <BudgetListItems tabType={2} />
 
         </TabPanel>
