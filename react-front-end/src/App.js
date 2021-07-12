@@ -27,6 +27,10 @@ const [year,setYear]=useState(new Date().getFullYear());
       {!userId&&<User/>}
       {userId&&
         <Switch>
+          {/* <Route path="/">
+            <SideBar />
+            <Dashboard />
+          </Route> */}
           <Route path="/dashboards">
             <SideBar />
             <Dashboard />

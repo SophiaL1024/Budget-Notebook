@@ -140,9 +140,9 @@ export default function budgetList() {
     
            </tr>
           </thead>
-          <tbody >
+          {/* <tbody > */}
         <BudgetListItems tabType={0}/> 
-        </tbody>  
+        {/* </tbody>   */}
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
         </TabPanel>
@@ -158,9 +158,9 @@ export default function budgetList() {
            <th></th>
            </tr>
           </thead>
-          <tbody>
+          {/* <tbody> */}
         <BudgetListItems tabType={1} />
-        </tbody>  
+        {/* </tbody>   */}
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
         </TabPanel>

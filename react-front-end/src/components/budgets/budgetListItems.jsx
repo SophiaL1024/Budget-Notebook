@@ -74,13 +74,13 @@ export default function BudgetListItems(props){
       return null
     }  
     return (       
-      <>
+      <tbody key={e.id}>
       <tr > 
         <td colSpan="3">
          <BudgetProgressBar id={e.id} type={'income'}/>
         </td>
       </tr>
-      <tr  key={e.id}>
+      <tr  >
         <td>{e.name} </td>
         <td>{e.amount} </td>
         <td>{e.income_sum}</td>
@@ -93,7 +93,7 @@ export default function BudgetListItems(props){
            </IconButton>
         </td>
       </tr>
-    </>
+    </tbody>
     )
   
   })
@@ -119,14 +119,14 @@ export default function BudgetListItems(props){
       return null
     }
     return (
-      <>
+      <tbody key={e.id}>
         <tr > 
           <td colSpan="3">
            <BudgetProgressBar id={e.id} type={'expense'}/>
           </td>
 
         </tr>
-        <tr key={e.id}>
+        <tr >
           <td>{e.name} </td>
           <td>{e.amount} </td>
           <td>{e.expense_sum}</td>
@@ -139,7 +139,7 @@ export default function BudgetListItems(props){
           </IconButton>
           </td>
         </tr>
-      </>
+      </tbody>
     )
   })
 
