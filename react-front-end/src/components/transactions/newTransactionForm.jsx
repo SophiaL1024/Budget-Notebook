@@ -27,6 +27,7 @@ const useStyles = makeStyles({
   },
   transactionForm: {
     borderStyle: "solid",
+    borderColor: "#64b5f6",
     borderRadius: 25,
     borderWidth: 1,
     backgroundColor: "#f5f5f5",

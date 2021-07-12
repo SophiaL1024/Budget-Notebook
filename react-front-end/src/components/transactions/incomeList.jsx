@@ -39,16 +39,26 @@ export default function IncomeList() {
 
   return (
     <>
-      <div style={{
+      <div  style={{
         display: "flex",
         justifyContent: "space-between",
         margin: 15
       }}>
+      
         <h3>Name</h3>
         <h3>Description</h3>
         <h3>Amount</h3>
-        <h3>Edit</h3>
-        <h3>Delete</h3>
+        
+        <div style={{
+          display: "flex"
+        }}>
+        <h3 style={{
+          marginRight: 15
+        }}>Edit</h3>
+        <h3 style={{
+          marginLeft: 15
+        }}>Delete</h3>
+        </div>
       </div>
 
       {listIncomes}
