@@ -14,7 +14,7 @@ import Transactions from './components/transactions/Transactions.jsx';
 
 const App = function() {
 
-const cookie=document.cookie.split(';').find(e=>e.includes('userId=')).slice(7);
+const cookie=document.cookie?document.cookie.split(';').find(e=>e.includes('userId=')).slice(7):'';
 
 const[userId,setUserId]=useState(document.cookie?Number(cookie):'');
 const [month,setMonth]=useState(new Date().getMonth()+1);
