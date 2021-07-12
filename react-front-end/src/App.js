@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import  dateContext  from './context.js';
 import './App.css';
 import SideBar from './components/sideBar';
@@ -26,12 +22,12 @@ const [year,setYear]=useState(new Date().getFullYear());
     <>
       <Router>
         <dateContext.Provider value={{month,setMonth,year,setYear,userId,setUserId}}>
+        {/* <Link to='/'></Link> */}
       {!userId&&<User/>}
       {userId&&
         <Switch>
           {/* <Route path="/">
-            <SideBar />
-            <Dashboard />
+            <User />
           </Route> */}
           <Route path="/dashboards">
             <SideBar />

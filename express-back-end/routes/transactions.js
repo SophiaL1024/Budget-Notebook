@@ -36,16 +36,16 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
  
   const {type} = req.body.data;
-  const { name, description, amount, month, day,year,selectedBudgetId } = req.body.data.formValue;
-  const id = 1;
+  const { name, description, amount, month, day,year,selectedBudgetId,userId } = req.body.data.formValue;
+
   if (type === "income") {
-    transactionsQueries.addIncome(name, description, amount, year, month, day, id,selectedBudgetId)
+    transactionsQueries.addIncome(name, description, amount, year, month, day, userId,selectedBudgetId)
       .then(resolve => {
         res.json(resolve);
       });
 
   } else if (type === "expense") {
-    transactionsQueries.addExpense(name, description, amount, year, month, day, id,selectedBudgetId)
+    transactionsQueries.addExpense(name, description, amount, year, month, day, userId,selectedBudgetId)
       .then(resolve => {
         res.json(resolve);
       });
