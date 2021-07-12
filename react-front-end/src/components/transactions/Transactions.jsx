@@ -35,7 +35,8 @@ export default function Transactions() {
     year: 0,
     month: 0,
     day: 0,
-    selectedBudgetId: ''
+    selectedBudgetId: '',
+    "userId":userId
   });
    
   const classes = useStyles();

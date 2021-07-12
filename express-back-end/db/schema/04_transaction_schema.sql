@@ -10,7 +10,6 @@ CREATE TABLE income (
   month INTEGER NOT NULL,
   day INTEGER NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  income_categories_id INTEGER REFERENCES income_categories(id),
   income_budgets_id INTEGER REFERENCES income_budgets(id) ON DELETE CASCADE
 );
 
@@ -23,6 +22,5 @@ CREATE TABLE expense (
   month INTEGER NOT NULL,
   day INTEGER NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  expense_categories_id INTEGER REFERENCES expense_categories(id),
   expense_budgets_id INTEGER REFERENCES expense_budgets(id)ON DELETE CASCADE
 );

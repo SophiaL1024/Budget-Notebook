@@ -33,6 +33,7 @@ export default function Budget(){
     axios
       .get("/budgets", { params: { year,month,userId  } } )
       .then((res) => {
+        console.log(res.data);
         setState((prev) => ({ ...prev,
           incomeAndBudget: res.data.incomeAndBudget,
           expenseAndBudget: res.data.expenseAndBudget,
@@ -46,7 +47,7 @@ export default function Budget(){
 
   return(
   <>
-    <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year}}>
+    <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year,userId}}>
     <div>
       <BudgetPieChart />
     </div>

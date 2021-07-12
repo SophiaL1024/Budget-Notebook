@@ -62,7 +62,8 @@ const useStyles = makeStyles((theme) => ({
     height: 600,
     width: 1000,
     overflow : "scroll",
-    paddingLeft:"30px"
+    paddingLeft:30,
+    paddingTop:0
   },
   tabs: {
     backgroundColor: "#95ADEF",

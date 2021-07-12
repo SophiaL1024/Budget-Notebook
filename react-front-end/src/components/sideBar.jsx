@@ -105,7 +105,8 @@ export default function SideBar() {
   };
 
   return (
-    <div className={classes.root}>
+    <>
+    {/* <div className={classes.root}> */}
       <CssBaseline />
       {/* Header  */}
       <AppBar position="fixed" className={classes.appBar}>
@@ -207,6 +208,6 @@ export default function SideBar() {
         </Select>
       </FormControl>
       </Drawer>
-   </div>
+   </>
   );
 }

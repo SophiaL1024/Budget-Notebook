@@ -6,8 +6,7 @@ import {  TextField, Button, Dialog, DialogActions, DialogContent, DialogContent
 
 export default function budgetForm(props){
 
-  const {incomeAndBudget,expenseAndBudget,setState} = useContext(dateContext);
-
+  const {incomeAndBudget,expenseAndBudget,setState,userId} = useContext(dateContext);
   
   const [formValue, setFormValue] = useState({ 
     date:"", 
@@ -15,7 +14,7 @@ export default function budgetForm(props){
     month: 0,
     amount: "",
     name: "" ,
-    userId:1   //hard code user_id
+    "userId":userId
   });
 
   const handleOpen=props.open;
@@ -100,11 +99,11 @@ export default function budgetForm(props){
 
     <Dialog open={handleOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
 
-    <DialogTitle id="form-dialog-title">{tabType===0?'Income Budget':(tabType===1?'Expense Budget':'Saving Goal')}</DialogTitle>
+    <DialogTitle id="form-dialog-title">{tabType===0?'New Income Budget':'New Expense Budget'}</DialogTitle>
 
      <DialogContent>
      
-     <DialogContentText>{tabType===0?'Step One: Set up income budget':((tabType===1?'Step Two: Set up expense budget':'Step Three: Set up saving goal'))} </DialogContentText>
+     {/* <DialogContentText>{tabType===0?'Set up income budget':((tabType===1?'Set up expense budget':'Set up saving goal'))} </DialogContentText> */}
 
       <TextField
         autoFocus
@@ -130,7 +129,7 @@ export default function budgetForm(props){
         id="date"
         type="month"
         onChange={(event)=>handleChange("date",event.target.value)}        
-        inputProps={tabType===2?{ min: '2021-08' }:{ min:'2021-01' }} //hard code min month
+        // inputProps={tabType===2?{ min: '2021-08' }:{ min:'2021-01' }} //hard code min month
       />
     </DialogContent>
 
