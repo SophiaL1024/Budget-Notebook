@@ -80,8 +80,8 @@ export default function BudgetListItems(props){
       </tr>
       <tr  >
         <td>{e.name} </td>
-        <td>{e.amount} </td>
-        <td>{e.income_sum}</td>
+        <td>${e.amount} </td>
+        <td>${e.income_sum}</td>
         <td className="icon"> 
           <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'income')}>
           <EditIcon style={{ color: green[300] }}  />
@@ -125,8 +125,8 @@ export default function BudgetListItems(props){
         </tr>
         <tr >
           <td>{e.name} </td>
-          <td>{e.amount} </td>
-          <td>{e.expense_sum}</td>
+          <td>${e.amount} </td>
+          <td>${e.expense_sum}</td>
           <td className="icon"> 
           <IconButton aria-label="edit" fill="green" onClick={()=>handleEdit(e.id,'expense')}>
            <EditIcon style={{ color: green[300] }}  />
@@ -170,8 +170,8 @@ export default function BudgetListItems(props){
       <tbody>
         <tr>
           <td>{balanceRemaining()}</td>
-          <td>{balanceBudget[0]}</td>
-          <td>{(Number(balanceBudget[1])-Number(balanceBudget[2])).toFixed(2)}</td>
+          <td>${balanceBudget[0]}</td>
+          <td>${(Number(balanceBudget[1])-Number(balanceBudget[2])).toFixed(2)}</td>
           <td>
           <IconButton aria-label="edit" onClick={()=>handleEdit(1,'balance')} >
           <EditIcon style={{ color: green[300] }}/>
