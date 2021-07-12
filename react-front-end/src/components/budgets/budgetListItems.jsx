@@ -56,7 +56,7 @@ export default function BudgetListItems(props){
   const incomeItems=incomeAndBudget.map(e=>{
     if(edit===e.id && type==='income'){
      return (
-       <tr>
+       <tr key={e.id}>
          <td colSpan="5">
      <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id} item={e}/>
      </td>
@@ -64,8 +64,8 @@ export default function BudgetListItems(props){
      )
     }else if(alert===e.id){
       return(
-      <tr>
-      <td colspan="5">
+      <tr key={e.id}>
+      <td colSpan="5">
       <Alert severity="error" onClose={() => {setAlert(0)}}> You can not delete the budget with transactions!</Alert>
       </td>
       </tr>)
@@ -75,12 +75,12 @@ export default function BudgetListItems(props){
     }  
     return (       
       <>
-      <tr> 
+      <tr > 
         <td colSpan="3">
          <BudgetProgressBar id={e.id} type={'income'}/>
         </td>
       </tr>
-      <tr>
+      <tr  key={e.id}>
         <td>{e.name} </td>
         <td>{e.amount} </td>
         <td>{e.income_sum}</td>
@@ -101,16 +101,16 @@ export default function BudgetListItems(props){
   const expenseItems=expenseAndBudget.map(e=>{
     if(edit===e.id && type==='expense'){
       return (
-        <tr>
-        <td colspan="5">
+        <tr key={e.id}>
+        <td colSpan="5">
         <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id} item={e}/>
       </td>
       </tr>
       )
      }else if(alert===e.id){
       return(
-      <tr>
-      <td colspan="5">
+      <tr key={e.id}>
+      <td colSpan="5">
       <Alert severity="error" onClose={() => {setAlert(0)}}> You can not delete the budget with transactions!</Alert>
       </td>
       </tr>)
@@ -120,13 +120,13 @@ export default function BudgetListItems(props){
     }
     return (
       <>
-        <tr> 
-          <td colspan="3">
+        <tr > 
+          <td colSpan="3">
            <BudgetProgressBar id={e.id} type={'expense'}/>
           </td>
 
         </tr>
-        <tr>
+        <tr key={e.id}>
           <td>{e.name} </td>
           <td>{e.amount} </td>
           <td>{e.expense_sum}</td>

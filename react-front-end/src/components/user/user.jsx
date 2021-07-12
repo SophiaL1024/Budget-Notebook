@@ -2,17 +2,38 @@ import React ,{useContext,useEffect,useState} from "react"
 import {useHistory}from 'react-router-dom'
 import axios from 'axios'
 import dateContext from "../../context.js";
-import {TextField,Button} from '@material-ui/core/'
+import {TextField,Button,Grid,Link,AppBar,Toolbar,Typography} from '@material-ui/core/'
+import { makeStyles } from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles((theme) => ({
+  form: {
+   display:"flex",
+   flexDirection: "column",
+   marginTop:"100px"
+  },
+  input:{
+    marginTop:"10px",
+    marginBottom:"10px",
+    width:"500px"
+  },
+  button: {
+    margin: theme.spacing(1, 0, 2),
+  },
+  appBar: {
+    background: "#64b5f6"   
+  },
+  toolbar: theme.mixins.toolbar,
+}));
 
 export default function User() {
-
+  const classes = useStyles();
   const history = useHistory();
   
   const {userId,setUserId} = useContext(dateContext);
   
   const [err,setErr]=useState(false);
-  console.log(userId);
+
 
   // useEffect(()=>{
   //   axios.get('http://localhost:3000/')
@@ -48,29 +69,51 @@ export default function User() {
 
   return(
   <>
-  <form noValidate autoComplete="off">
+        <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar className={classes.toolWrapper}>
+          <Typography variant="h6" className={classes.title}>
+            Budget Notebook
+          </Typography>
+
+
+
+        </Toolbar>
+      </AppBar>
+  <form noValidate autoComplete="off" className={classes.form}>
   <TextField 
-  id="standard-basic"
+  className={classes.input}
   label="Email"
   variant="outlined"
+  autoFocus
   value={formValue.email}
   onChange={(event)=>{handleChange('email',event.target.value)}}
-   />
+   />  
   <TextField
-    error={err?true:false}
-   
-    id="outlined-error-helper-text"
+    error={err?true:false}   
+    className={classes.input}
     label="Password"
-    // defaultValue="Hello World"
     helperText={err}
     variant="outlined"
     value={formValue.password}
     onChange={(event)=>{handleChange('password',event.target.value)}}
     />
+  <Button onClick={handleSubmit} color="primary" variant="contained" className={classes.button}>
+  Sign In
+  </Button >
+  <Grid container>
+  <Grid item xs>
+  <Link href="#" variant="body2">
+ <div style={{color:'rgb(63,81,181)', marginTop:'10px'}}>Forgot password?</div>
+ </Link>
+  </Grid>
+   <Grid item>
+  <Link href="#" variant="body2">
+   <div style={{color:'rgb(63,81,181)', marginTop:'10px'}}>Sign Up</div>
+ </Link>
+   </Grid>
+ </Grid>
+
   </form>
-  <Button onClick={handleSubmit} color="primary">
-    Submit
-  </Button>
 
   </>
   )

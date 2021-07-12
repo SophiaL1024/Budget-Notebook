@@ -127,7 +127,7 @@ export default function budgetList() {
         </Tabs>
       </AppBar>
 
-      {/* <dateContext.Provider value={{open}}> */}
+
 
         <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
         <table >
@@ -141,7 +141,7 @@ export default function budgetList() {
            </tr>
           </thead>
           <tbody >
-        <BudgetListItems tabType={0} /> 
+        <BudgetListItems tabType={0}/> 
         </tbody>  
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
@@ -153,7 +153,7 @@ export default function budgetList() {
            <tr>
            <th>Budget</th>
            <th>Budget Amount</th>
-           <th>Actual Income</th>
+           <th>Actual Expense</th>
            <th></th>
            <th></th>
            </tr>
