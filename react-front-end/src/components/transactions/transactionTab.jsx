@@ -46,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
     width: 1000,
     position: 'relative',
     minHeight: 200,
+    height:500,
+    overflow:"scroll",
     margin: 25
   },
   fab: {
@@ -69,7 +71,7 @@ export default function budgetList() {
 
   return (
     <div className={classes.tab_bar}>
-      <AppBar position="static" color="default">
+      <AppBar position="sticky" color="default">
         <Tabs
           value={value}
           onChange={handleChange}

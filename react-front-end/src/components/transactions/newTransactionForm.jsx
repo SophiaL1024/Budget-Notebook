@@ -13,7 +13,8 @@ import { color } from '@chakra-ui/react';
 
 const useStyles = makeStyles({
   add:{
-    background:"#64b5f6"
+    background:"#64b5f6",
+    text:"white"
   },
   newTransactionButton:{
     display: "flex",
@@ -34,7 +35,7 @@ export default function NewTransactionForm(props) {
   const button = (
    mode === HIDE && (
      <div className={classes.newTransactionButton}>
-       <Button onClick={() => transition(SHOW)} className={classes.add} color="white">
+       <Button onClick={() => transition(SHOW)} className={classes.add}  >
          Add Transaction
        </Button>
      </div>
