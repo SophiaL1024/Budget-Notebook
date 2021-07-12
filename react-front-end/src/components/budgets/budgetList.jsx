@@ -1,7 +1,6 @@
 import  React,{ useState } from "react";
 import BudgetListItems from "./budgetListItems.jsx";
 import BudgetForm from "./budgetForm.jsx";
-// import  dateContext  from '../../context.js';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -96,13 +95,7 @@ export default function budgetList() {
       className: classes.fab,
       icon: <AddIcon />,
       label: 'Add',
-    },
-    // {
-    //   color: 'transparent',
-      // className: classes.fab,
-      // icon: <AddIcon />,
-      // label: 'Add',
-    // },
+    }
   ];
   const [open, setOpen] = useState(false);
 
@@ -140,9 +133,9 @@ export default function budgetList() {
     
            </tr>
           </thead>
-          {/* <tbody > */}
+
         <BudgetListItems tabType={0}/> 
-        {/* </tbody>   */}
+  
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
         </TabPanel>
@@ -158,9 +151,9 @@ export default function budgetList() {
            <th></th>
            </tr>
           </thead>
-          {/* <tbody> */}
+
         <BudgetListItems tabType={1} />
-        {/* </tbody>   */}
+
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
         </TabPanel>

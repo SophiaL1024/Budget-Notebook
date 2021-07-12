@@ -69,16 +69,14 @@ export default function User() {
 
   return(
   <>
-        <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar className={classes.toolWrapper}>
-          <Typography variant="h6" className={classes.title}>
-            Budget Notebook
-          </Typography>
+  <AppBar position="fixed" className={classes.appBar}>
+    <Toolbar className={classes.toolWrapper}>
+      <Typography variant="h6" className={classes.title}>
+          Budget Notebook
+      </Typography>
+    </Toolbar>
+  </AppBar>
 
-
-
-        </Toolbar>
-      </AppBar>
   <form noValidate autoComplete="off" className={classes.form}>
   <TextField 
   className={classes.input}
