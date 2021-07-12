@@ -1,14 +1,16 @@
 import React ,{useState,useContext}from 'react';
 import axios from "axios";
 import dateContext from "../../context.js";
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField,IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import CancelIcon from '@material-ui/icons/Cancel';
+import CancelIcon from '@material-ui/icons/Cancel';
+import SaveIcon from '@material-ui/icons/Save';
 
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(2),
-    // width:"10px"    
+    // width:"5px" 
+    // height:"20px"  
   },
   edit: {
     '& > *': {
@@ -24,9 +26,11 @@ export default function EditForm(props) {
   const {incomeAndBudget,expenseAndBudget,balanceBudget,setState,month,year} = useContext(dateContext);
 
   const [formValue, setFormValue] = useState({ 
-    name: "" ,
-    amount: 0    
+    name: props.item.name ,
+    amount: props.item.amount   
   });  
+
+  // console.log(props.item);
 
   const handleChange = (key,value) => { 
     setFormValue(prev => ({
@@ -95,7 +99,7 @@ export default function EditForm(props) {
             label="Name"
             type="text"
             onChange={(event)=>handleChange("name",event.target.value)}
-            value={props.name}
+            value={formValue.name}
             
           />
  
@@ -106,7 +110,7 @@ export default function EditForm(props) {
             label="Amount in dollars"
             type="number"
             onChange={(event)=>handleChange("amount",event.target.value)}
-            value={props.amount}
+            value={formValue.amount}
           />
 
           <Button
@@ -116,6 +120,11 @@ export default function EditForm(props) {
             className={classes.button}
             onClick={handleSave}
           >Save</Button>
+
+           
+          {/* <IconButton aria-label="save" onClick={handleSave}>
+          <SaveIcon   />
+          </IconButton> */}
 
           <Button
             variant="contained"

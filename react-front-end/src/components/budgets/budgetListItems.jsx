@@ -57,8 +57,8 @@ export default function BudgetListItems(props){
     if(edit===e.id && type==='income'){
      return (
        <tr>
-         <td colspan="5">
-     <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id}/>
+         <td colSpan="5">
+     <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id} item={e}/>
      </td>
      </tr>
      )
@@ -76,7 +76,7 @@ export default function BudgetListItems(props){
     return (       
       <>
       <tr> 
-        <td colspan="3">
+        <td colSpan="3">
          <BudgetProgressBar id={e.id} type={'income'}/>
         </td>
       </tr>
@@ -103,7 +103,7 @@ export default function BudgetListItems(props){
       return (
         <tr>
         <td colspan="5">
-        <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id}/>
+        <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id} item={e}/>
       </td>
       </tr>
       )
@@ -187,7 +187,7 @@ export default function BudgetListItems(props){
       </table>
     ) 
   }else if(props.tabType===2 && edit){
-    return <EditForm setEdit={setEdit} type={'balance'} key={0}/>
+    return <EditForm setEdit={setEdit} type={'balance'} key={0} item={{name:'Saving Goal',amount:balanceBudget[0]}}/>
   }
   
 
