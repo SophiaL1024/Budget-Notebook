@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  cancelButton: {
+    height: 31,
+    marginTop: 19
+  }
 }));
 
 export default function Edit(props) {
@@ -114,7 +118,7 @@ export default function Edit(props) {
             startIcon={<SaveIcon />}
           >Save</Button>
         </IconButton>
-        <Button size="small" style={{height: 31}} variant="contained" color="primary" onClick={() => transition(SHOW)}>
+        <Button size="small" className={classes.cancelButton} variant="contained" color="primary" onClick={() => transition(SHOW)}>
           cancel
         </Button>
       </div>

@@ -3,15 +3,26 @@ import { useState } from 'react';
 import { useContext } from "react";
 import dateContext from '../../context';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { TextField, Button, Radio, RadioGroup } from '@material-ui/core';
+import { TextField, Button, Radio, RadioGroup, makeStyles } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useVisualMode from '../../hooks/useVisualMode';
+import { color } from '@chakra-ui/react';
 
+const useStyles = makeStyles({
+  add:{
+    background:"#64b5f6"
+  },
+  newTransactionButton:{
+    display: "flex",
+    justifyContent: "center"
+  }
+});
 
 export default function NewTransactionForm(props) {
+  const classes = useStyles();
   const { handleChange, handleSubmit, formValue, incomeBudget, expenseBudget } = useContext(dateContext);
   const [type, setType] = useState('income');
   const SHOW = "SHOW";
@@ -22,8 +33,8 @@ export default function NewTransactionForm(props) {
  
   const button = (
    mode === HIDE && (
-     <div>
-       <Button onClick={() => transition(SHOW)} color="primary">
+     <div className={classes.newTransactionButton}>
+       <Button onClick={() => transition(SHOW)} className={classes.add} color="white">
          Add Transaction
        </Button>
      </div>

@@ -203,7 +203,7 @@ export default function Transactions() {
 
 
   return (
-    <>
+    <div class="transactionsPage">
       <dateContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions, handleChange, handleSubmit, formValue, expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget, deletion, handleEdit }}>
 
         <Graph />
@@ -212,12 +212,8 @@ export default function Transactions() {
         
         <TransactionTab />
 
-
-
-        {/* <FormDrawer/> */}
-
       </dateContext.Provider>
-    </>
+    </div>
   )
 
 }
