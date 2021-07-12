@@ -72,7 +72,7 @@ return (
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Legend style={{paddingLeft:80}}/>
+      <Legend wrapperStyle={{paddingLeft:80}}/>
       <Line
         type="monotone"
         dataKey="Income"
