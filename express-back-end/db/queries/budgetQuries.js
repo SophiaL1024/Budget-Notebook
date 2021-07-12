@@ -11,6 +11,7 @@ const getIncomeAndBudget = (id, month, year) => {
  `;
   return db.query(queryStatement, [id, month, year])
     .then((response) => {
+      // console.log(response);
       return response.rows;
     })
     .catch(err => console.log(err));
@@ -96,9 +97,9 @@ const createBalanceBudget = (amount, year, month, id) => {
 
 const createIncome = (year,month,userId,resolve)=>{
   const queryStatement = `
-  INSERT INTO income (name,description,amount,year,month,day,user_id,income_categories_id,income_budgets_id)
+  INSERT INTO income (name,description,amount,year,month,day,user_id,income_budgets_id)
   VALUES 
-   (' ',' ',0,$1,$2,1,$3,1,$4)
+   (' ',' ',0,$1,$2,1,$3,$4)
  `;
   // console.log(year,month,userId,resolve);
   db.query(queryStatement, [year,month,userId,resolve]);
@@ -107,9 +108,9 @@ const createIncome = (year,month,userId,resolve)=>{
 
 const createExpense = (year,month,userId,resolve)=>{
   const queryStatement = `
-  INSERT INTO expense (name,description,amount,year,month,day,user_id,expense_categories_id,expense_budgets_id)
+  INSERT INTO expense (name,description,amount,year,month,day,user_id,expense_budgets_id)
   VALUES 
-   (' ',' ',0,$1,$2,1,$3,1,$4)
+   (' ',' ',0,$1,$2,1,$3,$4)
  `;
   // console.log(year,month,userId,resolve);
   db.query(queryStatement, [year,month,userId,resolve]);

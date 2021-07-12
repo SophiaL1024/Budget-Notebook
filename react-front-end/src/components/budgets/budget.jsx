@@ -33,6 +33,7 @@ export default function Budget(){
     axios
       .get("/budgets", { params: { year,month,userId  } } )
       .then((res) => {
+        console.log(res.data);
         setState((prev) => ({ ...prev,
           incomeAndBudget: res.data.incomeAndBudget,
           expenseAndBudget: res.data.expenseAndBudget,

@@ -10,16 +10,13 @@ export default function BudgetProgressBar(props){
     
     const income=Number(incomeAndBudget.find(e=>e.id===props.id).income_sum);
     const incomeBudgetAmount=Number(incomeAndBudget.find(e=>e.id===props.id).amount);
+    console.log("income",income);
     
     return(
-      <>
- 
+      <> 
     <ChakraProvider>
       <Progress hasStripe value={(income/incomeBudgetAmount)*100}  />
     </ChakraProvider>
-     
-      {/* Income:{income}<br/>
-      Income Budget Amount:{incomeBudgetAmount}<br/> */}
       </>
     )
   }else if(props.type==="expense"){
@@ -28,13 +25,9 @@ export default function BudgetProgressBar(props){
 
     return(
       <>
-
       <ChakraProvider>
         <Progress hasStripe value={(expense/expenseBudgetAmount)*100} />
       </ChakraProvider>
-{/* 
-      Expense:{expense}<br/>
-      Expense Budget Amount:{expenseBudgetAmount}<br/> */}
       </>
     )
   }
