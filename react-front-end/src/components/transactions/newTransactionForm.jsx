@@ -12,13 +12,30 @@ import useVisualMode from '../../hooks/useVisualMode';
 import { color } from '@chakra-ui/react';
 
 const useStyles = makeStyles({
-  add:{
+  add: {
     background:"#64b5f6",
     text:"white"
   },
-  newTransactionButton:{
+  newTransactionButton: {
     display: "flex",
     justifyContent: "center"
+  },
+  newTransactionForm: {
+    display: "flex",
+    justifyContent: "space-between",
+    margin: 15
+  },
+  transactionForm: {
+    borderStyle: "solid",
+    borderRadius: 25,
+    borderWidth: 1,
+    backgroundColor: "#f5f5f5",
+    width: 800,
+    marginLeft: 110
+  },
+  title: {
+    display: "flex",
+    justifyContent: "center",
   }
 });
 
@@ -71,9 +88,9 @@ if (!incomeBudget || !expenseBudget) {
 
   const newTransaction = (
     mode === SHOW && (
-      <div class={"transactionForm"}>
-        <h3>New transaction</h3>
-        <div class={"newTransactionForm"}>
+      <div className={classes.transactionForm}>
+        <h3 className={classes.title}>New transaction</h3>
+        <div className={classes.newTransactionForm}>
           <div>
             <TextField
               autoFocus
@@ -124,7 +141,7 @@ if (!incomeBudget || !expenseBudget) {
           />
           <FormControl style={{width:80}}>
             <InputLabel id="demo-simple-select-label"
-            style={{height:45}}>Select Budget</InputLabel>
+            style={{height:45}}>Budget</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"

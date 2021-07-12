@@ -16,6 +16,14 @@ const useStyles = makeStyles((theme) => ({
   cancelButton: {
     height: 31,
     marginTop: 19
+  },
+  listItems: {
+    display: "flex",
+    justifyContent: "space-between",
+    margin: 15
+  },
+  itemProperty: {
+    width: 120
   }
 }));
 
@@ -55,9 +63,9 @@ export default function Edit(props) {
     mode === SHOW && (
     
     
-        <div class={"newTransactionForm"}>
-          <div>{props.name}</div>
-          <div>{props.description}</div>
+        <div className={classes.listItems}>
+          <div className={classes.itemProperty}>{props.name}</div>
+          <div className={classes.itemProperty}>{props.description}</div>
           <div>${props.amount}</div>
           <IconButton aria-label="edit" fill="green" onClick={() => transition(EDIT)}>
           <EditIcon style={{ color: green[300] }}  />

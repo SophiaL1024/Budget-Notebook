@@ -29,7 +29,11 @@ export default function ExpenseList() {
 
   return (
     <>
-    <div class={"newTransactionForm"}>
+     <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        margin: 15
+      }}>
          <h3>Name</h3>
          <h3>Description</h3>
          <h3>Amount</h3>
