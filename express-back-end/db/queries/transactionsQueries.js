@@ -37,7 +37,6 @@ const getIncomeBudget = (id,month,year)=>{
   `;
   return db.query(queryStatement, [id,month,year])
     .then((response) => {
-      // console.log("data",response.rows);
       return response.rows;
     })
     .catch(err => console.log(err));
@@ -51,7 +50,6 @@ const getExpenseBudget = (id,month,year)=>{
   `;
   return db.query(queryStatement, [id,month,year])
     .then((response) => {
-      // console.log(response.rows);
       return response.rows;
     })
     .catch(err => console.log(err));

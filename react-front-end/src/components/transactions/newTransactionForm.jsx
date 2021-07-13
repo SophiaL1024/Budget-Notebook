@@ -56,7 +56,7 @@ export default function NewTransactionForm(props) {
   //function that transitions what is being displayed
   const { mode, transition, back } = useVisualMode(HIDE);
 
- 
+  // responsible for showing new transaction form
   const button = (
    mode === HIDE && (
      <div className={classes.newTransactionButton}>

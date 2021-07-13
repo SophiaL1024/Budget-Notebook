@@ -62,8 +62,6 @@ export default function Edit(props) {
   //jsx to be returned when state is in SHOW
   const showItem = (
     mode === SHOW && (
-    
-    
         <div className={classes.listItems}>
           <div className={classes.itemProperty}>{props.name}</div>
           <div className={classes.itemProperty}>{props.description}</div>
@@ -77,9 +75,8 @@ export default function Edit(props) {
           </IconButton>
           </div>
         </div >
-
     )
-  )
+  );
 
   const editItem = (
     mode === EDIT && (

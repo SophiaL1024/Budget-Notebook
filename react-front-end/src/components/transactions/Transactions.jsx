@@ -50,7 +50,7 @@ export default function Transactions() {
   }, [month, year]);
 
 
-
+  // Handles the deletion of a transaction and updates state
   const deletion = function (id, type) {
     // console.log("check");
     axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
@@ -75,7 +75,7 @@ export default function Transactions() {
       });
   }
 
-
+  // Handles the edit request of an already existing transaction
   const handleEdit = (name, description, amount, month, day, year, id, type) => {
     axios.patch(`http://localhost:3000/transactions/`, { data: { name, description, amount, month, day, year, id, type } })
       .then(() => {
@@ -137,7 +137,6 @@ export default function Transactions() {
     formValue.year = Number(formValue.date.slice(0, 4));
     formValue.month = Number(formValue.date.slice(5, 7));
     formValue.day = Number(formValue.date.slice(-2));
-    console.log("formValue", formValue)
     axios.post(`http://localhost:3000/transactions/`, { data: { type, formValue } })
       .then((res) => {
         if (type === "income") {
@@ -152,8 +151,6 @@ export default function Transactions() {
             id: res.data,
             incomeBudgetsId: formValue.selectedBudgetId
           });
-          // console.log("state.incomeTransactions.length:", state.incomeTransactions.length);
-          // console.log("newIncomeTransactions.length:", newIncomeTransactions.length);
           const newExpenseBudget = state.expenseBudget;
           const newIncomeBudget = state.incomeBudget;
           const expenseState = state.expenseTransactions;
