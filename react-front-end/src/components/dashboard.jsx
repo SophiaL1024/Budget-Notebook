@@ -46,10 +46,12 @@ const Dashboard=function(){
     return null
   }
   const barchartData=monthName.map((e,index)=>{
-    return{
-      name:e,
-      SavingGoal: Number(dashboardData.balanceBudget.find(e=>e.month===index+1).amount),
-      SavingsAcheived: Number(dashboardData.monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
+    if(index<=new Date().getMonth()){
+      return{
+        name:e,
+        SavingGoal: Number(dashboardData.balanceBudget.find(e=>e.month===index+1).amount),
+        SavingsAcheived: Number(dashboardData.monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
+      }
     }
   })
 

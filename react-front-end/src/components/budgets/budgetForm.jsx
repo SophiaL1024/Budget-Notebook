@@ -2,7 +2,7 @@ import  React,{ useContext,useState} from "react";
 import dateContext from "../../context.js";
 import axios from 'axios';
 
-import {  TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle} from "@material-ui/core";
+import {  TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
 
 export default function budgetForm(props){
 

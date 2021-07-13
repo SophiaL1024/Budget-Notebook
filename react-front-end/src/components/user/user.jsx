@@ -1,4 +1,4 @@
-import React ,{useContext,useEffect,useState} from "react"
+import React ,{useContext,useState} from "react"
 import {useHistory}from 'react-router-dom'
 import axios from 'axios'
 import dateContext from "../../context.js";
@@ -30,7 +30,7 @@ export default function User() {
   const classes = useStyles();
   const history = useHistory();
   
-  const {userId,setUserId} = useContext(dateContext);
+  const {setUserId} = useContext(dateContext);
   
   const [err,setErr]=useState(false);
 
