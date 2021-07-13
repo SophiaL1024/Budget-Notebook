@@ -8,6 +8,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
+import { background } from '@chakra-ui/react';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cancelButton: {
     height: 31,
-    marginTop: 19
+    marginTop: 19,
   },
   listItems: {
     display: "flex",
@@ -61,24 +62,21 @@ export default function Edit(props) {
   //jsx to be returned when state is in SHOW
   const showItem = (
     mode === SHOW && (
-    
-    
         <div className={classes.listItems}>
           <div className={classes.itemProperty}>{props.name}</div>
           <div className={classes.itemProperty}>{props.description}</div>
           <div>${props.amount}</div>
-          <IconButton aria-label="edit" fill="green" onClick={() => transition(EDIT)}>
+          <div>
+          <IconButton aria-label="edit" style={{marginRight:15}} fill="green" onClick={() => transition(EDIT)}>
           <EditIcon style={{ color: green[300] }}  />
           </IconButton>
-
-
-          <IconButton aria-label="delete" fill="pink" onClick={() => props.deletion(props.id, props.type)}>
+          <IconButton aria-label="delete" style={{marginLeft:15}}fill="pink" onClick={() => props.deletion(props.id, props.type)}>
             <DeleteIcon style={{ color: red[300] }}/>
           </IconButton>
+          </div>
         </div >
-
     )
-  )
+  );
 
   const editItem = (
     mode === EDIT && (
@@ -126,7 +124,7 @@ export default function Edit(props) {
             startIcon={<SaveIcon />}
           >Save</Button>
         </IconButton>
-        <Button size="small" className={classes.cancelButton} variant="contained" color="primary" onClick={() => transition(SHOW)}>
+        <Button size="small" className={classes.cancelButton} variant="contained" color="default" onClick={() => transition(SHOW)}>
           cancel
         </Button>
       </div>
