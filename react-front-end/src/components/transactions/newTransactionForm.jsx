@@ -14,13 +14,18 @@ import { color } from '@chakra-ui/react';
 const useStyles = makeStyles({
   add: {
     background:"#64b5f6",
-    text:"white"
+    color:"white"
   },
   newTransactionButton: {
     display: "flex",
     justifyContent: "center"
   },
   newTransactionForm: {
+    display: "flex",
+    justifyContent: "space-between",
+    margin: 15
+  },
+  newFormButtons: {
     display: "flex",
     justifyContent: "space-between",
     margin: 15
@@ -32,7 +37,9 @@ const useStyles = makeStyles({
     borderWidth: 1,
     backgroundColor: "#f5f5f5",
     width: 800,
-    marginLeft: 110
+    marginLeft: 110,
+    paddingLeft: 20,
+    paddingRight: 20
   },
   title: {
     display: "flex",
@@ -126,8 +133,8 @@ if (!incomeBudget || !expenseBudget) {
             />
           </div>
         </div>
-        <div class={"newTransactionForm"}>
-          <RadioGroup row aria-label="transactionsType" name="transaction" value={type} onChange={handleTypeChange}>
+        <div className={classes.newTransactionForm}>
+          <RadioGroup row aria-label="transactionsType" style={{paddingTop: 15}} name="transaction" value={type} onChange={handleTypeChange}>
             <FormControlLabel value="income" control={<Radio />} label="Income" />
             <FormControlLabel value="expense" control={<Radio />} label="Expense" />
           </RadioGroup>
@@ -135,7 +142,7 @@ if (!incomeBudget || !expenseBudget) {
             autoFocus
             margin="dense"
             id="date"
-
+            style={{marginTop:20}}
             type="date"
             onChange={(event) => handleChange("date", event.target.value)}
             value={formValue.date}

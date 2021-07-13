@@ -8,6 +8,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
+import { background } from '@chakra-ui/react';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cancelButton: {
     height: 31,
-    marginTop: 19
+    marginTop: 19,
   },
   listItems: {
     display: "flex",
@@ -126,7 +127,7 @@ export default function Edit(props) {
             startIcon={<SaveIcon />}
           >Save</Button>
         </IconButton>
-        <Button size="small" className={classes.cancelButton} variant="contained" color="primary" onClick={() => transition(SHOW)}>
+        <Button size="small" className={classes.cancelButton} variant="contained" color="default" onClick={() => transition(SHOW)}>
           cancel
         </Button>
       </div>
