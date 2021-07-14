@@ -63,7 +63,8 @@ const useStyles = makeStyles((theme) => ({
     width: 1000,
     overflow : "scroll",
     paddingLeft:30,
-    paddingTop:0
+    paddingTop:0,
+    backgroundColor: theme.palette.background.paper,
   },
   tabs: {
     backgroundColor: "#95ADEF",
@@ -107,7 +108,7 @@ export default function budgetList() {
 
   return (
     <div className={classes.tab_bar}>
-      <AppBar position="static" color="transparent" >
+      <AppBar position="static" color="default" >
         <Tabs
           value={value}
           onChange={handleChange}

@@ -112,15 +112,15 @@ export default function BudgetPieChart(){
   return(
     <>
     {/* Pie chart for income showing types of income budget */}
-    <PieChart width={400} height={300}>
+    <PieChart width={460} height={300}>
     <Pie className="incomepie" 
       activeIndex={activeIndex}
       activeShape={renderActiveShape}
       data={data1}
-      cx={180}
-      cy={180}
+      cx={225}
+      cy={150}
       innerRadius={60}
-      outerRadius={90}
+      outerRadius={100}
       fill="#ffa1b5"
       dataKey="value"
       onMouseEnter={onPieEnter}
@@ -132,15 +132,15 @@ export default function BudgetPieChart(){
       </Pie>
       </PieChart>
         {/* Pie chart for expense showing types of expense budget */}
-        <PieChart width={400} height={300}>
+        <PieChart width={460} height={300}>
           <Pie className="expensepie"
           activeIndex={activeIndex}
           activeShape={renderActiveShape}
           data={data2}
-          cx={180}
+          cx={225}
           cy={180}
           innerRadius={60}
-          outerRadius={90}
+          outerRadius={100}
           fill="#ffa1b5"
           dataKey="value"
           onMouseEnter={onPieEnter}

@@ -35,15 +35,19 @@ const useStyles = makeStyles({
     borderColor: "#64b5f6",
     borderRadius: 25,
     borderWidth: 1,
-    backgroundColor: "#f5f5f5",
-    width: 800,
-    marginLeft: 110,
-    paddingLeft: 20,
-    paddingRight: 20
+    backgroundColor: "#fff",
+    width: 1100,
+    margin:"0 auto"
+    // marginLeft: 110,
+    // paddingLeft: 20,
+    // paddingRight: 20
   },
   title: {
     display: "flex",
     justifyContent: "center",
+  },
+  dateInput:{
+    width:260
   }
 });
 
@@ -112,7 +116,7 @@ if (!incomeBudget || !expenseBudget) {
           </div>
           <div>
             <TextField
-              autoFocus
+              // autoFocus
               margin="dense"
               id="description"
               label="Description"
@@ -123,7 +127,7 @@ if (!incomeBudget || !expenseBudget) {
           </div>
           <div>
             <TextField
-              autoFocus
+              // autoFocus
               margin="dense"
               id="amount"
               label="Amount in dollars"
@@ -139,7 +143,7 @@ if (!incomeBudget || !expenseBudget) {
             <FormControlLabel value="expense" control={<Radio />} label="Expense" />
           </RadioGroup>
           <TextField
-            autoFocus
+            className={classes.dateInput}
             margin="dense"
             id="date"
             style={{marginTop:20}}
@@ -147,7 +151,7 @@ if (!incomeBudget || !expenseBudget) {
             onChange={(event) => handleChange("date", event.target.value)}
             value={formValue.date}
           />
-          <FormControl style={{width:80}}>
+          <FormControl style={{width:270}}>
             <InputLabel id="demo-simple-select-label"
             style={{height:45}}>Budget</InputLabel>
             <Select
@@ -161,7 +165,7 @@ if (!incomeBudget || !expenseBudget) {
             </Select>
           </FormControl>
         </div>
-        <div class={"newTransactionForm"}>
+        <div className="newTransactionForm">
 
           <div>
             <Button onClick={() => { handleSubmit(type); transition(HIDE) }} color="primary">

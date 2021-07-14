@@ -68,17 +68,18 @@ table .icon{
   text-align: right;
 }
 
-div.transactionForm{
+/* div.transactionForm{
   border-style: solid;
   border-radius: 25px;
   border-width: 1px;
   background-color: #f5f5f5;
-}
+  
+} */
 
 div.newTransactionForm{
   display: flex;
   justify-content: space-evenly;
-  margin:15px
+  margin:15px;
 }
 
 button.cancel{

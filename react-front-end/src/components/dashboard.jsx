@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 //Array of month for the dashboard grid
-const monthName = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
+const monthName = ['January', 'February','March','April','May','June','July'];
 const Dashboard=function(){
   const classes = useStyles();
   const [ dashboardData, setState] = useState(
@@ -46,20 +46,20 @@ const Dashboard=function(){
     return null
   }
   const barchartData=monthName.map((e,index)=>{
-    if(index<=new Date().getMonth()){
       return{
         name:e,
         SavingGoal: Number(dashboardData.balanceBudget.find(e=>e.month===index+1).amount),
         SavingsAcheived: Number(dashboardData.monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
-      }
     }
   })
+
+  // console.log(barchartData)
 
   return(
     // Grid for the monthly income, expense and balance
     <Grid container spacing={8} className={classes.grid}>
       <Grid item xs={4} md={5}>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={3}>
       <div className="box">
       <h1>{monthName[month-1]}</h1>
       </div>
@@ -76,7 +76,7 @@ const Dashboard=function(){
 
         {/* // Grid for the annual expense, income and balance */}
         <Grid item xs={4} md={5}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} elevation={3}>
             <div className="box">
               <h1>{year}</h1>
                 <div className="balance">
@@ -91,12 +91,14 @@ const Dashboard=function(){
                     </div>
             </Paper>
         </Grid>
-  <Grid>
+  {/* <Grid> */}
 
 {/* Bar chart for savings goal and savings achieved */}
+<Grid item xs={20} md={20}>
+<Paper className={classes.paper} elevation={3}>
   <BarChart
-    width={950}
-    height={350}
+    width={1130}
+    height={400}
     data={barchartData}
     margin={{
       top: 5,
@@ -113,9 +115,10 @@ const Dashboard=function(){
     <Bar dataKey="SavingGoal" fill="#90caf9" />
     <Bar dataKey="SavingsAcheived" fill="#b2dfdb" />
   </BarChart>
-
+  </Paper>
   </Grid>
   </Grid>
+  // </Grid>
 )
 };
 export default Dashboard;

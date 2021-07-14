@@ -6,7 +6,7 @@ import ExpenseList from "./expenseList";
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import{AppBar,Tabs,Tab,Typography,Zoom,Fab,Box} from '@material-ui/core';
+import{AppBar,Tabs,Tab,Typography,Box} from '@material-ui/core';
 
 
 function TabPanel(props) {
@@ -43,10 +43,10 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   tab_bar: {
     backgroundColor: theme.palette.background.paper,
-    width: 1000,
+    width: 1200,
     position: 'relative',
     minHeight: 200,
-    height:450,
+    height:400,
     overflow:"scroll",
     margin: 25
   },

@@ -21,20 +21,20 @@ code {
   margin-left: 60px;
 }
 
-div.transactionsPage {
+/* div.transactionsPage {
   flex-direction: row;
   justify-content: center;
-}
-div.transactionForm{
+} */
+/* div.transactionForm{
   border-style: solid;
   border-radius: 25px;
   border-width: 1px;
   background-color: #f5f5f5;
-}
+} */
 
-button.cancel{
+/* button.cancel{
   height: 31px;
   margin-top: 19px;
-}
+} */
 
 

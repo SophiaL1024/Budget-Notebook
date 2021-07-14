@@ -8,14 +8,22 @@ import Graph from "./Graph";
 import FormDrawer from "./formDrawer"
 import TransactionTab from "./transactionTab"
 import { makeStyles } from "@material-ui/core";
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
   mainPage:{
     display: "flex",
     flexDirection: "column",
     justifyContent: "center"
-  }
-});
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
+    marginBottom:30
+  },
+}));
 
 export default function Transactions() {
   const {month,year,userId} = useContext(dateContext);
@@ -213,8 +221,11 @@ export default function Transactions() {
   return (
     <div className={classes.mainPage}>
       <dateContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions, handleChange, handleSubmit, formValue, expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget, deletion, handleEdit }}>
-
+      {/* <Grid > */}
+       <Paper className={classes.paper} elevation={3}>
         <Graph />
+        </Paper >
+      {/* </Grid> */}
 
         <NewTransactionForm className='form' />
         

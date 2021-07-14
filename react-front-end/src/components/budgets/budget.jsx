@@ -3,23 +3,25 @@ import axios from 'axios';
 import dateContext from "../../context.js";
 import BudgetList from "./budgetList.jsx";
 import BudgetPieChart from "./pieChart.jsx";
-// import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid';
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(1),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-//   },
-// }));
+const useStyles = makeStyles((theme) => ({
+
+  paper: {
+    // padding: theme.spacing(1),
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
+    marginTop:50,
+    marginRight:50
+  },
+}));
 
 export default function Budget(){
-  // const classes = useStyles();
+  const classes = useStyles();
   const [state, setState] = useState({
     incomeAndBudget:[],
     expenseAndBudget:[],
@@ -33,7 +35,7 @@ export default function Budget(){
     axios
       .get("/budgets", { params: { year,month,userId  } } )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setState((prev) => ({ ...prev,
           incomeAndBudget: res.data.incomeAndBudget,
           expenseAndBudget: res.data.expenseAndBudget,
@@ -48,11 +50,20 @@ export default function Budget(){
   return(
   <>
     <dateContext.Provider value={{incomeAndBudget:state.incomeAndBudget,expenseAndBudget:state.expenseAndBudget,balanceBudget:state.balanceBudget,setState,month,year,userId}}>
-    <div>
+    {/* <Grid> */}
+    {/* <Grid item xs={30} md={40}> */}
+       <Paper className={classes.paper} elevation={3}>
       <BudgetPieChart />
-    </div>
+      </Paper >
+      {/* </Grid> */}
+    {/* </div> */}
+
+    {/* <Grid item xs={30} md={40}>
+       <Paper className={classes.paper}> */}
 
     <BudgetList />
+    {/* </Paper >
+      </Grid> */}
     </dateContext.Provider>
   </>
   )
