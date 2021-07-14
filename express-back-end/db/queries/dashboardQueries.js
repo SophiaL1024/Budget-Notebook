@@ -1,6 +1,6 @@
 const db = require('../connection');
 
-
+// Grab the balance budget from database for a specific user
 const getBalanceBudgetByUserIdYear = (id, year) => {
   const queryStatement = `
   SELECT amount,month
@@ -15,6 +15,7 @@ const getBalanceBudgetByUserIdYear = (id, year) => {
     .catch(err => console.log(err));
 };
 
+// Grab the monthly income from database for a specific user
 const getMonthlyIncomeByUserIdYear = (id, year) => {
   const queryStatement = `
   SELECT SUM(income.amount) AS monthly_income,month
@@ -29,6 +30,7 @@ const getMonthlyIncomeByUserIdYear = (id, year) => {
     .catch(err => console.log(err));
 };
 
+// Grab the monthly expense from database for a specific user
 const getMonthlyExpenseByUserIdYear = (id, year) => {
   const queryStatement = `
   SELECT SUM(expense.amount) AS monthly_expense,month
@@ -42,7 +44,6 @@ const getMonthlyExpenseByUserIdYear = (id, year) => {
     })
     .catch(err => console.log(err));
 };
-
 
 module.exports = {
   getBalanceBudgetByUserIdYear,

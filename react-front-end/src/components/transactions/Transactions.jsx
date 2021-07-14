@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-// import IncomeList from "./incomeList";
-// import ExpenseList from "./expenseList";
 import NewTransactionForm from "./newTransactionForm";
 import dateContext from "../../context";
 import Graph from "./Graph";
@@ -11,23 +9,22 @@ import { makeStyles } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme)=>({
-  mainPage:{
+const useStyles = makeStyles((theme) => ({
+  mainPage: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center"
   },
   paper: {
-    // padding: theme.spacing(1),
     textAlign: 'left',
     color: theme.palette.text.secondary,
-    marginBottom:30,
-    marginTop:20
-  },
+    marginBottom: 30,
+    marginTop: 20
+  }
 }));
 
 export default function Transactions() {
-  const {month,year,userId} = useContext(dateContext);
+  const { month, year, userId } = useContext(dateContext);
 
   const [state, setState] = useState({
     incomeTransactions: [],
@@ -35,6 +32,7 @@ export default function Transactions() {
     expenseBudget: [],
     incomeBudget: []
   });
+
   //handles form state
   const [formValue, setFormValue] = useState({
     name: "",
@@ -45,14 +43,14 @@ export default function Transactions() {
     month: 0,
     day: 0,
     selectedBudgetId: '',
-    "userId":userId
+    "userId": userId
   });
-   
+
   const classes = useStyles();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/transactions",{ params: { year,month,userId } })
+      .get("http://localhost:3000/transactions", { params: { year, month, userId } })
       .then((res) => {
         setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo, expenseBudget: res.data.expenseBudget, incomeBudget: res.data.incomeBudget }));
       });
@@ -61,11 +59,8 @@ export default function Transactions() {
 
   // Handles the deletion of a transaction and updates state
   const deletion = function (id, type) {
-    // console.log("check");
     axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
       .then(() => {
-        // console.log("check");
-
         if (type === "income") {
           // creates a new income list with all items except the item being deleted
           const newIncomeTransactions = state.incomeTransactions.filter(item => item.id !== id);
@@ -169,9 +164,7 @@ export default function Transactions() {
             expenseBudget: newExpenseBudget,
             incomeBudget: newIncomeBudget
           }
-          //  console.log(newState);
           setState(newState);
-          // console.log("newState:",state.incomeTransactions);
         } else if (type === "expense") {
           const newExpenseTransactions = state.expenseTransactions.map(item => { return { ...item } });
           newExpenseTransactions.push({
@@ -216,21 +209,21 @@ export default function Transactions() {
       ...prev,
       [key]: value
     }));
-  }
+  };
 
 
   return (
     <div className={classes.mainPage}>
       <dateContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions, handleChange, handleSubmit, formValue, expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget, deletion, handleEdit }}>
-      {/* <Grid > */}
-       <Paper className={classes.paper} elevation={3}>
-        <Graph />
+        {/* <Grid > */}
+        <Paper className={classes.paper} elevation={3}>
+          <Graph />
         </Paper >
-      {/* </Grid> */}
+        {/* </Grid> */}
 
         <NewTransactionForm className='form' />
         <Paper className={classes.paper} elevation={3}>
-        <TransactionTab />
+          <TransactionTab />
         </Paper>
       </dateContext.Provider>
     </div>

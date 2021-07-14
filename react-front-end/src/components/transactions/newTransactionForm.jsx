@@ -13,8 +13,8 @@ import { color } from '@chakra-ui/react';
 
 const useStyles = makeStyles({
   add: {
-    background:"#64b5f6",
-    color:"white"
+    background: "#64b5f6",
+    color: "white"
   },
   newTransactionButton: {
     display: "flex",
@@ -37,17 +37,14 @@ const useStyles = makeStyles({
     borderWidth: 1,
     backgroundColor: "#fff",
     width: 1100,
-    margin:"0 auto"
-    // marginLeft: 110,
-    // paddingLeft: 20,
-    // paddingRight: 20
+    margin: "0 auto"
   },
   title: {
     display: "flex",
     justifyContent: "center",
   },
-  dateInput:{
-    width:260
+  dateInput: {
+    width: 260
   }
 });
 
@@ -62,23 +59,21 @@ export default function NewTransactionForm(props) {
 
   // responsible for showing new transaction form
   const button = (
-   mode === HIDE && (
-     <div className={classes.newTransactionButton}>
-       <Button onClick={() => transition(SHOW)} className={classes.add}  >
-         Add Transaction
-       </Button>
-     </div>
-   )
- )
+    mode === HIDE && (
+      <div className={classes.newTransactionButton}>
+        <Button onClick={() => transition(SHOW)} className={classes.add}  >
+          Add Transaction
+        </Button>
+      </div>
+    )
+  );
 
-if (!incomeBudget || !expenseBudget) {
-    return (button)
-  }
-
+  if (!incomeBudget || !expenseBudget) {
+    return (button);
+  };
 
   const handleTypeChange = (event) => {
     setType(event.target.value);
-
   };
 
   const selectorList = (type) => {
@@ -86,16 +81,16 @@ if (!incomeBudget || !expenseBudget) {
       return incomeBudget.map(e => {
         return (
           <MenuItem value={e.id} key={e.id}>{e.name}</MenuItem>
-        )
-      })
+        );
+      });
     } else if (type === "expense") {
       return expenseBudget.map(e => {
         return (
           <MenuItem value={e.id} key={e.id}>{e.name}</MenuItem>
-        )
-      })
-    }
-  }
+        );
+      });
+    };
+  };
 
 
   const newTransaction = (
@@ -138,7 +133,7 @@ if (!incomeBudget || !expenseBudget) {
           </div>
         </div>
         <div className={classes.newTransactionForm}>
-          <RadioGroup row aria-label="transactionsType" style={{paddingTop: 15}} name="transaction" value={type} onChange={handleTypeChange}>
+          <RadioGroup row aria-label="transactionsType" style={{ paddingTop: 15 }} name="transaction" value={type} onChange={handleTypeChange}>
             <FormControlLabel value="income" control={<Radio />} label="Income" />
             <FormControlLabel value="expense" control={<Radio />} label="Expense" />
           </RadioGroup>
@@ -146,14 +141,14 @@ if (!incomeBudget || !expenseBudget) {
             className={classes.dateInput}
             margin="dense"
             id="date"
-            style={{marginTop:20}}
+            style={{ marginTop: 20 }}
             type="date"
             onChange={(event) => handleChange("date", event.target.value)}
             value={formValue.date}
           />
-          <FormControl style={{width:270}}>
+          <FormControl style={{ width: 270 }}>
             <InputLabel id="demo-simple-select-label"
-            style={{height:45}}>Budget</InputLabel>
+              style={{ height: 45 }}>Budget</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -178,7 +173,7 @@ if (!incomeBudget || !expenseBudget) {
               cancel
             </Button>
           </div>
-          </div>
+        </div>
 
       </div>
     ));

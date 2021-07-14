@@ -1,54 +1,53 @@
 const db = require('../connection');
 
 //selects all columns from income table
-const getIncomeTransactionsById = (id,month,year) => {
+const getIncomeTransactionsById = (id, month, year) => {
   const queryStatement = `
   SELECT *
   FROM income
   WHERE month=$2 AND user_id=$1 AND year=$3
   `;
-  return db.query(queryStatement, [id,month,year])
+  return db.query(queryStatement, [id, month, year])
     .then((response) => {
-      // console.log(response.rows);
       return response.rows;
     })
     .catch(err => console.log(err));
 };
 
 //selects all columns from expense table
-const getExpenseTransactionsById = (id,month,year) => {
+const getExpenseTransactionsById = (id, month, year) => {
   const queryStatement = `
   SELECT *
   FROM expense
   WHERE month=$2 AND user_id=$1 AND year=$3
   `;
-  return db.query(queryStatement, [id,month,year])
+  return db.query(queryStatement, [id, month, year])
     .then((response) => {
       return response.rows;
     })
     .catch(err => console.log(err));
 };
 
-const getIncomeBudget = (id,month,year)=>{
+const getIncomeBudget = (id, month, year) => {
   const queryStatement = `
   SELECT id,name
   FROM income_budgets
   WHERE month=$2 AND user_id=$1 AND year=$3
   `;
-  return db.query(queryStatement, [id,month,year])
+  return db.query(queryStatement, [id, month, year])
     .then((response) => {
       return response.rows;
     })
     .catch(err => console.log(err));
 };
 
-const getExpenseBudget = (id,month,year)=>{
+const getExpenseBudget = (id, month, year) => {
   const queryStatement = `
   SELECT id,name
   FROM expense_budgets
   WHERE month=$2 AND user_id=$1 AND year=$3
   `;
-  return db.query(queryStatement, [id,month,year])
+  return db.query(queryStatement, [id, month, year])
     .then((response) => {
       return response.rows;
     })
@@ -77,27 +76,27 @@ const deleteExpenseTransactionById = (id) => {
     .catch(err => console.log(err));
 };
 
-const addExpense = (name, description, amount, year, month, day, userId,selectedBudgetId) => {
-  
+const addExpense = (name, description, amount, year, month, day, userId, selectedBudgetId) => {
+
   const queryStatement = `
   INSERT INTO expense (name,description,amount,year,month,day,user_id,expense_budgets_id)
   VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
   RETURNING id`;
-  return db.query(queryStatement, [name, description, amount, year, month, day, userId,selectedBudgetId])
+  return db.query(queryStatement, [name, description, amount, year, month, day, userId, selectedBudgetId])
     .then((response) => {
       return response.rows[0].id;
     })
     .catch(err => console.log(err));
 };
 
-const addIncome = (name, description, amount, year, month, day, userId,selectedBudgetId) => {
+const addIncome = (name, description, amount, year, month, day, userId, selectedBudgetId) => {
 
   const queryStatement = `
   INSERT INTO income (name,description,amount,year,month,day,user_id,income_budgets_id)
   VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
   RETURNING id
   `;
-  return db.query(queryStatement, [name, description,amount, year, month, day, userId,selectedBudgetId])
+  return db.query(queryStatement, [name, description, amount, year, month, day, userId, selectedBudgetId])
     .then((response) => {
       return response.rows[0].id;
     })

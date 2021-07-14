@@ -1,11 +1,10 @@
-
-import React ,{useContext}from 'react';
+import React, { useContext } from 'react';
 import dateContext from "../../context.js";
 import { PieChart, Pie, Cell, Sector } from 'recharts';
 import { useCallback, useState } from "react";
 
 //Color themes for the pie charts
-const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC','#fcf092','#82ca9d','#f3a8f7'];
+const COLORS = ['#ffa1b5', '#a1b5ff', '#FFCC66', '#66CCCC', '#fcf092', '#82ca9d', '#f3a8f7'];
 
 //Element of the pie chart from recharts
 const renderActiveShape = (props) => {
@@ -81,9 +80,9 @@ const renderActiveShape = (props) => {
   );
 };
 
-export default function BudgetPieChart(){
+export default function BudgetPieChart() {
 
-  const {incomeAndBudget,expenseAndBudget} = useContext(dateContext);
+  const { incomeAndBudget, expenseAndBudget } = useContext(dateContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {
@@ -92,48 +91,47 @@ export default function BudgetPieChart(){
     [setActiveIndex]
   );
 
-//Data for income budget and income total
-  const data1 = incomeAndBudget.map(e=> {
-     return {
+  //Data for income budget and income total
+  const data1 = incomeAndBudget.map(e => {
+    return {
       name: e.name,
       value: Number(e.income_sum),
     }
   })
 
-//Data for expense budget and expense total
-  const data2 = expenseAndBudget.map(e=> {
+  //Data for expense budget and expense total
+  const data2 = expenseAndBudget.map(e => {
     return {
       name: e.name,
       value: Number(e.expense_sum),
     }
   })
-  
-  // console.log(data1)
-  return(
+
+  return (
     <>
-    {/* Pie chart for income showing types of income budget */}
-    <PieChart width={460} height={300}>
-    <Pie className="incomepie" 
-      activeIndex={activeIndex}
-      activeShape={renderActiveShape}
-      data={data1}
-      cx={225}
-      cy={150}
-      innerRadius={60}
-      outerRadius={100}
-      fill="#ffa1b5"
-      dataKey="value"
-      onMouseEnter={onPieEnter}
-      animationBegin={0}
-    >
-      {data1.map((entry, index) => (
+      {/* Pie chart for income showing types of income budget */}
+      <PieChart width={460} height={300}>
+        <Pie className="incomepie"
+          activeIndex={activeIndex}
+          activeShape={renderActiveShape}
+          data={data1}
+          cx={225}
+          cy={150}
+          innerRadius={60}
+          outerRadius={100}
+          fill="#ffa1b5"
+          dataKey="value"
+          onMouseEnter={onPieEnter}
+          animationBegin={0}
+        >
+          {data1.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
-      </Pie>
+        </Pie>
       </PieChart>
-        {/* Pie chart for expense showing types of expense budget */}
-        <PieChart width={460} height={300}>
-          <Pie className="expensepie"
+      {/* Pie chart for expense showing types of expense budget */}
+      <PieChart width={460} height={300}>
+        <Pie className="expensepie"
           activeIndex={activeIndex}
           activeShape={renderActiveShape}
           data={data2}
@@ -147,10 +145,10 @@ export default function BudgetPieChart(){
           animationBegin={0}
         >
           {data2.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-          </Pie>
-        </PieChart>
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieChart>
     </>
-    )
+  )
 }

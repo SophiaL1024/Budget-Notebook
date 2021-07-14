@@ -1,4 +1,4 @@
-import  React,{ useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import dateContext from '../../context';
 import IncomeList from "./incomeList";
 import ExpenseList from "./expenseList";
@@ -6,7 +6,7 @@ import ExpenseList from "./expenseList";
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import{AppBar,Tabs,Tab,Typography,Box} from '@material-ui/core';
+import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
 
 
 function TabPanel(props) {
@@ -46,29 +46,27 @@ const useStyles = makeStyles((theme) => ({
     width: 1200,
     position: 'relative',
     minHeight: 200,
-    height:400,
-    overflow:"scroll",
-    // margin: 25
+    height: 400,
+    overflow: "scroll",
   },
   fab: {
-    // position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
-  app_bar:{
-    backgroundColor:'#e1f5fe'
+  app_bar: {
+    backgroundColor: '#e1f5fe'
   },
-  panel:{
-    color:'#000'
+  panel: {
+    color: '#000'
   }
 }));
 
 export default function budgetList() {
-  const {deletion,handleEdit} = useContext(dateContext);
+  const { deletion, handleEdit } = useContext(dateContext);
 
   const classes = useStyles();
   const theme = useTheme();
-  const [value,setValue]=useState(0); 
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -91,13 +89,13 @@ export default function budgetList() {
         </Tabs>
       </AppBar>
 
-        <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel}>
+      <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel}>
         <IncomeList />
-        </TabPanel>
+      </TabPanel>
 
-        <TabPanel value={value} index={1} dir={theme.direction} className={classes.panel}>
+      <TabPanel value={value} index={1} dir={theme.direction} className={classes.panel}>
         <ExpenseList />
-        </TabPanel>
+      </TabPanel>
 
     </div>
   );
