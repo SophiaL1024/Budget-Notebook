@@ -1,17 +1,14 @@
 const Express = require('express');
 const router = Express.Router();
 const budgetQueries = require('../db/queries/budgetQueries');
-// const currentMonth = new Date().getMonth() + 1;
-// const currenYear = new Date().getFullYear();
 
 
 router.get('/', (req, res) => {
   const budgetData = {};
   const userId = req.query.userId;
-  // console.log("test",req.params.userId,req.query.month,req.query.year);
+
   budgetQueries.getIncomeAndBudget(userId,req.query.month,req.query.year)
     .then((resolve) => {
-      // console.log(resolve);
       if (!resolve.length) {
         // eslint-disable-next-line camelcase
         resolve = [{income_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:userId}];
@@ -25,9 +22,7 @@ router.get('/', (req, res) => {
             // eslint-disable-next-line camelcase
             resolve = [{expense_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:userId}];
           }
-          // console.log(resolve);
           budgetData.expenseAndBudget = resolve;
-          // res.json(budgetData);
         });
     })
     .then(()=>{
@@ -38,7 +33,6 @@ router.get('/', (req, res) => {
               e = 0;
             }
           });
-          // console.log("tessssss",resolve);
           budgetData.balanceBudget = resolve;
           res.json(budgetData);
         });
@@ -47,67 +41,50 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  // console.log(req.body.data);
-
   const {name,amount,month,year,userId} = req.body.data.formValue;
 
   const {tabType} = req.body.data;
 
   if (tabType === 0) {
-    // console.log(req.body.data);
     budgetQueries.createIncomeBudget(name,amount,year,month,userId)
       .then(resolve=>{
-        // console.log("resolve:",year,month,userId,resolve);
         budgetQueries.createIncome(year,month,userId,resolve);
         res.json(resolve);
       });
   } else if (tabType === 1) {
-  // console.log(req.body.data);
     budgetQueries.createExpenseBudget(name,amount,year,month,userId)
       .then(resolve=>{
-      // console.log("resolve:",year,month,userId,resolve);
         budgetQueries.createExpense(year,month,userId,resolve);
         res.json(resolve);
       });
   } else if (tabType === 2) {
     budgetQueries.createBalanceBudget(amount,year,month,userId);
   }
-
 });
 
 router.patch('/', (req, res) => {
-  // console.log(req.body.data);
+
   const {type,id,month,year,userId} = req.body.data;
   const {name,amount} = req.body.data.formValue;
   
-  
   if (type === 'income') {
-
     budgetQueries.updateIncomeBudget(id,amount,name)
       .then((resolve)=>{
-        // console.log(resolve);
         res.json(resolve);
       });
 
   } else if (type === 'expense') {
     budgetQueries.updateExpenseBudget(id,amount,name)
       .then((resolve)=>{
-      // console.log(resolve);
         res.json(resolve);
       });
   } else if (type === 'balance') {
    
     budgetQueries.updateBalanceBudget(month,year,amount,userId)
       .then((resolve)=>{
-      // console.log(resolve);
         res.json(resolve);
       });
   }
-
-
-  // console.log(req.body.data);
-  
-
 });
 
 router.delete('/', (req, res) => {
@@ -116,14 +93,9 @@ router.delete('/', (req, res) => {
   
   if (budgetType === 'expense') {
     budgetQueries.deleteExpenseBudget(id);
-    // .then(resolve=>{
-    //   console.log("delete response",resolve);
-    //   res.json(resolve);
-    // });
   } else if (budgetType === 'income') {
     budgetQueries.deleteIncomeBudget(id);
   }
-  // res.json("");
 });
 
 module.exports = router;

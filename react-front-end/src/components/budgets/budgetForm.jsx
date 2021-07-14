@@ -36,7 +36,7 @@ export default function budgetForm(props){
  
     formValue.year=Number(formValue.date.slice(0,4));
     formValue.month=Number(formValue.date.slice(-2));
-    //Don't need to setState for newly created balance_budget,cause it don't need to be rendered in the current page.
+
     axios.post('http://localhost:3000/budgets', {data:{formValue,tabType}}) 
 
     .then((resolve) => {
@@ -89,21 +89,15 @@ export default function budgetForm(props){
       .catch(err => console.log( err));
 
       handleClose();
-  };
-
-  
- 
+  }; 
 
   return (
     <>
-
     <Dialog open={handleOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
 
     <DialogTitle id="form-dialog-title">{tabType===0?'New Income Budget':'New Expense Budget'}</DialogTitle>
 
      <DialogContent>
-     
-     {/* <DialogContentText>{tabType===0?'Set up income budget':((tabType===1?'Set up expense budget':'Set up saving goal'))} </DialogContentText> */}
 
       <TextField
         autoFocus
@@ -128,8 +122,7 @@ export default function budgetForm(props){
         margin="dense"
         id="date"
         type="month"
-        onChange={(event)=>handleChange("date",event.target.value)}        
-        // inputProps={tabType===2?{ min: '2021-08' }:{ min:'2021-01' }} //hard code min month
+        onChange={(event)=>handleChange("date",event.target.value)}
       />
     </DialogContent>
 

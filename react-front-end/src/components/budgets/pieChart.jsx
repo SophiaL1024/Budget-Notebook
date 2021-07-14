@@ -1,4 +1,3 @@
-
 import React ,{useContext}from 'react';
 import dateContext from "../../context.js";
 import { PieChart, Pie, Cell, Sector } from 'recharts';
@@ -107,8 +106,7 @@ export default function BudgetPieChart(){
       value: Number(e.expense_sum),
     }
   })
-  
-  // console.log(data1)
+
   return(
     <>
     {/* Pie chart for income showing types of income budget */}
