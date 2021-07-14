@@ -15,17 +15,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 //Array of month for the dashboard grid
 const monthName = ['January', 'February','March','April','May','June','July'];
+
 const Dashboard=function(){
+
   const classes = useStyles();
+
+  const {month,year,userId} = useContext(dateContext);
+
   const [ dashboardData, setState] = useState(
     {balanceBudget:[],
     monthlyIncome:[],
     monthlyExpense:[],
-    monthlyBalance:[],
+    // monthlyBalance:[],
     annualIncome:0,
     annualExpense:0}
   ); 
-  const {month,year,userId} = useContext(dateContext);
   useEffect(() => {
     axios.get("/dashboards", { params: { year,month,userId }} )
       .then((res) => {         
@@ -33,20 +37,30 @@ const Dashboard=function(){
         balanceBudget:res.data.balanceBudget,
         monthlyIncome:res.data.monthlyIncome,
         monthlyExpense:res.data.monthlyExpense,
-        monthlyBalance:res.data.monthlyBalance,
+        // monthlyBalance:res.data.monthlyBalance,
         annualIncome:res.data.annualIncome,
         annualExpense:res.data.annualExpense
         }));
       });
   }, [month,year]);
-  if(!dashboardData.balanceBudget.length||!dashboardData.monthlyIncome.length || !dashboardData.monthlyExpense||!dashboardData.monthlyBalance.length){
+
+  if(!dashboardData.balanceBudget.length||!dashboardData.monthlyIncome.length || !dashboardData.monthlyExpense){
     return null
-  }
+  };
+
+  const monthlyBalance = dashboardData.monthlyIncome.map(e=>{
+    return {
+      month:e.month,
+      monthlyBalance:(Number(e.monthly_income) - Number(dashboardData.monthlyExpense.find(element=>element.month === e.month).monthly_expense)).toFixed(2)
+    };
+  });
+
+
   const barchartData=monthName.map((e,index)=>{
       return{
         name:e,
         SavingGoal: Number(dashboardData.balanceBudget.find(e=>e.month===index+1).amount),
-        SavingsAcheived: Number(dashboardData.monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
+        SavingsAcheived: Number(monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
     }
   })
 
@@ -61,7 +75,7 @@ const Dashboard=function(){
       <h1>{monthName[month-1]}</h1>
       </div>
         <div className="balance">
-          <h2>Balance : ${Number(dashboardData.monthlyBalance.find(e=>e.month===month).monthlyBalance).toLocaleString()}</h2>
+          <h2>Balance : ${Number(monthlyBalance.find(e=>e.month===month).monthlyBalance).toLocaleString()}</h2>
         </div>
           <div className="income">
           <h2>Incomes : ${Number(dashboardData.monthlyIncome.find(e=>e.month===month).monthly_income).toLocaleString() }</h2> 

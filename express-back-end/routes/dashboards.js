@@ -25,13 +25,14 @@ router.get('/', (req, res) => {
               resolve.push({monthly_income:0,month:i});
             }
           }
+          dashboardData.monthlyIncome = resolve;
+
           const incomeArr = resolve.map(e=>Number(e.monthly_income));
           dashboardData.annualIncome = incomeArr.length !== 0 ? incomeArr.reduce((a,b)=>a + b).toFixed(2) : 0;
       
           //let the next query wait until dashboardData.monthlyIncome is assigned
-          return new Promise(()=>{
-            dashboardData.monthlyIncome = resolve;
-          });
+          // return new Promise(()=>{
+          // });
         });
     })
     .then(() => {
@@ -48,13 +49,13 @@ router.get('/', (req, res) => {
           const expenseArr = resolve.map(e=>Number(e.monthly_expense));
           dashboardData.annualExpense = expenseArr.length !== 0 ? expenseArr.reduce((a,b)=>a + b).toFixed(2) : 0;
 
-          dashboardData.monthlyBalance = dashboardData.monthlyIncome.map(e=>{
+          // dashboardData.monthlyBalance = dashboardData.monthlyIncome.map(e=>{
 
-            return {
-              month:e.month,
-              monthlyBalance:(Number(e.monthly_income) - Number(dashboardData.monthlyExpense.find(element=>element.month === e.month).monthly_expense)).toFixed(2)
-            };
-          });
+          //   return {
+          //     month:e.month,
+          //     monthlyBalance:(Number(e.monthly_income) - Number(dashboardData.monthlyExpense.find(element=>element.month === e.month).monthly_expense)).toFixed(2)
+          //   };
+          // });
 
           // console.log("in route",dashboardData);
           res.json(dashboardData);
