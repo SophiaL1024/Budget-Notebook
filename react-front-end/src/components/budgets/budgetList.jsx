@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import{AppBar,Tabs,Tab,Typography,Zoom,Fab,Box} from '@material-ui/core';
-import { purple } from '@material-ui/core/colors';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,21 +37,10 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  // palette: {
-  //   primary: {
-  //     main:  "#64b5f6",
-  //   },
-  //   secondary: {
-  //     main: '#f44336',
-  //   },
-  // },
   tab_bar: {
-    // backgroundColor: theme.palette.background.paper,
-    // backgroundColor:"#95ADEF",
     width: 997,
     position: 'relative',
     minHeight: 200,
-    // marginTop:50
   },
   fab: {
     position: 'absolute',
@@ -66,14 +54,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft:30,
     paddingTop:0,
     color:'#000'
-    // backgroundColor: theme.palette.background.paper,
-  },
-  tabs: {
-    // backgroundColor: "#95ADEF", 
   },
   app_bar:{
     backgroundColor:'#e1f5fe',
-
   }
 }));
 
@@ -129,9 +112,7 @@ export default function budgetList() {
         </Tabs>
       </AppBar>
 
-
-
-        <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
+      <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
         <table >
         <thead>
            <tr>
@@ -147,9 +128,9 @@ export default function budgetList() {
   
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={0}/> 
-        </TabPanel>
+      </TabPanel>
 
-        <TabPanel value={value} index={1} dir={theme.direction}className={classes.panel}>
+      <TabPanel value={value} index={1} dir={theme.direction}className={classes.panel}>
         <table>
         <thead>
            <tr>
@@ -165,14 +146,12 @@ export default function budgetList() {
 
         </table>
         <BudgetForm open={open} setOpen={setOpen} tabType={1}/>
-        </TabPanel>
+      </TabPanel>
 
-        <TabPanel value={value} index={2} dir={theme.direction} className={classes.panel}>
+      <TabPanel value={value} index={2} dir={theme.direction} className={classes.panel}>
         <BudgetListItems tabType={2} />
 
-        </TabPanel>
-
-      
+      </TabPanel>      
       
        {fabs.map((fab, index) => (
         <Zoom
@@ -186,8 +165,7 @@ export default function budgetList() {
         >
           <Fab aria-label={fab.label} className={fab.className} color={fab.color} onClick={handleClickOpen}>
             {fab.icon}
-          </Fab>
-         
+          </Fab>         
         </Zoom>
       ))}
 

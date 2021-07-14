@@ -11,7 +11,6 @@ const getIncomeAndBudget = (id, month, year) => {
  `;
   return db.query(queryStatement, [id, month, year])
     .then((response) => {
-      // console.log(response);
       return response.rows;
     })
     .catch(err => console.log(err));
@@ -48,10 +47,8 @@ const getBalanceBudget = (id, month, year)=>{
  `;
   return db.query(queryStatement, [id, month, year])
     .then((response) => {
-      // console.log("response:",response);
+      // return an array of balance budget amount, sum of income and sum of expense for a given month
       const balance = response.rows.map(e=>e.budget);
-      // return and array of balance budget amount, sum of income and sum of expense for a given month
-      // console.log(balance);
       return balance;
     })
     .catch(err => console.log(err));
@@ -80,7 +77,7 @@ const createExpenseBudget = (name, amount, year, month, id) => {
  `;
   return db.query(queryStatement, [name, amount, year, month, id])
     .then((response) => {
-      // console.log(response.rows[0].id);
+
       return response.rows[0].id;
     })
     .catch(err => console.log(err));
@@ -101,7 +98,6 @@ const createIncome = (year,month,userId,resolve)=>{
   VALUES 
    (' ',' ',0,$1,$2,1,$3,$4)
  `;
-  // console.log(year,month,userId,resolve);
   db.query(queryStatement, [year,month,userId,resolve]);
 
 };
@@ -112,7 +108,6 @@ const createExpense = (year,month,userId,resolve)=>{
   VALUES 
    (' ',' ',0,$1,$2,1,$3,$4)
  `;
-  // console.log(year,month,userId,resolve);
   db.query(queryStatement, [year,month,userId,resolve]);
 
 };
@@ -124,10 +119,6 @@ const deleteIncomeBudget = (id) => {
   RETURNING *
  `;
   db.query(queryStatement, [id]);
-  // .then(()=>{
-
-  //   return "delete";
-  // });
 };
 
 const deleteExpenseBudget = (id) => {
@@ -153,7 +144,6 @@ const updateExpenseBudget = (id,amount,name)=>{
 };
 
 const updateIncomeBudget = (id,amount,name)=>{
-  // console.log(id,amount,name);
   const queryStatement = `
   UPDATE income_budgets
   SET amount = $2, name=$3     
@@ -177,7 +167,6 @@ const updateBalanceBudget = (month,year,amount,userId)=>{
  `;
   return db.query(queryStatement, [month,year,amount,userId])
     .then((response)=>{
-      // console.log(response);
       return response.rowCount;
     });
 

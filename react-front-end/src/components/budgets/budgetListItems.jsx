@@ -28,18 +28,13 @@ export default function BudgetListItems(props){
     if(haveTransactions!=="0" && haveTransactions){
       setAlert(id)
     }else{
-
-      axios.delete('http://localhost:3000/budgets',{data:{id,budgetType}})
-
+      axios.delete('http://localhost:3000/budgets',{data:{id,budgetType}});
       if(budgetType==="income"){
-
         const newIncomeAndBudget =incomeAndBudget.filter(e=>e.id!==id);
-
         setState((prev) => ({ 
           ...prev,      
           incomeAndBudget: newIncomeAndBudget               
         })) 
-
       }else if (budgetType==="expense"){
         const newExpenseAndBudget =expenseAndBudget.filter(e=>e.id!==id);  
         setState((prev) => ({ 
@@ -49,7 +44,6 @@ export default function BudgetListItems(props){
       }
     }
   }
-
 
   const incomeItems=incomeAndBudget.map(e=>{
     if(edit===e.id && type==='income'){

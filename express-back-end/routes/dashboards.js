@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
           //Fill monthly_income for the month with no data
           for (let i = 1; i <= 12; i++) {
             if (!resolve.find(e=>e.month === i)) {
+              // eslint-disable-next-line camelcase
               resolve.push({monthly_income:0,month:i});
             }
           }
@@ -33,6 +34,7 @@ router.get('/', (req, res) => {
         .then(resolve => {
           for (let i = 1; i <= 12; i++) {
             if (!resolve.find(e=>e.month === i)) {
+              // eslint-disable-next-line camelcase
               resolve.push({monthly_expense:0,month:i});
             }
           }

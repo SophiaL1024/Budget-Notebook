@@ -3,14 +3,10 @@ import axios from "axios";
 import dateContext from "../../context.js";
 import { Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import CancelIcon from '@material-ui/icons/Cancel';
-// import SaveIcon from '@material-ui/icons/Save';
 
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(2),
-    // width:"5px" 
-    // height:"20px"  
   },
   edit: {
     '& > *': {
@@ -28,10 +24,7 @@ export default function EditForm(props) {
   const [formValue, setFormValue] = useState({ 
     name: props.item.name ,
     amount: props.item.amount   
-  });  
-
-  // console.log(props.item);
-
+  });
   const handleChange = (key,value) => { 
     setFormValue(prev => ({
       ...prev,
@@ -121,11 +114,6 @@ export default function EditForm(props) {
             onClick={handleSave}
           >Save</Button>
 
-           
-          {/* <IconButton aria-label="save" onClick={handleSave}>
-          <SaveIcon   />
-          </IconButton> */}
-
           <Button
             variant="contained"
             color="default"
@@ -133,11 +121,6 @@ export default function EditForm(props) {
             className={classes.button}
             onClick={() => {props.setEdit(0)}}
           >Cancel</Button>
-          
-
-
-
-
       </form>
     )
  
