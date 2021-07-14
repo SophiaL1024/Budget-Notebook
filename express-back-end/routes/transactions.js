@@ -45,6 +45,7 @@ router.post('/', (req, res) => {
       });
 
   } else if (type === "expense") {
+    // console.log(req.body.data.formValue);
     transactionsQueries.addExpense(name, description, amount, year, month, day, userId,selectedBudgetId)
       .then(resolve => {
         res.json(resolve);

@@ -1,6 +1,6 @@
 const Express = require('express');
 const router = Express.Router();
-const dashBoardQuries = require('../db/queries/dashboardQuries');
+const dashBoardQueries = require('../db/queries/dashboardQueries');
 
 router.get('/', (req, res) => {
 
@@ -8,14 +8,14 @@ router.get('/', (req, res) => {
   // console.log("dahsboard req",req.headers.cookie);
   // console.log(req.query.userId);
   const userId = req.query.userId;
-  dashBoardQuries.getBalanceBudgetByUserIdYear(userId, req.query.year)
+  dashBoardQueries.getBalanceBudgetByUserIdYear(userId, req.query.year)
     .then(resolve => {
       // console.log("saving goal",resolve);
 
       dashboardData.balanceBudget = resolve;
     })
     .then(() => {
-      dashBoardQuries. getMonthlyIncomeByUserIdYear(userId, req.query.year)
+      dashBoardQueries. getMonthlyIncomeByUserIdYear(userId, req.query.year)
         .then(resolve => {
 
           //Fill monthly_income for the month with no data
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
         });
     })
     .then(() => {
-      dashBoardQuries. getMonthlyExpenseByUserIdYear(userId, req.query.year)
+      dashBoardQueries. getMonthlyExpenseByUserIdYear(userId, req.query.year)
         .then(resolve => {
           for (let i = 1; i <= 12; i++) {
             if (!resolve.find(e=>e.month === i)) {
