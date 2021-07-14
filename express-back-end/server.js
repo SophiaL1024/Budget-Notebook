@@ -16,7 +16,7 @@ db.connect();
 // const balance = require('./routes/balances');
 const transactions = require('./routes/transactions');
 const dashboard = require('./routes/dashboards');
-const categories = require('./routes/categories');
+// const categories = require('./routes/categories');
 const budget = require('./routes/budgets');
 const user = require('./routes/users');
 
@@ -27,7 +27,7 @@ App.get('/api/data', (req, res) => res.json({
 // App.use('/balances', balance);
 App.use('/transactions', transactions);
 App.use('/dashboards', dashboard);
-App.use('/categories', categories);
+// App.use('/categories', categories);
 App.use('/budgets', budget);
 App.use('/', user);
 

@@ -7,12 +7,12 @@ router.get('/', (req, res) => {
   const userId = req.query.userId;
   transactionsQueries.getExpenseTransactionsById(userId,req.query.month,req.query.year)
     .then((resolve) => {
-      transactionsData.expenseInfo = resolve;
+      transactionsData.expenseInfo = resolve.filter(e=>Number(e.amount));
     })
     .then(() => {
       transactionsQueries.getIncomeTransactionsById(userId,req.query.month,req.query.year)
         .then(resolve => {
-          transactionsData.incomeInfo = resolve;
+          transactionsData.incomeInfo = resolve.filter(e=>Number(e.amount));
         });
     })
     .then(() => {
