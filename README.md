@@ -12,7 +12,9 @@ Budget Notebook is a financial planning application for individual users to make
 
 ## Screenshots
 !["screenshot of the dashboard"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Dashboard.png)
+
 !["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Budget.png)
+
 !["screenshot of the transaction page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Transaction.png)
 
 ## Running the projects
