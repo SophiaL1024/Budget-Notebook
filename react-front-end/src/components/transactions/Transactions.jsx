@@ -18,10 +18,11 @@ const useStyles = makeStyles((theme)=>({
     justifyContent: "center"
   },
   paper: {
-    padding: theme.spacing(1),
+    // padding: theme.spacing(1),
     textAlign: 'left',
     color: theme.palette.text.secondary,
-    marginBottom:30
+    marginBottom:30,
+    marginTop:20
   },
 }));
 
@@ -228,9 +229,9 @@ export default function Transactions() {
       {/* </Grid> */}
 
         <NewTransactionForm className='form' />
-        
+        <Paper className={classes.paper} elevation={3}>
         <TransactionTab />
-
+        </Paper>
       </dateContext.Provider>
     </div>
   )

@@ -22,9 +22,10 @@ const findSum = function(data, maxDay) {
     // console.log("item:",item);
     sum += x
   }
+
   return sum;
 };
-console.log("findSum:",findSum(expenseTransactions, 8))
+// console.log("findSum:",findSum(expenseTransactions, 8))
 const data = [
   {
     name: "week 1",
@@ -35,7 +36,7 @@ const data = [
   {
     name: "week 2",
     Expense: findSum(expenseTransactions, 15),
-    Income: findSum(incomeTransactions, 15, 7),
+    Income: findSum(incomeTransactions, 15),
     amt: 6000
   },
   {
@@ -60,7 +61,7 @@ return (
       height={300}
       data={data}
       margin={{
-        top: 5,
+        top: 40,
         right: 30,
         left: 20,
         bottom: 10
@@ -78,8 +79,9 @@ return (
         dataKey="Income"
         stroke="#8884d8"
         activeDot={{ r: 8 }}
+        strokeWidth={3}
       />
-      <Line type="monotone" dataKey="Expense" stroke="#82ca9d" />
+      <Line type="monotone" dataKey="Expense" stroke="#82ca9d" strokeWidth={3} />
     </LineChart>
   );
 }

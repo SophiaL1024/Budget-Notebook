@@ -60,8 +60,9 @@ export default function Budget(){
 
     {/* <Grid item xs={30} md={40}>
        <Paper className={classes.paper}> */}
-
+      <Paper className={classes.paper} elevation={3}>
     <BudgetList />
+    </Paper>
     {/* </Paper >
       </Grid> */}
     </dateContext.Provider>

@@ -48,14 +48,19 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 200,
     height:400,
     overflow:"scroll",
-    margin: 25
+    // margin: 25
   },
   fab: {
     // position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+  },
+  app_bar:{
+    backgroundColor:'#e1f5fe'
+  },
+  panel:{
+    color:'#000'
   }
-
 }));
 
 export default function budgetList() {
@@ -71,7 +76,7 @@ export default function budgetList() {
 
   return (
     <div className={classes.tab_bar}>
-      <AppBar position="sticky" color="default">
+      <AppBar position="sticky" className={classes.app_bar}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -86,11 +91,11 @@ export default function budgetList() {
         </Tabs>
       </AppBar>
 
-        <TabPanel value={value} index={0} dir={theme.direction}>
+        <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel}>
         <IncomeList />
         </TabPanel>
 
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel value={value} index={1} dir={theme.direction} className={classes.panel}>
         <ExpenseList />
         </TabPanel>
 

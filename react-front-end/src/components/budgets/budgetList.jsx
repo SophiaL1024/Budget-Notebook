@@ -38,20 +38,21 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  palette: {
-    primary: {
-      main: purple[500],
-    },
-    secondary: {
-      main: '#f44336',
-    },
-  },
+  // palette: {
+  //   primary: {
+  //     main:  "#64b5f6",
+  //   },
+  //   secondary: {
+  //     main: '#f44336',
+  //   },
+  // },
   tab_bar: {
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
+    // backgroundColor:"#95ADEF",
     width: 997,
     position: 'relative',
     minHeight: 200,
-    marginTop:50
+    // marginTop:50
   },
   fab: {
     position: 'absolute',
@@ -64,10 +65,15 @@ const useStyles = makeStyles((theme) => ({
     overflow : "scroll",
     paddingLeft:30,
     paddingTop:0,
-    backgroundColor: theme.palette.background.paper,
+    color:'#000'
+    // backgroundColor: theme.palette.background.paper,
   },
   tabs: {
-    backgroundColor: "#95ADEF",
+    // backgroundColor: "#95ADEF", 
+  },
+  app_bar:{
+    backgroundColor:'#e1f5fe',
+
   }
 }));
 
@@ -108,7 +114,7 @@ export default function budgetList() {
 
   return (
     <div className={classes.tab_bar}>
-      <AppBar position="static" color="default" >
+      <AppBar position="static" className={classes.app_bar} >
         <Tabs
           value={value}
           onChange={handleChange}

@@ -7,9 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import {  BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar} from "recharts";
 //theme and styles from Material UI
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   flexGrow: 1,
-  // },
   paper: {
     padding: theme.spacing(1),
     textAlign: 'left',
