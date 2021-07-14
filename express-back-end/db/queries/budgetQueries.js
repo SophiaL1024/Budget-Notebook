@@ -11,7 +11,6 @@ const getIncomeAndBudget = (id, month, year) => {
  `;
   return db.query(queryStatement, [id, month, year])
     .then((response) => {
-      // console.log(response);
       return response.rows;
     })
     .catch(err => console.log(err));
@@ -48,10 +47,9 @@ const getBalanceBudget = (id, month, year)=>{
  `;
   return db.query(queryStatement, [id, month, year])
     .then((response) => {
-      // console.log("response:",response);
+
       const balance = response.rows.map(e=>e.budget);
       // return and array of balance budget amount, sum of income and sum of expense for a given month
-      // console.log(balance);
       return balance;
     })
     .catch(err => console.log(err));
@@ -101,7 +99,6 @@ const createIncome = (year,month,userId,resolve)=>{
   VALUES 
    (' ',' ',0,$1,$2,1,$3,$4)
  `;
-  // console.log(year,month,userId,resolve);
   db.query(queryStatement, [year,month,userId,resolve]);
 
 };
@@ -112,7 +109,6 @@ const createExpense = (year,month,userId,resolve)=>{
   VALUES 
    (' ',' ',0,$1,$2,1,$3,$4)
  `;
-  // console.log(year,month,userId,resolve);
   db.query(queryStatement, [year,month,userId,resolve]);
 
 };
@@ -124,10 +120,7 @@ const deleteIncomeBudget = (id) => {
   RETURNING *
  `;
   db.query(queryStatement, [id]);
-  // .then(()=>{
 
-  //   return "delete";
-  // });
 };
 
 const deleteExpenseBudget = (id) => {

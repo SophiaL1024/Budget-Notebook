@@ -2,18 +2,10 @@ import React from 'react';
 import { useContext } from "react";
 import dateContext from '../../context';
 import Edit from "./edit";
-import NewTransactionForm from './newTransactionForm';
 
-// const useStyles = makeStyles((theme) => ({
 
-//   header: {
-
-//   }
-
-// }));
 
 export default function IncomeList() {
-  // const classes = useStyles();
   const { incomeTransactions, handleEdit, deletion } = useContext(dateContext);
   //mapping over data list to create a table of list items
   const listIncomes = incomeTransactions.map(item => {
@@ -33,7 +25,6 @@ export default function IncomeList() {
         type={"income"}
       />
     );
-
   });
 
 
@@ -44,11 +35,9 @@ export default function IncomeList() {
         justifyContent: "space-between",
         margin: 15
       }}>
-      
-        <h3>Name</h3>
+        <h3 style={{width:180}} >Name</h3>
         <h3>Description</h3>
         <h3>Amount</h3>
-        
         <div style={{
           display: "flex"
         }}>
@@ -60,10 +49,7 @@ export default function IncomeList() {
         }}>Delete</h3>
         </div>
       </div>
-
       {listIncomes}
-
-
     </>
   );
 };

@@ -1,6 +1,6 @@
 const Express = require('express');
 const router = Express.Router();
-const budgetQuries = require('../db/queries/budgetQuries');
+const budgetQuries = require('../db/queries/budgetQueries');
 // const currentMonth = new Date().getMonth() + 1;
 // const currenYear = new Date().getFullYear();
 

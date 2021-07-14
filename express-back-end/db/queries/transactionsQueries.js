@@ -99,7 +99,6 @@ const addIncome = (name, description, amount, year, month, day, userId,selectedB
   `;
   return db.query(queryStatement, [name, description,amount, year, month, day, userId,selectedBudgetId])
     .then((response) => {
-      // console.log("new id",response.rows);
       return response.rows[0].id;
     })
     .catch(err => console.log(err));
@@ -138,7 +137,7 @@ const editExpenseTransactions = (name, description, amount, month, day, year, id
   `;
   return db.query(queryStatement, [name, description, amount, month, day, year, id])
     .then((response) => {
-      // console.log("in query",response.rows);
+
       return response.rows;
     })
     .catch(err => console.error(err));

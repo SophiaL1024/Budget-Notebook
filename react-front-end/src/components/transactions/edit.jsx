@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     margin: 15
   },
-  itemProperty: {
+  itemPropertyName: {
+    width: 190
+  },
+  itemPropertyDescription: {
     width: 120
   }
 }));
@@ -62,19 +65,19 @@ export default function Edit(props) {
   //jsx to be returned when state is in SHOW
   const showItem = (
     mode === SHOW && (
-        <div className={classes.listItems}>
-          <div className={classes.itemProperty}>{props.name}</div>
-          <div className={classes.itemProperty}>{props.description}</div>
-          <div>${props.amount}</div>
-          <div>
-          <IconButton aria-label="edit" style={{marginRight:15}} fill="green" onClick={() => transition(EDIT)}>
-          <EditIcon style={{ color: green[300] }}  />
+      <div className={classes.listItems}>
+        <div className={classes.itemPropertyName}>{props.name}</div>
+        <div className={classes.itemPropertyDescription}>{props.description}</div>
+        <div>${props.amount}</div>
+        <div>
+          <IconButton aria-label="edit" style={{ marginRight: 15 }} fill="green" onClick={() => transition(EDIT)}>
+            <EditIcon style={{ color: green[300] }} />
           </IconButton>
-          <IconButton aria-label="delete" style={{marginLeft:15}}fill="pink" onClick={() => props.deletion(props.id, props.type)}>
-            <DeleteIcon style={{ color: red[300] }}/>
+          <IconButton aria-label="delete" style={{ marginLeft: 15 }} fill="pink" onClick={() => props.deletion(props.id, props.type)}>
+            <DeleteIcon style={{ color: red[300] }} />
           </IconButton>
-          </div>
-        </div >
+        </div>
+      </div >
     )
   );
 

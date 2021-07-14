@@ -10,10 +10,6 @@ const getBalanceBudgetByUserIdYear = (id, year) => {
   `;
   return db.query(queryStatement, [id, year])
     .then((response) => {
-      // const balanceBudget = response.rows.map(element => {
-      //   return element = element.amount;
-      // });
-      // return balanceBudget;
       return response.rows;
     })
     .catch(err => console.log(err));
