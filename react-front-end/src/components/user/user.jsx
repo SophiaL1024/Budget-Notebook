@@ -34,16 +34,6 @@ export default function User() {
   
   const [err,setErr]=useState(false);
 
-
-  // useEffect(()=>{
-  //   axios.get('http://localhost:3000/')
-  //   .then(()=>{
-  //     if(userId){
-  //       history.push('/dashboards/')
-  //     }
-  //   })
-  // },[])
-
   const [formValue, setFormValue] = useState({ 
   email:"",
   password:""
@@ -56,7 +46,6 @@ export default function User() {
  const handleSubmit=()=>{
   axios.post('http://localhost:3000/', {data:formValue})
   .then((res)=>{
-    // console.log(res.data);
     if(res.data){
       setUserId(res.data.id);
       history.push('/dashboards');

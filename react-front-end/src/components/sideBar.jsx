@@ -59,11 +59,6 @@ const useStyles = makeStyles((theme) => ({
   link: { textDecoration: 'none', 
   color: theme.palette.text.secondary,
   },
-  // toolwrapper:{
-  //  display:"flex",
-  //  justifyContent:"space-between"
-  // }
-
 }));
 
 export default function SideBar() {
@@ -106,7 +101,6 @@ export default function SideBar() {
 
   return (
     <>
-    {/* <div className={classes.root}> */}
       <CssBaseline />
       {/* Header  */}
       <AppBar position="fixed" className={classes.appBar}>
@@ -169,6 +163,7 @@ export default function SideBar() {
           </Link> 
         </List>
         <Divider />
+        
       {/* Sidebar selection of year or month to render data*/}
       <FormControl className={classes.formControl}>
         <InputLabel id="select-year-label">Year</InputLabel>

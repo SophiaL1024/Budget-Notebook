@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {  BarChart, XAxis,Tooltip, YAxis,Legend,CartesianGrid,Bar} from "recharts";
+
 //theme and styles from Material UI
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.default,
   },
 }));
+
 //Array of month for the dashboard grid
 const monthName = ['January', 'February','March','April','May','June','July'];
 
@@ -26,7 +28,6 @@ const Dashboard=function(){
     {balanceBudget:[],
     monthlyIncome:[],
     monthlyExpense:[],
-    // monthlyBalance:[],
     annualIncome:0,
     annualExpense:0}
   ); 
@@ -37,7 +38,6 @@ const Dashboard=function(){
         balanceBudget:res.data.balanceBudget,
         monthlyIncome:res.data.monthlyIncome,
         monthlyExpense:res.data.monthlyExpense,
-        // monthlyBalance:res.data.monthlyBalance,
         annualIncome:res.data.annualIncome,
         annualExpense:res.data.annualExpense
         }));
@@ -63,8 +63,6 @@ const Dashboard=function(){
         SavingsAcheived: Number(monthlyBalance.find(e=>e.month===index+1).monthlyBalance)
     }
   })
-
-  // console.log(barchartData)
 
   return(
     // Grid for the monthly income, expense and balance
@@ -129,7 +127,6 @@ const Dashboard=function(){
   </Paper>
   </Grid>
   </Grid>
-  // </Grid>
 )
 };
 export default Dashboard;
