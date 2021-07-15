@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useVisualMode from '../../hooks/useVisualMode';
-import { color } from '@chakra-ui/react';
+
 
 const useStyles = makeStyles({
   add: {
@@ -55,7 +55,7 @@ export default function NewTransactionForm(props) {
   const SHOW = "SHOW";
   const HIDE = "HIDE";
   //function that transitions what is being displayed
-  const { mode, transition, back } = useVisualMode(HIDE);
+  const { mode, transition } = useVisualMode(HIDE);
 
   // responsible for showing new transaction form
   const button = (

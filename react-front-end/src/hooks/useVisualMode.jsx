@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 // sets the mode with transition and back so the DOM know what to display
 export default function useVisualMode(initial) {

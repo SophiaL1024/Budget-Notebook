@@ -21,13 +21,10 @@ const App = function () {
     <>
       <Router>
         <dateContext.Provider value={{ month, setMonth, year, setYear, userId, setUserId }}>
-          {/* <Link to='/'></Link> */}
+
           {!userId && <User />}
           {userId &&
             <Switch>
-              {/* <Route path="/">
-            <User />
-          </Route> */}
               <Route path="/dashboards">
                 <SideBar />
                 <Dashboard />

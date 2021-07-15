@@ -8,7 +8,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import React, { useState } from 'react';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
-import { background } from '@chakra-ui/react';
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -37,7 +37,7 @@ export default function Edit(props) {
 
 
   //function that transitions what is being displayed
-  const { mode, transition, back } = useVisualMode(
+  const { mode, transition} = useVisualMode(
     SHOW
   );
 

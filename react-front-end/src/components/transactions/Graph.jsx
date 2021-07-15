@@ -9,11 +9,11 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { parse } from "media-typer";
+
 
 export default function Graph() {
   const { incomeTransactions, expenseTransactions } = useContext(dateContext);
-  const { month, year } = useContext(dateContext);
+
   const findSum = function (data, maxDay) {
     let sum = 0;
     const week = data.filter(item => item.day < maxDay);

@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import dateContext from '../../context';
+import React, { useState } from "react";
 import IncomeList from "./incomeList";
 import ExpenseList from "./expenseList";
 
@@ -62,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function budgetList() {
-  const { deletion, handleEdit } = useContext(dateContext);
+
 
   const classes = useStyles();
   const theme = useTheme();

@@ -47,7 +47,7 @@ const Dashboard = function () {
       });
   }, [month, year]);
 
-  if (!dashboardData.balanceBudget.length || !dashboardData.monthlyIncome.length || !dashboardData.monthlyExpense) {
+  if (!dashboardData.balanceBudget.length || !dashboardData.monthlyIncome.length || !dashboardData.monthlyExpense.length) {
     return null
   };
 
@@ -106,7 +106,7 @@ const Dashboard = function () {
       {/* <Grid> */}
 
       {/* Bar chart for savings goal and savings achieved */}
-      <Grid item xs={20} md={20}>
+      <Grid item>
         <Paper className={classes.paper} elevation={3}>
           <BarChart
             width={1130}
