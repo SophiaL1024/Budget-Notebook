@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import dateContext from "../../context.js";
+import dataContext from "../../context.js";
 import { PieChart, Pie, Cell, Sector } from 'recharts';
 import { useCallback, useState } from "react";
 
@@ -82,7 +82,7 @@ const renderActiveShape = (props) => {
 
 export default function BudgetPieChart() {
 
-  const { incomeAndBudget, expenseAndBudget } = useContext(dateContext);
+  const { incomeAndBudget, expenseAndBudget } = useContext(dataContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {

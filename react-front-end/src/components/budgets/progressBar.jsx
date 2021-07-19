@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import dateContext from "../../context.js";
+import dataContext from "../../context.js";
 import { Progress } from "@chakra-ui/react"
 import { ChakraProvider } from "@chakra-ui/react"
 
 export default function BudgetProgressBar(props) {
-  const { incomeAndBudget, expenseAndBudget } = useContext(dateContext);
+  const { incomeAndBudget, expenseAndBudget } = useContext(dataContext);
 
   if (props.type === "income") {
 

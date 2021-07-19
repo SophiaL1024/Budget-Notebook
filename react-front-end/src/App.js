@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import dateContext from './context.js';
+import dataContext from './context.js';
 import './App.css';
 import SideBar from './components/sideBar';
 import Dashboard from './components/dashboard';
 import Budget from './components/budgets/budget';
-import User from './components/user/user';
+import User from './components/user';
 import Transactions from './components/transactions/Transactions.jsx';
 
 const App = function () {
@@ -20,7 +20,7 @@ const App = function () {
   return (
     <>
       <Router>
-        <dateContext.Provider value={{ month, setMonth, year, setYear, userId, setUserId }}>
+        <dataContext.Provider value={{ month, setMonth, year, setYear, userId, setUserId }}>
 
           {!userId && <User />}
           {userId &&
@@ -39,7 +39,7 @@ const App = function () {
               </Route>
             </Switch>
           }
-        </dateContext.Provider>
+        </dataContext.Provider>
 
       </Router>
     </>

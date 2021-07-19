@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import React from 'react';
-import dateContext from "../../context";
+import dataContext from "../../context";
 import Edit from "./edit";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 
 export default function ExpenseList() {
-  const { expenseTransactions, handleEdit, deletion } = useContext(dateContext);
+  const { expenseTransactions, handleEdit, deletion } = useContext(dataContext);
 
   //mapping over list to creat a table of list items
   const listExpenses = expenseTransactions.map(item => {

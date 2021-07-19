@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import axios from "axios";
-import dateContext from "../../context.js";
+import dataContext from "../../context.js";
 import { Button, TextField,TableCell, TableRow } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 
 
 export default function EditForm(props) {
 
-  const { incomeAndBudget, expenseAndBudget, balanceBudget, setState, month, year } = useContext(dateContext);
+  const { incomeAndBudget, expenseAndBudget, balanceBudget, setState, month, year } = useContext(dataContext);
 
   const [formValue, setFormValue] = useState({
     name: props.item.name,

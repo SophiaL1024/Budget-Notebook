@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from 'axios';
-import dateContext from "../../context.js";
+import dataContext from "../../context.js";
 import BudgetList from "./budgetList.jsx";
 import BudgetPieChart from "./pieChart.jsx";
 import Paper from '@material-ui/core/Paper';
@@ -24,7 +24,7 @@ export default function Budget() {
     balanceBudget: []
   });
 
-  const { month, year, userId } = useContext(dateContext);
+  const { month, year, userId } = useContext(dataContext);
 
   useEffect(() => {
 
@@ -46,7 +46,7 @@ export default function Budget() {
 
   return (
     <>
-      <dateContext.Provider value={{ incomeAndBudget: state.incomeAndBudget, expenseAndBudget: state.expenseAndBudget, balanceBudget: state.balanceBudget, setState, month, year, userId }}>
+      <dataContext.Provider value={{ incomeAndBudget: state.incomeAndBudget, expenseAndBudget: state.expenseAndBudget, balanceBudget: state.balanceBudget, setState, month, year, userId }}>
 
         <Paper className={classes.paper} elevation={3}>
           <BudgetPieChart />
@@ -56,7 +56,7 @@ export default function Budget() {
           <BudgetList />
         </Paper>
 
-      </dateContext.Provider>
+      </dataContext.Provider>
     </>
   )
 }

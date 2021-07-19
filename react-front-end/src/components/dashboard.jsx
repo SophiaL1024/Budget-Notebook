@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from 'axios';
-import dateContext from "../context.js";
+import dataContext from "../context.js";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -22,7 +22,7 @@ const Dashboard = function () {
 
   const classes = useStyles();
 
-  const { month, year, userId } = useContext(dateContext);
+  const { month, year, userId } = useContext(dataContext);
 
   const [dashboardData, setState] = useState(
     {

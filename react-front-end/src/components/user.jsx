@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import dateContext from "../../context.js";
+import dataContext from "../context.js";
 import { TextField, Button, Grid, Link, AppBar, Toolbar, Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,7 +30,7 @@ export default function User() {
   const classes = useStyles();
   const history = useHistory();
 
-  const { setUserId } = useContext(dateContext);
+  const { setUserId } = useContext(dataContext);
 
   const [err, setErr] = useState(false);
 

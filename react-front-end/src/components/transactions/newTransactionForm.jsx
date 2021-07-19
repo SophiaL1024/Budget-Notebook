@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from "react";
-import dateContext from '../../context';
+import dataContext from '../../context';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField, Button, Radio, RadioGroup, makeStyles } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -50,7 +50,7 @@ const useStyles = makeStyles({
 
 export default function NewTransactionForm(props) {
   const classes = useStyles();
-  const { handleChange, handleSubmit, formValue, incomeBudget, expenseBudget } = useContext(dateContext);
+  const { handleChange, handleSubmit, formValue, incomeBudget, expenseBudget } = useContext(dataContext);
   const [type, setType] = useState('income');
   const SHOW = "SHOW";
   const HIDE = "HIDE";

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import dateContext from "../../context";
+import dataContext from "../../context";
 import {
   LineChart,
   Line,
@@ -12,7 +12,7 @@ import {
 
 
 export default function Graph() {
-  const { incomeTransactions, expenseTransactions } = useContext(dateContext);
+  const { incomeTransactions, expenseTransactions } = useContext(dataContext);
 
   const findSum = function (data, maxDay) {
     let sum = 0;

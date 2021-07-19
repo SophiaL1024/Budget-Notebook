@@ -3,13 +3,11 @@ import axios from 'axios';
 import dateContext from "../../context.js";
 import BudgetProgressBar from "./progressBar";
 import EditForm from "./editForm";
-import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { green } from '@material-ui/core/colors';
-import { red } from '@material-ui/core/colors';
+import { green,red } from '@material-ui/core/colors';
 import Alert from '@material-ui/lab/Alert';
-import { TableBody, TableCell, TableRow, TableHead,Table } from "@material-ui/core";
+import { TableBody, TableCell, TableRow, TableHead,Table, IconButton,Dialog,DialogActions,DialogTitle } from "@material-ui/core";
 
 export default function BudgetListItems(props) {
 
@@ -59,7 +57,7 @@ export default function BudgetListItems(props) {
       return (
         <TableRow key={e.id}>
           <TableCell colSpan="5">
-            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with TableRowansactions!</Alert>
+            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with tansactions!</Alert>
           </TableCell>
         </TableRow>)
     }
@@ -105,7 +103,7 @@ export default function BudgetListItems(props) {
       return (
         <TableRow key={e.id}>
           <TableCell colSpan="5">
-            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with TableRowansactions!</Alert>
+            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with tansactions!</Alert>
           </TableCell>
         </TableRow>)
     }

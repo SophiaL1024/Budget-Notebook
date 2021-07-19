@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import dateContext from "../../context.js";
+import dataContext from "../../context.js";
 import axios from 'axios';
 import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
 
 export default function budgetForm(props) {
 
-  const { incomeAndBudget, expenseAndBudget, setState, userId } = useContext(dateContext);
+  const { incomeAndBudget, expenseAndBudget, setState, userId } = useContext(dataContext);
 
   const [formValue, setFormValue] = useState({
     date: "",

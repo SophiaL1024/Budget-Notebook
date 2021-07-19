@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import '../App.css';
-import dateContext from "../context.js";
+import dataContext from "../context.js";
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SideBar() {
   const classes = useStyles();
 
-  const { month, setMonth, year, setYear, setUserId } = useContext(dateContext);
+  const { month, setMonth, year, setYear, setUserId } = useContext(dataContext);
 
   const currentYear = new Date().getFullYear();
   const yearList = [];

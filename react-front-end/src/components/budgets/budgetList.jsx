@@ -4,7 +4,7 @@ import BudgetForm from "./budgetForm.jsx";
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import { AppBar, Tabs, Tab, Typography, Zoom, Fab, Box, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Typography, Zoom, Fab, Box, Table, TableCell, TableHead, TableRow } from '@material-ui/core';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

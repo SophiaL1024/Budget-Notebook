@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import NewTransactionForm from "./newTransactionForm";
-import dateContext from "../../context";
+import dataContext from "../../context";
 import Graph from "./Graph";
 import TransactionTab from "./transactionTab"
 import { makeStyles } from "@material-ui/core";
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Transactions() {
-  const { month, year, userId } = useContext(dateContext);
+  const { month, year, userId } = useContext(dataContext);
 
   const [state, setState] = useState({
     incomeTransactions: [],
@@ -213,7 +213,7 @@ export default function Transactions() {
 
   return (
     <div className={classes.mainPage}>
-      <dateContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions, handleChange, handleSubmit, formValue, expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget, deletion, handleEdit }}>
+      <dataContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions, handleChange, handleSubmit, formValue, expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget, deletion, handleEdit }}>
         {/* <Grid > */}
         <Paper className={classes.paper} elevation={3}>
           <Graph />
@@ -224,7 +224,7 @@ export default function Transactions() {
         <Paper className={classes.paper} elevation={3}>
           <TransactionTab />
         </Paper>
-      </dateContext.Provider>
+      </dataContext.Provider>
     </div>
   )
 

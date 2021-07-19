@@ -62,11 +62,7 @@
 
 5. In express-back-end directory, Run `npm run db:reset` to reset the database.
 
-6. You need two terminal windows/tabs.
-
-In one terminal, `cd` into `express-back-end`, then run `npm start` or `yarn start` to launch the server.
-
-In the other terminal, `cd` into `react-front-end`. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
+6. You need two terminal windows/tabs. In one terminal, `cd` into `express-back-end`, then run `npm start` or `yarn start` to launch the server. In the other terminal, `cd` into `react-front-end`. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
 
 7. Log in using the email: test@test.com and password: 123.
 
