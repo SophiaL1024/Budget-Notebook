@@ -105,7 +105,7 @@ export default function EditForm(props) {
       </TableCell>
       <TableCell>
       <Button
-        variant="contained"
+        variant="outlined"
         color="default"
         size="small" 
         onClick={() => { props.setEdit(0) }}

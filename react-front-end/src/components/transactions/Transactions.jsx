@@ -1,24 +1,26 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import FormDrawer from "./formDrawer"
 import NewTransactionForm from "./newTransactionForm";
 import dataContext from "../../context";
 import Graph from "./Graph";
 import TransactionTab from "./transactionTab"
-import { makeStyles } from "@material-ui/core";
-import Paper from '@material-ui/core/Paper';
+import { makeStyles,Paper,Grid } from "@material-ui/core";
+// import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles((theme) => ({
   mainPage: {
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
+    justifyContent: "center",
+    // position:"relative",
+    // width:'80%'
   },
   paper: {
     textAlign: 'left',
     color: theme.palette.text.secondary,
-    marginBottom: 30,
-    marginTop: 20
+    marginBottom: 50,
+    marginTop: 25
   }
 }));
 
@@ -214,16 +216,18 @@ export default function Transactions() {
   return (
     <div className={classes.mainPage}>
       <dataContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions, handleChange, handleSubmit, formValue, expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget, deletion, handleEdit }}>
-        {/* <Grid > */}
+        <div>
         <Paper className={classes.paper} elevation={3}>
           <Graph />
         </Paper >
-        {/* </Grid> */}
 
-        <NewTransactionForm className='form' />
         <Paper className={classes.paper} elevation={3}>
           <TransactionTab />
         </Paper>
+        </div>
+
+        <FormDrawer/>
+
       </dataContext.Provider>
     </div>
   )

@@ -129,7 +129,7 @@ export default function Edit(props) {
         </IconButton>
         </TableCell>
         <TableCell>
-        <Button size="small" variant="contained" color="default" onClick={() => transition(SHOW)}>Cancel</Button>
+        <Button size="small" variant="outlined" color="default" onClick={() => transition(SHOW)}>Cancel</Button>
       </TableCell>
       </TableRow>
     )

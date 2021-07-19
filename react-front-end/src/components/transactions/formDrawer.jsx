@@ -1,26 +1,19 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
+import {Drawer,IconButton} from "@material-ui/core";
+import AddIcon from '@material-ui/icons/AddCircle';
 import NewTransactionForm from "./newTransactionForm";
 
-const useStyles = makeStyles({
-  form: {
-    width: 250
-  }
-});
-
 export default function TemporaryDrawer() {
-
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {/* <Button onClick={toggleDrawer( true)}>{"right"}</Button> */}
-      <Button onCLick={() => setOpen(true)}>New</Button>
-      <Drawer open={open}>
-        {/* {list()} */}
-        <NewTransactionForm className='form' />
+      <IconButton className="transaction-add-btn"  variant="contained" onClick={() => setOpen(true)}>
+        <AddIcon fontSize="large" className="transaction-add-icon"/>
+        </IconButton>
+      <Drawer open={open} onClose={() => setOpen(false)} anchor='right'>
+        <NewTransactionForm setOpen={setOpen}/>
       </Drawer>
     </>
   );

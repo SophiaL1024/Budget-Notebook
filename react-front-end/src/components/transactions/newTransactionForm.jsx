@@ -8,41 +8,19 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import useVisualMode from '../../hooks/useVisualMode';
-
 
 const useStyles = makeStyles({
-  add: {
-    background: "#64b5f6",
-    color: "white"
-  },
-  newTransactionButton: {
-    display: "flex",
-    justifyContent: "center"
-  },
-  newTransactionForm: {
-    display: "flex",
-    justifyContent: "space-between",
-    margin: 15
-  },
-  newFormButtons: {
-    display: "flex",
-    justifyContent: "space-between",
-    margin: 15
-  },
   transactionForm: {
     borderStyle: "solid",
     borderColor: "#64b5f6",
     borderRadius: 25,
     borderWidth: 1,
     backgroundColor: "#fff",
-    width: 1100,
-    margin: "0 auto"
+    width: 400,
+    margin: 50,
+    padding:50
   },
-  title: {
-    display: "flex",
-    justifyContent: "center",
-  },
+
   dateInput: {
     width: 260
   }
@@ -52,26 +30,9 @@ export default function NewTransactionForm(props) {
   const classes = useStyles();
   const { handleChange, handleSubmit, formValue, incomeBudget, expenseBudget } = useContext(dataContext);
   const [type, setType] = useState('income');
-  const SHOW = "SHOW";
-  const HIDE = "HIDE";
-  //function that transitions what is being displayed
-  const { mode, transition } = useVisualMode(HIDE);
-
-  // responsible for showing new transaction form
-  const button = (
-    mode === HIDE && (
-      <div className={classes.newTransactionButton}>
-        <Button onClick={() => transition(SHOW)} className={classes.add}  >
-          Add Transaction
-        </Button>
-      </div>
-    )
-  );
-
   if (!incomeBudget || !expenseBudget) {
-    return (button);
+    return null;
   };
-
   const handleTypeChange = (event) => {
     setType(event.target.value);
   };
@@ -94,16 +55,16 @@ export default function NewTransactionForm(props) {
 
 
   const newTransaction = (
-    mode === SHOW && (
+
       <div className={classes.transactionForm}>
-        <h3 className={classes.title}>New transaction</h3>
-        <div className={classes.newTransactionForm}>
+        <h3 className='transaction-form-title'>New Transaction</h3>
+   
           <div>
             <TextField
               autoFocus
               margin="dense"
               id="name"
-              label="Name"
+              label="Title"
               type="text"
               onChange={(event) => handleChange("name", event.target.value)}
               value={formValue.name}
@@ -111,7 +72,6 @@ export default function NewTransactionForm(props) {
           </div>
           <div>
             <TextField
-              // autoFocus
               margin="dense"
               id="description"
               label="Description"
@@ -121,18 +81,17 @@ export default function NewTransactionForm(props) {
             />
           </div>
           <div>
-            <TextField
-              // autoFocus
+            <TextField   
               margin="dense"
               id="amount"
-              label="Amount in dollars"
+              label="Amount"
               type="number"
               onChange={(event) => handleChange("amount", event.target.value)}
               value={formValue.amount}
             />
           </div>
-        </div>
-        <div className={classes.newTransactionForm}>
+   
+     
           <RadioGroup row aria-label="transactionsType" style={{ paddingTop: 15 }} name="transaction" value={type} onChange={handleTypeChange}>
             <FormControlLabel value="income" control={<Radio />} label="Income" />
             <FormControlLabel value="expense" control={<Radio />} label="Expense" />
@@ -153,34 +112,28 @@ export default function NewTransactionForm(props) {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={formValue.selectedBudgetId}
-              onChange={(event) => handleChange("selectedBudgetId", event.target.value) && transition(HIDE)}
+              onChange={(event) => handleChange("selectedBudgetId", event.target.value) }
             >
               {selectorList(type)}
 
             </Select>
           </FormControl>
-        </div>
-        <div className="newTransactionForm">
 
-          <div>
-            <Button onClick={() => { handleSubmit(type); transition(HIDE) }} color="primary">
+          <div className="transaction-form-btn">
+            <Button onClick={() => {handleSubmit(type);props.setOpen(false);} } color="primary" variant="contained">
               Submit
             </Button>
-          </div>
-
-          <div>
-            <Button onClick={() => transition(HIDE)} color="primary">
-              cancel
+  
+            <Button onClick={()=>props.setOpen(false)} color="default" >
+              Cancel
             </Button>
           </div>
         </div>
 
-      </div>
-    ));
+    );
 
   return (
     <>
-      {button}
       {newTransaction}
     </>
   );

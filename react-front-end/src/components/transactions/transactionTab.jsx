@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     width: 1200,
     position: 'relative',
     minHeight: 200,
-    height: 400,
+    height: 450,
     overflow: "scroll",
   },
   fab: {
