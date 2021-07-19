@@ -23,6 +23,16 @@ export default function Edit(props) {
   const [name, setName] = useState(props.name || '');
   const [description, setDescription] = useState(props.description || '');
   const [amount, setAmount] = useState(props.amount || '');
+  const [year,setYear]=useState(props.year || '');
+  const [month,setMonth]=useState(props.month || '');
+  const [day,setDay]=useState(props.day || '');
+
+  //handles name state
+  const dateHandler = function (event) {
+    setYear(Number(event.target.value.slice(0, 4)));
+    setMonth(Number(event.target.value.slice(5, 7)));
+    setDay(Number(event.target.value.slice(-2)));
+  };  
 
   //handles name state
   const nameHandler = function (event) {
@@ -64,8 +74,17 @@ export default function Edit(props) {
   const editItem = (
     mode === EDIT && (
       <TableRow>
-      <TableCell >
+      <TableCell>
+      <TextField
+        margin="dense"
+        id="date"
+        style={{ marginTop: 20 }}
+        type="date"
+        onChange={dateHandler}   
+        />
+      </TableCell>
 
+      <TableCell >
           <TextField
             autoFocus
             margin="dense"
@@ -101,7 +120,7 @@ export default function Edit(props) {
        <TableCell>
         <IconButton aria-label="edit" onClick={() => transition(SHOW)}>
           <Button
-            onClick={() => props.handleEdit(name, description, amount, props.month, props.day, props.year, props.id, props.type)}
+            onClick={() => props.handleEdit(name, description, amount,month, day,year, props.id, props.type)}
             variant="contained"
             color="primary"
             size="small"
