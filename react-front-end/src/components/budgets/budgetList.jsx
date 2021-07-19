@@ -4,7 +4,7 @@ import BudgetForm from "./budgetForm.jsx";
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import { AppBar, Tabs, Tab, Typography, Zoom, Fab, Box } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Typography, Zoom, Fab, Box, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -113,38 +113,38 @@ export default function budgetList() {
       </AppBar>
 
       <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel} >
-        <table >
-          <thead>
-            <tr>
-              <th>Budget</th>
-              <th>Budget Amount</th>
-              <th>Actual Income</th>
-              <th></th>
-
-            </tr>
-          </thead>
+        <Table stickyHeader={true} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Budget</TableCell>
+              <TableCell>Amount</TableCell>
+              <TableCell>Actual Income</TableCell>
+              <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
+            </TableRow>
+          </TableHead>
 
           <BudgetListItems tabType={0} />
 
-        </table>
+        </Table>
         <BudgetForm open={open} setOpen={setOpen} tabType={0} />
       </TabPanel>
 
       <TabPanel value={value} index={1} dir={theme.direction} className={classes.panel}>
-        <table>
-          <thead>
-            <tr>
-              <th>Budget</th>
-              <th>Budget Amount</th>
-              <th>Actual Expense</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
+        <Table size="small" stickyHeader={true}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Budget</TableCell>
+              <TableCell>Amount</TableCell>
+              <TableCell>Actual Income</TableCell>
+              <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
+            </TableRow>
+          </TableHead>
 
           <BudgetListItems tabType={1} />
 
-        </table>
+        </Table>
         <BudgetForm open={open} setOpen={setOpen} tabType={1} />
       </TabPanel>
 
@@ -160,6 +160,7 @@ export default function budgetList() {
           timeout={transitionDuration}
           style={{
             transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
+            'z-index':'999'
           }}
           unmountOnExit
         >

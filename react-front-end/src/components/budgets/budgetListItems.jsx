@@ -9,6 +9,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import Alert from '@material-ui/lab/Alert';
+import { TableBody, TableCell, TableRow, TableHead,Table } from "@material-ui/core";
 
 export default function BudgetListItems(props) {
 
@@ -23,9 +24,9 @@ export default function BudgetListItems(props) {
     setType(budgetType);
   }
 
-  const handleDelete = function (id, budgetType, haveTransactions) {
+  const handleDelete = function (id, budgetType, haveTableRowansactions) {
 
-    if (haveTransactions !== "0" && haveTransactions) {
+    if (haveTableRowansactions !== "0" && haveTableRowansactions) {
       setAlert(id)
     } else {
       axios.delete('http://localhost:3000/budgets', { data: { id, budgetType } });
@@ -48,89 +49,93 @@ export default function BudgetListItems(props) {
   const incomeItems = incomeAndBudget.map(e => {
     if (edit === e.id && type === 'income') {
       return (
-        <tr key={e.id}>
-          <td colSpan="5">
+        <TableRow key={e.id}>
+          <TableCell colSpan="5">
             <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id} item={e} />
-          </td>
-        </tr>
+          </TableCell>
+        </TableRow>
       )
     } else if (alert === e.id) {
       return (
-        <tr key={e.id}>
-          <td colSpan="5">
-            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with transactions!</Alert>
-          </td>
-        </tr>)
+        <TableRow key={e.id}>
+          <TableCell colSpan="5">
+            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with TableRowansactions!</Alert>
+          </TableCell>
+        </TableRow>)
     }
     else if (e.id === 0) {
       return null
     }
     return (
-      <tbody key={e.id}>
-        <tr >
-          <td colSpan="3">
+      <TableBody key={e.id}>
+        <TableRow >
+          <TableCell colSpan="5">
             <BudgetProgressBar id={e.id} type={'income'} />
-          </td>
-        </tr>
-        <tr  >
-          <td>{e.name} </td>
-          <td>${e.amount} </td>
-          <td>${e.income_sum}</td>
-          <td className="icon">
+          </TableCell>
+        </TableRow>
+        <TableRow  >
+          <TableCell>{e.name} </TableCell>
+          <TableCell>${e.amount} </TableCell>
+          <TableCell>${e.income_sum}</TableCell>
+          <TableCell >
             <IconButton aria-label="edit" fill="green" onClick={() => handleEdit(e.id, 'income')}>
               <EditIcon style={{ color: green[300] }} />
             </IconButton>
+          </TableCell>
+          <TableCell>
             <IconButton aria-label="delete" fill="pink" onClick={() => handleDelete(e.id, 'income', e.income_sum)}>
               <DeleteIcon style={{ color: red[300] }} />
             </IconButton>
-          </td>
-        </tr>
-      </tbody>
+          </TableCell>
+        </TableRow>
+      </TableBody>
     )
   })
 
   const expenseItems = expenseAndBudget.map(e => {
     if (edit === e.id && type === 'expense') {
       return (
-        <tr key={e.id}>
-          <td colSpan="5">
+        <TableRow key={e.id}>
+          <TableCell colSpan="5">
             <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id} item={e} />
-          </td>
-        </tr>
+          </TableCell>
+        </TableRow>
       )
     } else if (alert === e.id) {
       return (
-        <tr key={e.id}>
-          <td colSpan="5">
-            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with transactions!</Alert>
-          </td>
-        </tr>)
+        <TableRow key={e.id}>
+          <TableCell colSpan="5">
+            <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with TableRowansactions!</Alert>
+          </TableCell>
+        </TableRow>)
     }
     else if (e.id === 0) {
       return null
     }
     return (
-      <tbody key={e.id}>
-        <tr >
-          <td colSpan="3">
+      <TableBody key={e.id}>
+        <TableRow >
+          <TableCell colSpan="5">
             <BudgetProgressBar id={e.id} type={'expense'} />
-          </td>
+          </TableCell>
 
-        </tr>
-        <tr >
-          <td>{e.name} </td>
-          <td>${e.amount} </td>
-          <td>${e.expense_sum}</td>
-          <td className="icon">
+        </TableRow>
+        <TableRow >
+          <TableCell>{e.name} </TableCell>
+          <TableCell>${e.amount} </TableCell>
+          <TableCell>${e.expense_sum}</TableCell>
+          <TableCell >
             <IconButton aria-label="edit" fill="green" onClick={() => handleEdit(e.id, 'expense')}>
               <EditIcon style={{ color: green[300] }} />
             </IconButton>
+            </TableCell>
+            <TableCell>
             <IconButton aria-label="delete" fill="pink" onClick={() => handleDelete(e.id, 'expense', e.expense_sum)}>
               <DeleteIcon style={{ color: red[300] }} />
             </IconButton>
-          </td>
-        </tr>
-      </tbody>
+          </TableCell>
+        </TableRow>
+      </TableBody>
     )
   })
 
@@ -153,27 +158,28 @@ export default function BudgetListItems(props) {
     return expenseItems;
   } else if (props.tabType === 2 && !edit) {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Remaining budget</th>
-            <th>Saving Goal</th>
-            <th>Actual Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{balanceRemaining()}</td>
-            <td>${balanceBudget[0]}</td>
-            <td>${(Number(balanceBudget[1]) - Number(balanceBudget[2])).toFixed(2)}</td>
-            <td>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Remaining budget</TableCell>
+            <TableCell>Saving Goal</TableCell>
+            <TableCell>Actual Balance</TableCell>
+            <TableCell>Edit</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>{balanceRemaining()}</TableCell>
+            <TableCell>${balanceBudget[0]}</TableCell>
+            <TableCell>${(Number(balanceBudget[1]) - Number(balanceBudget[2])).toFixed(2)}</TableCell>
+            <TableCell>
               <IconButton aria-label="edit" onClick={() => handleEdit(1, 'balance')} >
                 <EditIcon style={{ color: green[300] }} />
               </IconButton >
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     )
   } else if (props.tabType === 2 && edit) {
     return <EditForm setEdit={setEdit} type={'balance'} key={0} item={{ name: 'Saving Goal', amount: balanceBudget[0] }} />

@@ -1,23 +1,11 @@
 import React, { useState, useContext } from 'react';
 import axios from "axios";
 import dateContext from "../../context.js";
-import { Button, TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, TextField,TableCell, TableRow } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save';
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(2),
-  },
-  edit: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '200px',
-    },
-  },
-}));
 
 export default function EditForm(props) {
-  const classes = useStyles();
 
   const { incomeAndBudget, expenseAndBudget, balanceBudget, setState, month, year } = useContext(dateContext);
 
@@ -83,8 +71,8 @@ export default function EditForm(props) {
   }
 
   return (
-    <form className={classes.edit} noValidate autoComplete="off">
-
+    <TableRow noValidate autoComplete="off">
+      <TableCell>
       <TextField
         autoFocus
         margin="dense"
@@ -93,9 +81,9 @@ export default function EditForm(props) {
         type="text"
         onChange={(event) => handleChange("name", event.target.value)}
         value={formValue.name}
-
       />
-
+     </TableCell>
+     <TableCell>
       <TextField
         autoFocus
         margin="dense"
@@ -105,23 +93,25 @@ export default function EditForm(props) {
         onChange={(event) => handleChange("amount", event.target.value)}
         value={formValue.amount}
       />
-
+      </TableCell>
+      <TableCell>
       <Button
         variant="contained"
         color="primary"
-        size="small"
-        className={classes.button}
+        size="small"     
         onClick={handleSave}
+        startIcon={<SaveIcon />}
       >Save</Button>
-
+      </TableCell>
+      <TableCell>
       <Button
         variant="contained"
         color="default"
-        size="small"
-        className={classes.button}
+        size="small" 
         onClick={() => { props.setEdit(0) }}
       >Cancel</Button>
-    </form>
+      </TableCell>
+    </TableRow>
   )
 
 

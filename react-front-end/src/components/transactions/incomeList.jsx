@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from "react";
 import dateContext from '../../context';
 import Edit from "./edit";
-
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 
 export default function IncomeList() {
   const { incomeTransactions, handleEdit, deletion } = useContext(dateContext);
@@ -29,27 +29,20 @@ export default function IncomeList() {
 
 
   return (
-    <>
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        margin: 15
-      }}>
-        <h3 style={{ width: 180 }} >Name</h3>
-        <h3>Description</h3>
-        <h3>Amount</h3>
-        <div style={{
-          display: "flex"
-        }}>
-          <h3 style={{
-            marginRight: 15
-          }}>Edit</h3>
-          <h3 style={{
-            marginLeft: 15
-          }}>Delete</h3>
-        </div>
-      </div>
+      <Table stickyHeader={true} size="small">
+      <TableHead >
+        <TableRow>
+          <TableCell>Date</TableCell>
+          <TableCell>Title</TableCell>
+          <TableCell>Description</TableCell>
+          <TableCell>Amount</TableCell>
+          <TableCell>Edit</TableCell>
+          <TableCell >Delete</TableCell>
+        </TableRow>
+        </TableHead>
+        <TableBody>
       {listIncomes}
-    </>
+      </TableBody>
+        </Table>
   );
 };

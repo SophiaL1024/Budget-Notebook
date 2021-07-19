@@ -1,40 +1,77 @@
 ## Budget Notebook
 
-Budget Notebook is a financial planning application for individual users to make budget and saving goal, record transactions, check budget status and monthly balance.
+* Budget Notebook is a personal financial planning application.
 
-## Target audience:
+* Users can set up budgets and saving goal by month, browse budget status and saving goal achievement. Users can edit and delete budgets.
 
-* Anyone who wants to make financial plans.
+* Users can browse, record, edit, delete transactions.
 
-# Team Members: 
+* Users can browse balance amount by month and year. 
 
-* Suki, Dylan, Feng
 
 ## Screenshots
+
+* Dashboard Page
 !["screenshot of the dashboard"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/DashboardScreenshot.png)
 
+* Budget Page
 !["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/BudgetPage.png)
 
+!["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Expense_budget.png)
+
+!["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Saving_goal.png)
+
+* Transaction Page
 !["screenshot of the transaction page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/TransactionPage.png)
-
-## Running the projects
-
-* Fork this repository, then clone your fork of this repository.
-* You need two terminal windows/tabs for this (or some other plan for running two Node processes).
-
-In one terminal, `cd` into `react-front-end`. Run `npm install` or `yarn` to install the dependencies. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
-
-In the other terminal, `cd` into `express-back-end`. Run `npm install` or `yarn` to install the dependencies, then `npm start` or `yarn start` to launch the server.
 
 ## Dependencies 
 
+#### Front-end
 * React 
+* React-dom
+* React-router
+* React-router-dom
+* React-scripts
 * Recharts
 * Axios
-* Node JS
-* PostgreSQL
-* Express
-* Sass
 * Chakra UI
 * Material UI
-* Framer Motion
+* Recharts
+* Emotion/react
+* Emotion/styled
+* framer-motion
+
+#### Back-end
+* Node JS
+* Express
+* PostgreSQL
+* pg-native
+* dotenv
+* nodemon
+* chalk
+
+## Set up
+
+1. Clone this repository.
+
+2. In express-back-end directory, install dependencies using the command `npm install`.
+
+3. In react-front-end directory, install dependencies using the command `npm install`.
+
+4. Create .env file based on .env.example in express-back-end folder.
+
+5. In express-back-end directory, Run `npm run db:reset` to reset the database.
+
+6. You need two terminal windows/tabs.
+
+In one terminal, `cd` into `express-back-end`, then run `npm start` or `yarn start` to launch the server.
+
+In the other terminal, `cd` into `react-front-end`. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
+
+7. Log in using the email: test@test.com and password: 123.
+
+Enjoy!
+
+## Team member:
+
+Feng Liu, Dylan McGrann, Suki Chan

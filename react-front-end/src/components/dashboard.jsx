@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //Array of month for the dashboard grid
-const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
 
 const Dashboard = function () {
 
