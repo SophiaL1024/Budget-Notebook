@@ -8,7 +8,7 @@ export default function IncomeList() {
   const { incomeTransactions, handleEdit, deletion } = useContext(dataContext);
 
   //mapping over data list to create a table of list items
-  const listIncomes = incomeTransactions.map(item => {
+  const listIncomes = incomeTransactions.sort((a,b)=>a.id-b.id).map(item => {
     return (
       <Edit
         key={item.id}

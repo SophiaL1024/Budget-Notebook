@@ -44,7 +44,7 @@ export default function BudgetListItems(props) {
     }
   }
 
-  const incomeItems = incomeAndBudget.map(e => {
+  const incomeItems = incomeAndBudget.sort((a,b)=>a.id-b.id).map(e => {
     if (edit === e.id && type === 'income') {
       return (
         <TableRow key={e.id}>
@@ -90,7 +90,7 @@ export default function BudgetListItems(props) {
     )
   })
 
-  const expenseItems = expenseAndBudget.map(e => {
+  const expenseItems = expenseAndBudget.sort((a,b)=>a.id-b.id).map(e => {
     if (edit === e.id && type === 'expense') {
       return (
         <TableRow key={e.id}>

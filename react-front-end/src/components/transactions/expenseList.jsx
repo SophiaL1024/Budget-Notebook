@@ -8,7 +8,7 @@ export default function ExpenseList() {
   const { expenseTransactions, handleEdit, deletion } = useContext(dataContext);
 
   //mapping over list to creat a table of list items
-  const listExpenses = expenseTransactions.map(item => {
+  const listExpenses = expenseTransactions.sort((a,b)=>a.id-b.id).map(item => {
     return (
       <Edit
         key={item.id}

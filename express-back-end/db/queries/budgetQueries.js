@@ -158,7 +158,6 @@ const updateIncomeBudget = (id, amount, name) => {
 };
 
 const updateBalanceBudget = (month, year, amount, userId) => {
-  console.log(month, year, amount);
   const queryStatement = `
   UPDATE balance_budgets
   SET amount = $3     
