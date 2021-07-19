@@ -30,7 +30,11 @@ export default function User() {
   const classes = useStyles();
   const history = useHistory();
 
-  const { setUserId } = useContext(dataContext);
+  const { userId,setUserId } = useContext(dataContext);
+
+  if(userId){
+    history.push('/dashboards');
+  }
 
   const [err, setErr] = useState(false);
 

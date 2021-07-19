@@ -21,10 +21,12 @@ const App = function () {
     <>
       <Router>
         <dataContext.Provider value={{ month, setMonth, year, setYear, userId, setUserId }}>
-
           {!userId && <User />}
           {userId &&
             <Switch>
+              <Route exact path="/">
+                <User />
+              </Route>
               <Route path="/dashboards">
                 <SideBar />
                 <Dashboard />
