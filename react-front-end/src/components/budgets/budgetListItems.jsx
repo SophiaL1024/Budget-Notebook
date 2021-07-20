@@ -15,7 +15,7 @@ export default function BudgetListItems(props) {
   //set edit to show edit form
   const [edit, setEdit] = useState(0);
   const [type, setType] = useState('');
-  const [alert, setAlert] = useState(0);
+  const [alert, setAlert] = useState('');
 
   const handleEdit = function (id, budgetType) {
     setEdit(id);
