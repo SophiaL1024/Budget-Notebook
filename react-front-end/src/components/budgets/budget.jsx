@@ -27,7 +27,6 @@ export default function Budget() {
   const { month, year, userId } = useContext(dataContext);
 
   useEffect(() => {
-
     axios
       .get("/budgets", { params: { year, month, userId } })
       .then((res) => {
@@ -46,12 +45,13 @@ export default function Budget() {
 
   return (
     <>
-      <dataContext.Provider value={{ incomeAndBudget: state.incomeAndBudget, expenseAndBudget: state.expenseAndBudget, balanceBudget: state.balanceBudget, setState, month, year, userId }}>
-
+      <dataContext.Provider value={{ incomeAndBudget: state.incomeAndBudget, expenseAndBudget: state.expenseAndBudget, month, year}}>
         <Paper className={classes.paper} elevation={3}>
           <BudgetPieChart />
         </Paper >
+        </dataContext.Provider>
 
+        <dataContext.Provider value={{ incomeAndBudget: state.incomeAndBudget, expenseAndBudget: state.expenseAndBudget, balanceBudget: state.balanceBudget, setState, month, year, userId }}>
         <Paper className={classes.paper} elevation={3}>
           <BudgetList />
         </Paper>

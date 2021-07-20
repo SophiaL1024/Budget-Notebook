@@ -1,16 +1,16 @@
 import React from 'react';
 import { useContext } from "react";
 import dataContext from '../../context';
-import Edit from "./edit";
+import ListItem from "./listItem";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 
 export default function IncomeList() {
-  const { incomeTransactions, handleEdit, deletion } = useContext(dataContext);
+  const { incomeTransactions} = useContext(dataContext);
 
   //mapping over data list to create a table of list items
   const listIncomes = incomeTransactions.sort((a,b)=>a.id-b.id).map(item => {
     return (
-      <Edit
+      <ListItem
         key={item.id}
         id={item.id}
         name={item.name}
@@ -20,8 +20,8 @@ export default function IncomeList() {
         user_id={item.user_id}
         description={item.description}
         amount={item.amount}
-        handleEdit={handleEdit}
-        deletion={deletion}
+        // handleEdit={handleEdit}
+        // deletion={deletion}
         type={"income"}
       />
     );

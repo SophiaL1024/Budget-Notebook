@@ -13,10 +13,10 @@ import {
 
 export default function Graph() {
   const { incomeTransactions, expenseTransactions } = useContext(dataContext);
-
-  const findSum = function (data, maxDay) {
+  
+  const findSum = function (transactions, maxDay) {
     let sum = 0;
-    const week = data.filter(item => item.day < maxDay);
+    const week = transactions.filter(item => item.day < maxDay);
     for (const item of week) {
       let x = parseInt(item.amount)
       sum += x
@@ -50,11 +50,10 @@ export default function Graph() {
       amt: 2400
     },
   ];
-
-  // dateContext
+  
   return (
     <LineChart
-      width={1100}
+    width={1100}
       height={250}
       data={data}
       margin={{

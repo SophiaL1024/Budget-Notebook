@@ -128,11 +128,11 @@ export default function budgetForm(props) {
         </DialogContent>
 
         <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
           <Button onClick={handleSubmit} color="primary">
             Submit
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Cancel
           </Button>
         </DialogActions>
 

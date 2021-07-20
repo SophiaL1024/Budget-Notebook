@@ -160,7 +160,7 @@ export default function budgetList() {
           timeout={transitionDuration}
           style={{
             transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
-            'z-index':'999'
+            zIndex:'999'
           }}
           unmountOnExit
         >

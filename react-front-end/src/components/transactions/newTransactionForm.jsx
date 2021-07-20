@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
-import { useContext } from "react";
+import { useState,useContext } from 'react';
+import axios from 'axios';
 import dataContext from '../../context';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField, Button, Radio, RadioGroup, makeStyles } from '@material-ui/core';
@@ -28,11 +28,30 @@ const useStyles = makeStyles({
 
 export default function NewTransactionForm(props) {
   const classes = useStyles();
-  const { handleChange, handleSubmit, formValue, incomeBudget, expenseBudget } = useContext(dataContext);
+  const { incomeBudget, expenseBudget,userId,incomeTransactions,expenseTransactions,setState } = useContext(dataContext);
   const [type, setType] = useState('income');
-  if (!incomeBudget || !expenseBudget) {
+  if (!incomeBudget.length || !expenseBudget.length) {
     return null;
   };
+  const [formValue, setFormValue] = useState({
+    name: "",
+    description: "",
+    amount: 0,
+    date: "",
+    year: 0,
+    month: 0,
+    day: 0,
+    selectedBudgetId: '',
+    "userId": userId
+  });
+
+  const handleChange = (key, value) => {
+    setFormValue(prev => ({
+      ...prev,
+      [key]: value
+    }));
+  };
+
   const handleTypeChange = (event) => {
     setType(event.target.value);
   };
@@ -53,8 +72,53 @@ export default function NewTransactionForm(props) {
     };
   };
 
+  const handleSubmit = (type) => {
+    formValue.year = Number(formValue.date.slice(0, 4));
+    formValue.month = Number(formValue.date.slice(5, 7));
+    formValue.day = Number(formValue.date.slice(-2));
+    axios.post(`http://localhost:3000/transactions/`, { data: { type, formValue } })
+      .then((res) => {
+        if (type === "income") {
+          const newIncomeTransactions = [...incomeTransactions,
+            {name: formValue.name,
+            description: formValue.description,
+            amount: formValue.amount,
+            month: formValue.month,
+            day: formValue.day,
+            year: formValue.year,
+            id: res.data,
+            incomeBudgetsId: formValue.selectedBudgetId}];
 
-  const newTransaction = (
+          setState((prev)=>({...prev,incomeTransactions:newIncomeTransactions}));
+        } else if (type === "expense") {
+          const newExpenseTransactions = [...expenseTransactions,
+            {name: formValue.name,
+            description: formValue.description,
+            amount: formValue.amount,
+            month: formValue.month,
+            day: formValue.day,
+            year: formValue.year,
+            id: res.data,
+            expenseBudgetsId: formValue.selectedBudgetId}];
+
+          setState((prev)=>({...prev,expenseTransactions:newExpenseTransactions}));
+        }
+      })
+      .then(() => {
+        setFormValue({
+          name: "",
+          description: "",
+          amount: 0,
+          date: "",
+          year: 0,
+          month: 0,
+          day: 0
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  return  (
 
       <div className={classes.transactionForm}>
         <h3 className='transaction-form-title'>New Transaction</h3>
@@ -131,10 +195,4 @@ export default function NewTransactionForm(props) {
         </div>
 
     );
-
-  return (
-    <>
-      {newTransaction}
-    </>
-  );
 };
