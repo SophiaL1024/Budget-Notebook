@@ -20,8 +20,6 @@ export default function IncomeList() {
         user_id={item.user_id}
         description={item.description}
         amount={item.amount}
-        // handleEdit={handleEdit}
-        // deletion={deletion}
         type={"income"}
       />
     );

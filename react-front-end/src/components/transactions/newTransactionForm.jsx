@@ -2,12 +2,8 @@ import React from 'react';
 import { useState,useContext } from 'react';
 import axios from 'axios';
 import dataContext from '../../context';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { TextField, Button, Radio, RadioGroup, makeStyles } from '@material-ui/core';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { TextField, Button, Radio, RadioGroup, makeStyles,FormControlLabel,InputLabel,MenuItem,FormControl, Select } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
   transactionForm: {

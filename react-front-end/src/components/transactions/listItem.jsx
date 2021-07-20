@@ -15,8 +15,9 @@ import { TableCell, TableRow } from "@material-ui/core";
 export default function ListItem(props) {
 
   const { incomeTransactions, expenseTransactions,setState } = useContext(dataContext);
-
-
+  if (!incomeTransactions.length || !expenseTransactions.length) {
+    return null;
+  }; 
   const SHOW = "SHOW";
   const EDIT = "EDIT";
   //function that transitions what is being displayed

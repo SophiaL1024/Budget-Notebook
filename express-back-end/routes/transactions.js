@@ -5,29 +5,19 @@ const transactionsQueries = require('../db/queries/transactionsQueries');
 router.get('/', (req, res) => {
   const transactionsData = {};
   const userId = req.query.userId;
-  transactionsQueries.getExpenseTransactionsById(userId,req.query.month,req.query.year)
-    .then((resolve) => {
-      transactionsData.expenseInfo = resolve.filter(e=>Number(e.amount));
+  Promise.all([
+    transactionsQueries.getExpenseTransactionsById(userId,req.query.month,req.query.year),
+    transactionsQueries.getIncomeTransactionsById(userId,req.query.month,req.query.year),
+    transactionsQueries.getIncomeBudget(userId,req.query.month,req.query.year),
+    transactionsQueries.getExpenseBudget(userId,req.query.month,req.query.year)
+  ])
+    .then((all) => {
+      transactionsData.expenseInfo = all[0].filter(e=>Number(e.amount));
+      transactionsData.incomeInfo = all[1].filter(e=>Number(e.amount));
+      transactionsData.incomeBudget = all[2];
+      transactionsData.expenseBudget = all[3];
     })
-    .then(() => {
-      transactionsQueries.getIncomeTransactionsById(userId,req.query.month,req.query.year)
-        .then(resolve => {
-          transactionsData.incomeInfo = resolve.filter(e=>Number(e.amount));
-        });
-    })
-    .then(() => {
-      transactionsQueries.getIncomeBudget(userId,req.query.month,req.query.year)
-        .then((resolve)=>{
-          transactionsData.incomeBudget = resolve;
-        });
-    })
-    .then(() => {
-      transactionsQueries.getExpenseBudget(userId,req.query.month,req.query.year)
-        .then(resolve => {
-          transactionsData.expenseBudget = resolve;
-          res.json(transactionsData);
-        });
-    });
+    .then(()=>res.json(transactionsData));
 });
 
 router.post('/', (req, res) => {

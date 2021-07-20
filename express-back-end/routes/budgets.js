@@ -7,36 +7,29 @@ router.get('/', (req, res) => {
   const budgetData = {};
   const userId = req.query.userId;
 
-  budgetQueries.getIncomeAndBudget(userId,req.query.month,req.query.year)
-    .then((resolve) => {
-      if (!resolve.length) {
-        // eslint-disable-next-line camelcase
-        resolve = [{income_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:userId}];
+  Promise.all([
+    budgetQueries.getIncomeAndBudget(userId,req.query.month,req.query.year),
+    budgetQueries.getExpenseAndBudget(userId,req.query.month,req.query.year),
+    budgetQueries.getBalanceBudget(userId,req.query.month,req.query.year)
+  ])
+    .then((all) => {
+      //if the selected month has no budget, assign sum and amount as 0, to avoid incomeAndBudget is undefined
+      if (!all[0].length) {
+      // eslint-disable-next-line camelcase
+        all[0] = [{income_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:userId}];
       }
-      budgetData.incomeAndBudget = resolve;
+      budgetData.incomeAndBudget = all[0];
+      //if the selected month has no budget, assign sum and amount as 0, to avoid expenseAndBudget is undefined
+      if (!all[1].length) {
+        // eslint-disable-next-line camelcase
+        all[1] = [{expense_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:userId}];
+      }
+      budgetData.expenseAndBudget = all[1];
+
+      budgetData.balanceBudget = all[2];
+
     })
-    .then(()=>{
-      budgetQueries.getExpenseAndBudget(userId,req.query.month,req.query.year)
-        .then((resolve) => {
-          if (!resolve.length) {
-            // eslint-disable-next-line camelcase
-            resolve = [{expense_sum:0,id:0,amount:0,name:"",year:req.query.year,month:req.query.month,user_id:userId}];
-          }
-          budgetData.expenseAndBudget = resolve;
-        });
-    })
-    .then(()=>{
-      budgetQueries.getBalanceBudget(userId,req.query.month,req.query.year)
-        .then((resolve) => {
-          resolve.forEach(e=>{
-            if (!e) {
-              e = 0;
-            }
-          });
-          budgetData.balanceBudget = resolve;
-          res.json(budgetData);
-        });
-    });
+    .then(()=>res.json(budgetData));
 });
 
 

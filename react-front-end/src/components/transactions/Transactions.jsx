@@ -24,8 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Transactions() {
-  const { month, year, userId } = useContext(dataContext);
-
+  
   const [state, setState] = useState({
     incomeTransactions: [],
     expenseTransactions: [],
@@ -33,17 +32,16 @@ export default function Transactions() {
     incomeBudget: []
   });
 
+  const { month, year, userId } = useContext(dataContext);
+  
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/transactions", { params: { year, month, userId } })
+    axios.get("http://localhost:3000/transactions", { params: { year, month, userId } })
       .then((res) => {
         setState((prev) => ({ ...prev, expenseTransactions: res.data.expenseInfo, incomeTransactions: res.data.incomeInfo, expenseBudget: res.data.expenseBudget, incomeBudget: res.data.incomeBudget }));
       });
   }, [month, year]);
+    const classes = useStyles();
 
- 
-
-  const classes = useStyles();
   return (
     <div className={classes.mainPage}>
       <dataContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,setState}}>

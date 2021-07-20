@@ -13,7 +13,9 @@ import {
 
 export default function Graph() {
   const { incomeTransactions, expenseTransactions } = useContext(dataContext);
-  
+  if (!incomeTransactions.length || !expenseTransactions.length) {
+    return null;
+  };  
   const findSum = function (transactions, maxDay) {
     let sum = 0;
     const week = transactions.filter(item => item.day < maxDay);
