@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import axios from "axios";
 import dataContext from "../../context.js";
-import { Button, TextField,TableCell, TableRow } from '@material-ui/core';
+import { Button, TextField,TableCell} from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 
 
@@ -71,7 +71,8 @@ export default function EditForm(props) {
   }
 
   return (
-    <TableRow noValidate autoComplete="off">
+    <>
+
       <TableCell>
       <TextField
         autoFocus
@@ -111,7 +112,8 @@ export default function EditForm(props) {
         onClick={() => { props.setEdit(0) }}
       >Cancel</Button>
       </TableCell>
-    </TableRow>
+
+    </>
   )
 
 

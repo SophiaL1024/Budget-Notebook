@@ -1,21 +1,22 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios';
-import dateContext from "../../context.js";
+import dataContext from "../../context.js";
 import BudgetProgressBar from "./progressBar";
 import EditForm from "./editForm";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { green,red } from '@material-ui/core/colors';
 import Alert from '@material-ui/lab/Alert';
-import { TableBody, TableCell, TableRow, TableHead,Table, IconButton } from "@material-ui/core";
+import { TableBody, TableCell, TableRow, IconButton,Dialog,DialogActions,Button,DialogContent} from "@material-ui/core";
 
 export default function BudgetListItems(props) {
 
-  const { incomeAndBudget, expenseAndBudget, balanceBudget, setState } = useContext(dateContext);
+  const { incomeAndBudget, expenseAndBudget, balanceBudget, setState } = useContext(dataContext);
   //set edit to show edit form
   const [edit, setEdit] = useState(0);
   const [type, setType] = useState('');
   const [alert, setAlert] = useState('');
+  // const [confirm,setConfirm]=useState(false);
 
   const handleEdit = function (id, budgetType) {
     setEdit(id);
@@ -41,30 +42,56 @@ export default function BudgetListItems(props) {
           expenseAndBudget: newExpenseAndBudget
         }))
       }
+      // setConfirm(true);      
     }
   }
+
+ 
+
+  // const Confirmation=()=>{
+  //   return(
+  //     <Dialog open={confirm}>
+  //        <DialogContent >
+  //       r u sure to delete?
+  //        </DialogContent>
+  //     <DialogActions>
+  //     <Button autoFocus onClick={()=>setConfirm(false)} color="primary">
+  //       Cancel
+  //     </Button>
+  //     <Button  color="primary">
+  //       Ok
+  //     </Button>
+  //   </DialogActions>
+  //     </Dialog>
+  //   )
+  // };
+
+
 
   const incomeItems = incomeAndBudget.sort((a,b)=>a.id-b.id).map(e => {
     if (edit === e.id && type === 'income') {
       return (
-        <TableRow key={e.id}>
-          <TableCell colSpan="5">
+        <TableBody key={e.id}>
+        <TableRow >
             <EditForm setEdit={setEdit} id={e.id} type={'income'} key={e.id} item={e} />
-          </TableCell>
         </TableRow>
+         </TableBody>
       )
     } else if (alert === e.id) {
       return (
-        <TableRow key={e.id}>
+        <TableBody key={e.id}>
+        <TableRow >
           <TableCell colSpan="5">
             <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with tansactions!</Alert>
           </TableCell>
-        </TableRow>)
+        </TableRow>
+        </TableBody>
+      )
     }
     else if (e.id === 0) {
       return null
     }
-    return (
+    return ( 
       <TableBody key={e.id}>
         <TableRow >
           <TableCell colSpan="5">
@@ -93,19 +120,22 @@ export default function BudgetListItems(props) {
   const expenseItems = expenseAndBudget.sort((a,b)=>a.id-b.id).map(e => {
     if (edit === e.id && type === 'expense') {
       return (
-        <TableRow key={e.id}>
-          <TableCell colSpan="5">
+        <TableBody key={e.id}>
+        <TableRow >
             <EditForm setEdit={setEdit} id={e.id} type={'expense'} key={e.id} item={e} />
-          </TableCell>
         </TableRow>
+        </TableBody>
       )
     } else if (alert === e.id) {
       return (
-        <TableRow key={e.id}>
+        <TableBody key={e.id}>
+        <TableRow >
           <TableCell colSpan="5">
             <Alert severity="error" onClose={() => { setAlert(0) }}> You can not delete the budget with tansactions!</Alert>
           </TableCell>
-        </TableRow>)
+        </TableRow>
+        </TableBody>
+      )
     }
     else if (e.id === 0) {
       return null
@@ -116,7 +146,6 @@ export default function BudgetListItems(props) {
           <TableCell colSpan="5">
             <BudgetProgressBar id={e.id} type={'expense'} />
           </TableCell>
-
         </TableRow>
         <TableRow >
           <TableCell>{e.name} </TableCell>
@@ -151,20 +180,11 @@ export default function BudgetListItems(props) {
 
   //conditional render different tabs
   if (props.tabType === 0) {
-    return incomeItems;
+    return (incomeItems)
   } else if (props.tabType === 1) {
     return expenseItems;
   } else if (props.tabType === 2 && !edit) {
-    return (
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Remaining budget</TableCell>
-            <TableCell>Saving Goal</TableCell>
-            <TableCell>Actual Balance</TableCell>
-            <TableCell>Edit</TableCell>
-          </TableRow>
-        </TableHead>
+    return (      
         <TableBody>
           <TableRow>
             <TableCell>{balanceRemaining()}</TableCell>
@@ -176,10 +196,15 @@ export default function BudgetListItems(props) {
               </IconButton >
             </TableCell>
           </TableRow>
-        </TableBody>
-      </Table>
+        </TableBody>  
     )
   } else if (props.tabType === 2 && edit) {
-    return <EditForm setEdit={setEdit} type={'balance'} key={0} item={{ name: 'Saving Goal', amount: balanceBudget[0] }} />
+    return (
+    <TableBody>
+    <TableRow>
+      <EditForm setEdit={setEdit} type={'balance'} key={0} item={{ name: 'Saving Goal', amount: balanceBudget[0] }} />
+   </TableRow>
+   </TableBody>
+    )
   }
 }

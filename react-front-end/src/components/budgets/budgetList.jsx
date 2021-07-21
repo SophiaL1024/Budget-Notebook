@@ -149,8 +149,17 @@ export default function budgetList() {
       </TabPanel>
 
       <TabPanel value={value} index={2} dir={theme.direction} className={classes.panel}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Remaining budget</TableCell>
+            <TableCell>Saving Goal</TableCell>
+            <TableCell>Actual Balance</TableCell>
+            <TableCell>Edit</TableCell>
+          </TableRow>
+        </TableHead>
         <BudgetListItems tabType={2} />
-
+        </Table>
       </TabPanel>
 
       {fabs.map((fab, index) => (
