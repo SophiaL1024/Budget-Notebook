@@ -33,7 +33,7 @@ export default function NewTransactionForm(props) {
     name: "",
     description: "",
     amount: 0,
-    date: `${new Date().getFullYear()}-${new Date().getMonth()<10?'0'+new Date().getMonth():new Date().getMonth()}-${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`,
+    date: `${new Date().getFullYear()}-${new Date().getMonth()<10?'0'+(new Date().getMonth()+1):new Date().getMonth()}-${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`,
     year: 0,
     month: 0,
     day: 0,
@@ -83,7 +83,7 @@ export default function NewTransactionForm(props) {
             day: formValue.day,
             year: formValue.year,
             id: res.data,
-            incomeBudgetsId: formValue.selectedBudgetId}];
+            income_budgets_id: formValue.selectedBudgetId}];
 
           setState((prev)=>({...prev,incomeTransactions:newIncomeTransactions}));
         } else if (type === "expense") {
@@ -95,7 +95,7 @@ export default function NewTransactionForm(props) {
             day: formValue.day,
             year: formValue.year,
             id: res.data,
-            expenseBudgetsId: formValue.selectedBudgetId}];
+            expense_budgets_id: formValue.selectedBudgetId}];
 
           setState((prev)=>({...prev,expenseTransactions:newExpenseTransactions}));
         }

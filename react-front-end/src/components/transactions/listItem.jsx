@@ -214,7 +214,7 @@ export default function ListItem(props) {
           value={budget}
           onChange={budgetHandler}
         >
-          {props.type==='income'?incomeBudget.map((e)=>{return(<MenuItem value={e.id}>{e.name}</MenuItem>)}):expenseBudget.map((e)=>{return(<MenuItem value={e.id}>{e.name}</MenuItem>)})} 
+          {props.type==='income'?incomeBudget.map((e)=>{return(<MenuItem key={e.id} value={e.id}>{e.name}</MenuItem>)}):expenseBudget.map((e)=>{return(<MenuItem key={e.id} value={e.id}>{e.name}</MenuItem>)})} 
         </Select>
       </TableCell>
        <TableCell>  
