@@ -14,7 +14,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 
 export default function ListItem(props) {
 
-  const { incomeTransactions, expenseTransactions,setState } = useContext(dataContext);
+  const { incomeTransactions, expenseTransactions,setState,incomeBudget,expenseBudget} = useContext(dataContext);
   if (!incomeTransactions.length || !expenseTransactions.length) {
     return null;
   }; 
@@ -138,6 +138,7 @@ export default function ListItem(props) {
          <TableCell>{props.name}</TableCell>
          <TableCell>{props.description}</TableCell>
          <TableCell>${props.amount}</TableCell>
+         <TableCell>{props.type==="income"?incomeBudget.find(e=>e.id===props.budgetId).name:expenseBudget.find(e=>e.id===props.budgetId).name}</TableCell>
          <TableCell>
          <IconButton aria-label="edit" style={{ marginRight: 15 }} fill="green" onClick={() => transition(EDIT)}>
            <EditIcon style={{ color: green[300] }} />

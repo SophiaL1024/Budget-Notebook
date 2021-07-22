@@ -44,7 +44,7 @@ export default function Transactions() {
 
   return (
     <div className={classes.mainPage}>
-      <dataContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,setState}}>
+      <dataContext.Provider value={{ incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,setState,expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget,userId}}>
         
         <div>
         <Paper className={classes.paper} elevation={3}>
@@ -54,10 +54,7 @@ export default function Transactions() {
           <TransactionTab />
         </Paper>
         </div>
-      </dataContext.Provider>
 
-      <dataContext.Provider value={{incomeTransactions: state.incomeTransactions, expenseTransactions: state.expenseTransactions,expenseBudget: state.expenseBudget, incomeBudget: state.incomeBudget,setState,userId}}>
-        <FormDrawer/>
       </dataContext.Provider>
     </div>
   )

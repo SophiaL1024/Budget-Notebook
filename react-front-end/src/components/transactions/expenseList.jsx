@@ -20,6 +20,7 @@ export default function ExpenseList(props) {
         user_id={item.user_id}
         description={item.description}
         amount={item.amount}
+        budgetId={item.expense_budgets_id}
         type={"expense"}
       />
     );
@@ -39,6 +40,7 @@ export default function ExpenseList(props) {
         user_id={item.user_id}
         description={item.description}
         amount={item.amount}
+        budgetId={item.expense_budgets_id}
         type={"expense"}
       />
       )
@@ -53,6 +55,7 @@ export default function ExpenseList(props) {
           <TableCell>Title</TableCell>
           <TableCell>Description</TableCell>
           <TableCell>Amount</TableCell>
+          <TableCell>Budget</TableCell>
           <TableCell>Edit</TableCell>
           <TableCell >Delete</TableCell>
         </TableRow>

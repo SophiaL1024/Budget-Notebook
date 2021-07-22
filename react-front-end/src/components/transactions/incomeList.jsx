@@ -9,6 +9,7 @@ export default function IncomeList(props) {
 
   //mapping over data list to create a table of list items and sort items by id
   const listIncomes = incomeTransactions.sort((a,b)=>a.id-b.id).map(item => {
+
     return (
       <ListItem
         key={item.id}
@@ -20,6 +21,7 @@ export default function IncomeList(props) {
         user_id={item.user_id}
         description={item.description}
         amount={item.amount}
+        budgetId={item.income_budgets_id}
         type={"income"}
       />
     );
@@ -39,6 +41,7 @@ export default function IncomeList(props) {
         user_id={item.user_id}
         description={item.description}
         amount={item.amount}
+        budgetId={item.income_budgets_id}
         type={"income"}
       />
       )
@@ -54,6 +57,7 @@ export default function IncomeList(props) {
           <TableCell>Title</TableCell>
           <TableCell>Description</TableCell>
           <TableCell>Amount</TableCell>
+          <TableCell>Budget</TableCell>
           <TableCell>Edit</TableCell>
           <TableCell >Delete</TableCell>
         </TableRow>
