@@ -13,15 +13,13 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #888; 
 }
-.transaction-add-btn{  
-  width: 50px;
-  height: 50px;
+#transaction-add-btn{
   position: absolute;
-  top:0;
-  right:0;  
+  top:100px;
+  right:20px;
 }
-.transaction-add-icon{
-font-size: 50px;
+#transaction-add-icon{
+font-size: 4rem;
 color: #64b5f6; 
 }
 .transaction-form-title{

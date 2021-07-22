@@ -9,8 +9,8 @@ export default function TemporaryDrawer() {
 
   return (
     <>
-      <IconButton className="transaction-add-btn"  variant="contained" onClick={() => setOpen(true)}>
-        <AddIcon fontSize="large" className="transaction-add-icon"/>
+      <IconButton id="transaction-add-btn"  variant="contained" onClick={() => setOpen(true)}>
+        <AddIcon id="transaction-add-icon"/>
         </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)} anchor='right'>
         <NewTransactionForm setOpen={setOpen}/>
