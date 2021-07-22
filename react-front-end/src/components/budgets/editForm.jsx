@@ -89,7 +89,7 @@ export default function EditForm(props) {
         autoFocus
         margin="dense"
         id="amount"
-        label="Amount in dollars"
+        label="Amount"
         type="number"
         onChange={(event) => handleChange("amount", event.target.value)}
         value={formValue.amount}

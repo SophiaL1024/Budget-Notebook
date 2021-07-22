@@ -16,7 +16,6 @@ export default function BudgetListItems(props) {
   const [edit, setEdit] = useState(0);
   const [type, setType] = useState('');
   const [alert, setAlert] = useState('');
-  // const [confirm,setConfirm]=useState(false);
 
   const handleEdit = function (id, budgetType) {
     setEdit(id);
@@ -42,31 +41,9 @@ export default function BudgetListItems(props) {
           expenseAndBudget: newExpenseAndBudget
         }))
       }
-      // setConfirm(true);      
+    
     }
   }
-
- 
-
-  // const Confirmation=()=>{
-  //   return(
-  //     <Dialog open={confirm}>
-  //        <DialogContent >
-  //       r u sure to delete?
-  //        </DialogContent>
-  //     <DialogActions>
-  //     <Button autoFocus onClick={()=>setConfirm(false)} color="primary">
-  //       Cancel
-  //     </Button>
-  //     <Button  color="primary">
-  //       Ok
-  //     </Button>
-  //   </DialogActions>
-  //     </Dialog>
-  //   )
-  // };
-
-
 
   const incomeItems = incomeAndBudget.sort((a,b)=>a.id-b.id).map(e => {
     if (edit === e.id && type === 'income') {
