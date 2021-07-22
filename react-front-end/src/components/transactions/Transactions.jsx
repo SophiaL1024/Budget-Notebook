@@ -54,7 +54,8 @@ export default function Transactions() {
           <TransactionTab />
         </Paper>
         </div>
-
+        
+        <FormDrawer/>
       </dataContext.Provider>
     </div>
   )

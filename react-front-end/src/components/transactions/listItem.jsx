@@ -9,7 +9,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
-import { TableCell, TableRow } from "@material-ui/core";
+import { TableCell, TableRow,Select,MenuItem } from "@material-ui/core";
 
 
 export default function ListItem(props) {
@@ -26,6 +26,7 @@ export default function ListItem(props) {
   const [name, setName] = useState(props.name || '');
   const [description, setDescription] = useState(props.description || '');
   const [amount, setAmount] = useState(props.amount || '');
+  const [budget, setBudget] = useState(props.budgetId || 0);
   const [year,setYear]=useState(props.year || '');
   const [month,setMonth]=useState(props.month || '');
   const [day,setDay]=useState(props.day || '');
@@ -52,6 +53,10 @@ export default function ListItem(props) {
     setAmount(event.target.value);
   };
 
+  const budgetHandler = function (event) {
+    setBudget(event.target.value);
+  };
+
   // Handles the deletion of a transaction and updates state
   const deletion = function (id, type) {
     axios.delete("http://localhost:3000/transactions/", { data: { id, type } })
@@ -76,7 +81,7 @@ export default function ListItem(props) {
 
    // Handles the edit request of an already existing transaction
    const handleEdit = (name, description, amount, month, day, year, id, type) => {
-    axios.patch(`http://localhost:3000/transactions/`, { data: { name, description, amount, month, day, year, id, type } })
+    axios.patch(`http://localhost:3000/transactions/`, { data: { name, description, amount, budget, month, day, year, id, type } })
       .then(() => {
         if (type === "income") {
           for (let i = 0; i < incomeTransactions.length; i++) {
@@ -89,6 +94,7 @@ export default function ListItem(props) {
                 month,
                 day,
                 year,
+                "income_budgets_id":budget
               }
               const newIncomeArray = incomeTransactions.map(item => {
                 if (item.id === id) {
@@ -113,6 +119,7 @@ export default function ListItem(props) {
                 month,
                 day,
                 year,
+                "expense_budgets_id":budget
               }
               const newExpenseArray = expenseTransactions.map(item => {
                 if (item.id === id) {
@@ -160,6 +167,7 @@ export default function ListItem(props) {
       <TextField
         margin="dense"
         id="date"
+        label="Date"
         style={{ marginTop: 20 }}
         type="date"
         onChange={dateHandler}
@@ -200,6 +208,15 @@ export default function ListItem(props) {
             value={amount}
           />
        </TableCell>
+      <TableCell> 
+      <Select          
+          id="demo-simple-select"
+          value={budget}
+          onChange={budgetHandler}
+        >
+          {props.type==='income'?incomeBudget.map((e)=>{return(<MenuItem value={e.id}>{e.name}</MenuItem>)}):expenseBudget.map((e)=>{return(<MenuItem value={e.id}>{e.name}</MenuItem>)})} 
+        </Select>
+      </TableCell>
        <TableCell>  
           <Button
             onClick={() => {transition(SHOW);handleEdit(name, description, amount,month, day,year, props.id, props.type);}}

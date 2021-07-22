@@ -103,38 +103,40 @@ const addIncome = (name, description, amount, year, month, day, userId, selected
     .catch(err => console.log(err));
 };
 
-const editIncomeTransactions = (name, description, amount, month, day, year, id) => {
+const editIncomeTransactions = (name, description, amount, budget,month, day, year, id) => {
   const queryStatement = `
   UPDATE income
   SET name = $1,
       description = $2,
       amount = $3,
-      month = $4,
-      day = $5,
-      year = $6
-  WHERE id = $7
+      income_budgets_id=$4,
+      month = $5,
+      day = $6,
+      year = $7
+  WHERE id = $8
   returning *
   `;
-  return db.query(queryStatement, [name, description, amount, month, day, year, id])
+  return db.query(queryStatement, [name, description, amount, budget,month, day, year, id])
     .then((response) => {
       return response.rows;
     })
     .catch(err => console.error(err));
 };
 
-const editExpenseTransactions = (name, description, amount, month, day, year, id) => {
+const editExpenseTransactions = (name, description, amount, budget,month, day, year, id) => {
   const queryStatement = `
   UPDATE expense
   SET name = $1,
       description = $2,
       amount = $3,
-      month = $4,
-      day = $5,
-      year = $6
-  WHERE id = $7
+      expense_budgets_id=$4,
+      month = $5,
+      day = $6,
+      year = $7
+  WHERE id = $8
   returning *
   `;
-  return db.query(queryStatement, [name, description, amount, month, day, year, id])
+  return db.query(queryStatement, [name, description, amount, budget,month, day, year, id])
     .then((response) => {
 
       return response.rows;

@@ -42,15 +42,15 @@ router.post('/', (req, res) => {
 
 router.patch('/', (req, res) => {
 
-  const { name, description, amount, month, day, year, id,type} = req.body.data;
-  console.log(req.body.data);
+  const { name, description, amount, budget, month, day, year, id,type} = req.body.data;
+
   if (type === 'income') {
-    transactionsQueries.editIncomeTransactions(name, description, amount, month, day, year, id)
+    transactionsQueries.editIncomeTransactions(name, description, amount, budget,month, day, year, id)
       .then(resolve => {
         res.json(resolve);
       });
   } else if (type === "expense") {
-    transactionsQueries.editExpenseTransactions(name, description, amount, month, day, year, id)
+    transactionsQueries.editExpenseTransactions(name, description, amount,budget, month, day, year, id)
       .then(resolve => {
         res.json(resolve);
       });
