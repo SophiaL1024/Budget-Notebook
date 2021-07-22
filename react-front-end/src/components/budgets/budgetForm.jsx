@@ -5,7 +5,7 @@ import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } 
 
 export default function budgetForm(props) {
 
-  const { incomeAndBudget, expenseAndBudget, setState, userId } = useContext(dataContext);
+  const { incomeAndBudget, expenseAndBudget, setState, userId,month,year } = useContext(dataContext);
 
   const [formValue, setFormValue] = useState({
     date: "",
@@ -39,7 +39,7 @@ export default function budgetForm(props) {
     axios.post('http://localhost:3000/budgets', { data: { formValue, tabType } })
 
       .then((resolve) => {
-        if (tabType === 0) {
+        if (tabType === 0&&formValue.month===month&&formValue.year===year) {
           const newIncomeAndBudget = incomeAndBudget.map(e => { return { ...e } });
 
           newIncomeAndBudget.push({
@@ -57,8 +57,7 @@ export default function budgetForm(props) {
           }));
 
         }
-
-        else if (tabType === 1) {
+        else if (tabType === 1&&formValue.month===month&&formValue.year===year) {
 
           const newExpenseAndBudget = expenseAndBudget.map(e => { return { ...e } });
 
