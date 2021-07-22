@@ -66,7 +66,7 @@ export default function budgetList() {
   const theme = useTheme();
   const [value, setValue] = useState(0);
 
-  const handleChange = ( newValue) => {
+  const handleChange = ( event,newValue) => {
     setValue(newValue)
   };
 
