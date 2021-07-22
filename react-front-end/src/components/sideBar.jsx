@@ -69,7 +69,7 @@ export default function SideBar() {
 
   const currentYear = new Date().getFullYear();
   const yearList = [];
-  for (let i = 2020; i <= currentYear; i++) {
+  for (let i = 2021; i <= currentYear; i++) {
     yearList.push(i);
   }
 

@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
       }
       budgetData.expenseAndBudget = all[1];
 
-      budgetData.balanceBudget = all[2];
+      budgetData.balanceBudget = all[2].map(e=>!e.amount ? 0 : e.amount);
 
     })
     .then(()=>res.json(budgetData));
@@ -50,8 +50,6 @@ router.post('/', (req, res) => {
         budgetQueries.createExpense(year,month,userId,resolve);
         res.json(resolve);
       });
-  } else if (tabType === 2) {
-    budgetQueries.createBalanceBudget(amount,year,month,userId);
   }
 });
 

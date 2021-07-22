@@ -31,10 +31,21 @@ const getExpenseAndBudget = (id, month, year) => {
     .catch(err => console.log(err));
 };
 
-const getBalanceBudget = (id, month, year) => {
+const createBalanceBudget = (amount, year, month, id) => {
+  const queryStatement = `
+  INSERT INTO balance_budgets (amount,year,month,user_id)
+  VALUES ($1,$2,$3,$4)
+  RETURNING *   
+ `;
+  return db.query(queryStatement, [amount, year, month, id])
+    .then((response)=>{
+      return response.rows[0];
+    });
+};
 
-  const queryStatement = `SELECT amount AS budget
-  FROM balance_budgets
+// return an array of balance budget amount, sum of income and sum of expense for a given month
+const getBalanceBudget = (id, month, year) => {
+  const queryStatement = `SELECT amount FROM balance_budgets
   WHERE month=$2 AND user_id=$1 AND year=$3
   UNION ALL
   SELECT SUM(amount) AS income_balance
@@ -47,9 +58,13 @@ const getBalanceBudget = (id, month, year) => {
  `;
   return db.query(queryStatement, [id, month, year])
     .then((response) => {
-      // return an array of balance budget amount, sum of income and sum of expense for a given month
-      const balance = response.rows.map(e => e.budget);
-      return balance;
+      //if no balance budget has been set for the selected month, create a new balance budget entry with amount 0
+      if (response.rows.length === 2) {
+        createBalanceBudget(0,year,month,id);
+        response.rows.unshift({amount:0});
+        return response.rows;
+      }
+      return response.rows;
     })
     .catch(err => console.log(err));
 };
@@ -83,14 +98,6 @@ const createExpenseBudget = (name, amount, year, month, id) => {
     .catch(err => console.log(err));
 };
 
-const createBalanceBudget = (amount, year, month, id) => {
-  const queryStatement = `
-  INSERT INTO balance_budgets (amount,year,month,user_id)
-  VALUES ($1,$2,$3,$4)   
- `;
-  db.query(queryStatement, [amount, year, month, id]);
-
-};
 
 const createIncome = (year, month, userId, resolve) => {
   const queryStatement = `

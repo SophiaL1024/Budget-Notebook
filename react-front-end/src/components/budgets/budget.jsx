@@ -39,7 +39,7 @@ export default function Budget() {
       });
   }, [month, year]);
 
-  if (!state.incomeAndBudget || !state.expenseAndBudget || !state.incomeAndBudget.length || !state.expenseAndBudget.length || !state.balanceBudget) {
+  if (!state.incomeAndBudget.length || !state.expenseAndBudget.length || !state.balanceBudget.length) {
     return null
   }
 
