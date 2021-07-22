@@ -17,12 +17,14 @@
 * Budget Page
 !["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/BudgetPage.png)
 
-!["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Expense_budget.png)
+!["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Expense_Budget.png)
 
 !["screenshot of the budget page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/Saving_goal.png)
 
 * Transaction Page
 !["screenshot of the transaction page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/TransactionPage.png)
+
+!["screenshot of the transaction page"](https://raw.githubusercontent.com/SophiaL1024/Budget-Notebook/main/react-front-end/public/img/addTransaction.png)
 
 ## Dependencies 
 
@@ -68,6 +70,10 @@
 
 Enjoy!
 
-## Team member:
+## Collaboration:
 
-Feng Liu, Dylan McGrann, Suki Chan
+* [GitHub](https://github.com/SophiaL1024)Feng Liu: Front-end and back-end functions of budget route, dashboard route and user route. Search Function, parts of edit and add new function of transaction route.
+
+* [GitHub](https://github.com/DylanMcGrann-dev)Dylan McGrann: Front-end and back-end functions of transaction route.
+
+* [GitHub](https://github.com/sukick)Suki Chan: Charts,UI and data seeds.
