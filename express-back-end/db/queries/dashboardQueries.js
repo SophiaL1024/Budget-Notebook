@@ -1,5 +1,18 @@
 const db = require('../connection');
 
+const createBalanceBudget = (amount, year, month, id) => {
+  const queryStatement = `
+  INSERT INTO balance_budgets (amount,year,month,user_id)
+  VALUES ($1,$2,$3,$4)
+  RETURNING *   
+ `;
+  return db.query(queryStatement, [amount, year, month, id])
+    .then((response)=>{
+      return response.rows[0];
+    });
+};
+
+
 // Grab the balance budget from database for a specific user
 const getBalanceBudgetByUserIdYear = (id, year) => {
   const queryStatement = `
@@ -10,6 +23,13 @@ const getBalanceBudgetByUserIdYear = (id, year) => {
   `;
   return db.query(queryStatement, [id, year])
     .then((response) => {
+      //if no balance budget has been set for some months, create a new balance budget entry with amount 0
+      for (let i = 1; i <= 12; i++) {
+        if (!response.rows.find(e=>e.month === i)) {
+          createBalanceBudget(0,year,i,id);
+          response.rows.push({month:i,amount:0});
+        }
+      }
       return response.rows;
     })
     .catch(err => console.log(err));
