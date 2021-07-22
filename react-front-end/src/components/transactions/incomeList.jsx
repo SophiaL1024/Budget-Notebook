@@ -8,7 +8,7 @@ export default function IncomeList(props) {
   const { incomeTransactions} = useContext(dataContext);
 
   //mapping over data list to create a table of list items and sort items by id
-  const listIncomes = incomeTransactions.sort((a,b)=>a.id-b.id).map(item => {
+  const listIncomes = incomeTransactions.sort((a,b)=>a.day-b.day).map(item => {
 
     return (
       <ListItem

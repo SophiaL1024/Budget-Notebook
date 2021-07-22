@@ -8,7 +8,7 @@ export default function ExpenseList(props) {
   const { expenseTransactions } = useContext(dataContext);
 
   //mapping over list to creat a table of list items and sort items by id
-  const listExpenses = expenseTransactions.sort((a,b)=>a.id-b.id).map(item => {
+  const listExpenses = expenseTransactions.sort((a,b)=>a.day-b.day).map(item => {
     return (
       <ListItem
         key={item.id}
