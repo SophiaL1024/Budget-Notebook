@@ -72,8 +72,8 @@ Enjoy!
 
 ## Collaboration:
 
-* [GitHub](https://github.com/SophiaL1024)Feng Liu: Front-end and back-end functions of budget route, dashboard route and user route. Search Function, parts of edit and add new function of transaction route.
+* [Feng Liu](https://github.com/SophiaL1024): Front-end and back-end functions of budget route, dashboard route and user route. Search Function, parts of edit and add new function of transaction route.
 
-* [GitHub](https://github.com/DylanMcGrann-dev)Dylan McGrann: Front-end and back-end functions of transaction route.
+* [Dylan McGrann](https://github.com/DylanMcGrann-dev): Front-end and back-end functions of transaction route.
 
-* [GitHub](https://github.com/sukick)Suki Chan: Charts,UI and data seeds.
+* [Suki Chan](https://github.com/sukick): Charts,UI and data seeds.
