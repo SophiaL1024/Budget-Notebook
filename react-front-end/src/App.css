@@ -30,6 +30,11 @@ color: #64b5f6;
   justify-content: space-evenly;
   padding-top: 20px;
 }
+.search{
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 50%;
+}
 
 button.cancel{
   height: 31px;

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import IncomeList from "./incomeList";
 import ExpenseList from "./expenseList";
-
+import SearchField from "./searchField";
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
 
 
@@ -66,6 +65,7 @@ export default function budgetList() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = useState(0);
+  const [search,setSearch]=useState('')
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -89,11 +89,13 @@ export default function budgetList() {
       </AppBar>
 
       <TabPanel value={value} index={0} dir={theme.direction} className={classes.panel}>
-        <IncomeList />
+        <SearchField setSearch={setSearch}/>
+        <IncomeList search={search}/>
       </TabPanel>
 
       <TabPanel value={value} index={1} dir={theme.direction} className={classes.panel}>
-        <ExpenseList />
+        <SearchField setSearch={setSearch}/>
+        <ExpenseList search={search}/>
       </TabPanel>
 
     </div>

@@ -4,10 +4,10 @@ import dataContext from "../../context";
 import ListItem from "./listItem";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 
-export default function ExpenseList() {
+export default function ExpenseList(props) {
   const { expenseTransactions } = useContext(dataContext);
 
-  //mapping over list to creat a table of list items
+  //mapping over list to creat a table of list items and sort items by id
   const listExpenses = expenseTransactions.sort((a,b)=>a.id-b.id).map(item => {
     return (
       <ListItem
@@ -25,6 +25,26 @@ export default function ExpenseList() {
     );
   });
 
+  //filter searched items
+  const searchItems=expenseTransactions.map((item)=>{
+    if(item.name.includes(props.search)){
+      return(
+        <ListItem
+        key={item.id}
+        id={item.id}
+        name={item.name}
+        month={item.month}
+        day={item.day}
+        year={item.year}
+        user_id={item.user_id}
+        description={item.description}
+        amount={item.amount}
+        type={"expense"}
+      />
+      )
+    }
+  })
+
   return (
       <Table stickyHeader={true} size="small">
       <TableHead>
@@ -38,7 +58,7 @@ export default function ExpenseList() {
         </TableRow>
       </TableHead>
         <TableBody>
-      {listExpenses}
+        {props.search.length?searchItems:listExpenses}
        </TableBody>
         </Table>  
   );
