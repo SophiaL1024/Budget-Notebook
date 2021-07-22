@@ -45,6 +45,7 @@ export default function ExpenseList(props) {
       />
       )
     }
+    return null;
   })
 
   return (

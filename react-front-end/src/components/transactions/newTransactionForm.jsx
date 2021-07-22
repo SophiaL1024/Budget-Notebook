@@ -105,10 +105,12 @@ export default function NewTransactionForm(props) {
           name: "",
           description: "",
           amount: 0,
-          date: "",
+          date: `${new Date().getFullYear()}-${new Date().getMonth()<10?'0'+(new Date().getMonth()+1):new Date().getMonth()}-${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`,
           year: 0,
           month: 0,
-          day: 0
+          day: 0,
+          selectedBudgetId: '',
+          "userId": userId
         });
       })
       .catch(err => console.log(err));

@@ -46,6 +46,7 @@ export default function IncomeList(props) {
       />
       )
     }
+    return null;
   })
 
 
