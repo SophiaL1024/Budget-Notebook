@@ -60,7 +60,7 @@
 
 3. In express-back-end directory, install dependencies using the command `npm install`.
 
-4. In express-back-end directory, create a local database by PostgreSQL using the following commands (replace  <your username> and <your password> with the username and password of your choice): `psql -U postgres`, `CREATE ROLE <your username> WITH LOGIN password '<your password>';`, `CREATE DATABASE budget_notebook OWNER <your username>;`.
+4. In express-back-end directory, create a local database by PostgreSQL using the following commands (replace your_username and your_password in the commands with your choice): `psql -U postgres`, `CREATE ROLE your_username WITH LOGIN password 'your_password';`, `CREATE DATABASE budget_notebook OWNER your_username;`.
 
 5. In express-back-end directory, create .env file based on .env.example. Update the .env file with your local database information set in the last step.
 
