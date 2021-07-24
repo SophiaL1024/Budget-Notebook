@@ -56,19 +56,22 @@
 
 1. Clone this repository.
 
-2. In express-back-end directory, install dependencies using the command `npm install`.
+2. You need two terminal windows/tabs to run the back-end server and front-end app. In one terminal, `cd` into `express-back-end`, in the other terminal, `cd` into `react-front-end`. 
 
-3. In react-front-end directory, install dependencies using the command `npm install`.
+3. In express-back-end directory, install dependencies using the command `npm install`.
 
-4. Create .env file based on .env.example in express-back-end folder.
+4. In express-back-end directory, create a local database by PostgreSQL using the following commands (replace  <your username> and <your password> with the username and password of your choice): `psql -U postgres`, `CREATE ROLE <your username> WITH LOGIN password '<your password>';`, `CREATE DATABASE budget_notebook OWNER <your username>;`.
 
-5. In express-back-end directory, Run `npm run db:reset` to reset the database.
+5. In express-back-end directory, create .env file based on .env.example. Update the .env file with your local database information set in the last step.
 
-6. You need two terminal windows/tabs. In one terminal, `cd` into `express-back-end`, then run `npm start` or `yarn start` to launch the server. In the other terminal, `cd` into `react-front-end`. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
+6. In express-back-end directory, Run `npm run db:reset` to reset the database.
 
-7. Log in using the email: test@test.com and password: 123.
+7. In react-front-end directory, install dependencies using the command `npm install`.
 
-Enjoy!
+8. In both terminal, run `npm start` and go to `localhost:3000` in your browser.
+
+9. Log in using the email: test@test.com and password: 123. Enjoy!
+
 
 ## Collaboration:
 
